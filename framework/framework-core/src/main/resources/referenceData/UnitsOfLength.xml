@@ -1,0 +1,16 @@
+<enumeration classIdentifier="UnitsOfLength" packageName="com.blueskyminds.framework.measurement"
+        comment="Units of length">
+   <item value="Metre"/>
+   <item value="Decimetre"/>
+   <item value="Centimetre"/>
+   <item value="Millimetre"/>
+   <item value="Micrometre"/>
+   <item value="Nanometre"/>
+
+   <item value="Inch"/>
+   <item value="Foot"/>
+   <item value="Yard"/>
+   <item value="Mile"/>
+
+</enumeration>
+

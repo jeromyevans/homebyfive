@@ -1,0 +1,5 @@
+<enumeration classIdentifier="DomainObjectStatus" packageName="com.blueskyminds.framework"
+        comment="Generalised status of a DomainObject">
+    <item value="Deleted"/>
+    <item value="Valid"/>
+</enumeration>

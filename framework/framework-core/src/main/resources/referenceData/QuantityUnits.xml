@@ -1,0 +1,30 @@
+<enumeration classIdentifier="QuantityUnits" packageName="com.blueskyminds.framework.measurement"
+        comment="Measurements units of Quantity">
+   <item value="Cubiccentimetre" />
+   <item value="Centimetre" />
+   <item value="Decimetre" />
+   <item value="Dozen" />
+   <item value="Each" />
+   <item value="Foot" />
+   <item value="Gallon" />
+   <item value="Gram" />
+   <item value="Inch" />
+   <item value="Kilogram" />
+   <item value="Litre" />
+   <item value="Milligram" />
+   <item value="Minute" />
+   <item value="Millilitre" />
+   <item value="Cubicmillimetre" />
+   <item value="Millimetre" />
+   <item value="Cubicmetre" />
+   <item value="Metre" />
+   <item value="Ounce" />
+   <item value="Percentage" />
+   <item value="Pieces" />
+   <item value="Pound" />
+   <item value="Pair" />
+   <item value="Pint" />
+   <item value="Portion" />
+   <item value="Sheet" />
+</enumeration>
+

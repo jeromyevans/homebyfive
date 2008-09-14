@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+    version="1.0">
+
+    <!--
+    List EmailTemplate's in a category
+
+    @param category   The unique category key
+
+    Recommended indexes:
+       category
+    -->
+    <named-query name="framework.emailTemplates.byCategory">
+      <query>
+        select emailTemplate from EmailTemplate emailTemplate where emailTemplate.category = :category
+      </query>
+    </named-query>
+
+  <!--
+    Lookup an EmailTemplate by its key
+
+    @param keyValue  The unique key
+
+    Recommended indexes:
+       key
+    -->
+    <named-query name="framework.emailTemplate.byKey">
+      <query>
+        select emailTemplate from EmailTemplate emailTemplate where emailTemplate.key = :keyValue
+      </query>
+    </named-query>
+
+  </entity-mappings>

@@ -1,0 +1,5 @@
+"UnitsOfArea","sqm","sqm","Convert sqm to sqm",\N,127,1,\N,"SquareMeter"
+"UnitsOfArea","sq","sqm","Convert sq to sqm",\N,127,1,\N,"SquareMeter"
+"UnitsOfArea","m2","sqm","Convert m2 to sqm",\N,127,1,\N,"SquareMeter"
+"UnitsOfArea","m^2","sqm","Convert m^2 to sqm",\N,127,1,\N,"SquareMeter"
+"UnitsOfArea","meters squared","sqm","Convert meters squared to sqm",\N,127,1,\N,"SquareMeter"

@@ -1,0 +1,18 @@
+<!-- Configuration file for the ReferenceDataGenerator -->
+<referencedata templatePath="src/main/resources/templates" targetSourcePath="d:/projects/blueskyminds/projects/src/framework/src/main/java">
+
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/DomainObjectStatus.xml"/>
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/OccurrenceTypes.xml"/>
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/PeriodTypes.xml"/>
+
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/Limits.xml"/>
+
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/UnitsOfArea.xml"/>
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/UnitsOfLength.xml"/>
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/UnitsOfLiquidVolume.xml"/>
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/UnitsOfMass.xml"/>
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/UnitsOfVolume.xml"/>
+
+    <definition file="d:/projects/blueskyminds/projects/src/framework/src/main/resources/referenceData/QuantityUnits.xml"/>
+
+</referencedata>

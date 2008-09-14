@@ -1,0 +1,13 @@
+<enumeration classIdentifier="PeriodTypes" packageName="com.blueskyminds.framework.datetime"
+        comment="Periodic time-span enumerations">
+    <item value="OnceOff"/>
+    <item value="Second"/>
+    <item value="Minute"/>
+    <item value="Hour"/>
+    <item value="Day"/>
+    <item value="Week"/>
+    <item value="Fortnight"/>
+    <item value="Month"/>
+    <item value="Quarter"/>
+    <item value="Year"/>
+</enumeration>

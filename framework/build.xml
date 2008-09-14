@@ -1,0 +1,27 @@
+<project name="framework">
+
+  <target name="clean">
+    <ant dir="framework-core" target="clean"/>
+    <ant dir="framework-email" target="clean"/>
+    <ant dir="framework-guice" target="clean"/>
+    <ant dir="framework-patterns" target="clean"/>
+    <ant dir="framework-persistence" target="clean"/>
+  </target>
+
+  <target name="init">
+    <ant dir="framework-core" target="init"/>
+    <ant dir="framework-email" target="init"/>
+    <ant dir="framework-guice" target="init"/>
+    <ant dir="framework-patterns" target="init"/>
+    <ant dir="framework-persistence" target="init"/>
+  </target>
+
+  <target name="jar">
+    <ant dir="framework-core" target="jar"/>
+    <ant dir="framework-email" target="jar"/>
+    <ant dir="framework-guice" target="jar"/>
+    <ant dir="framework-patterns" target="jar"/>
+    <ant dir="framework-persistence" target="jar"/>
+  </target>
+
+</project>

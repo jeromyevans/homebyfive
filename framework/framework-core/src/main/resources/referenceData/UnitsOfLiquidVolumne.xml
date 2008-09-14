@@ -1,0 +1,11 @@
+<enumeration classIdentifier="UnitsOfLiquidVolume" packageName="com.blueskyminds.framework.measurement"
+        comment="Units of liquid volume">
+    <item value="Millilitre"/>
+    <item value="Centilitre"/>
+    <item value="Decilitre"/>
+    <item value="Litre"/>
+
+    <item value="Pint"/>
+    <item value="Quart"/>
+    <item value="Gallon"/>
+</enumeration>
