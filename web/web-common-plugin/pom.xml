@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.blueskyminds.homebyfive.web</groupId>
+  <artifactId>web-common-plugin</artifactId>
+  <packaging>jar</packaging>
+  <version>0.1-SNAPSHOT</version>
+  <name>HomeByFive Web Struts2 Plugin</name>
+  <url>http://www.blueskyminds.com.au</url>
+
+  <parent>
+    <groupId>com.blueskyminds.homebyfive</groupId>
+    <artifactId>web</artifactId>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.myfaces.tobago</groupId>
+        <artifactId>maven-apt-plugin</artifactId>
+        <configuration>
+          <A>
+            uri=/housepad-tags,tlibVersion=2.2.3,jspVersion=1.2,shortName=housepad,displayName="HousePad Struts2 Tags",
+            <!--outFile=${basedir}/target/classes/META-INF/housepad-tags.tld,-->
+            outFile=${basedir}/src/main/resources/META-INF/housepad-tags.tld,
+            description="HousePad tags for Struts2.",
+            outTemplatesDir=${basedir}/src/main/gen
+          </A>
+          <resourceTargetPath>target</resourceTargetPath>
+          <fork>false</fork>
+          <force>true</force>
+          <nocompile>true</nocompile>
+          <showWarnings>true</showWarnings>
+          <factory>
+            org.apache.struts.annotations.taglib.apt.TLDAnnotationProcessorFactory
+          </factory>
+          <target>1.5</target>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts-annotations</artifactId>
+      <version>1.0.3</version>
+      <optional>true</optional>
+    </dependency>
+    
+  </dependencies>
+
+</project>

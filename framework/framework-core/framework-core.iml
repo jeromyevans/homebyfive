@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module relativePaths="true" type="JAVA_MODULE" version="4">
-  <component name="BuildJarSettings">
-    <containerInfo>
-      <containerElement type="module" name="framework">
-        <attribute name="method" value="1" />
-        <attribute name="URI" value="/" />
-      </containerElement>
-    </containerInfo>
-    <setting name="jarUrl" value="file://$MODULE_DIR$/dist/Framework.jar" />
-    <setting name="buildJar" value="true" />
-    <setting name="mainClass" value="" />
-  </component>
+<module relativePaths="true" MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="hibernate" name="Hibernate">
+    <facet type="hibernate" name="Hibernate" implicit="true">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <datasource-map>
-          <unit-entry name="&lt;anonymous&gt;hibernate.hsql.cfg.xml@230" />
-          <unit-entry name="src/main/resources/hibernate/hibernate.hsql.cfg.xml" />
-        </datasource-map>
+        <datasource-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate/hibernate.hsql.cfg.xml" optional="false" version="3.0" />
       </configuration>
     </facet>
-    <facet type="jpa" name="JPA">
+    <facet type="jpa" name="JPA" implicit="true">
       <configuration>
-        <setting name="validation-enabled" value="false" />
+        <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
-        <datasource-mapping>
-          <factory-entry name="DefaultEntityManager" />
-        </datasource-mapping>
+        <datasource-mapping />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/test/resources/META-INF/persistence.xml" optional="false" version="1.0" />
       </configuration>
     </facet>
@@ -43,9 +27,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
-      <excludeFolder url="file://$MODULE_DIR$/target/surefire-reports" />
-      <excludeFolder url="file://$MODULE_DIR$/target/test-classes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -335,7 +316,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library name="log4j:log4j:1.2.14">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.14/log4j-1.2.14.jar!/" />
