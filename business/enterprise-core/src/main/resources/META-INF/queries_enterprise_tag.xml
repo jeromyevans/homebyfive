@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+        xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+        version="1.0">
+
+  <!--
+ Get a tag  by its exact name
+
+ Parameters:
+   name:  name (exact matching)
+  -->
+  <named-query name="tag.byName">
+    <query>
+      select tag from Tag tag where tag.name = :name
+    </query>
+  </named-query>
+
+    <!--
+ Get a tag  by its exact name
+
+ Parameters:
+   keyValue:  key (exact matching)
+  -->
+  <named-query name="tag.byKey">
+    <query>
+      select tag from Tag tag where tag.key = :keyValue
+    </query>
+  </named-query>
+
+</entity-mappings>

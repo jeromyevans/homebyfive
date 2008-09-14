@@ -1,0 +1,5 @@
+<enumeration classIdentifier="RegionSchemes" packageName="com.blueskyminds.enterprise.region"
+        comment="A type of scheme for grouping regions">
+    <item value="Channel"/>
+    <item value="Market"/>
+</enumeration>

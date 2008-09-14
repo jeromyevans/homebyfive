@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.blueskyminds.enterprise</groupId>
+  <artifactId>enterprise-ejb</artifactId>
+  <packaging>jar</packaging>
+  <version>0.1.8-SNAPSHOT</version>
+  <name>Enterprise EJB3 Integration Library</name>
+  <url>http://www.blueskyminds.com.au</url>
+
+  <parent>
+    <groupId>com.blueskyminds.enterprise</groupId>
+    <artifactId>enterprise-parent</artifactId>
+    <version>0.1.8-SNAPSHOT</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ejb-plugin</artifactId>
+        <configuration>
+          <ejbVersion>3.0</ejbVersion>
+        </configuration>
+      </plugin>
+    </plugins>
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+  <scm>
+    <connection>scm:svn:https://axe/svn/enterprise/HEAD/enterprise-ejb</connection>
+    <developerConnection>scm:svn:https://axe/svn/enterprise/HEAD/enterprise-ejb</developerConnection>
+  </scm>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.blueskyminds.enterprise</groupId>
+      <artifactId>enterprise-core</artifactId>
+      <version>0.1.8-SNAPSHOT</version>
+    </dependency>
+
+   <dependency>
+      <groupId>javaee</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>5</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+</project>

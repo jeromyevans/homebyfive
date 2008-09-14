@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+    version="1.0">
+
+    <!-- This file can be used to define Named Queries and Native Queries.  It's loaded automatically by EntityManager -->
+
+    <!--
+    Get a country by its ISO 3-digit Country Code
+
+    The aliases of the country are eagerly loaded
+    The country implementation is eagerly loaded
+
+    Parameters:
+      iso3CountryCode:  uppercase 3 digit code  eg. AUS
+
+    Return:
+     CountryHandle
+     -->
+    <named-query name="country.byIso3Code">
+        <query>
+           select country from CountryHandle country
+             left join fetch country.country impl
+             left join fetch country.regionAliases
+             where impl.iso3CountryCode = :iso3CountryCode and
+                   country.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+    <!--
+    Get a country by its ISO 2-digit Country Code
+
+    The aliases of the country are eagerly loaded
+    The country implementation is eagerly loaded
+
+    Parameters:
+      iso2CountryCode:  uppercase 2 digit code  eg. AU
+     -->
+    <named-query name="country.byIso2Code">
+        <query>
+           select country from CountryHandle country
+             left join fetch country.country impl
+             left join fetch country.regionAliases
+             where impl.iso2CountryCode = :iso2CountryCode and
+                   country.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+  <!--
+    Get streets with the specified name in a suburb
+
+    Parameters:
+      suburb: suburb
+      name:  string (uses like to match)
+     -->
+    <named-query name="street.byNameAndSuburb">
+        <query>
+            select street from Suburb suburb join suburb.suburbStreetMaps connector join connector.street street where suburb = :suburb and street.name like :name
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+    <!--
+    Get streets with the specified name and section in a suburb
+
+    Parameters:
+      suburb: suburb
+      section: section
+      name:  string (uses like to match)
+     -->
+    <named-query name="street.byNameSectionAndSuburb">
+        <query>
+            select street from Suburb suburb join suburb.suburbStreetMaps connector join connector.street street where suburb= :suburb and street.section = :section and street.name like :name
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+     <!--
+    Get streets with the specified name and type in a suburb
+
+    Parameters:
+      suburb: suburb
+      type: streetType
+      name:  string (uses like to match)
+     -->
+    <named-query name="street.byNameTypeAndSuburb">
+        <query>
+            select street from Suburb suburb join suburb.suburbStreetMaps connector join connector.street street where suburb = :suburb and street.type = :type and street.name like :name
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+    <!--
+    Get streets with the specified name, type and section in a suburb
+
+    Parameters:
+      suburb: Suburb
+      type: StreetType
+      section: StreetSection
+      name:  string (uses like to match)
+     -->
+    <named-query name="street.byNameTypeSectionAndSuburb">
+        <query>
+            select street  from Suburb suburb join suburb.suburbStreetMaps connector join connector.street street where suburb = :suburb and street.type = :type and street.section = :section and street.name like :name
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+  <!--
+    Lookup the states for a Country.
+
+    This is a specialisation of regionx.findChildrenOfType
+
+    The aliases of the states are eagerly loaded
+    
+    Parameters:
+      countryId:  the id of the country
+     -->
+  <named-query name="state.listAllByCountryId">
+    <query>
+      select state from StateHandle state
+         left join state.parentRegionMaps map
+         left join fetch state.regionAliases
+         left join fetch state.state
+         where map.parent.id = :countryId and
+         state.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+    </query>
+    <hint name="org.hibernate.cacheable" value="true"/>
+  </named-query>
+
+  <!--
+    Lookup the named state for in a Country.  Uses a simple like match
+
+    The alias of the state is eagerly loaded
+
+    Parameters:
+      countryId:  the id of the country
+      name:       the name of the state
+     -->
+  <named-query name="state.byCountryAndName">
+    <query>
+      select state from StateHandle state
+         left join state.parentRegionMaps map
+         left join fetch state.regionAliases alias
+         left join fetch state.state 
+         where map.parent.id = :countryId and
+               state.status = com.blueskyminds.framework.DomainObjectStatus.Valid and
+              (state.name like :name or alias.name like :name)
+    </query>
+  </named-query>
+
+   <!--
+    Lookup the state identifiy by Abbr in a Country.  Uses a simple like match
+
+    The alias of the state is eagerly loaded
+
+    Parameters:
+      countryId:  the id of the country
+      abbr:       the abbr of the state
+     -->
+  <named-query name="state.byCountryAndAbbr">
+    <query>
+      select state from StateHandle state
+         left join state.parentRegionMaps map
+         left join fetch state.regionAliases
+         left join fetch state.state
+         left join state.state impl
+         where map.parent.id = :countryId and
+               state.status = com.blueskyminds.framework.DomainObjectStatus.Valid and
+              (impl.abbreviation like :abbr)
+    </query>
+  </named-query>
+
+   <!--
+    Lookup the postcodes for a Country.
+    Assumes postCodes belong to a state within a country
+
+    This is a specialisation of regionx.findChildrenOfType
+
+    The aliases of the postcodes are eagerly loaded
+    The implementation of the PostCode is eagerly loaded
+
+    Parameters:
+      countryId:  the id of the country
+     -->
+    <named-query name="postCode.listAllByCountryId">
+      <query>
+        select postCode from PostCodeHandle postCode
+         left join postCode.parentRegionMaps map
+         left join map.parent state
+         left join state.parentRegionMaps stateMap
+         left join fetch postCode.regionAliases
+         left join fetch postCode.postCode
+         where stateMap.parent.id = :countryId and
+               postCode.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+      </query>
+      <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+  <!--
+    Lookup the postcodes for a State.
+
+    This is a specialisation of regionx.findChildrenOfType
+
+    The aliases of the postcodes are eagerly loaded
+    The implementation of the PostCode is eagerly loaded
+
+    Parameters:
+      stateId:  the id of the state
+     -->
+    <named-query name="postCode.listAllByStateId">
+      <query>
+        select postCode from PostCodeHandle postCode
+         left join postCode.parentRegionMaps map
+         left join map.parent state
+         left join fetch postCode.regionAliases
+         left join fetch postCode.postCode
+         where state.id = :stateId and
+               postCode.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+      </query>
+      <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+    <!--
+    Lookup the suburbs in a State.  Suburbs are children of State
+
+    This is a specialisation of regionx.findChildrenOfType
+
+    The aliases of the suburbs are eagerly loaded
+    The implementation of the Suburb is eagerly loaded
+
+    Parameters:
+      stateId:  id of the state
+     -->
+    <named-query name="suburb.listAllByStateId">
+      <query>
+        select suburb from SuburbHandle suburb
+          left join suburb.parentRegionMaps map
+          left join fetch suburb.regionAliases
+          left join fetch suburb.suburb
+          where map.parent.id = :stateId and
+                suburb.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+      </query>
+      <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+  <!--
+    Lookup the suburb with the specified name in a State.
+
+    This is a specialisation of regionx.findChildrenOfType
+
+    The aliases of the suburbs are eagerly loaded
+    The implementation of the Suburb is eagerly loaded
+
+    Parameters:
+      stateId:  id of the state
+      name:     name of the suburb (exact match)
+     -->
+    <named-query name="suburb.byStateIdAndName">
+      <query>
+       select suburb from SuburbHandle suburb
+         left join suburb.parentRegionMaps map
+         left join fetch suburb.regionAliases alias
+         left join fetch suburb.suburb
+         where map.parent.id = :stateId and
+               suburb.status = com.blueskyminds.framework.DomainObjectStatus.Valid and
+              (lower(suburb.name) = :name or lower(alias.name) = :name)
+      </query>
+    </named-query>
+
+    <!--
+    Lookup the postcode with the specified name in a State.
+
+    This is a specialisation of regionx.findChildrenOfType
+
+    The aliases of the postcodes are eagerly loaded
+    The implementation of the PostCode is eagerly loaded
+
+    Parameters:
+      stateId:  id of the state
+      name:     name of the postcode (exact match)
+     -->
+    <named-query name="postCode.byStateIdAndName">
+      <query>
+       select postCode from PostCodeHandle postCode
+         left join postCode.parentRegionMaps map
+         left join fetch postCode.regionAliases alias
+         left join fetch postCode.postCode
+         where map.parent.id = :stateId and
+               postCode.status = com.blueskyminds.framework.DomainObjectStatus.Valid and
+              (lower(postCode.name) = :name or lower(alias.name) = :name)
+      </query>
+    </named-query>
+
+    <!--
+    Lookup the suburbs in a PostCode.  Suburbs are children of PostCode
+
+    This is a specialisation of regionx.findChildrenOfType
+
+    The aliases of the suburbs are eagerly loaded
+    The implementation of the Suburb is eagerly loaded
+
+    Parameters:
+      postCodeId:  id of the postcode
+     -->
+    <named-query name="suburb.listAllByPostCodeId">
+      <query>
+        select suburb from SuburbHandle suburb
+          left join suburb.parentRegionMaps map
+          left join fetch suburb.regionAliases
+          left join fetch suburb.suburb
+          where map.parent.id = :postCodeId and
+                suburb.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+     <!--
+    Lookup all the suburbs in a country with the specified ISO 3-digit code
+
+    Parameters:
+      postCode:  postCode
+     -->
+    <!--<named-query name="suburb.byIso3Code">-->
+        <!--<query>-->
+            <!--select suburb from Suburb suburb-->
+               <!--left join suburb.parentRegionMaps parentMap-->
+               <!--left join parentMap.parent state-->
+               <!--left join state.parentRegionMaps parentMap2-->
+               <!--left join parentMap2.parent country               -->
+               <!--where country.iso3CountryCode = :iso3CountryCode-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+   <!--
+    Get the list of all countries, eagerly loading the aliases
+
+    Eagerly loads the aliases of the countries
+
+    Parameters:
+      Nil
+     -->
+    <named-query name="country.listAll">
+        <query>
+          select country from CountryHandle country
+             left join fetch country.regionAliases where
+             country.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+  <!--
+    Get the list of all suburbs in a country.
+
+    Eagerly loads the aliases of the suburbs and the suburb implementation
+
+    This query finds suburbs that have a parent state in the specified country
+
+    Parameters:
+      country: CountryHandle
+     -->
+    <named-query name="suburb.listAllByCountry">
+        <query>
+          select suburb from SuburbHandle suburb
+             left join fetch suburb.regionAliases
+             left join fetch suburb.suburb
+             left join suburb.parentRegionMaps parentMap1
+             left join parentMap1.parent state
+             left join state.parentRegionMaps parentMap2
+             where parentMap2.parent = :country and
+                   state.class = com.blueskyminds.enterprise.region.state.StateHandle and
+                   suburb.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+  <!--
+    Get the list of all postcodes in a country.
+
+    Eagerly loads the aliases of the postcodes
+
+    This query finds postcodes that have a parent state in the specified country
+
+    Parameters:
+      country: CountryHandle
+     -->
+    <!--<named-query name="postCode.listAllByCountry">-->
+        <!--<query>-->
+          <!--select postCode from PostCodeHandle postCode-->
+             <!--left join fetch postCode.regionAliases-->
+             <!--left join postCode.parentRegionMaps parentMap1-->
+             <!--left join parentMap1.parent state-->
+             <!--left join state.parentRegionMaps parentMap2-->
+             <!--where parentMap2.parent = :country and-->
+                   <!--state.class = com.blueskyminds.enterprise.region.state.StateHandle-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+  <!--
+    Get the list of all streets in a country.
+
+    This query finds suburbs that have a parent state in the specified country and then the streets in each suburb
+
+    Parameters:
+      country: CountryHandle
+     -->
+    <named-query name="street.listAllByCountry">
+        <query>
+          select street from SuburbHandle suburb
+             left join suburb.parentRegionMaps parentMap1
+             left join parentMap1.parent state
+             left join state.parentRegionMaps parentMap2
+             left join suburb.suburb impl
+             left join impl.suburbStreetMaps map
+             left join map.street street
+             where parentMap2.parent = :country and
+                   state.class = com.blueskyminds.enterprise.region.state.StateHandle
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+   <!--
+    Get the list of all streets in a suburb.
+
+    This query finds suburbs that contains the street
+
+    Parameters:
+      suburb: SuburbHandle
+     -->
+    <named-query name="street.listAllBySuburb">
+        <query>
+          select street from SuburbHandle suburb
+             left join suburb.suburb impl
+             left join impl.suburbStreetMaps map
+             left join map.street street
+             where suburb = :suburb
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+    <!--
+    Get the list of all streets in a suburb.
+
+    This query finds postcodes of suburbs that contains the street
+
+    Parameters:
+      suburb: SuburbHandle
+     -->
+    <named-query name="street.listAllByPostCode">
+        <query>
+          select street from SuburbHandle suburb
+             left join suburb.parentRegionMaps parentMap1
+             left join parentMap1.parent postCode
+             left join suburb.suburb impl
+             left join impl.suburbStreetMaps map
+             left join map.street street
+             where postCode.class = com.blueskyminds.enterprise.region.postcode.PostCodeHandle
+                   and postCode = :postCode
+
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+  <!--
+    Get the list of all addresses in a suburb.
+
+    This query finds addresses in the specified suburb
+
+    Parameters:
+      suburb: SuburbHandle
+     -->
+    <named-query name="address.listAllBySuburb">
+        <query>
+          select address from Address address
+             left join address.suburb suburb
+             where suburb = :suburb
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+  <!--
+    Get the list of all addresses in a postcode.
+
+    This query finds addresses in the specified postcode, or in a suburb with the specified postcode
+
+    Parameters:
+      postCode: PostCodeHandle
+     -->
+    <named-query name="address.listAllByPostCode">
+        <query>
+          select address from Address address
+             left join address.suburb suburb
+             left join suburb.parentRegionMaps parentMap
+             left join parentMap.parent suburbPostCode
+             left join address.postCode postCode
+             where (postCode = :postCode) or
+                   (suburbPostCode.class = com.blueskyminds.enterprise.region.postcode.PostCodeHandle and suburbPostCode = :postCode)
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+   <!--
+    Get the list of all addresses in a street.
+
+    This query finds StreetAddresses that reference the street directly
+
+    Parameters:
+      street: Street
+     -->
+    <named-query name="address.listAllByStreet">
+        <query>
+          select address from StreetAddress address
+             left join address.street street
+             where street = :street
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+    <!--
+    Get countries with name like name
+
+    Parameters:
+      name:  string (uses like to match)
+     -->
+    <!--<named-query name="country.byName">
+        <query>
+            select country from Country country where country.name like :name
+        </query>
+    </named-query>-->
+
+
+
+
+</entity-mappings>
+

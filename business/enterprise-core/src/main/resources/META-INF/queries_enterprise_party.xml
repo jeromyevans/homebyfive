@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+        xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+        version="1.0">
+
+  <!-- This file can be used to define Named Queries and Native Queries.  It's loaded automatically by EntityManager -->
+
+  <!--
+ Get list of organisations by Name
+
+ Parameters:
+   name:  name (like matching)
+  -->
+  <named-query name="organisation.byName">
+    <query>
+      select organisation from Organisation organisation where organisation.name like :name
+    </query>
+  </named-query>
+
+  <!--
+ Get list of organisations by Name and Address
+
+// todo: this is incomplete!
+ Parameters:
+   name:  name name of the organisation (uses like matching)
+   type:  relationship type (should be set to an address)
+  -->
+  <named-query name="organisation.byNameAndAddress">
+    <query>
+      select organisation from Organisation organisation
+      left join organisation.pointsOfContact contactRelationship
+      left join contactRelationship.pointOfContact contactAddress
+      where contactRelationship.type = :type and
+      organisation.name like :name
+    </query>
+  </named-query>
+
+  <!--<named-query name="organisation.byNameAndAddress">-->
+  <!--<query>-->
+  <!--select organisation from Organisation organisation-->
+  <!--left join organisation.pointsOfContact contactRelationship-->
+  <!--left join contactRelationship.reference contactAddress-->
+  <!--left join contactAddress.address address-->
+  <!--where pointOfContact.type = :type and-->
+  <!--organisation.name like :name and-->
+  <!--address = :address-->
+  <!--</query>-->
+  <!--</named-query>-->
+  <!---->
+  <!--
+   Get list of organisations by Name and optional addresses
+
+ Parameters:
+   name:  name (like matching)
+   addresses: list of addresses
+  -->
+
+  <named-query name="organisation.byNameAndAddresses">
+    <query>
+      select organisation from Organisation organisation
+      left join organisation.pointsOfContact contactRelationship
+      left join contactRelationship.pointOfContact contactAddress
+      left join contactAddress.address address
+      where contactRelationship.type = :type and
+      organisation.name like :name and
+      address in(:addresses)
+    </query>
+  </named-query>
+
+  <!--
+   Get list of Individuals by Name and one or more addresses
+
+ Parameters:
+   firstName:  firstName (like %firstName%)
+   lastName:   lastName (like %lastName%)
+  -->
+  <named-query name="individual.byName">
+    <query>
+      select individual from Individual individual
+      where individual.firstName like :firstName and
+      individual.lastName like :lastName
+    </query>
+  </named-query>
+
+  <!--
+   Get list of Individuals by Name and one or more addresses
+
+ Parameters:
+   firstName:  firstName (like %firstName%)
+   lastName:   lastName (like %lastName%)
+   addresses: list of addresses
+  -->
+  <named-query name="individual.byNameAndAddresses">
+    <query>
+      select individual from Individual individual
+      left join individual.pointsOfContact contactRelationship
+      left join contactRelationship.pointOfContact contactAddress
+      left join contactAddress.address address
+      where contactRelationship.type = :type and
+      individual.firstName like :firstName and
+      individual.lastName like :lastName and
+      address in(:addresses)
+    </query>
+  </named-query>
+
+  <!--
+      Get list of Individuals by email address
+
+    Parameters:
+      email: one or more email addresses (array/collection)
+     -->
+  <named-query name="individual.byEmailAddress">
+    <query>
+      select individual from Individual individual
+      left join individual.pointsOfContact pocMap
+      left join pocMap.pointOfContact poc
+      where poc.emailAddress in (:email)
+    </query>
+  </named-query>
+
+  <!--
+      Get list of Individuals by email address
+
+    Parameters:
+      email: one or more email addresses (array/collection)
+     -->
+  <named-query name="organisation.byEmailAddress">
+    <query>
+      select organisation from Organisation organisation
+      left join organisation.pointsOfContact pocMap
+      left join pocMap.pointOfContact poc
+      where poc.emailAddress in (:email)
+    </query>
+  </named-query>
+
+  <!--
+   Get list of Parties that have the specified tag
+
+ Parameters:
+   name: name of the tag
+  -->
+  <named-query name="party.byTag">
+    <query>
+      select party from Party party
+        left join party.tagMaps tagMap
+        left join tagMap.tag tag
+        where tag.name = :name
+    </query>
+  </named-query>
+
+  <!--
+   Get list of Individuals that have the specified tag
+
+ Parameters:
+   name: name of the tag
+  -->
+  <named-query name="individual.byTag">
+    <query>
+      select individual from Individual individual
+        left join individual.tagMaps tagMap
+        left join tagMap.tag tag
+        where tag.name = :name
+    </query>
+  </named-query>
+
+  <!--
+   Get list of Organisations that have the specified tag
+
+ Parameters:
+   name: name of the tag
+  -->
+  <named-query name="organisation.byTag">
+    <query>
+      select organisation from Organisation organisation
+        left join organisation.tagMaps tagMap
+        left join tagMap.tag tag
+        where tag.name = :name
+    </query>
+  </named-query>
+
+  <!--
+   Get list of Party Point Of Contact's that have the specified tag
+
+ Parameters:
+   name: name of the tag
+  -->
+  <named-query name="partyPOC.byTag">
+    <query>
+      select partyPOC from Party party
+        left join party.pointsOfContact partyPOC
+        left join partyPOC.pointOfContact poc
+        left join poc.tagMaps tagMap
+        left join tagMap.tag tag
+        where tag.name = :name
+    </query>
+  </named-query>
+
+  <!--
+   Get list of Party Point Of Contact's that have the specified tag
+
+ Parameters:
+   name: name of the tag
+   party: specific party of interest
+  -->
+  <named-query name="partyPOC.byTagAndParty">
+    <query>
+      select partyPOC from Party party
+        left join party.pointsOfContact partyPOC
+        left join partyPOC.pointOfContact poc
+        left join poc.tagMaps tagMap
+        left join tagMap.tag tag
+        where party = :party and 
+              tag.name = :name
+    </query>
+  </named-query>
+
+   <!--
+   Get list of Party Point Of Contact's that have the specified tag and type
+
+ Parameters:
+   name: name of the tag
+   type: POCType of the POC
+  -->
+  <named-query name="partyPOC.byTagAndType">
+    <query>
+      select partyPOC from Party party
+        left join party.pointsOfContact partyPOC
+        left join partyPOC.pointOfContact poc
+        left join poc.tagMaps tagMap
+        left join tagMap.tag tag
+        where partyPOC.type = :type and 
+              tag.name = :name
+    </query>
+  </named-query>
+
+</entity-mappings>
+

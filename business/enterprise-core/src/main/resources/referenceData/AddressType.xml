@@ -1,0 +1,6 @@
+<enumeration classIdentifier="AddressType" packageName="com.blueskyminds.enterprise.address"
+        comment="The AddressType is used to distinguish between differing types of addresses - for example, a StreetAddress verses a LotAddress or Post Office Box address">
+    <item value="Unknown"/>
+    <item value="StreetAddress"/>
+    <item value="LotAddress"/>
+</enumeration>

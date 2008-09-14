@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+    version="1.0">
+
+    <!-- This file can be used to define Named Queries and Native Queries. -->
+
+   <!--
+    Lookup the children of a region
+    Aliases are fetched eagerly
+
+    Eagerly loads the aliases of the children
+
+    Parameters:
+      parent:   parent RegionHandle
+
+    Return:
+      List of RegionHandles's
+
+     -->
+    <named-query name="region.findChildren">
+      <query>
+        select child from RegionHierarchy map
+        left join map.child child
+        left join fetch child.regionAliases where
+        map.parent = :parent
+      </query>
+    </named-query>
+
+  <!--
+    Lookup the children of a particalar type in a region
+
+    Eagerly loads the aliases of the children
+
+    Parameters:
+      parentId: if of the parent RegionHandle
+      type:     regiontype
+
+    Return:
+      List of RegionHandles's
+     -->
+    <named-query name="region.findChildrenOfType">
+        <query>
+          select child from RegionHierarchy map
+            left join map.child child
+            left join fetch child.regionAliases where
+            map.parent.id = :parentId and
+            child.type = :type and
+            child.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+   <!--
+    Lookup the parents of a region
+
+    Eagerly loads the aliases of the parents
+
+    Parameters:
+      child:   child RegionHandle
+
+    Return:
+      List of RegionProxy's
+     -->
+    <named-query name="region.findParents">
+        <query>
+          select parent from RegionHierarchy map
+          left join map.parent parent
+          left join fetch parent.regionAliases where
+          map.child = :child and
+          parent.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+   <!--
+    Lookup a region by its name
+
+    Parameters:
+      name:  name (uses a simple like match on the name and aliases)
+     -->
+    <named-query name="region.byName">
+        <query>
+          select region from RegionHandle region
+          left outer join region.regionAliases alias where
+          region.name like :name or
+          alias.name like :name
+        </query>
+    </named-query>
+
+    <!--
+    Lookup a region by its name and type
+
+    Parameters:
+      type:  regiontypes enumeration
+      name:  name (uses a simple like match on the name and aliases)
+     -->
+    <named-query name="region.byNameAndType">
+        <query>
+          select region from RegionHandle region
+          left join region.regionAliases alias where
+          region.type = :type and
+          region.status = com.blueskyminds.framework.DomainObjectStatus.Valid and
+          (region.name like :name or alias.name like :name)
+        </query>
+    </named-query>
+
+  <!--
+    Lookup a region by its name, type and parent
+
+    Parameters:
+      parent:   parent regionHandle
+      type:     regiontypes enumeration
+      name:     name (uses a simple like match on the name and aliases)
+     -->
+    <named-query name="region.byNameTypeAndParent">
+        <query>
+          select child from RegionHierarchy map
+          left join map.child child
+          left outer join child.regionAliases alias where
+          map.parent = :parent and
+          child.type = :type and
+          child.status = com.blueskyminds.framework.DomainObjectStatus.Valid and
+          (child.name like :name or alias.name like :name)
+        </query>
+    </named-query>
+
+   
+
+  <!--
+      OLD STUFF FROM HERE DOWNWARDS
+  -->
+    <!--
+    Lookup a region by its name
+
+    Parameters:
+      name:  name (uses a like match)
+     -->
+    <!--<named-query name="region.byName">-->
+        <!--<query>-->
+          <!--select region from RegionOLD region where region.name like :name-->
+        <!--</query>-->
+    <!--</named-query>    -->
+
+     <!--
+    Lookup the ancestors of a region from the index
+
+    Parameters:
+      region:  region for which to find the ancenstors
+     -->
+    <!--<named-query name="regionIndex.ancestors">-->
+        <!--<query>-->
+            <!--select regionIndex.ancestor from RegionIndex regionIndex where regionIndex.descendant = :region-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+   <!--
+    Lookup the parents of a specific region.  See also region.anyParents
+
+    Parameters:
+      region: the child region
+     -->
+    <!--<named-query name="region.parents">-->
+        <!--<query>-->
+          <!--select parent from RegionOLD region-->
+          <!--left join region.parentRegionMaps map-->
+          <!--left join map.parent parent where-->
+          <!--region = :region-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+    <!--
+    Lookup the parents of a set of regions.  See also region.parentsEx
+
+    Parameters:
+      region: the regions to search
+     -->
+    <!--<named-query name="region.anyParents">-->
+        <!--<query>-->
+          <!--select parent from RegionOLD region-->
+          <!--left join region.parentRegionMaps map-->
+          <!--left join map.parent parent where-->
+          <!--region in (:regionSet)-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+    <!--
+    Lookup the parents of a set of regions where the parent is not already in the excludes list
+
+    Parameters:
+      regionSet: the regions to search
+      excludes: collection of parent regions to exclude
+     -->
+    <!--<named-query name="region.anyParentsEx">-->
+        <!--<query>-->
+          <!--select parent from RegionOLD region-->
+          <!--left join region.parentRegionMaps map-->
+          <!--left join map.parent parent where-->
+          <!--region in (:regionSet) and-->
+          <!--parent not in (:excludes)-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+    <!--
+    Lookup the set of children of the given region (see also region.anyChildren)
+
+    Parameters:
+      region:  the parent region
+     -->
+    <!--<named-query name="region.children">-->
+        <!--<query>-->
+          <!--select child from RegionOLD region-->
+          <!--left join region.childRegionMaps map-->
+          <!--left join map.child child where-->
+          <!--region = :region-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+
+    <!--
+    Lookup the set of children of the given regionSet (see also region.childrenEx)
+
+    Parameters:
+      regionSet:  the regions to search
+     -->
+    <!--<named-query name="region.anyChildren">-->
+        <!--<query>-->
+          <!--select child from RegionOLD region-->
+          <!--left join region.childRegionMaps map-->
+          <!--left join map.child child where-->
+          <!--region in (:regionSet)-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+    <!--
+    Lookup the children of a region where the child is not already in the excludes list
+
+    Parameters:
+      region:  the regions to search
+      excludes: collection of children regions to exclude
+     -->
+    <!--<named-query name="region.anyChildrenEx">-->
+        <!--<query>-->
+          <!--select child from RegionOLD region-->
+          <!--left join region.childRegionMaps map-->
+          <!--left join map.child child where-->
+          <!--region in (:regionSet) and-->
+          <!--child not in (:excludes)-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+</entity-mappings>
+

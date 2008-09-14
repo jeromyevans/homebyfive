@@ -1,0 +1,5 @@
+<enumeration classIdentifier="AccountabilityTypes" packageName="com.blueskyminds.enterprise.accountability"
+        comment="Types of accountability.  eg. a company is an employer for an individual.  Accountability may also be between compannies">
+    <item value="Employer"/>
+    <item value="Manager"/>
+</enumeration>

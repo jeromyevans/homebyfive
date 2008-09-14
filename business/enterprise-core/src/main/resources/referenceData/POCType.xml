@@ -1,0 +1,10 @@
+<enumeration classIdentifier="POCType" packageName="com.blueskyminds.enterprise.contact"
+        comment="A type of contact point. eg 'address', 'email', 'phonenumber'">
+    <item value="Address"/>
+    <item value="EmailAddress"/>
+    <item value="PhoneNumber"/>
+    <item value="Website"/>
+    <item value="Fax"/>
+    <item value="Pager"/>
+    <item value="IM"/>
+</enumeration>

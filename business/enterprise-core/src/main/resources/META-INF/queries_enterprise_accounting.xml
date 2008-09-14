@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+    version="1.0">
+
+    <!-- This file can be used to define Named Queries and Native Queries.  It's loaded automatically by EntityManager -->
+
+    <!--
+    Lookup a tax policy by its name
+
+    Parameters:
+      name:  name (exact match)
+     -->
+    <named-query name="taxPolicy.byName">
+        <query>
+            select taxPolicy from TaxPolicy taxPolicy where taxPolicy.name = :name
+        </query>
+    </named-query>
+
+
+</entity-mappings>
+

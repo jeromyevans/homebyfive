@@ -1,0 +1,7 @@
+<enumeration classIdentifier="LicenseEntryTypes" packageName="com.blueskyminds.enterprise.license"
+        comment="Types of entries in a license transaction within the WDIS framework">
+    <item value="Include"/>
+    <item value="Release"/>
+    <item value="Reserve"/>
+    <item value="Unreserve"/>
+</enumeration>

@@ -1,0 +1,112 @@
+"StreetName","^[a-z|\-|\'|\s]+$",\N,"Anything alpha, including spaces and some punctuation, at least one character in length",\N,127,1,\N,\N
+"StreetName","^(the\s\w+)$",\N,"The <streetname>",\N,127,1,1,\N
+"StreetNumber","^(\d+\w*)/([\d|\-]+)$",\N,"Extract StreetNo from 'UnitNo/StreetNo' phrase",\N,127,0,2,\N
+"StreetNumber","^(\d+)$",\N,"Simple street number (no unit number)",\N,127,1,1,\N
+"StreetNumber","^(\D+\d+)$",\N,"Street number preceeded by letters (no unit number)",\N,127,1,1,\N
+"StreetNumber","^([\d|\-]+)$",\N,"Simple two part street number (no unit number)",\N,127,1,1,\N
+"StreetNumber","^(\d+)\,(\d+)$",\N,"Extract StreetNo from 'Unit No, Street No'",\N,127,0,2,\N
+"StreetNumber","^(\d+)([a-z|A-Z]+)$",\N,"Extract StreetNo from 'StreetNoUnitLetter' (eg. 56b)",\N,127,0,1,\N
+"StreetNumber","^(\d+)\s(\D)$",\N,"Extract StreetNo from 'StreetNo UnitLetter' (eg. 56 B)",\N,127,0,1,\N
+"StreetNumber","^\D+(\d+)/(\d+)$",\N,"Unumber/street number eg. U25/14",\N,127,0,2,\N
+"StreetNumber","^lot\s(\w*\d+\w*)/([\d|\-]+)$",\N,"Extract street number from Lot number/street number",\N,127,0,2,\N
+"StreetNumber","^lot\s(\w*\d+\w*)\s*\-\s*([\d|\-]+)$",\N,"Extract street number from Lot number - street number",\N,127,0,2,\N
+"StreetNumber","^\D+(\d+)/\s(\d+)$",\N,"Unumber/ street number eg. U25/ 14",\N,127,0,2,\N
+"UnitNumber","^(\d+\w*)/([\d|\-]+)$",\N,"Extract UnitNo from 'UnitNo/StreetNo' phrase",\N,127,0,1,\N
+"UnitNumber","^(\d+\w*)\,(\d+)$",\N,"Extract UnitNo from 'Unit No, Street No'",\N,127,0,1,\N
+"UnitNumber","^(\d+)([a-z|A-Z]+)$",\N,"Extract UnitNo from 'StreetNoUnitLetter' (eg. 56b)",\N,127,0,2,\N
+"UnitNumber","^(\d+)\s(\D)$",\N,"Extract UnitNo from 'StreetNo single UnitLetter' (eg. 56 B)",\N,127,0,2,\N
+"UnitNumber","^shop\s(\d+)$",\N,"Shop Number",\N,127,1,1,\N
+"UnitNumber","^unit\s(\w*\d+\w*)$",\N,"Unit Number",\N,127,1,1,\N
+"UnitNumber","^\D+(\d+)/(\d+)$",\N,"Unumber/street number eg. U25/14",\N,127,0,1,\N
+"UnitNumber","^\D+(\d+)/\s(\d+)$",\N,"Unumber/ street number eg. U25/ 14",\N,127,0,1,\N
+"LotNumber","^lot\s(\w*\d+\w*)$",\N,"Simple lot number",\N,127,1,1,\N
+"LotNumber","^lot\s(\w*\d+\w*)/([\d|\-]+)$",\N,"Extract lot number from Lot number/street number",\N,127,0,1,\N
+"LotNumber","^lot\s(\w*\d+\w*)\s*\-\s*([\d|\-]+)$",\N,"Extract lot number from Lot number - street number",\N,127,0,1,\N
+"Locality","Teneriffe","Newstead","Teneriffe QLD",\N,127,1,\N,\N
+"Locality","Walsh\sBay","The Rocks","Walsh\sBay is The Rocks",\N,127,1,\N,\N
+"Locality","Cockle\sBay","Darling Harbour","Cockle Bay is Darling Harbour",\N,127,1,\N,\N
+"Locality","Wategos\sBeach","Byron Bay","Wategos Beach is Byron Bay",\N,127,1,\N,\N
+"StreetType","rd","road","Convert Rd to Road",\N,127,1,\N,"Road"
+"StreetType","st","street","Convert St to Street",\N,127,1,\N,"Street"
+"StreetType","ave","avenue","Convert Ave to Avenue",\N,127,1,\N,"Avenue"
+"StreetType","av","avenue","Convert Av to Avenue",\N,127,1,\N,"Avenue"
+"StreetType","pl","place","Convert Pl to Place",\N,127,1,\N,"Place"
+"StreetType","dr","drive","Convert Dr to Drive",\N,127,1,\N,"Drive"
+"StreetType","dve","drive","Convert Dve to Drive",\N,127,1,\N,"Drive"
+"StreetType","hwy","highway","Convert Hwy to Highway",\N,127,1,\N,"Highway"
+"StreetType","ct","court","Convert Ct to Court",\N,127,1,\N,"Court"
+"StreetType","cl","close","Convert Cl to Close",\N,127,1,\N,"Close"
+"StreetType","pd","parade","Convert Pd to Parade",\N,127,1,\N,"Parade"
+"StreetType","pde","parade","Convert Pde to Parade",\N,127,1,\N,"Parade"
+"StreetType","wy","way","Convert Wy to Way",\N,127,1,\N,"Way"
+"StreetType","cres","crescent","Convert Cres to Crescent",\N,127,1,\N,"Crescent"
+"StreetType","cresent","crescent","Correct spelling of Crescent",\N,127,1,\N,"Crescent"
+"StreetType","crt","court","Convert Ctr to Court",\N,127,1,\N,"Court"
+"StreetType","cir","circle","Convert Cir to Circle",\N,127,1,\N,"Circle"
+"StreetType","cnr","corner","Convert Cnr to Corner",\N,127,1,\N,"Corner"
+"StreetType","blvd","boulevard","Convert Blvd to Boulevard",\N,127,1,\N,"Boulevard"
+"StreetType","blvde","boulevard","Convert Bvlde to Boulevard",\N,127,1,\N,"Boulevard"
+"StreetType","bvld","boulevard","Convert Bvld to Boulevard",\N,127,1,\N,"Boulevard"
+"StreetType","grds","gardens","Convert Grds to Gardens",\N,127,1,\N,"Gardens"
+"StreetType","pkwy","parkway","Convert Pkwy to Parkway",\N,127,1,\N,"Parkway"
+"StreetType","tce","terrace","Convert Tce to Terrace",\N,127,1,\N,"Terrace"
+"StreetType","road",\N,"Road",\N,200,1,\N,"Road"
+"StreetType","street",\N,"Street",\N,200,1,\N,"Street"
+"StreetType","close",\N,"Close",\N,200,1,\N,"Close"
+"StreetType","court",\N,"Court",\N,200,1,\N,"Court"
+"StreetType","place",\N,"Place",\N,200,1,\N,"Place"
+"StreetType","way",\N,"Way",\N,200,1,\N,"Way"
+"StreetType","highway",\N,"Highway",\N,200,1,\N,"Highway"
+"StreetType","drive",\N,"Drive",\N,200,1,\N,"Drive"
+"StreetType","circle",\N,"Circle",\N,200,1,\N,"Circle"
+"StreetType","crescent",\N,"Crescent",\N,200,1,\N,"Crescent"
+"StreetType","parade",\N,"Parade",\N,200,1,\N,"Parade"
+"StreetType","approach",\N,"Approach",\N,200,1,\N,"Approach"
+"StreetType","parkway",\N,"Parkway",\N,200,1,\N,"Parkway"
+"StreetType","turn",\N,"Turn",\N,200,1,\N,"Turn"
+"StreetType","elbow",\N,"Elbow",\N,200,1,\N,"Elbow"
+"StreetType","mews",\N,"Mews",\N,200,1,\N,"Mews"
+"StreetType","retreat",\N,"Retreat",\N,200,1,\N,"Retreat"
+"StreetType","gardens",\N,"Gardens",\N,200,1,\N,"Gardens"
+"StreetType","loop",\N,"Loop",\N,200,1,\N,"Loop"
+"StreetType","circuit",\N,"Circuit",\N,200,1,\N,"Circuit"
+"StreetType","link",\N,"Link",\N,200,1,\N,"Link"
+"StreetType","terrace",\N,"Terrace",\N,200,1,\N,"Terrace"
+"StreetType","rise",\N,"Rise",\N,200,1,\N,"Rise"
+"StreetType","view",\N,"View",\N,200,1,\N,"View"
+"StreetType","corner",\N,"Corner",\N,200,1,\N,"Corner"
+"StreetType","cove",\N,"Cove",\N,200,1,\N,"Cove"
+"StreetType","boulevard",\N,"Boulevard",\N,200,1,\N,"Boulevard"
+"StreetType","bypass",\N,"Bypass",\N,200,1,\N,"Bypass"
+"StreetType","square",\N,"Square",\N,200,1,\N,"Square"
+"StreetType","alley",\N,"Alley",\N,200,1,\N,"Alley"
+"StreetType","meander",\N,"Meander",\N,200,1,\N,"Meander"
+"StreetType","grove",\N,"Grove",\N,200,1,\N,"Grove"
+"StreetType","lane",\N,"Lane",\N,200,1,\N,"Lane"
+"StreetType","glade",\N,"Glade",\N,200,1,\N,"Glade"
+"StreetType","vista",\N,"Vista",\N,200,1,\N,"Vista"
+"StreetType","green",\N,"Green",\N,200,1,\N,"Green"
+"StreetType","ramble",\N,"Ramble",\N,200,1,\N,"Ramble"
+"StreetType","glen",\N,"Glen",\N,200,1,\N,"Glen"
+"StreetType","promenade",\N,"Promenade",\N,200,1,\N,"Promenade"
+"StreetType","trail",\N,"Trail",\N,200,1,\N,"Trail"
+"StreetType","pass",\N,"Pass",\N,200,1,\N,"Pass"
+"StreetType","dale",\N,"Dale",\N,200,1,\N,"Dale"
+"StreetType","ridge",\N,"Ridge",\N,200,1,\N,"Ridge"
+"StreetType","chase",\N,"Chase",\N,200,1,\N,"Chase"
+"StreetType","entrance",\N,"Entrance",\N,200,1,\N,"Entrance"
+"StreetType","heights",\N,"Heights",\N,200,1,\N,"Heights"
+"StreetType","outlook",\N,"Outlook",\N,200,1,\N,"Outlook"
+"StreetType","bend",\N,"Bend",\N,200,1,\N,"Bend"
+"StreetType","walk",\N,"Walk",\N,200,1,\N,"Walk"
+"StreetType","circus",\N,"Circus",\N,200,1,\N,"Circus"
+"StreetType","crest",\N,"Crest",\N,200,1,\N,"Crest"
+"StreetType","key",\N,"Key",\N,200,1,\N,"Key"
+"StreetType","mall",\N,"Mall",\N,200,1,\N,"Mall"
+"StreetType","row",\N,"Row",\N,200,1,\N,"Row"
+"StreetType","avenue",\N,"Avenue",\N,200,1,\N,"Avenue"
+"StreetType","causeway",\N,"Causeway",\N,200,1,\N,"Causeway"
+"StreetSection","north",\N,"North",\N,200,1,\N,"North"
+"StreetSection","east",\N,"East",\N,200,1,\N,"East"
+"StreetSection","south",\N,"South",\N,200,1,\N,"South"
+"StreetSection","west",\N,"West",\N,200,1,\N,"West"
