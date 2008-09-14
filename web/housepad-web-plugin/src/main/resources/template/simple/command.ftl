@@ -1,0 +1,1 @@
+<a class="command <s:property value="cssClass"/>" href="<s:property value="path"/>" title="<s:property value="name"/>"><span><s:property value="name"/></span></a>
