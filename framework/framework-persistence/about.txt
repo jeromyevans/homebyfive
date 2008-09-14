@@ -1,2 +1,0 @@
-Contains persistence-specific code that has been factored out of the main framework due to the
- dependencies or assumptions made in the implementation.
