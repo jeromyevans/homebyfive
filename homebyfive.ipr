@@ -238,10 +238,9 @@
       <module fileurl="file://$PROJECT_DIR$/business/enterprise-ejb/enterprise-ejb.iml" filepath="$PROJECT_DIR$/business/enterprise-ejb/enterprise-ejb.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/enterprise-guice/enterprise-guice.iml" filepath="$PROJECT_DIR$/business/enterprise-guice/enterprise-guice.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/enterprise-parent.iml" filepath="$PROJECT_DIR$/business/enterprise-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-core/framework-core.iml" filepath="$PROJECT_DIR$/framework/framework-core/framework-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/framework/framework-email/framework-email.iml" filepath="$PROJECT_DIR$/framework/framework-email/framework-email.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" filepath="$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/framework/framework-parent.iml" filepath="$PROJECT_DIR$/framework/framework-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-patterns/framework-patterns.iml" filepath="$PROJECT_DIR$/framework/framework-patterns/framework-patterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/homebyfive.iml" filepath="$PROJECT_DIR$/homebyfive.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/security/security.iml" filepath="$PROJECT_DIR$/web/security/security.iml" />
@@ -249,7 +248,7 @@
       <module fileurl="file://$PROJECT_DIR$/web/security/security-model/security-model.iml" filepath="$PROJECT_DIR$/web/security/security-model/security-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/security/security-plugin/security-plugin.iml" filepath="$PROJECT_DIR$/web/security/security-plugin/security-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/web/web-common-plugin/web-common-plugin.iml" filepath="$PROJECT_DIR$/web/web-common-plugin/web-common-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web-common-plugin/web-core.iml" filepath="$PROJECT_DIR$/web/web-common-plugin/web-core.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
@@ -278,6 +277,7 @@
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" />
+    <macro name="projectsHome" />
   </UsedPathMacros>
 </project>
 

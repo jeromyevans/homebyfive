@@ -15,8 +15,9 @@
   </parent>
 
   <modules>
-    <module>security</module>
-    <module>web-common-plugin</module>
+    <module>web-core</module>
+    <module>web-security</module>    
+    <module>web-email</module>
   </modules>
 
   <dependencies>

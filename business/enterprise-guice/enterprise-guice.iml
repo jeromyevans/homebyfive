@@ -323,7 +323,19 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="framework-core" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="com.blueskyminds.framework:framework-core:0.2.4.7-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/framework/framework-core/0.2.4.7-SNAPSHOT/framework-core-0.2.4.7-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/framework/framework-core/0.2.4.7-SNAPSHOT/framework-core-0.2.4.7-SNAPSHOT-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/framework/framework-core/0.2.4.7-SNAPSHOT/framework-core-0.2.4.7-SNAPSHOT-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="module-library" exported="">
       <library name="com.blueskyminds.analysis:analysis-basic:0.2.1">
         <CLASSES>
