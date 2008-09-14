@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.blueskyminds.housepad</groupId>
+  <artifactId>security-model</artifactId>
+  <packaging>jar</packaging>
+  <version>0.1-SNAPSHOT</version>
+  <name>Security Model</name>
+  <url>http://www.blueskyminds.com.au</url>
+
+  <parent>
+    <groupId>com.blueskyminds.housepad</groupId>
+    <artifactId>housepad-parent</artifactId>
+    <version>1</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.blueskyminds.framework</groupId>
+      <artifactId>framework-core</artifactId>
+      <version>0.2.4.7-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.blueskyminds.housepad</groupId>
+      <artifactId>security-annotations</artifactId>
+      <version>0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.inject.</groupId>
+      <artifactId>guice</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
+    </dependency>
+
+  </dependencies>
+</project>

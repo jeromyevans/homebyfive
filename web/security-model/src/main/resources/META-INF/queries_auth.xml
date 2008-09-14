@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+    version="1.0">
+
+    <!--
+    Lookup a UserAccount by the username and password. The account must be valid
+
+    @param username         Username string value
+    @param hashedPassword   hashed password string value
+
+    Recommended indexes:
+       username, status, hashedPassword
+    -->
+    <named-query name="auth.userAccount.byUsernamePassword">
+      <query>
+        select userAccount from UserAccount userAccount where userAccount.username =:username and userAccount.status = com.blueskyminds.framework.DomainObjectStatus.Valid and userAccount.hashedPassword = :hashedPassword
+      </query>
+    </named-query>
+
+  <!--
+     Check if a username exists.  This is case insensitive even though usernames are case-sensitive to avoid
+      near duplicates
+
+     @param username         Username string value
+
+     Recommended indexes:
+        username
+     -->
+     <named-query name="auth.usernames.byUsername">
+       <query>
+         select userAccount.username from UserAccount userAccount where lower(userAccount.username) =:username
+       </query>
+     </named-query>
+
+
+  <!--
+    Lookup a UserAccount by the username.  Note that this implementation doesn't check the validity of the account
+
+    @param username         Username string value
+
+    Recommended indexes:
+       username
+    -->
+    <named-query name="auth.userAccount.byUsername">
+      <query>
+        select userAccount from UserAccount userAccount where userAccount.username =:username
+      </query>
+    </named-query>
+
+    <!--
+    Lookup a UserRole by the unique name
+
+    @param name         name string value
+
+    Recommended indexes:
+       status, name
+    -->
+    <named-query name="auth.userRole.byName">
+      <query>
+        select userRole from UserRole userRole where userRole.status = com.blueskyminds.framework.DomainObjectStatus.Valid and userRole.name =:name
+      </query>
+    </named-query>
+
+    <!--
+    List all valid user roles
+
+    Recommended indexes:
+       status
+    -->
+    <named-query name="auth.userRoles">
+      <query>
+        select userRole from UserRole userRole where userRole.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+      </query>
+    </named-query>
+
+  </entity-mappings>
