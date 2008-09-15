@@ -5,7 +5,7 @@
   <groupId>com.blueskyminds.homebyfive</groupId>
   <artifactId>homebyfive</artifactId>
   <packaging>pom</packaging>
-  <version>1</version>
+  <version>0.1-SNAPSHOT</version>
   <name>HomeByFive Module</name>
   <url>http://www.blueskyminds.com.au</url>
 

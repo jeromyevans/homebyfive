@@ -12,6 +12,7 @@
   <parent>
     <groupId>com.blueskyminds.homebyfive.web</groupId>
     <artifactId>web-security</artifactId>
+    <version>0.1-SNAPSHOT</version>
   </parent>
 
   <dependencies>
