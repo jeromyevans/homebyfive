@@ -18,7 +18,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.blueskyminds.framework</groupId>
+      <groupId>com.blueskyminds.homebyfive.framework</groupId>
       <artifactId>framework-core</artifactId>
       <version>${pom.version}</version>
     </dependency>

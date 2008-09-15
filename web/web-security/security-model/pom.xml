@@ -11,19 +11,13 @@
 
   <parent>
     <groupId>com.blueskyminds.homebyfive.web</groupId>
-    <artifactId>security</artifactId>
+    <artifactId>web-security</artifactId>
   </parent>
 
   <dependencies>
 
     <dependency>
-      <groupId>com.blueskyminds.housepad</groupId>
-      <artifactId>security-annotations</artifactId>
-      <version>${pom.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.blueskyminds.housepad</groupId>
+      <groupId>com.blueskyminds.homebyfive.web.security</groupId>
       <artifactId>security-annotations</artifactId>
       <version>${pom.version}</version>
     </dependency>
