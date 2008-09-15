@@ -12,4 +12,26 @@
     <artifactId>framework</artifactId>
   </parent> 
 
+  <dependencies>
+
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>persistence-api</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+     <dependency>
+       <groupId>org.hibernate</groupId>
+       <artifactId>hibernate-entitymanager</artifactId>
+       <version>3.3.2.GA</version>
+     </dependency>
+
+     <dependency>
+       <groupId>hsqldb</groupId>
+       <artifactId>hsqldb</artifactId>
+       <version>1.8.0.7</version>
+       <scope>test</scope>
+     </dependency>
+
+  </dependencies>
 </project>

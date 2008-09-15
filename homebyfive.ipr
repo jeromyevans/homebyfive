@@ -234,10 +234,10 @@
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/business/enterprise-core/enterprise-core.iml" filepath="$PROJECT_DIR$/business/enterprise-core/enterprise-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/business.iml" filepath="$PROJECT_DIR$/business/business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/enterprise-core/business-core.iml" filepath="$PROJECT_DIR$/business/enterprise-core/business-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/enterprise-guice/business-guice.iml" filepath="$PROJECT_DIR$/business/enterprise-guice/business-guice.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/enterprise-ejb/enterprise-ejb.iml" filepath="$PROJECT_DIR$/business/enterprise-ejb/enterprise-ejb.iml" />
-      <module fileurl="file://$PROJECT_DIR$/business/enterprise-guice/enterprise-guice.iml" filepath="$PROJECT_DIR$/business/enterprise-guice/enterprise-guice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/business/enterprise-parent.iml" filepath="$PROJECT_DIR$/business/enterprise-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-core/framework-core.iml" filepath="$PROJECT_DIR$/framework/framework-core/framework-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" filepath="$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" />
