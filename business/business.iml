@@ -33,6 +33,19 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="junit:junit:3.8.2">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="module" module-name="framework-patterns" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="commons-beanutils:commons-beanutils:1.7.0">
@@ -296,6 +309,19 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
+      <library name="freemarker:freemarker:2.3.8">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/freemarker/freemarker/2.3.8/freemarker-2.3.8.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/freemarker/freemarker/2.3.8/freemarker-2.3.8-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/freemarker/freemarker/2.3.8/freemarker-2.3.8-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
       <library name="com.blueskyminds.analysis:analysis-basic:0.2.1">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1.jar!/" />
@@ -305,19 +331,6 @@
         </JAVADOC>
         <SOURCES>
           <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="junit:junit:3.8.1">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

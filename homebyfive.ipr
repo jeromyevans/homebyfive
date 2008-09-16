@@ -249,6 +249,7 @@
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-core/web-core.iml" filepath="$PROJECT_DIR$/web/web-core/web-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-email/web-email.iml" filepath="$PROJECT_DIR$/web/web-email/web-email.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web-guice/web-guice.iml" filepath="$PROJECT_DIR$/web/web-guice/web-guice.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-security/web-security.iml" filepath="$PROJECT_DIR$/web/web-security/web-security.iml" />
     </modules>
   </component>

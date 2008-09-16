@@ -13,12 +13,7 @@
     <version>0.1-SNAPSHOT</version>
   </parent>
   
-  <dependencies>
-    <dependency>
-      <groupId>com.blueskyminds.homebyfive.framework</groupId>
-      <artifactId>framework-core</artifactId>
-      <version>${pom.version}</version>
-    </dependency>
+  <dependencies>    
     <dependency>
       <groupId>javax.mail</groupId>
       <artifactId>mail</artifactId>

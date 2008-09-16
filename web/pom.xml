@@ -19,10 +19,17 @@
     <module>web-core</module>
     <module>web-security</module>    
     <module>web-email</module>
+    <module>web-guice</module>
   </modules>
 
   <dependencies>
 
+    <dependency>
+      <groupId>com.blueskyminds.homebyfive.framework</groupId>
+      <artifactId>framework-core</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
+    
     <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>servlet-api</artifactId>

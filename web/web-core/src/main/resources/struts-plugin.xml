@@ -10,5 +10,5 @@
   The TemplateEngine will detect this library and make the published directives/models available to other FreeMarker and Velocity
   tags/templates 
   -->
-  <bean type="org.apache.struts2.views.TagLibrary" name="hp" class="com.blueskyminds.housepad.web.plugin.views.HousePadTagLibrary" />
+  <bean type="org.apache.struts2.views.TagLibrary" name="hp" class="com.blueskyminds.housepad.web.plugin.views.HomeByFiveTagLibrary" />
 </struts>
