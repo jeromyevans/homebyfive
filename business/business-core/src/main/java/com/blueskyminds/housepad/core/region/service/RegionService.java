@@ -8,7 +8,6 @@ import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.address.Street;
-import com.wideplay.warp.persist.Transactional;
 
 import java.util.Set;
 

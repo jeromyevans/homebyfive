@@ -84,5 +84,11 @@
       <version>${pom.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.blueskyminds.homebyfive.web</groupId>
+      <artifactId>web-email</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
+
   </dependencies>
 </project>

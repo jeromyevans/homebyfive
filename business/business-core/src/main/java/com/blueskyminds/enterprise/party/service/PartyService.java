@@ -1,11 +1,9 @@
 package com.blueskyminds.enterprise.party.service;
 
-import com.blueskyminds.framework.ServiceInterface;
 import com.blueskyminds.enterprise.party.Organisation;
 import com.blueskyminds.enterprise.party.Individual;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.contact.PartyPOC;
-import com.blueskyminds.enterprise.contact.PointOfContact;
 import com.blueskyminds.enterprise.contact.POCType;
 import com.blueskyminds.framework.tools.selector.SingleSelector;
 
@@ -20,7 +18,7 @@ import java.util.Set;
  * <p/>
  * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
  */
-public interface PartyService extends ServiceInterface {
+public interface PartyService {
 
    /**
      * Creates a new organisation if it doesn't already exist.

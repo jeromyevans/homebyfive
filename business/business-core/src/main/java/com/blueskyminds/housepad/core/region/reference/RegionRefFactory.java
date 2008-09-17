@@ -12,7 +12,7 @@ import com.blueskyminds.enterprise.address.Street;
 import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.housepad.core.region.*;
 import com.blueskyminds.housepad.core.region.model.*;
-import com.blueskyminds.landmine.core.property.Premise;
+//import com.blueskyminds.landmine.core.property.Premise;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -209,17 +209,17 @@ public class RegionRefFactory {
      *
      * @return
      */
-    public static RegionRef createRef(Premise premise) {
-        if (premise != null) {
-            Address address = premise.getAddress();
-            if (address != null) {
-                RegionRef regionRef = new RegionRef(address.getId(), PathHelper.buildPath(address), null, null, RegionRefType.Premise);
-                populateAttributes(regionRef, address);
-                return regionRef;
-            }
-        }
-        return null;
-    }
+//    public static RegionRef createRef(Premise premise) {
+//        if (premise != null) {
+//            Address address = premise.getAddress();
+//            if (address != null) {
+//                RegionRef regionRef = new RegionRef(address.getId(), PathHelper.buildPath(address), null, null, RegionRefType.Premise);
+//                populateAttributes(regionRef, address);
+//                return regionRef;
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * @return

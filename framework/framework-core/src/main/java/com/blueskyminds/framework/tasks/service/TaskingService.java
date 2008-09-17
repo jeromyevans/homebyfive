@@ -1,10 +1,7 @@
 package com.blueskyminds.framework.tasks.service;
 
-import com.blueskyminds.framework.ServiceInterface;
-import com.blueskyminds.framework.memento.XMLMemento;
 import com.blueskyminds.framework.tasks.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.Map;
@@ -19,7 +16,7 @@ import java.util.Map;
  * <p/>
  * Copyright (c) 2006 Blue Sky Minds Pty Ltd<br/>
  */
-public interface TaskingService extends ServiceInterface {
+public interface TaskingService {
 
     /**
      * Instruct the tasking service to use the specified factory when instantiating tasks

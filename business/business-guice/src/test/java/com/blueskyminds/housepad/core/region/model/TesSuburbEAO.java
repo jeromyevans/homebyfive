@@ -2,9 +2,9 @@ package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.framework.test.OutOfContainerTestCase;
 import com.blueskyminds.housepad.core.region.eao.SuburbEAO;
+import com.blueskyminds.housepad.core.region.eao.SuburbEAOImpl;
 import com.blueskyminds.housepad.core.region.model.SuburbBean;
 import com.blueskyminds.housepad.core.region.model.CountryBean;
-import com.blueskyminds.housepad.core.region.model.*;
 import com.blueskyminds.housepad.core.region.model.PostCodeBean;
 
 import java.util.Set;
@@ -27,7 +27,7 @@ public class TesSuburbEAO extends OutOfContainerTestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        suburbEAO = new SuburbEAO(em);
+        suburbEAO = new SuburbEAOImpl(em);
 
         CountryBean au = new CountryBean("Australia", "AU");
         em.persist(au);

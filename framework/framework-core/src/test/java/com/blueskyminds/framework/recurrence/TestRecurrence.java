@@ -10,8 +10,6 @@ import com.blueskyminds.framework.recurrence.constraint.NoLaterThan;
 import com.blueskyminds.framework.persistence.PersistenceSession;
 import com.blueskyminds.framework.persistence.PersistenceService;
 import com.blueskyminds.framework.persistence.PersistenceServiceException;
-import com.blueskyminds.framework.ServiceLocator;
-import com.blueskyminds.framework.test.BaseTestCase;
 import com.blueskyminds.framework.test.TestTools;
 import com.blueskyminds.framework.test.DbTestCase;
 

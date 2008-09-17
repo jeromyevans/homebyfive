@@ -1,7 +1,5 @@
 package com.blueskyminds.framework.notification;
 
-import com.blueskyminds.framework.ServiceInterface;
-
 /**
  * Notifies listeners of events in the systems
  *
@@ -11,5 +9,5 @@ import com.blueskyminds.framework.ServiceInterface;
  * <p/>
  * Copyright (c) 2006 Blue Sky Minds Pty Ltd<br/>
  */
-public interface NotificationService extends ServiceInterface {
+public interface NotificationService {
 }

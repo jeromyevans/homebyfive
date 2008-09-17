@@ -7,7 +7,7 @@ import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.housepad.core.region.composite.RegionCompositeFactory;
 import com.blueskyminds.housepad.core.region.reference.RegionRefFactory;
 import com.blueskyminds.housepad.core.region.model.*;
-import com.blueskyminds.landmine.core.property.Premise;
+//import com.blueskyminds.landmine.core.property.Premise;
 
 import java.util.Collection;
 import java.util.Set;
@@ -171,13 +171,13 @@ public class RegionGroupFactory {
         return createPostCodes(list);
     }
 
-    public static RegionGroup createAddresses(Premise premise, Collection<Address> addresses) {
-        RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(premise));
-
-        for (Address address : addresses) {
-            regionGroup.add(RegionCompositeFactory.create(address));
-        }
-
-        return regionGroup;
-    }
+//    public static RegionGroup createAddresses(Premise premise, Collection<Address> addresses) {
+//        RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(premise));
+//
+//        for (Address address : addresses) {
+//            regionGroup.add(RegionCompositeFactory.create(address));
+//        }
+//
+//        return regionGroup;
+//    }
 }

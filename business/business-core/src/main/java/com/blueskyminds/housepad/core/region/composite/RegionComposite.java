@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 import com.blueskyminds.housepad.core.region.reference.RegionRef;
 import com.blueskyminds.housepad.core.region.reference.RegionRefType;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * An sequence of related regions
@@ -17,7 +16,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  *
  * Date Started: 16/09/2007
  */
-@XStreamAlias("RegionComposite")
 public class RegionComposite implements Serializable {
 
     private List<RegionRef> sequence;

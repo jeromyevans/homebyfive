@@ -1,9 +1,6 @@
 package com.blueskyminds.housepad.core.region.service;
 
-import com.blueskyminds.housepad.core.region.eao.CountryEAO;
-import com.blueskyminds.housepad.core.region.eao.StateEAO;
-import com.blueskyminds.housepad.core.region.eao.SuburbEAO;
-import com.blueskyminds.housepad.core.region.eao.PostCodeEAO;
+import com.blueskyminds.housepad.core.region.eao.*;
 import com.blueskyminds.housepad.core.region.group.RegionGroupFactory;
 import com.blueskyminds.housepad.core.region.group.RegionGroup;
 import com.blueskyminds.housepad.core.region.*;
@@ -18,7 +15,6 @@ import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.framework.DomainObjectStatus;
-import com.blueskyminds.framework.tools.text.StringTools;
 import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;
@@ -34,16 +30,16 @@ import org.apache.commons.lang.StringUtils;
 public class RegionServiceImpl implements RegionService {
 
     private EntityManager em;
-    private CountryEAO countryEAO;
-    private StateEAO stateEAO;
-    private SuburbEAO suburbEAO;
-    private PostCodeEAO postCodeEAO;
+    private CountryEAOImpl countryEAO;
+    private StateEAOImpl stateEAO;
+    private SuburbEAOImpl suburbEAO;
+    private PostCodeEAOImpl postCodeEAO;
     private AddressService addressService;
 
     public RegionServiceImpl() {
     }
 
-    public RegionServiceImpl(EntityManager em, CountryEAO countryEAO, StateEAO stateEAO, SuburbEAO suburbEAO, PostCodeEAO postCodeEAO, AddressService addressService) {
+    public RegionServiceImpl(EntityManager em, CountryEAOImpl countryEAO, StateEAOImpl stateEAO, SuburbEAOImpl suburbEAO, PostCodeEAOImpl postCodeEAO, AddressService addressService) {
         this.em = em;
         this.countryEAO = countryEAO;
         this.stateEAO = stateEAO;
@@ -468,22 +464,22 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Inject
-    public void setCountryEAO(CountryEAO countryEAO) {
+    public void setCountryEAO(CountryEAOImpl countryEAO) {
         this.countryEAO = countryEAO;
     }
 
     @Inject
-    public void setStateEAO(StateEAO stateEAO) {
+    public void setStateEAO(StateEAOImpl stateEAO) {
         this.stateEAO = stateEAO;
     }
 
     @Inject
-    public void setSuburbEAO(SuburbEAO suburbEAO) {
+    public void setSuburbEAO(SuburbEAOImpl suburbEAO) {
         this.suburbEAO = suburbEAO;
     }
 
     @Inject
-    public void setPostCodeEAO(PostCodeEAO postCodeEAO) {
+    public void setPostCodeEAO(PostCodeEAOImpl postCodeEAO) {
         this.postCodeEAO = postCodeEAO;
     }
 

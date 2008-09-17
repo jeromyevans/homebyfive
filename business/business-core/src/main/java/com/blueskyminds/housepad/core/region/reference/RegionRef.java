@@ -1,7 +1,5 @@
 package com.blueskyminds.housepad.core.region.reference;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
 import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
@@ -13,7 +11,6 @@ import java.util.HashMap;
  * <p/>
  * History:
  */
-@XStreamAlias("RegionRef")
 public class RegionRef implements Serializable {
     
     private Long id;

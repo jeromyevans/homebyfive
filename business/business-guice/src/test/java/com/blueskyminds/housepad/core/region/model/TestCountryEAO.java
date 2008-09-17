@@ -2,6 +2,7 @@ package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.framework.test.OutOfContainerTestCase;
 import com.blueskyminds.housepad.core.region.eao.CountryEAO;
+import com.blueskyminds.housepad.core.region.eao.CountryEAOImpl;
 import com.blueskyminds.housepad.core.region.model.CountryBean;
 import com.blueskyminds.housepad.core.region.PathHelper;
 
@@ -25,7 +26,7 @@ public class TestCountryEAO extends OutOfContainerTestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        countryEAO = new CountryEAO(em);
+        countryEAO = new CountryEAOImpl(em);
 
         CountryBean au = new CountryBean("Australia", "AU");
         em.persist(au);
