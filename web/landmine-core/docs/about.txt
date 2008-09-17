@@ -1,2 +1,0 @@
-landmine-core is an EJB-teir application
-

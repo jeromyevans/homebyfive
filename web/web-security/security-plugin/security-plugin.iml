@@ -562,6 +562,46 @@
     </orderEntry>
     <orderEntry type="module" module-name="security-model" exported="" />
     <orderEntry type="module" module-name="security-annotations" exported="" />
+    <orderEntry type="module" module-name="framework-guice" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="com.google.inject:guice:1.0">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/guice/1.0/guice-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/guice/1.0/guice-1.0-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/guice/1.0/guice-1.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="aopalliance:aopalliance:1.0">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="warp-persist:warp-persist:1.0">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/warp-persist/warp-persist/1.0/warp-persist-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/warp-persist/warp-persist/1.0/warp-persist-1.0-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/warp-persist/warp-persist/1.0/warp-persist-1.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntryProperties />
   </component>
 </module>

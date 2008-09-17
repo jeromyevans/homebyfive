@@ -19,7 +19,6 @@
     <module>security-annotations</module>
     <module>security-model</module>
     <module>security-plugin</module>
-    <module>security-plugin-g</module>
   </modules>
 
 </project>
