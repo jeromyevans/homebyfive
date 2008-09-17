@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.blueskyminds.homebyfive.web</groupId>
-  <artifactId>web-guice</artifactId>
+  <groupId>com.blueskyminds.homebyfive.framework</groupId>
+  <artifactId>framework-email</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>Web Guice Integration Library</name>
+  <name>Framework Email Library</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>
@@ -15,19 +15,10 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.blueskyminds.homebyfive.framework</groupId>
-      <artifactId>framework-guice</artifactId>
-      <version>${pom.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
-      <groupId>aopalliance</groupId>
-      <artifactId>aopalliance</artifactId>
-      <version>1.0</version>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>

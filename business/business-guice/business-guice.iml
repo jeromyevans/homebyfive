@@ -354,6 +354,7 @@
     </orderEntry>
     <orderEntry type="module" module-name="business-core" exported="" />
     <orderEntry type="module" module-name="framework-guice" exported="" />
+    <orderEntry type="module" module-name="framework-email" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="com.google.inject:guice:1.0">
         <CLASSES>

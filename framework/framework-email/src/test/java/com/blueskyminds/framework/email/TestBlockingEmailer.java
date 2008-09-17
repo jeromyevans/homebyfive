@@ -77,7 +77,7 @@ public class TestBlockingEmailer extends TestCase {
 
         try {
             emailer.send("admin@blueskyminds.com.au", (String) null, null, "Unit test email", HTML_CONTENT, TEXT_HTML);
-            fail("Should have thrown an exception");
+            Assert.fail("Should have thrown an exception");
         } catch(EmailerException e) {
             // an exception should be thrown
         }
@@ -91,7 +91,7 @@ public class TestBlockingEmailer extends TestCase {
 
         try {
             emailer.send(null, "jeromy.evans@blueskyminds.com.au", null, "Unit test email", HTML_CONTENT, TEXT_HTML);
-            fail("Should have thrown an exception");
+            Assert.fail("Should have thrown an exception");
         } catch(EmailerException e) {
 
         }

@@ -15,6 +15,7 @@
 
   <modules>
     <module>business-core</module>
+    <module>business-users</module>
     <module>business-guice</module>
   </modules>
 

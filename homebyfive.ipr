@@ -237,8 +237,10 @@
       <module fileurl="file://$PROJECT_DIR$/business/business.iml" filepath="$PROJECT_DIR$/business/business.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/enterprise-core/business-core.iml" filepath="$PROJECT_DIR$/business/enterprise-core/business-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/business-guice/business-guice.iml" filepath="$PROJECT_DIR$/business/business-guice/business-guice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/business-users/business-users.iml" filepath="$PROJECT_DIR$/business/business-users/business-users.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-core/framework-core.iml" filepath="$PROJECT_DIR$/framework/framework-core/framework-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framework/framework-email/framework-email.iml" filepath="$PROJECT_DIR$/framework/framework-email/framework-email.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" filepath="$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-patterns/framework-patterns.iml" filepath="$PROJECT_DIR$/framework/framework-patterns/framework-patterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/homebyfive.iml" filepath="$PROJECT_DIR$/homebyfive.iml" />
@@ -247,7 +249,6 @@
       <module fileurl="file://$PROJECT_DIR$/web/web-security/security-plugin/security-plugin.iml" filepath="$PROJECT_DIR$/web/web-security/security-plugin/security-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-core/web-core.iml" filepath="$PROJECT_DIR$/web/web-core/web-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/web/web-email/web-email.iml" filepath="$PROJECT_DIR$/web/web-email/web-email.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-guice/web-guice.iml" filepath="$PROJECT_DIR$/web/web-guice/web-guice.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-security/web-security.iml" filepath="$PROJECT_DIR$/web/web-security/web-security.iml" />
     </modules>

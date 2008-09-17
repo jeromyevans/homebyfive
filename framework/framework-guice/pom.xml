@@ -19,6 +19,11 @@
       <artifactId>framework-core</artifactId>
       <version>${pom.version}</version>
     </dependency>
+      <dependency>
+      <groupId>com.blueskyminds.homebyfive.framework</groupId>
+      <artifactId>framework-email</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
     <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
@@ -33,6 +38,12 @@
       <groupId>warp-persist</groupId>
       <artifactId>warp-persist</artifactId>
       <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>

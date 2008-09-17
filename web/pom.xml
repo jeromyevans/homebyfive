@@ -18,7 +18,6 @@
   <modules>
     <module>web-core</module>
     <module>web-security</module>    
-    <module>web-email</module>
     <module>web-guice</module>
   </modules>
 
