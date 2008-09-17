@@ -1,0 +1,14 @@
+<project name="landmine-core">
+
+  <property file="build.properties"/>
+
+  <target name="clean">
+      <delete dir="${target.dir}"/>
+      <delete dir="${exploded.dir}"/>
+      <delete dir="." includes="*.war"/>
+
+      <delete dir="landmine-core-ejb/${target.dir}"/>
+      <delete dir="landmine-core-ejb" includes="*.jar"/>
+  </target>
+
+</project>

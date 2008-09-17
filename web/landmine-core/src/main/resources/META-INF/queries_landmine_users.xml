@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+  xmlns="http://java.sun.com/xml/ns/persistence/orm"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+  version="1.0">
+
+  <!--
+  Lookup a UserProfile by the UserId
+
+  @param userId           The id of the UserAccount
+
+  Recommended indexes:
+     userId
+  -->
+  <named-query name="housepad.userProfile.byUserId">
+    <query>
+      select userProfile from UserProfile userProfile where userProfile.userAccount .id = :userId
+    </query>
+  </named-query>
+
+  <!--
+  Lookup a UserProfile by the UserId
+
+  @param verification           The verification string for the userprofile
+
+  Recommended indexes:
+     verification
+  -->
+  <named-query name="housepad.userProfile.byVerification">
+    <query>
+      select userProfile from UserProfile userProfile where userProfile.verification = :verification
+    </query>
+  </named-query>
+
+
+  <!--
+  Lookup a UserGroup by group's key
+
+  @param keyValuye  the Key for the group
+
+  Recommended indexes:
+     keyValue
+  -->
+  <named-query name="housepad.userGroup.byKey">
+    <query>
+      select userGroup from UserGroup userGroup where userGroup.key = :keyValue
+    </query>
+  </named-query>
+
+
+  <!--
+  Lookup an Application by its token
+
+  @param token  then token for the application
+
+  Recommended indexes:
+     token
+  -->
+  <named-query name="housepad.application.byToken">
+    <query>
+      select application from Application application where application.token = :token
+    </query>
+  </named-query>
+  
+
+</entity-mappings>

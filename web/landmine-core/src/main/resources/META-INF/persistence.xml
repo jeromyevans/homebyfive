@@ -1,0 +1,158 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+     version="1.0">
+
+    <!-- Non-JTA local data source to access the landmine core database  -->
+
+  <persistence-unit name="LandmineDb">
+    <description>The core Landmine database</description>
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    
+    <mapping-file>META-INF/queries_framework_substitution.xml</mapping-file>
+    <mapping-file>META-INF/queries_framework_email.xml</mapping-file>
+
+    <mapping-file>META-INF/queries_enterprise_region.xml</mapping-file>
+    <mapping-file>META-INF/queries_enterprise_address.xml</mapping-file>
+    <mapping-file>META-INF/queries_enterprise_party.xml</mapping-file>
+    <mapping-file>META-INF/queries_enterprise_tag.xml</mapping-file>
+
+    <mapping-file>META-INF/queries_analysis.xml</mapping-file>
+
+    <mapping-file>META-INF/queries_landmine_premise.xml</mapping-file>
+    <mapping-file>META-INF/queries_landmine_advertisement.xml</mapping-file>
+    <mapping-file>META-INF/queries_landmine_analysis.xml</mapping-file>
+    
+    <mapping-file>META-INF/queries_landmine_regions.xml</mapping-file>
+    <mapping-file>META-INF/queries_landmine_users.xml</mapping-file>
+    <mapping-file>META-INF/queries_auth.xml</mapping-file>  <!-- security-plugin -->
+    
+    <!-- Entities from the Framework module-->
+    <class>com.blueskyminds.framework.tools.substitutions.Substitution</class>
+    <class>com.blueskyminds.framework.email.EmailTemplate</class>
+
+    <!-- Entities from the Enterprise module-->
+    <class>com.blueskyminds.enterprise.party.Party</class>
+    <class>com.blueskyminds.enterprise.party.Organisation</class>
+    <class>com.blueskyminds.enterprise.party.Company</class>
+    <class>com.blueskyminds.enterprise.party.Individual</class>
+    <class>com.blueskyminds.enterprise.party.SystemParty</class>
+    <class>com.blueskyminds.enterprise.party.IndividualRelationship</class>
+    <class>com.blueskyminds.enterprise.party.IndividualRole</class>
+    <class>com.blueskyminds.enterprise.party.IndividualRoleMap</class>
+    <class>com.blueskyminds.enterprise.party.PartyTagMap</class>
+
+    <class>com.blueskyminds.enterprise.contact.PartyPOC</class>
+    <class>com.blueskyminds.enterprise.contact.PointOfContact</class>
+    <class>com.blueskyminds.enterprise.contact.POCRoleMap</class>
+    <class>com.blueskyminds.enterprise.contact.Website</class>
+    <class>com.blueskyminds.enterprise.contact.ContactAddress</class>
+    <class>com.blueskyminds.enterprise.contact.PhoneNumber</class>
+    <class>com.blueskyminds.enterprise.contact.EmailAddress</class>
+    <class>com.blueskyminds.enterprise.contact.POCTagMap</class>
+    <class>com.blueskyminds.enterprise.contact.interaction.POCInteraction</class>
+    <class>com.blueskyminds.enterprise.contact.interaction.PCIMap</class>
+
+    <class>com.blueskyminds.enterprise.tag.Tag</class>
+
+    <!-- add the entire address package -->    
+    <class>com.blueskyminds.enterprise.address.Address</class>
+    <class>com.blueskyminds.enterprise.address.StreetAddress</class>
+    <class>com.blueskyminds.enterprise.address.Street</class>
+    <class>com.blueskyminds.enterprise.address.LotAddress</class>
+    <class>com.blueskyminds.enterprise.address.UnitAddress</class>
+    <class>com.blueskyminds.enterprise.address.MultilineAddress</class>
+    <class>com.blueskyminds.enterprise.address.PlainTextAddress</class>
+    <class>com.blueskyminds.enterprise.address.SuburbStreetMap</class>
+
+    <class>com.blueskyminds.enterprise.region.RegionHierarchy</class>
+    <class>com.blueskyminds.enterprise.region.RegionAlias</class>
+    <class>com.blueskyminds.enterprise.region.RegionHandle</class>
+    <class>com.blueskyminds.enterprise.region.country.CountryHandle</class>
+    <class>com.blueskyminds.enterprise.region.country.Country</class>
+    <class>com.blueskyminds.enterprise.region.state.StateHandle</class>
+    <class>com.blueskyminds.enterprise.region.state.State</class>
+    <class>com.blueskyminds.enterprise.region.postcode.PostCodeHandle</class>
+    <class>com.blueskyminds.enterprise.region.postcode.PostCode</class>
+    <class>com.blueskyminds.enterprise.region.suburb.SuburbHandle</class>
+    <class>com.blueskyminds.enterprise.region.suburb.Suburb</class>
+
+    <!-- landmine entities -->
+    <class>com.blueskyminds.landmine.core.property.Premise</class>
+    <class>com.blueskyminds.landmine.core.property.PremiseAttributeSetMap</class>
+    <class>com.blueskyminds.landmine.core.property.PremiseAttributeSet</class>
+    <class>com.blueskyminds.landmine.core.property.PremiseAddressMap</class>
+    <class>com.blueskyminds.landmine.core.property.advertisement.PropertyAdvertisementCampaign</class>
+    <class>com.blueskyminds.landmine.core.property.advertisement.PropertyAdvertisement</class>
+    <class>com.blueskyminds.landmine.core.property.advertisement.PropertyAdvertisementContact</class>
+    <class>com.blueskyminds.landmine.core.property.advertisement.AskingPrice</class>
+    <class>com.blueskyminds.landmine.core.property.renovation.PropertyRenovation</class>
+    <class>com.blueskyminds.landmine.core.property.sale.PropertySale</class>
+    <class>com.blueskyminds.landmine.core.property.lease.PropertyLease</class>
+    <class>com.blueskyminds.landmine.core.property.lease.LeasePrice</class>
+    <class>com.blueskyminds.landmine.core.property.events.PremiseEvent</class>
+    <class>com.blueskyminds.landmine.core.property.events.Advertised</class>
+    <class>com.blueskyminds.landmine.core.property.events.AskingPriceChanged</class>
+    <class>com.blueskyminds.landmine.core.property.events.Constructed</class>
+    <class>com.blueskyminds.landmine.core.property.events.Leased</class>
+    <class>com.blueskyminds.landmine.core.property.events.Renovated</class>
+    <class>com.blueskyminds.landmine.core.property.events.Sold</class>
+    <class>com.blueskyminds.landmine.core.property.tag.PremiseTagMap</class>
+    <class>com.blueskyminds.landmine.core.property.assets.PremiseAssetMap</class>
+    <class>com.blueskyminds.landmine.core.property.assets.PremiseAsset</class>
+    <class>com.blueskyminds.landmine.core.property.assets.PremiseAssetMap</class>
+
+    <class>com.blueskyminds.housepad.core.region.model.CountryBean</class>
+    <class>com.blueskyminds.housepad.core.region.model.StateBean</class>
+    <class>com.blueskyminds.housepad.core.region.model.PostCodeBean</class>
+    <class>com.blueskyminds.housepad.core.region.model.SuburbBean</class>
+
+    <class>com.blueskyminds.housepad.core.property.model.PropertyBean</class>
+
+    <!-- analysis core entities -->
+    <class>com.blueskyminds.analysis.core.sets.AggregateSet</class>
+    <class>com.blueskyminds.analysis.core.sets.IntersectionSet</class>
+    <class>com.blueskyminds.analysis.core.sets.IntersectionSetEntry</class>
+    <class>com.blueskyminds.analysis.core.sets.UnionSet</class>
+    <class>com.blueskyminds.analysis.core.sets.UnionSetEntry</class>
+    <class>com.blueskyminds.analysis.core.sets.PropertyValueSet</class>
+    <class>com.blueskyminds.analysis.core.sets.PropertyValueSetEntry</class>
+    <class>com.blueskyminds.analysis.core.sets.AggregateSetGroup</class>
+    <class>com.blueskyminds.analysis.core.sets.AggregateSetGroupEntry</class>
+
+    <class>com.blueskyminds.analysis.core.datasource.AnalysisDataSource</class>
+
+    <!-- landmine analysis -->
+    <class>com.blueskyminds.landmine.analysis.model.PremiseAggregateSetMap</class>
+    <class>com.blueskyminds.landmine.analysis.model.PremiseRegionMap</class>
+
+    <!-- Authentication -->
+    <class>com.blueskyminds.struts2.securityplugin.model.UserAccount</class>
+    <class>com.blueskyminds.struts2.securityplugin.model.UserAccountRoleMap</class>
+    <class>com.blueskyminds.struts2.securityplugin.model.UserRole</class>
+
+    <!-- Landmine Applications and Users -->
+    <class>com.blueskyminds.housepad.core.user.model.applications.Application</class>
+    <class>com.blueskyminds.housepad.core.user.model.applications.ApplicationSetting</class>
+
+    <class>com.blueskyminds.housepad.core.user.model.users.UserGroup</class>
+    <class>com.blueskyminds.housepad.core.user.model.users.UserGroupApplicationMap</class>
+
+    <class>com.blueskyminds.housepad.core.user.model.users.UserProfile</class>
+    <class>com.blueskyminds.housepad.core.user.model.users.UserApplicationMap</class>
+    <class>com.blueskyminds.housepad.core.user.model.users.UserApplicationSetting</class>
+
+    <properties>
+       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+
+       <property name="hibernate.show_sql" value="true"/>
+
+       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+       <property name="hibernate.connection.username" value="landmine"/>
+       <property name="hibernate.connection.password" value="a2afbab43c2c484b6677c6082e2a5bfd7288dcd4"/>
+       <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/landmine"/>
+    </properties>
+
+  </persistence-unit>
+
+</persistence>

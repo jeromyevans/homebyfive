@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+    version="1.0">
+   
+    <!--
+       Lookup the suburbs in a PostCode.  Suburbs are children of PostCode
+
+       Parameters:
+         postCode:  postCode
+        -->
+    <named-query name="premise.byAddress">
+       <query>
+           select premise from Premise premise
+              left join premise.addresses addressMap
+              where addressMap.address = :address
+       </query>
+    </named-query>
+
+  <!--
+    Get the list of all premises in a suburb.
+
+    This query finds premises with an address in the specified suburb
+
+    Parameters:
+      suburb: SuburbHandle
+     -->
+    <named-query name="premise.listAllBySuburb">
+        <query>
+          select premise from Premise premise
+             left join premise.addresses map
+             left join map.address address
+             left join address.suburb suburb
+             where suburb = :suburb
+        </query>
+    </named-query>
+
+  <!--
+    Get the list of all premises in a postcode.
+
+    This query finds premises with an address in the specified postcode, or in a suburb with the specified postcode
+
+    Parameters:
+      postCode: PostCodeHandle
+     -->
+    <named-query name="premise.listAllByPostCode">
+        <query>
+          select premise from Premise premise
+             left join premise.addresses map
+             left join map.address address
+             left join address.suburb suburb
+             left join suburb.parentRegionMaps parentMap
+             left join parentMap.parent suburbPostCode
+             left join address.postCode postCode
+             where (postCode = :postCode) or
+                   (suburbPostCode.class = com.blueskyminds.enterprise.region.postcode.PostCodeHandle and suburbPostCode = :postCode)
+        </query>
+    </named-query>
+
+   <!--
+    Get the list of all premises in a street.
+
+    This query finds premises that reference StreetAddresses that reference the street directly
+
+    Parameters:
+      street: Street
+     -->
+    <named-query name="premise.listAllByStreet">
+        <query>
+          select premise from Premise premise
+             left join premise.addresses map
+             left join map.address address
+             left join address.street street
+             where street = :street
+        </query>
+    </named-query>
+
+  <!--
+    Get the list of all premises in a complex.
+
+    Parameters:
+      complex: Premise
+     -->
+    <named-query name="premise.listAllByComplex">
+        <query>
+          select premise from Premise premise
+             left join premise.parent complex
+             where complex = :complex
+        </query>
+    </named-query>
+
+   <!--
+    Get a Premise by its exact path in the PropertyBean that refeences it
+
+    Parameters:
+      path:  eg. /au/nsw/neutral+bay/spruson+street/22/1
+
+    Indexes:
+     -->
+    <named-query name="premise.byPath">
+        <query>
+           select premise from PropertyBean property
+           left join property.premise premise
+             where property.path = :path
+        </query>
+    </named-query>
+
+    <!--
+    List events for a Premise identified by its exact path
+
+    Parameters:
+      path:  eg. /au/nsw/neutral+bay/spruson+street/22/1
+
+    Indexes:
+     -->
+    <named-query name="premiseEvents.byPath">
+        <query>
+           select event from PropertyBean property
+           inner join property.premise premise
+           inner join premise.events event
+             where property.path = :path
+             order by event.dateApplied desc
+        </query>
+    </named-query>
+
+   <!--
+    Get the list of all defined assets
+
+    Parameters:      
+     -->
+    <named-query name="premiseAsset.listAll">
+        <query>
+          select premiseAsset from PremiseAsset premiseAsset
+        </query>
+    </named-query>
+
+  <!--
+    Get the asset by its unique key
+
+    Parameters:
+        keyValue
+     -->
+    <named-query name="premiseAsset.byKey">
+        <query>
+          select premiseAsset from PremiseAsset premiseAsset where keyValue = :keyValue
+        </query>
+    </named-query>
+
+  <!--
+    Get the list of all defined assets
+
+    Parameters:
+        premise:  the premise
+     -->
+    <named-query name="premiseAssetMaps.byPremise">
+        <query>
+          select premiseAssetMap from PremiseAssetMap premiseAssetMap where premiseAssetMap.premise = :premise
+        </query>
+    </named-query>
+
+</entity-mappings>
+

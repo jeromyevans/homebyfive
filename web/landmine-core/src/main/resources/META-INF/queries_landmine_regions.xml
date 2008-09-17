@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+    version="1.0">
+
+    <!--
+    Get the list of countries
+    -->
+    <named-query name="hp.countries">
+        <query>
+           select country from CountryBean country where country.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+  <!--
+    Get a country by its id (ISO 2-digit Country Code)
+
+    Parameters:
+      path:  lowercase path to the country eg. /au
+
+    Indexes:
+     Rev1: hpCountryByPath
+     -->
+    <named-query name="hp.country.byPath">
+        <query>
+           select country from CountryBean country
+             where country.path = :path and
+                   country.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+
+   <!--
+    Get a country by its handle
+
+    Parameters:
+      handle:  CountryBean
+
+    Indexes:
+     -->
+    <named-query name="hp.country.byHandle">
+        <query>
+           select country from CountryBean country
+             where country.countryHandle= :handle and
+                   country.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+  <!--
+    List states in a country
+
+    Parameters:
+      path:  lowercase path to the country eg. /au
+
+    Indexes:
+       Rev1: hpStateByParentPath
+     -->
+    <named-query name="hp.states.byParentPath">
+        <query>
+           select state from StateBean state
+             where state.parentPath = :path and
+                   state.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+  <!--
+    Get a state by its path
+
+    Parameters:
+      path:  eg. /au/nsw
+
+    Indexes:
+       Rev1: hpStateByPath
+     -->
+    <named-query name="hp.state.byPath">
+        <query>
+           select state from StateBean state
+             where state.path = :path and
+                   state.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+   <!--
+    Get a state by its handle
+
+    Parameters:
+      handle:  SuburbBean
+
+    Indexes:
+     -->
+    <named-query name="hp.state.byHandle">
+        <query>
+           select state from StateBean state
+             where state.stateHandle = :handle and
+                   state.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+
+     <!--
+    List suburbs by the parent path
+
+    Parameters:
+      path:  eg. /au/nsw
+
+    Indexes:
+       Rev1: hpSuburbByParentPath
+     -->
+    <named-query name="hp.suburbs.byParentPath">
+        <query>
+           select suburb from SuburbBean suburb
+             where suburb.parentPath = :path and
+                   suburb.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+    <!--
+    List suburbs by the postcode path
+
+    Parameters:
+      postCode:  eg. /au/nsw/2089
+
+    Indexes:       
+     -->
+    <named-query name="hp.suburbs.byPostCode">
+        <query>
+           select suburb from SuburbBean suburb
+             left join suburb.postCodeBean postCodeBean
+             where postCodeBean.path = :postCode and
+                   postCodeBean.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+   <!--
+    Get a suburb by its path
+
+    Parameters:
+      path:  eg. /au/nsw/neutral+bay
+
+    Indexes:
+      Rev1: hpSuburbByPath
+     -->
+    <named-query name="hp.suburb.byPath">
+        <query>
+           select suburb from SuburbBean suburb
+             where suburb.path = :path and
+                   suburb.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+    <!--
+    Get a suburb by its handle
+
+    Parameters:
+      handle:  SuburbHandle
+
+    Indexes:
+     -->
+    <named-query name="hp.suburb.byHandle">
+        <query>
+           select suburb from SuburbBean suburb
+             where suburb.suburbHandle = :handle and
+                   suburb.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+     <!--
+    List postcodes by the parent path
+
+    Parameters:
+      path:  eg. /au/nsw
+
+    Indexes:
+       Rev2: hpPostCodeByParentPath
+     -->
+    <named-query name="hp.postCodes.byParentPath">
+        <query>
+           select postCode from PostCodeBean postCode
+             where postCode.parentPath = :path and
+                   postCode.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+   <!--
+    Get a postCode by its path
+
+    Parameters:
+      path:  eg. /au/nsw/2089
+
+    Indexes:
+      Rev1: hpPostCodeByPath
+     -->
+    <named-query name="hp.postCode.byPath">
+        <query>
+           select postCode from PostCodeBean postCode
+             where postCode.path = :path and
+                   postCode.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+     <!--
+    Get a postCode by its handle
+
+    Parameters:
+      handle:  PostCodeHandle
+
+    Indexes:
+     -->
+    <named-query name="hp.postCode.byHandle">
+        <query>
+           select postCode from PostCodeBean postCode
+             where postCode.postCodeHandle = :handle and
+                   postCode.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+  <!--
+    Get a list of properties in a suburb
+
+    Parameters:
+      path:  eg. /au/nsw/neutral+bay
+
+    Indexes:
+      Rev1: hpPropertyBySuburbPath
+     -->
+    <named-query name="hp.properties.bySuburbPath">
+        <query>
+           select property from PropertyBean property
+             where suburbPath = :path
+        </query>
+    </named-query>
+
+  <!--
+    Get a list of properties in a post code
+
+    Parameters:
+      path:  eg. /au/nsw/2089
+
+    Indexes:
+      Rev1: hpPropertyByPostCodePath
+     -->
+    <named-query name="hp.properties.byPostCodePath">
+        <query>
+           select property from PropertyBean property
+             where postCodePath = :path
+        </query>
+    </named-query>
+
+    <!--
+    Get a lit of properties contained in a path (starting with path)
+
+    Parameters:
+      path:  eg. /au/nsw
+
+    Indexes:
+      Rev1: hpPropertyByPath
+     -->
+    <named-query name="hp.properties.startingWithPath">
+        <query>
+           select property from PropertyBean property
+             where property.path like :path
+        </query>
+    </named-query>
+
+      <!--
+    Get a property by its exact path
+
+    Parameters:
+      path:  eg. /au/nsw/neutral+bay/spruson+street/22/1
+
+    Indexes:
+      Rev1: hpPropertyByPath
+     -->
+    <named-query name="hp.property.byPath">
+        <query>
+           select property from PropertyBean property
+             where property.path = :path
+        </query>
+    </named-query>
+
+
+     <!--
+    Get a property by its premiseId
+
+    Parameters:
+      premise:  premise instance
+
+    Indexes:
+
+     -->
+    <named-query name="hp.property.byPremise">
+        <query>
+           select property from PropertyBean property
+             where property.premise = :premise
+        </query>
+    </named-query>
+
+  </entity-mappings>

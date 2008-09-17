@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+    version="1.0">
+
+  <!--
+    Get the list of all premises in a suburb.
+
+    This query finds premises with an address in the specified suburb
+
+    Parameters:
+      suburb: SuburbHandle
+     -->
+    <!--<named-query name="advertisement.listAllByRegion">-->
+        <!--<query>-->
+          <!--select advertisement from PropertyAdvertisement advertisement-->
+             <!--left join advertisement.premise premise-->
+             <!--left join premise.addresses map-->
+             <!--left join map.address address-->
+             <!--left join address.suburb suburb-->
+             <!--where suburb = :suburb-->
+        <!--</query>-->
+    <!--</named-query>-->
+
+</entity-mappings>
+
