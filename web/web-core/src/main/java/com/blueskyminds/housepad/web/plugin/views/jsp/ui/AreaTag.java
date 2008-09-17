@@ -1,6 +1,5 @@
 package com.blueskyminds.housepad.web.plugin.views.jsp.ui;
         
-import com.blueskyminds.housepad.web.plugin.components.PropertyAttributesComponent;
 import com.blueskyminds.housepad.web.plugin.components.AreaComponent;
 
 import org.apache.struts2.components.Component;

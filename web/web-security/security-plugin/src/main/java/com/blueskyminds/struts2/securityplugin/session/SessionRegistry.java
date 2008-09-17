@@ -2,10 +2,8 @@ package com.blueskyminds.struts2.securityplugin.session;
 
 import com.opensymphony.xwork2.inject.util.ReferenceMap;
 import com.opensymphony.xwork2.inject.util.ReferenceType;
-import com.google.inject.Inject;
 
 import javax.servlet.http.HttpSession;
-import java.util.WeakHashMap;
 
 /**
  * A simple registry of currently known sessions. The registry can be used to manage concurrent logins

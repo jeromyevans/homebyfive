@@ -2,8 +2,8 @@ package com.blueskyminds.struts2.securityplugin.services;
 
 import com.blueskyminds.struts2.securityplugin.model.UserAccount;
 import com.blueskyminds.struts2.securityplugin.model.UserRole;
-import com.blueskyminds.struts2.securityplugin.dao.UserAccountDAO;
 import com.blueskyminds.struts2.securityplugin.dao.UserRoleDAO;
+import com.blueskyminds.struts2.securityplugin.dao.UserAccountDAOImpl;
 import com.blueskyminds.framework.tools.CryptoTools;
 import com.blueskyminds.framework.tools.CryptoException;
 import com.google.inject.Inject;
@@ -16,11 +16,11 @@ import java.util.LinkedList;
  */
 public class UserAccountServiceImpl implements UserAccountService {
 
-    private UserAccountDAO userAccountDAO;
+    private UserAccountDAOImpl userAccountDAO;
     private UserRoleDAO userRoleDAO;
 
     @Inject
-    public UserAccountServiceImpl(UserAccountDAO userAccountDAO, UserRoleDAO userRoleDAO) {
+    public UserAccountServiceImpl(UserAccountDAOImpl userAccountDAO, UserRoleDAO userRoleDAO) {
         this.userAccountDAO = userAccountDAO;
         this.userRoleDAO = userRoleDAO;
     }

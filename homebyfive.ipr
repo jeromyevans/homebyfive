@@ -246,6 +246,7 @@
       <module fileurl="file://$PROJECT_DIR$/web/security/security-annotations/security-annotations.iml" filepath="$PROJECT_DIR$/web/security/security-annotations/security-annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-security/security-model/security-model.iml" filepath="$PROJECT_DIR$/web/web-security/security-model/security-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-security/security-plugin/security-plugin.iml" filepath="$PROJECT_DIR$/web/web-security/security-plugin/security-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web-security/security-plugin-g/security-plugin-g.iml" filepath="$PROJECT_DIR$/web/web-security/security-plugin-g/security-plugin-g.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-core/web-core.iml" filepath="$PROJECT_DIR$/web/web-core/web-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-email/web-email.iml" filepath="$PROJECT_DIR$/web/web-email/web-email.iml" />
