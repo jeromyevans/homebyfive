@@ -1,5 +1,0 @@
-<enumeration classIdentifier="PaymentTerms" packageName="com.blueskyminds.enterprise.pricing"
-        comment="Types of Terms for payment">
-    <item value="PrepaidInFull"/>
-    <item value="PrepaidPeriodic"/>
-</enumeration>

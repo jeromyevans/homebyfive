@@ -1,6 +1,0 @@
-<enumeration classIdentifier="IndividualRoles" packageName="com.blueskyminds.enterprise.party"
-        comment="The roles an individual may have when associated with another Party.  Roles are not position titles.  An individual may have many roles.">
-    <item value="Director"/>
-    <item value="AccountsManager"/>
-    <item value="SalesManager"/>
-</enumeration>

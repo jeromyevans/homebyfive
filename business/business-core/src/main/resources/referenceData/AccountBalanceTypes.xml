@@ -1,5 +1,0 @@
-<enumeration classIdentifier="AccountBalanceTypes" packageName="com.blueskyminds.enterprise.accounting"
-        comment="Types of Normal Balances for Accounts - the balance of a credit account increases with credits, while the balance of debit accounts increase with debits">
-    <item value="Credit"/>
-    <item value="Debit"/>
-</enumeration>

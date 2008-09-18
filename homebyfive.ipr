@@ -56,6 +56,29 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="FacetAutodetectingManager">
+    <autodetection-disabled>
+      <facet-type id="hibernate">
+        <modules>
+          <module name="framework-core">
+            <files>
+              <file url="file://$PROJECT_DIR$/framework/framework-core/src/main/resources/hibernate/hibernate.hsql.cfg.xml" />
+              <file url="file://$PROJECT_DIR$/framework/framework-core/src/main/resources/hibernate/hibernate.mysql.cfg.xml" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
+      <facet-type id="jpa">
+        <modules>
+          <module name="business">
+            <files>
+              <file url="file://$PROJECT_DIR$/business/business-core/src/test/resources/META-INF/persistence.xml" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
+    </autodetection-disabled>
+  </component>
   <component name="IdProvider" IDEtalkID="C4D02C9BA0B35A1AF51AB6B0EDFCA0A1" />
   <component name="InspectionProjectProfileManager">
     <option name="PROJECT_PROFILE" value="Project Default" />
@@ -235,7 +258,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/business/business.iml" filepath="$PROJECT_DIR$/business/business.iml" />
-      <module fileurl="file://$PROJECT_DIR$/business/enterprise-core/business-core.iml" filepath="$PROJECT_DIR$/business/enterprise-core/business-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/business-core/business-core.iml" filepath="$PROJECT_DIR$/business/business-core/business-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/business-core/business-core.iml" filepath="$PROJECT_DIR$/business/business-core/business-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/business-guice/business-guice.iml" filepath="$PROJECT_DIR$/business/business-guice/business-guice.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/business-users/business-users.iml" filepath="$PROJECT_DIR$/business/business-users/business-users.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
@@ -279,7 +303,6 @@
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" />
-    <macro name="projectsHome" />
   </UsedPathMacros>
 </project>
 

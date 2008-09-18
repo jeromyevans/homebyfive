@@ -1,8 +1,0 @@
-<enumeration classIdentifier="PhoneNumberTypes" packageName="com.blueskyminds.enterprise.contact"
-        comment="A type of phone number.  eg. Fixed or mobile">
-    <item value="Fixed"/>
-    <item value="Mobile"/>
-    <item value="Extension"/>
-    <item value="Fax"/>    
-</enumeration>
-

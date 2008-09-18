@@ -1,8 +1,0 @@
-<enumeration classIdentifier="POCRole" packageName="com.blueskyminds.enterprise.contact"
-        comment="The role of a point of contact. eg 'business', 'home', 'mailing'">
-    <item value="Business"/>
-    <item value="Mailing"/>
-    <item value="Home"/>
-    <item value="Personal"/>
-    <item value="Other"/>
-</enumeration>

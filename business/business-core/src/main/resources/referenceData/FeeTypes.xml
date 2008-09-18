@@ -1,5 +1,0 @@
-<enumeration classIdentifier="FeeTypes" packageName="com.blueskyminds.enterprise.pricing"
-        comment="Types of Fees">
-    <item value="Fixed"/>
-    <item value="Transaction"/>
-</enumeration>

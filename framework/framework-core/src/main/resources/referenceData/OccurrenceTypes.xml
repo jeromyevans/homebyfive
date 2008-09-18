@@ -1,6 +1,0 @@
-<enumeration classIdentifier="OccurrenceTypes" packageName="com.blueskyminds.framework.recurrence"
-        comment="Types of occurrences enabled by the framework">
-    <item value="Perpetual"/>
-    <item value="FixedCount"/>
-    <item value="EndDate"/>
-</enumeration>

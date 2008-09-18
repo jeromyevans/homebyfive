@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="hibernate" name="Hibernate" implicit="true">
+    <facet type="jpa" name="JPA">
       <configuration>
-        <setting name="validation-enabled" value="true" />
-        <datasource-map>
-          <unit-entry name="src/main/resources/hibernate/hibernate.hsql.cfg.xml" />
-        </datasource-map>
-        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate/hibernate.hsql.cfg.xml" optional="false" version="3.0" />
-      </configuration>
-    </facet>
-    <facet type="jpa" name="JPA" implicit="true">
-      <configuration>
-        <setting name="validation-enabled" value="true" />
+        <setting name="validation-enabled" value="false" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="DefaultEntityManager" />

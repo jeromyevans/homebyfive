@@ -1,7 +1,0 @@
-<enumeration classIdentifier="JournalisableDocumentStates" packageName="com.blueskyminds.enterprise.pricing"
-        comment="The state enumeration of a Journalisable CommercialDocument">
-    <item value="Open"/>
-    <item value="Actioned"/>
-    <item value="Closed"/>
-    <item value="Deleted"/>
-</enumeration>

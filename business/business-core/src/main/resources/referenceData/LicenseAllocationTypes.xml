@@ -1,5 +1,0 @@
-<enumeration classIdentifier="LicenseAllocationTypes" packageName="com.blueskyminds.enterprise.license"
-        comment="Ways that a license may be allocated to a LicenseAccount">
-    <item value="Allocated"/>
-    <item value="Reserved"/>    
-</enumeration>

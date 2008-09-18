@@ -1,9 +1,0 @@
-<enumeration classIdentifier="AccountTypes" packageName="com.blueskyminds.enterprise.accounting"
-        comment="Types of financial accounts">
-    <item value="Asset"/>
-    <item value="Liability"/>
-    <item value="Capital"/>
-    <item value="Drawings"/>
-    <item value="Revenue"/>
-    <item value="Expense"/>
-</enumeration>

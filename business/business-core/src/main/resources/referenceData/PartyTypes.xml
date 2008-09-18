@@ -1,7 +1,0 @@
-<enumeration classIdentifier="PartyTypes" packageName="com.blueskyminds.enterprise.party"
-        comment="A type of party">
-    <item value="Organisation"/>
-    <item value="Company"/>
-    <item value="Individual"/>
-    <item value="System"/>
-</enumeration>

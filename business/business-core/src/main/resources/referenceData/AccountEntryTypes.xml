@@ -1,5 +1,0 @@
-<enumeration classIdentifier="AccountEntryTypes" packageName="com.blueskyminds.enterprise.accounting"
-        comment="Types of account entries">
-    <item value="Credit"/>
-    <item value="Debit"/>
-</enumeration>

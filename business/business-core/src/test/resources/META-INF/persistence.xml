@@ -278,7 +278,7 @@ To do: many of these properties need to be able to be changed -->
     <!--<mapping-file>META-INF/queries_landmine_analysis.xml</mapping-file>-->
 
     <mapping-file>META-INF/queries_landmine_regions.xml</mapping-file>
-    <mapping-file>META-INF/queries_landmine_users.xml</mapping-file>
+    <mapping-file>../../../../../business-users/src/main/resources/META-INF/queries_landmine_users.xml</mapping-file>
     <!--<mapping-file>META-INF/queries_auth.xml</mapping-file>  --><!-- security-plugin -->
 
     <!-- Entities from the Framework module-->

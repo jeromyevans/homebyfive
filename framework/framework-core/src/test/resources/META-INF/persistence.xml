@@ -47,7 +47,6 @@ To do: many of these properties need to be able to be changed -->
 
         <class>com.blueskyminds.framework.tasks.Task</class>
         <class>com.blueskyminds.framework.tasks.TaskGroup</class>
-        <class>com.blueskyminds.framework.tasks.TaskPlan</class>
 
         <class>com.blueskyminds.framework.tools.substitutions.Substitution</class>
         <class>com.blueskyminds.ellamaine.extractor.model.ExtractorLog</class>

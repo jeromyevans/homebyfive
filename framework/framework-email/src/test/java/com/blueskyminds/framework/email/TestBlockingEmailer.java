@@ -1,6 +1,7 @@
 package com.blueskyminds.framework.email;
 
 import junit.framework.TestCase;
+import junit.framework.Assert;
 import com.blueskyminds.framework.tools.PropertiesContext;
 
 /**

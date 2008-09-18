@@ -1,5 +1,0 @@
-<enumeration classIdentifier="LicenseTypes" packageName="com.blueskyminds.enterprise.license"
-        comment="Types of licenses available in the WDIS framework">
-    <item value="Exclusive"/>
-    <item value="NonExclusive"/>
-</enumeration>
