@@ -6,7 +6,7 @@
   <artifactId>web-security</artifactId>
   <packaging>pom</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>HomeByFive Web Struts2 Security Plugin</name>
+  <name>HomeByFive Web Security Plugin</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>
@@ -17,7 +17,6 @@
 
   <modules>
     <module>security-annotations</module>
-    <module>security-model</module>
     <module>security-plugin</module>
   </modules>
 

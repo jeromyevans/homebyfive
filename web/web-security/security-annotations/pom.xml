@@ -6,7 +6,7 @@
   <artifactId>security-annotations</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>A javax.annotation.security implementation</name>
+  <name>HomeByFive Web Security Annotations Compatibility</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>

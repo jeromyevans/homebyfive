@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.blueskyminds.homebyfive.web</groupId>
+  <artifactId>web-asynctask-plugin</artifactId>
+  <packaging>jar</packaging>
+  <version>0.1-SNAPSHOT</version>
+  <name>HomeByFive Asynchronous Task Struts2 Plugin</name>
+  <url>http://www.blueskyminds.com.au</url>
+
+  <parent>
+    <groupId>com.blueskyminds.homebyfive</groupId>
+    <artifactId>web</artifactId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.4</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- I don't like that there's a guice dependency in this module, but it'll have to do for now -->
+   <dependency>
+     <groupId>com.blueskyminds.homebyfive.framework</groupId>
+     <artifactId>framework-guice</artifactId>
+     <version>${pom.version}</version>
+   </dependency>
+
+
+
+  </dependencies>
+</project>

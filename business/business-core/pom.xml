@@ -4,7 +4,7 @@
   <artifactId>business-core</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>HomeBuFive Business Core Library</name>
+  <name>HomeByFive Business Core Library</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>

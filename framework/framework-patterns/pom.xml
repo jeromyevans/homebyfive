@@ -4,7 +4,7 @@
   <artifactId>framework-patterns</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>Framework Pattern Matching Library</name>
+  <name>HomeByFive Framework Pattern Matching Library</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>

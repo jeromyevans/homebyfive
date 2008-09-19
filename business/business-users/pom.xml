@@ -4,7 +4,7 @@
   <artifactId>business-users</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>Business Guice Integration Library</name>
+  <name>HomeByFive Business Users Library</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>

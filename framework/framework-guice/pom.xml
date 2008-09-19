@@ -4,7 +4,7 @@
   <artifactId>framework-guice</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>Framework Guice Integration Library</name>
+  <name>HomeByFive Framework Guice Integration Library</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>
@@ -16,7 +16,7 @@
   <dependencies>
     <dependency>
       <groupId>com.blueskyminds.homebyfive.framework</groupId>
-      <artifactId>framework-core</artifactId>
+      <artifactId>framework-persistence</artifactId>
       <version>${pom.version}</version>
     </dependency>
       <dependency>

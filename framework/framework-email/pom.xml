@@ -4,7 +4,7 @@
   <artifactId>framework-email</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>Framework Email Library</name>
+  <name>HomeByFive Framework Email Library</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>

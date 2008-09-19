@@ -1,7 +1,5 @@
 package com.blueskyminds.framework.persistence;
 
-import org.hibernate.Session;
-
 /**
  * Date Started: 6/01/2007
  * <p/>

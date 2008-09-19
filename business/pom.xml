@@ -4,7 +4,7 @@
   <artifactId>business</artifactId>
   <packaging>pom</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>HomeByFive Business Parent Module</name>
+  <name>HomeByFive Business Module</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>

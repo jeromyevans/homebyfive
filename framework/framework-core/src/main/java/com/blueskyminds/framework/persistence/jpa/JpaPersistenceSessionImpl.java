@@ -6,7 +6,6 @@ import com.blueskyminds.framework.persistence.PersistenceTransaction;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.HibernateException;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;
 
@@ -67,7 +66,7 @@ public class JpaPersistenceSessionImpl extends AbstractPersistenceSession<Entity
                 clearStack();
                 closed =  true;
             }
-        } catch(HibernateException e) {
+        } catch(Exception e) {
             throw new PersistenceServiceException("Failed to close a session", e);
         }
         return closed;
@@ -90,7 +89,7 @@ public class JpaPersistenceSessionImpl extends AbstractPersistenceSession<Entity
                  LOG.debug("=== Continuing transaction (Thread:"+Thread.currentThread().getName()+") ===");
              }
             return transaction;
-         } catch (HibernateException e) {
+         } catch (Exception e) {
              throw new PersistenceServiceException("Failed to begin a transaction", e);
          }
     }

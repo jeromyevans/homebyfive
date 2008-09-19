@@ -6,7 +6,7 @@
   <artifactId>web-common-plugin</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>HomeByFive Web Struts2 Plugin</name>
+  <name>HomeByFive Web Core Library (Struts 2)</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>

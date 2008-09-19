@@ -1,4 +1,4 @@
-package com.blueskyminds.framework.web.security;
+package com.blueskyminds.homebyfive.web.core.security;
 
 import javax.security.auth.login.Configuration;
 import javax.security.auth.login.AppConfigurationEntry;
@@ -24,7 +24,7 @@ public class DbConfiguration extends Configuration {
      *         for the specified <i>name</i>
      */
     public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
-        return new AppConfigurationEntry[0];  //To change body of implemented methods use File | Settings | File Templates.
+        return new AppConfigurationEntry[0];
     }
 
     /**

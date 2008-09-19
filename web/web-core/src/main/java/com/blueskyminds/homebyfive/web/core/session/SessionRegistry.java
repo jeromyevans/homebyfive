@@ -1,4 +1,4 @@
-package com.blueskyminds.framework.web.session;
+package com.blueskyminds.homebyfive.web.core.session;
 
 /**
  * Registry of all the sessions currently active in this webapp

@@ -4,7 +4,7 @@
   <artifactId>framework</artifactId>
   <packaging>pom</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>HomeByFive Framework Parent Module</name>
+  <name>HomeByFive Framework Module</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>
@@ -15,6 +15,7 @@
 
   <modules>
     <module>framework-core</module>
+    <module>framework-persistence</module>
     <module>framework-guice</module>
     <module>framework-patterns</module>
     <module>framework-email</module>

@@ -6,7 +6,7 @@
   <artifactId>security-plugin</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>Struts 2 Security Plugin</name>
+  <name>HomeByFive Web Security Plugin (Struts 2)</name>
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>
@@ -15,65 +15,11 @@
     <version>0.1-SNAPSHOT</version>   
   </parent>
 
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.myfaces.tobago</groupId>
-        <artifactId>maven-apt-plugin</artifactId>
-        <configuration>
-          <A>
-            uri=/housepad-tags,tlibVersion=2.2.3,jspVersion=1.2,shortName=housepad,displayName="HousePad Struts2 Tags",
-            <!--outFile=${basedir}/target/classes/META-INF/housepad-tags.tld,-->
-            outFile=${basedir}/src/main/resources/META-INF/housepad-tags.tld,
-            description="HousePad tags for Struts2.",
-            outTemplatesDir=${basedir}/src/main/gen
-          </A>
-          <resourceTargetPath>target</resourceTargetPath>
-          <fork>false</fork>
-          <force>true</force>
-          <nocompile>true</nocompile>
-          <showWarnings>true</showWarnings>
-          <factory>
-            org.apache.struts.annotations.taglib.apt.TLDAnnotationProcessorFactory
-          </factory>
-          <target>1.5</target>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-    <defaultGoal>install</defaultGoal>
-  </build>
-
-
   <dependencies>
 
     <dependency>
-      <groupId>org.apache.struts</groupId>
-      <artifactId>struts-annotations</artifactId>
-      <version>1.0.3</version>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
       <groupId>com.blueskyminds.homebyfive.web.security</groupId>
-      <artifactId>security-model</artifactId>
+      <artifactId>security-annotations</artifactId>
       <version>${pom.version}</version>
     </dependency>
 

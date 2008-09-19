@@ -1,4 +1,4 @@
-package com.blueskyminds.framework.web.startup;
+package com.blueskyminds.homebyfive.web.core.startup;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

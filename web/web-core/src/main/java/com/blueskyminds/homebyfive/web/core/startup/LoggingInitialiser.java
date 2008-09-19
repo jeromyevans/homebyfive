@@ -1,4 +1,4 @@
-package com.blueskyminds.framework.web.startup;
+package com.blueskyminds.homebyfive.web.core.startup;
 
 import com.blueskyminds.framework.tools.LoggerTools;
 
