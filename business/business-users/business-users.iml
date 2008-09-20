@@ -134,35 +134,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library name="com.blueskyminds.analysis:analysis-basic:0.2.1">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="commons-codec:commons-codec:1.3">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.3/commons-codec-1.3.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.3/commons-codec-1.3-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.3/commons-codec-1.3-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module" module-name="business-core" exported="" />
-    <orderEntry type="module" module-name="framework-guice" exported="" />
-    <orderEntry type="module" module-name="framework-persistence" exported="" />
-    <orderEntry type="module-library" exported="">
       <library name="org.hibernate:hibernate-entitymanager:3.3.1.ga">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/3.3.1.ga/hibernate-entitymanager-3.3.1.ga.jar!/" />
@@ -370,7 +341,33 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="framework-email" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="com.blueskyminds.analysis:analysis-basic:0.2.1">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="commons-codec:commons-codec:1.3">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.3/commons-codec-1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.3/commons-codec-1.3-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.3/commons-codec-1.3-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="business-core" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="com.google.inject:guice:1.0">
         <CLASSES>
@@ -385,19 +382,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library name="aopalliance:aopalliance:1.0">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
       <library name="warp-persist:warp-persist:1.0">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/warp-persist/warp-persist/1.0/warp-persist-1.0.jar!/" />
@@ -407,6 +391,34 @@
         </JAVADOC>
         <SOURCES>
           <root url="jar://$MAVEN_REPOSITORY$/warp-persist/warp-persist/1.0/warp-persist-1.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="framework-guice" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="com.blueskyminds.homebyfive.framework:framework-persistence:0.1-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/homebyfive/framework/framework-persistence/0.1-SNAPSHOT/framework-persistence-0.1-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/homebyfive/framework/framework-persistence/0.1-SNAPSHOT/framework-persistence-0.1-SNAPSHOT-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/homebyfive/framework/framework-persistence/0.1-SNAPSHOT/framework-persistence-0.1-SNAPSHOT-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="framework-email" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="aopalliance:aopalliance:1.0">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

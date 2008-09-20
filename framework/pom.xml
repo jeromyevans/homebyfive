@@ -15,7 +15,6 @@
 
   <modules>
     <module>framework-core</module>
-    <module>framework-persistence</module>
     <module>framework-guice</module>
     <module>framework-patterns</module>
     <module>framework-email</module>

@@ -1,19 +1,16 @@
 package com.blueskyminds.framework.test;
 
-import junit.framework.TestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Session;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.Properties;
-import java.sql.Connection;
+
 
 import com.blueskyminds.framework.tools.LoggerTools;
-import com.blueskyminds.framework.persistence.jdbc.PersistenceTools;
 
 
 /**
@@ -78,15 +75,15 @@ public class JPATestSupport {
     private void startTransaction() {
         em = emf.createEntityManager();
 
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(PersistenceTools.getTableMetadata(getConnection(), "system_"));
-        }
+//        if (LOG.isDebugEnabled()) {
+//            LOG.debug(PersistenceTools.getTableMetadata(getConnection(), "system_"));
+//        }
 
         transaction = em.getTransaction();
         transaction.begin();
     }
 
-    protected void newTransaction() {
+    public void newTransaction() {
         endTransaction();
         startTransaction();
     }
@@ -113,16 +110,7 @@ public class JPATestSupport {
     public void tearDown() throws Exception {
         endTransaction();
         emf.close();
-    }
-
-    /**
-     * Gets the JDBC connection from the hibernate session underlying the EntityManager.
-     * If a hibernate persistence provider is not being used this will fail
-     * */
-    public Connection getConnection() {
-        Session session = (Session) em.getDelegate();
-        return session.connection();
-    }
+    } 
 
     /**
      * Provides access to the EntityManagerFactory that was used to create the current EntityManager.

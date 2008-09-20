@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class AddressPatternMatcherFactoryProvider implements Provider<AddressParserFactory> {
 
-    private static final Log LOG = LogFactory.getLog(SingletonAddressParserFactory.class);
+    private static final Log LOG = LogFactory.getLog(AddressPatternMatcherFactoryProvider.class);
 
     private Provider<EntityManager> em;
     private Provider<AddressDAO> addressDAOProvider;

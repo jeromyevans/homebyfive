@@ -259,14 +259,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/business/business.iml" filepath="$PROJECT_DIR$/business/business.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/business-core/business-core.iml" filepath="$PROJECT_DIR$/business/business-core/business-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/business/business-guice/business-guice.iml" filepath="$PROJECT_DIR$/business/business-guice/business-guice.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/business-users/business-users.iml" filepath="$PROJECT_DIR$/business/business-users/business-users.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-core/framework-core.iml" filepath="$PROJECT_DIR$/framework/framework-core/framework-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-email/framework-email.iml" filepath="$PROJECT_DIR$/framework/framework-email/framework-email.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" filepath="$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-patterns/framework-patterns.iml" filepath="$PROJECT_DIR$/framework/framework-patterns/framework-patterns.iml" />
-      <module fileurl="file://$PROJECT_DIR$/framework/framework-persistence/framework-persistence.iml" filepath="$PROJECT_DIR$/framework/framework-persistence/framework-persistence.iml" />
       <module fileurl="file://$PROJECT_DIR$/homebyfive.iml" filepath="$PROJECT_DIR$/homebyfive.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-security/security-annotations/security-annotations.iml" filepath="$PROJECT_DIR$/web/web-security/security-annotations/security-annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-security/security-plugin/security-plugin.iml" filepath="$PROJECT_DIR$/web/web-security/security-plugin/security-plugin.iml" />

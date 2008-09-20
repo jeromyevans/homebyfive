@@ -4,6 +4,7 @@ import com.blueskyminds.framework.tools.LoggerTools;
 import junit.framework.TestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -75,7 +76,8 @@ public class JPATestCase extends TestCase {
      * If a hibernate persistence provider is not being used this will fail
      * */
     protected Connection getConnection() {
-        return env.getConnection();
+        Session session = (Session) em.getDelegate();
+        return session.connection();
     }
 
     /**

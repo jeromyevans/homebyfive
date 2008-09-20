@@ -13,4 +13,19 @@
     <version>0.1-SNAPSHOT</version>
   </parent>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
+    </dependency>
+     <dependency>
+      <groupId>warp-persist</groupId>
+      <artifactId>warp-persist</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  
 </project>

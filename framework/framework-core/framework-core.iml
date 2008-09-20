@@ -143,7 +143,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="org.hibernate:hibernate-entitymanager:3.3.1.ga">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/3.3.1.ga/hibernate-entitymanager-3.3.1.ga.jar!/" />
@@ -156,7 +156,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="org.hibernate:hibernate:3.2.4.ga">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.4.ga/hibernate-3.2.4.ga.jar!/" />
@@ -169,7 +169,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="net.sf.ehcache:ehcache:1.2.3">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3.jar!/" />
@@ -182,7 +182,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="commons-collections:commons-collections:2.1.1">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/2.1.1/commons-collections-2.1.1.jar!/" />
@@ -195,7 +195,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javax.transaction:jta:1.0.1B">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/javax/transaction/jta/1.0.1B/jta-1.0.1B.jar!/" />
@@ -208,7 +208,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="asm:asm-attrs:1.5.3">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/asm/asm-attrs/1.5.3/asm-attrs-1.5.3.jar!/" />
@@ -221,7 +221,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="dom4j:dom4j:1.6.1">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar!/" />
@@ -234,7 +234,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="antlr:antlr:2.7.6">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/antlr/antlr/2.7.6/antlr-2.7.6.jar!/" />
@@ -247,7 +247,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="cglib:cglib:2.1_3">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib/2.1_3/cglib-2.1_3.jar!/" />
@@ -260,7 +260,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="asm:asm:1.5.3">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/asm/asm/1.5.3/asm-1.5.3.jar!/" />
@@ -273,7 +273,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="org.hibernate:hibernate-annotations:3.3.0.ga">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-annotations/3.3.0.ga/hibernate-annotations-3.3.0.ga.jar!/" />
@@ -286,7 +286,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="org.hibernate:hibernate-commons-annotations:3.0.0.ga">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-commons-annotations/3.0.0.ga/hibernate-commons-annotations-3.0.0.ga.jar!/" />
@@ -299,7 +299,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="org.hibernate:hibernate-validator:3.0.0.ga">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-validator/3.0.0.ga/hibernate-validator-3.0.0.ga.jar!/" />
@@ -312,7 +312,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="jboss:javassist:3.3.ga">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/jboss/javassist/3.3.ga/javassist-3.3.ga.jar!/" />
@@ -325,7 +325,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="jboss:jboss-common-core:2.0.4.GA">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/jboss/jboss-common-core/2.0.4.GA/jboss-common-core-2.0.4.GA.jar!/" />
@@ -338,7 +338,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="hsqldb:hsqldb:1.8.0.7">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7.jar!/" />
