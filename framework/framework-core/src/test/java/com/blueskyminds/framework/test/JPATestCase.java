@@ -1,16 +1,12 @@
 package com.blueskyminds.framework.test;
 
-import com.blueskyminds.framework.persistence.jdbc.PersistenceTools;
 import com.blueskyminds.framework.tools.LoggerTools;
 import junit.framework.TestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.sql.Connection;
 import java.util.Properties;
 
@@ -33,21 +29,16 @@ import java.util.Properties;
  * <p/>
  * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
  */
-public class OutOfContainerTestCase extends TestCase {
+public class JPATestCase extends TestCase {
 
-    private static final Log LOG = LogFactory.getLog(OutOfContainerTestCase.class);
+    private static final Log LOG = LogFactory.getLog(JPATestCase.class);
 
-    private String persistenceUnitName;
-    private EntityManagerFactory emf;
+    protected JPATestSupport env;
     protected EntityManager em;
-    protected EntityTransaction transaction;
-    protected Properties persistenceUnitProperties;
 
-    public OutOfContainerTestCase(String persistenceUnitName) {
+    public JPATestCase(String persistenceUnitName) {
         LoggerTools.configure();
-        LOG.info("PersistenceUnit:"+persistenceUnitName);
-        this.persistenceUnitName = persistenceUnitName;
-        this.persistenceUnitProperties = null;
+        env = new JPATestSupport(persistenceUnitName);
     }
 
      /**
@@ -56,7 +47,7 @@ public class OutOfContainerTestCase extends TestCase {
      *
      * @param persistenceUnitProperties   properties to override the default properties of the persistence unit */
     public void setPersistenceUnitProperties(Properties persistenceUnitProperties) {
-        this.persistenceUnitProperties = persistenceUnitProperties;
+        env.setPersistenceUnitProperties(persistenceUnitProperties);
     }
 
     /**
@@ -65,54 +56,17 @@ public class OutOfContainerTestCase extends TestCase {
      */
     protected void setUp() throws Exception {
         super.setUp();
-        if (persistenceUnitProperties == null) {
-            emf = Persistence.createEntityManagerFactory(persistenceUnitName);
-        } else {
-            LOG.info("The PersistenceUnit properties have been overrriden");
-            emf = Persistence.createEntityManagerFactory(persistenceUnitName, persistenceUnitProperties);
-        }
-
-        startTransaction();
-    }
-
-    private void startTransaction() {
-        em = emf.createEntityManager();
-
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(PersistenceTools.getTableMetadata(getConnection(), "system_"));
-        }
-
-        transaction = em.getTransaction();
-        transaction.begin();
+        env.setUp();
+        this.em = env.em;
     }
 
     protected void newTransaction() {
-        endTransaction();
-        startTransaction();
+        env.newTransaction();
     }
 
-    private void endTransaction() {
-        if (transaction != null) {
-            if (transaction.isActive()) {
-                if (!transaction.getRollbackOnly()) {
-                    transaction.commit();
-                } else {
-                    transaction.rollback();
-                }
-            }
-        }
-        if (em != null) {
-            if (em.isOpen()) {
-                em.close();
-            }
-        } else {
-            LOG.error("EntityManager has not been setup.  Fixtures must invoke the superclass setUp() method to create an EM and transaction.");
-        }
-    }
 
     protected void tearDown() throws Exception {
-        endTransaction();
-        emf.close();
+        env.tearDown();
         super.tearDown();
     }
 
@@ -121,8 +75,7 @@ public class OutOfContainerTestCase extends TestCase {
      * If a hibernate persistence provider is not being used this will fail
      * */
     protected Connection getConnection() {
-        Session session = (Session) em.getDelegate();
-        return session.connection();
+        return env.getConnection();
     }
 
     /**
@@ -132,6 +85,6 @@ public class OutOfContainerTestCase extends TestCase {
      * @return
      */
     protected EntityManagerFactory getEntityManagerFactory() {
-        return emf;
+        return env.getEntityManagerFactory();
     }
 }

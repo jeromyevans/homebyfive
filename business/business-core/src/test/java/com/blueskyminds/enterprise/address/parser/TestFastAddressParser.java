@@ -1,28 +1,17 @@
 package com.blueskyminds.enterprise.address.parser;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
-import com.blueskyminds.framework.patterns.*;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.tools.substitutions.dao.SubstitutionDAO;
-import com.blueskyminds.framework.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.framework.tools.substitutions.service.SubstitutionServiceImpl;
 import com.blueskyminds.enterprise.address.patterns.*;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.service.AddressServiceImpl;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.Address;
-import com.blueskyminds.enterprise.address.PlainTextAddress;
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Collection;
 
 /**
  * A faster implementation of an address pattern matcher
@@ -31,7 +20,7 @@ import java.util.Collection;
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class TestFastAddressParser extends OutOfContainerTestCase {
+public class TestFastAddressParser extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestFastAddressParser.class);
 

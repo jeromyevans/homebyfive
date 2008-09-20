@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.tools.csv.CsvOptions;
 import com.blueskyminds.framework.tools.csv.CsvTextReader;
 import com.blueskyminds.framework.tools.ResourceTools;
@@ -30,7 +30,7 @@ import java.io.IOException;
  * <p/>
  * History:
  */
-public class TestGenerateSampleAddresses extends OutOfContainerTestCase {
+public class TestGenerateSampleAddresses extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestGenerateSampleAddresses.class);
 

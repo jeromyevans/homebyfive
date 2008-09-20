@@ -6,7 +6,7 @@ import com.blueskyminds.enterprise.party.IndividualRole;
 import com.blueskyminds.enterprise.party.dao.PartyDAO;
 import com.blueskyminds.enterprise.party.service.PartyService;
 import com.blueskyminds.enterprise.party.service.PartyServiceImpl;
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.contact.*;
 
 import java.util.Currency;
@@ -22,7 +22,7 @@ import java.util.Collection;
  *
  * ---[ Blue Sky Minds Pty Ltd ]------------------------------------------------------------------------------
  */
-public class TestParty extends OutOfContainerTestCase {
+public class TestParty extends JPATestCase {
 
     private static final String PARTY_PERSISIENCE_UNIT = "TestEnterprisePersistenceUnit";
 

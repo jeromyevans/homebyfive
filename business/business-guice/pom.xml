@@ -22,6 +22,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.blueskyminds.homebyfive.business</groupId>
+      <artifactId>business-users</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>com.blueskyminds.homebyfive.framework</groupId>
       <artifactId>framework-guice</artifactId>
       <version>${pom.version}</version>

@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.tools.DebugTools;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.address.service.AddressService;
@@ -17,7 +17,7 @@ import java.util.List;
  * <p/>
  * History:
  */
-public class TestAddressSearch extends OutOfContainerTestCase {
+public class TestAddressSearch extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestAddressSearch.class);
 

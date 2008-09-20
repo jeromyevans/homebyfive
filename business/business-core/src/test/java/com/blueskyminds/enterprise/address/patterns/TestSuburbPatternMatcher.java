@@ -1,9 +1,8 @@
 package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.address.patterns.AddressPatternMatcher;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,7 +16,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class TestSuburbPatternMatcher extends OutOfContainerTestCase {
+public class TestSuburbPatternMatcher extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestSuburbPatternMatcher.class);
 

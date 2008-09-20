@@ -1,7 +1,6 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
-import com.blueskyminds.framework.persistence.jdbc.PersistenceTools;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.AddressTestTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +12,7 @@ import org.apache.commons.logging.LogFactory;
  * <p/>
  * History:
  */
-public class TestRegionSampleData extends OutOfContainerTestCase {
+public class TestRegionSampleData extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestRegionDAO.class);
 

@@ -1,6 +1,6 @@
 package com.blueskyminds.housepad.core.region.model;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.housepad.core.region.eao.PostCodeEAO;
 import com.blueskyminds.housepad.core.region.eao.PostCodeEAOImpl;
 import com.blueskyminds.housepad.core.region.model.PostCodeBean;
@@ -12,7 +12,7 @@ import com.blueskyminds.housepad.core.region.model.CountryBean;
  * <p/>
  * History:
  */
-public class TestPostCodeEAO extends OutOfContainerTestCase {
+public class TestPostCodeEAO extends JPATestCase {
 
     private static final String PERSISTENCE_UNIT = "TestHousePadCorePersistenceUnit";
 

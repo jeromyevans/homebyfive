@@ -1,6 +1,6 @@
 package com.blueskyminds.housepad.core.region.model;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.housepad.core.region.eao.CountryEAO;
 import com.blueskyminds.housepad.core.region.eao.CountryEAOImpl;
 import com.blueskyminds.housepad.core.region.model.CountryBean;
@@ -13,7 +13,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class TestCountryEAO extends OutOfContainerTestCase {
+public class TestCountryEAO extends JPATestCase {
 
     private static final String PERSISTENCE_UNIT = "TestHousePadCorePersistenceUnit";
 

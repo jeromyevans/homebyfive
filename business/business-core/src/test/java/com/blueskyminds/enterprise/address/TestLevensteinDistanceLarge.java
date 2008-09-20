@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.test.TestTools;
 import com.blueskyminds.framework.tools.Named;
 import com.blueskyminds.enterprise.AddressTestTools;
@@ -22,7 +22,7 @@ import java.util.*;
  * <p/>
  * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
  */
-public class TestLevensteinDistanceLarge  extends OutOfContainerTestCase {
+public class TestLevensteinDistanceLarge  extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestLevensteinDistanceLarge.class);
 

@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.test.TestTools;
 import com.blueskyminds.framework.tools.DebugTools;
 import com.blueskyminds.enterprise.AddressTestTools;
@@ -23,7 +23,7 @@ import java.util.Collection;
  * <p/>
  * History:
  */
-public class TestAddressDAO extends OutOfContainerTestCase {
+public class TestAddressDAO extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestAddressDAO.class);
     private static final String TEST_ENTERPRISE_PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";

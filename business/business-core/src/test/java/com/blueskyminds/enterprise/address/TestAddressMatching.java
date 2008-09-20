@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.service.AddressServiceImpl;
@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
  * <p/>
  * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
  */
-public class TestAddressMatching extends OutOfContainerTestCase {
+public class TestAddressMatching extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestAddressMatching.class);
 

@@ -5,7 +5,7 @@ import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.patterns.AddressPatternMatcher;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.tools.ResourceTools;
 import com.blueskyminds.framework.tools.csv.CsvOptions;
 import com.blueskyminds.framework.tools.csv.CsvTextReader;
@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  *
  * ---[ Blue Sky Minds Pty Ltd ]------------------------------------------------------------------------------
  */
-public class TestAddressPatternMatcher extends OutOfContainerTestCase {
+public class TestAddressPatternMatcher extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestAddressPatternMatcher.class);
 

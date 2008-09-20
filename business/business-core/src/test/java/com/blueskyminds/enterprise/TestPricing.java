@@ -19,12 +19,11 @@ import com.blueskyminds.enterprise.taxpolicy.ScheduleOfTaxes;
 import com.blueskyminds.enterprise.taxpolicy.TaxPolicy;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeFactory;
-import com.blueskyminds.framework.datetime.Interval;
 import com.blueskyminds.framework.datetime.PeriodTypes;
 import com.blueskyminds.framework.journal.Journal;
 import com.blueskyminds.framework.measurement.Quantity;
 import com.blueskyminds.framework.measurement.QuantityUnits;
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.test.TestTools;
 
 import java.util.*;
@@ -38,7 +37,7 @@ import java.util.*;
  *
  * ---[ Blue Sky Minds Pty Ltd ]------------------------------------------------------------------------------
  */
-public class TestPricing extends OutOfContainerTestCase {
+public class TestPricing extends JPATestCase {
 
     private static final String PRICING_PERSISIENCE_UNIT = "TestEnterprisePersistenceUnit";
 

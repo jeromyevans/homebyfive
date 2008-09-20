@@ -1,12 +1,12 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 
 /**
  * Date: 31/03/2008
 */
-public class TestRegionMerge extends OutOfContainerTestCase {
+public class TestRegionMerge extends JPATestCase {
 
     private static final String TEST_ENTERPRISE_PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";
 

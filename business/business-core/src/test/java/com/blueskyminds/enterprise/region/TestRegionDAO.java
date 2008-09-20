@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.Region;
 import org.apache.commons.logging.Log;
@@ -15,7 +15,7 @@ import org.apache.commons.logging.LogFactory;
  * <p/>
  * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
  */
-public class TestRegionDAO extends OutOfContainerTestCase {
+public class TestRegionDAO extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestRegionDAO.class);
 

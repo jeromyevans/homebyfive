@@ -5,7 +5,7 @@ import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.service.RegionGraphServiceImpl;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.tools.DebugTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,7 +21,7 @@ import java.util.Set;
  * <p/>
  * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
  */
-public class TestRegionService  extends OutOfContainerTestCase {
+public class TestRegionService  extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestRegionDAO.class);
 

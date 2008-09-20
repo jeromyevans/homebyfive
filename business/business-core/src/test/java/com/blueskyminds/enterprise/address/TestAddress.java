@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.test.TestTools;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.country.CountryFactory;
@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * Date Started: 8/06/2006
  */
-public class TestAddress extends OutOfContainerTestCase {
+public class TestAddress extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestAddress.class);
 

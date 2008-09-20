@@ -1,6 +1,6 @@
 package com.blueskyminds.housepad.core.user.services;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.framework.tools.CryptoTools;
 import com.blueskyminds.housepad.core.user.dao.UserProfileDAO;
 import com.blueskyminds.housepad.core.user.dao.UserGroupDAO;
@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Date Started: 17/05/2008
  */
-public class UserServiceTest extends OutOfContainerTestCase {
+public class UserServiceTest extends JPATestCase {
 
 
     private static final String PERSISTENCE_UNIT = "TestPremisePersistenceUnit";

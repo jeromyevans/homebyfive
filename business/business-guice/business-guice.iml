@@ -159,6 +159,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="business-core" exported="" />
+    <orderEntry type="module" module-name="business-users" exported="" />
     <orderEntry type="module" module-name="framework-guice" exported="" />
     <orderEntry type="module" module-name="framework-persistence" exported="" />
     <orderEntry type="module-library" exported="">

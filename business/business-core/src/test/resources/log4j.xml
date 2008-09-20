@@ -65,7 +65,7 @@
     </category>
 
   
-    <category name="com.blueskyminds.framework.test.OutOfContainerTestCase">
+    <category name="com.blueskyminds.framework.test.JPATestCase">
         <priority value="debug"/>
     </category>
 

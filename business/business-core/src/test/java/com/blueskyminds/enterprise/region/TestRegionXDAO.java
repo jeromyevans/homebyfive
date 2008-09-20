@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -13,7 +13,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class TestRegionXDAO extends OutOfContainerTestCase {
+public class TestRegionXDAO extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(TestRegionXDAO.class);
 

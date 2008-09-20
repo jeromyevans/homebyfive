@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.party;
 
-import com.blueskyminds.framework.test.OutOfContainerTestCase;
+import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.contact.EmailAddress;
 import com.blueskyminds.enterprise.contact.POCRole;
 import com.blueskyminds.enterprise.contact.PhoneNumberTypes;
@@ -23,7 +23,7 @@ import org.apache.commons.logging.LogFactory;
  * <p/>
  * History:
  */
-public class PartyTestCase extends OutOfContainerTestCase {
+public class PartyTestCase extends JPATestCase {
 
     private static final Log LOG = LogFactory.getLog(PartyTestCase.class);
 
