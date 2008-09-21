@@ -64,6 +64,14 @@
     </dependency>
 
     <dependency>
+       <groupId>com.blueskyminds.homebyfive.web</groupId>
+       <artifactId>security-annotations</artifactId>
+       <version>${pom.version}</version>
+       <optional>true</optional>
+     </dependency>
+
+
+    <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
       <version>1.0</version>

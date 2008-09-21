@@ -10,8 +10,8 @@
   <url>http://www.blueskyminds.com.au</url>
 
   <parent>
-    <groupId>com.blueskyminds.homebyfive.web</groupId>
-    <artifactId>web-security</artifactId>
+    <groupId>com.blueskyminds.homebyfive</groupId>
+    <artifactId>web</artifactId>
     <version>0.1-SNAPSHOT</version>
   </parent>
 

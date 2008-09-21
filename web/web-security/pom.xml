@@ -17,7 +17,6 @@
 
   <modules>
     <module>security-annotations</module>
-    <module>security-plugin</module>
   </modules>
 
 </project>

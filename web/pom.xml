@@ -17,14 +17,14 @@
 
   <modules>
     <module>web-core</module>
-    <module>web-security</module>    
+    <module>security-annotations</module>    
   </modules>
 
   <dependencies>
 
     <dependency>
-      <groupId>com.blueskyminds.homebyfive.framework</groupId>
-      <artifactId>framework-core</artifactId>
+      <groupId>com.blueskyminds.homebyfive.business</groupId>
+      <artifactId>business-core</artifactId>
       <version>${pom.version}</version>
     </dependency>
     
