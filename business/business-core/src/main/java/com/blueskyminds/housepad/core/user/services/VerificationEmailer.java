@@ -2,7 +2,7 @@ package com.blueskyminds.housepad.core.user.services;
 
 import com.blueskyminds.landmine.core.events.EventRegistry;
 import com.blueskyminds.landmine.core.events.EventHandler;
-import com.blueskyminds.landmine.core.events.LandmineEvents;
+import com.blueskyminds.housepad.core.user.services.UserEvents;
 import com.blueskyminds.housepad.core.user.services.UserService;
 import com.blueskyminds.housepad.core.user.model.users.UserProfile;
 import com.blueskyminds.framework.email.EmailService;
@@ -49,15 +49,15 @@ public class VerificationEmailer implements EventHandler {
                     emailService.send(systemAddress, userProfile.getPrimaryPersonalEmail(), template, new HashMap<String, Object>());
                 } catch (EmailerException e) {
                     LOG.error(e);
-                    eventRegistry.fire(LandmineEvents.VERIFICATION_EMAIL_FAILED, userId);
+                    eventRegistry.fire(UserEvents.VERIFICATION_EMAIL_FAILED, userId);
                 }
             } else {
                 LOG.error("Verification EmailTemplate is not defined");
-                eventRegistry.fire(LandmineEvents.VERIFICATION_EMAIL_FAILED, userId);
+                eventRegistry.fire(UserEvents.VERIFICATION_EMAIL_FAILED, userId);
             }
         } else {
             LOG.error("Verification EmailService is not available");
-            eventRegistry.fire(LandmineEvents.VERIFICATION_EMAIL_FAILED, userId);
+            eventRegistry.fire(UserEvents.VERIFICATION_EMAIL_FAILED, userId);
         }
     }
 

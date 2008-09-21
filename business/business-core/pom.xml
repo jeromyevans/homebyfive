@@ -25,7 +25,7 @@
       <artifactId>warp-persist</artifactId>
       <version>1.0</version>
       <scope>compile</scope>
-    </dependency>
+    </dependency>    
   </dependencies>
   
 </project>

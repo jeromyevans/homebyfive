@@ -16,12 +16,7 @@
   <dependencies>
     <dependency>
       <groupId>com.blueskyminds.homebyfive.framework</groupId>
-      <artifactId>framework-persistence</artifactId>
-      <version>${pom.version}</version>
-    </dependency>
-      <dependency>
-      <groupId>com.blueskyminds.homebyfive.framework</groupId>
-      <artifactId>framework-email</artifactId>
+      <artifactId>framework-core</artifactId>
       <version>${pom.version}</version>
     </dependency>
     <dependency>

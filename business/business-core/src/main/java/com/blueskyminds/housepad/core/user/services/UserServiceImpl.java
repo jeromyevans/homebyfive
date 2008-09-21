@@ -6,7 +6,7 @@ import com.blueskyminds.housepad.core.user.model.beans.UserSettings;
 import com.blueskyminds.housepad.core.user.dao.UserProfileDAO;
 import com.blueskyminds.housepad.core.user.dao.UserGroupDAO;
 import com.blueskyminds.landmine.core.events.EventRegistry;
-import com.blueskyminds.landmine.core.events.LandmineEvents;
+import com.blueskyminds.housepad.core.user.services.UserEvents;
 import com.blueskyminds.struts2.securityplugin.services.UserAccountService;
 import com.google.inject.Inject;
 
@@ -125,7 +125,7 @@ public class UserServiceImpl implements UserService {
                 userProfile = userProfileDAO.persist(userProfile);
                 if (userProfile != null) {
                     if (eventRegistry != null) {
-                        eventRegistry.fire(LandmineEvents.NEW_ACCOUNT_REGISTERED, userProfile.getId());
+                        eventRegistry.fire(UserEvents.NEW_ACCOUNT_REGISTERED, userProfile.getId());
                     }
                 }
                 return userProfile;
@@ -175,7 +175,7 @@ public class UserServiceImpl implements UserService {
 
         if (userProfile != null) {
             if (eventRegistry != null) {
-                eventRegistry.fire(LandmineEvents.NEW_ACCOUNT_VERIFIED, userProfile.getId());
+                eventRegistry.fire(UserEvents.NEW_ACCOUNT_VERIFIED, userProfile.getId());
             }
         }
 

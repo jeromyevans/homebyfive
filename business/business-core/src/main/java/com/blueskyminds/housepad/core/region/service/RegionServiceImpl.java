@@ -30,16 +30,16 @@ import org.apache.commons.lang.StringUtils;
 public class RegionServiceImpl implements RegionService {
 
     private EntityManager em;
-    private CountryEAOImpl countryEAO;
-    private StateEAOImpl stateEAO;
-    private SuburbEAOImpl suburbEAO;
-    private PostCodeEAOImpl postCodeEAO;
+    private CountryEAO countryEAO;
+    private StateEAO stateEAO;
+    private SuburbEAO suburbEAO;
+    private PostCodeEAO postCodeEAO;
     private AddressService addressService;
 
     public RegionServiceImpl() {
     }
 
-    public RegionServiceImpl(EntityManager em, CountryEAOImpl countryEAO, StateEAOImpl stateEAO, SuburbEAOImpl suburbEAO, PostCodeEAOImpl postCodeEAO, AddressService addressService) {
+    public RegionServiceImpl(EntityManager em, CountryEAO countryEAO, StateEAO stateEAO, SuburbEAO suburbEAO, PostCodeEAO postCodeEAO, AddressService addressService) {
         this.em = em;
         this.countryEAO = countryEAO;
         this.stateEAO = stateEAO;
@@ -464,22 +464,22 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Inject
-    public void setCountryEAO(CountryEAOImpl countryEAO) {
+    public void setCountryEAO(CountryEAO countryEAO) {
         this.countryEAO = countryEAO;
     }
 
     @Inject
-    public void setStateEAO(StateEAOImpl stateEAO) {
+    public void setStateEAO(StateEAO stateEAO) {
         this.stateEAO = stateEAO;
     }
 
     @Inject
-    public void setSuburbEAO(SuburbEAOImpl suburbEAO) {
+    public void setSuburbEAO(SuburbEAO suburbEAO) {
         this.suburbEAO = suburbEAO;
     }
 
     @Inject
-    public void setPostCodeEAO(PostCodeEAOImpl postCodeEAO) {
+    public void setPostCodeEAO(PostCodeEAO postCodeEAO) {
         this.postCodeEAO = postCodeEAO;
     }
 

@@ -636,6 +636,32 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="com.google.inject.struts2:guice-struts2-plugin:1.0.1">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/struts2/guice-struts2-plugin/1.0.1/guice-struts2-plugin-1.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/struts2/guice-struts2-plugin/1.0.1/guice-struts2-plugin-1.0.1-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/struts2/guice-struts2-plugin/1.0.1/guice-struts2-plugin-1.0.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="com.google.inject.servlet:guice-servlet:1.0">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/servlet/guice-servlet/1.0/guice-servlet-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/servlet/guice-servlet/1.0/guice-servlet-1.0-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/servlet/guice-servlet/1.0/guice-servlet-1.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntryProperties />
   </component>
 </module>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="jpa" name="JPA" implicit="true">
+    <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
@@ -20,6 +20,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
+      <excludeFolder url="file://$MODULE_DIR$/target/test-classes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -347,19 +348,6 @@
         </JAVADOC>
         <SOURCES>
           <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="com.blueskyminds.analysis:analysis-basic:0.2.1">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

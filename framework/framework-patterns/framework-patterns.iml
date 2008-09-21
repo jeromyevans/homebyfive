@@ -339,19 +339,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library name="com.blueskyminds.analysis:analysis-basic:0.2.1">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/blueskyminds/analysis/analysis-basic/0.2.1/analysis-basic-0.2.1-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
       <library name="commons-codec:commons-codec:1.3">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.3/commons-codec-1.3.jar!/" />

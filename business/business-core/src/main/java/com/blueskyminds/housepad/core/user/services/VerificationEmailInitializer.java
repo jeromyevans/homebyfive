@@ -1,7 +1,7 @@
 package com.blueskyminds.housepad.core.user.services;
 
 import com.blueskyminds.landmine.core.events.EventRegistry;
-import com.blueskyminds.landmine.core.events.LandmineEvents;
+import com.blueskyminds.housepad.core.user.services.UserEvents;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -17,6 +17,6 @@ public class VerificationEmailInitializer {
 
     @Inject
     public VerificationEmailInitializer(EventRegistry eventRegistry) {
-        eventRegistry.registerEventHandler(LandmineEvents.NEW_ACCOUNT_REGISTERED, VerificationEmailer.class);
+        eventRegistry.registerEventHandler(UserEvents.NEW_ACCOUNT_REGISTERED, VerificationEmailer.class);
     }
 }

@@ -12,14 +12,14 @@ import javax.persistence.Query;
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class AddressPathEAO extends AbstractDAO<AddressPath> {
+public class AddressPathDAO extends AbstractDAO<AddressPath> {
 
     private static final String QUERY_ADDRESS_STRING = "hp.addressPath.byAddressString";
 
     private static final String PARAM_ADDRESS_STRING = "addressString";
 
     @Inject
-    public AddressPathEAO(EntityManager em) {
+    public AddressPathDAO(EntityManager em) {
         super(em, AddressPath.class);
     }
 

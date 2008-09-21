@@ -17,7 +17,6 @@
     <module>framework-core</module>
     <module>framework-guice</module>
     <module>framework-patterns</module>
-    <module>framework-email</module>
   </modules>  
 
   <dependencies>

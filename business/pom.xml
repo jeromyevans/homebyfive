@@ -15,7 +15,6 @@
 
   <modules>
     <module>business-core</module>
-    <module>business-users</module>
   </modules>
 
   <dependencies>

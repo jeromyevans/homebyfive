@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.blueskyminds.homebyfive.web</groupId>
-  <artifactId>web-common-plugin</artifactId>
+  <artifactId>web-core</artifactId>
   <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
   <name>HomeByFive Web Core Library (Struts 2)</name>
@@ -62,7 +62,20 @@
       <version>1.0.3</version>
       <optional>true</optional>
     </dependency>
+
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>1.0</version>
+    </dependency>
     
+    <dependency>
+      <groupId>warp-persist</groupId>
+      <artifactId>warp-persist</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
+    </dependency>
+
   </dependencies>
 
 </project>

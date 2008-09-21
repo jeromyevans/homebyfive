@@ -18,8 +18,6 @@
   <modules>
     <module>web-core</module>
     <module>web-security</module>    
-    <module>web-guice</module>
-    <module>web-asynctask-plugin</module>
   </modules>
 
   <dependencies>
@@ -84,6 +82,19 @@
       <groupId>org.apache.tiles</groupId>
       <artifactId>tiles-jsp</artifactId>
       <version>2.0.5</version>
+    </dependency>
+
+    <!-- This should be a separate module -->
+    <dependency>
+      <groupId>com.google.inject.struts2</groupId>
+      <artifactId>guice-struts2-plugin</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.inject.servlet</groupId>
+      <artifactId>guice-servlet</artifactId>
+      <version>1.0</version>
     </dependency>
 
   </dependencies>
