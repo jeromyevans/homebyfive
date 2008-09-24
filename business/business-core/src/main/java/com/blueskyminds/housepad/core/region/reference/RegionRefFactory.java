@@ -334,7 +334,7 @@ public class RegionRefFactory {
     }
 
     /** Applies some useful attributes to a RegionRef */  
-    private static void populateAttributes(RegionRef regionRef, Address address) {
+    public static void populateAttributes(RegionRef regionRef, Address address) {
         RegionHandle suburb = address.getSuburb();
         RegionHandle state = address.getState();
         RegionHandle postCode = address.getPostCode();
