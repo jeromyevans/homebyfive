@@ -16,7 +16,6 @@
   <modules>
     <module>framework-core</module>
     <module>framework-guice</module>
-    <module>framework-patterns</module>
   </modules>  
 
   <dependencies>
