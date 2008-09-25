@@ -24,6 +24,10 @@
 
    <bean type="com.blueskyminds.struts2.securityplugin.signature.SignatureHandler" class="com.blueskyminds.struts2.securityplugin.signature.SignatureHandlerImpl"/>
 
+  <!-- Use the customised json processor -->
+   <bean name="myJson" type="org.apache.struts2.rest.handler.ContentTypeHandler" class="com.blueskyminds.homebyfive.web.struts2.JsonLibContentTypeHandler" />
+   <constant name="struts.rest.handlerOverride.json" value="myJson"/>
+  
    <package name="auth-default" extends="rest-default">
 
      <interceptors>

@@ -3,9 +3,13 @@
   <component name="FacetManager">
     <facet type="jpa" name="JPA">
       <configuration>
-        <setting name="validation-enabled" value="true" />
+        <setting name="validation-enabled" value="false" />
         <setting name="provider-name" value="" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="EnterpriseFrameworkEntityManager" />
+          <factory-entry name="TestEnterprisePersistenceUnit" />
+          <factory-entry name="TestPremisePersistenceUnit" />
+        </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/test/resources/META-INF/persistence.xml" optional="false" version="1.0" />
       </configuration>
     </facet>

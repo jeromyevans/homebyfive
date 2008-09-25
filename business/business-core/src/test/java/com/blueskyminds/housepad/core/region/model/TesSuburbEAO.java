@@ -2,7 +2,6 @@ package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.framework.test.JPATestCase;
 import com.blueskyminds.housepad.core.region.eao.SuburbEAO;
-import com.blueskyminds.housepad.core.region.eao.SuburbEAOImpl;
 import com.blueskyminds.housepad.core.region.model.SuburbBean;
 import com.blueskyminds.housepad.core.region.model.CountryBean;
 import com.blueskyminds.housepad.core.region.model.PostCodeBean;
@@ -27,7 +26,7 @@ public class TesSuburbEAO extends JPATestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        suburbEAO = new SuburbEAOImpl(em);
+        suburbEAO = new SuburbEAO(em);
 
         CountryBean au = new CountryBean("Australia", "AU");
         em.persist(au);
