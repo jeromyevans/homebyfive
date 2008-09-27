@@ -13,9 +13,9 @@ import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.Filter;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.homebyfive.framework.core.alias.Aliased;
-import com.blueskyminds.homebyfive.framework.core.basic.statistics.BasicStats;
-import com.blueskyminds.homebyfive.framework.core.basic.statistics.ComputeAdapter;
-import com.blueskyminds.homebyfive.framework.core.basic.AnalysisTools;
+import com.blueskyminds.homebyfive.framework.core.analysis.statistics.BasicStats;
+import com.blueskyminds.homebyfive.framework.core.analysis.statistics.ComputeAdapter;
+import com.blueskyminds.homebyfive.framework.core.analysis.AnalysisTools;
 
 /**
  * Provides methods for filtering collections of strings based on Levenstein Distance
