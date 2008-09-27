@@ -1,4 +1,4 @@
-package com.blueskyminds.homebyfive.framework.framework.guice.providers;
+package com.blueskyminds.homebyfive.framework.core.providers;
 
 import com.google.inject.Provider;
 import com.google.inject.Inject;

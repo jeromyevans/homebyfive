@@ -1,4 +1,4 @@
-package com.blueskyminds.homebyfive.framework.framework.guice.providers;
+package com.blueskyminds.homebyfive.framework.core.providers;
 
 /**
  * A Guice provider that looks up a class of the specified type with the given JNDI name

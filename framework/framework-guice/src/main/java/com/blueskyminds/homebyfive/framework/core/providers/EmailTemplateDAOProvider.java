@@ -1,6 +1,6 @@
-package com.blueskyminds.homebyfive.framework.framework.guice.providers;
+package com.blueskyminds.homebyfive.framework.core.providers;
 
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.dao.SubstitutionDAO;
+import com.blueskyminds.homebyfive.framework.framework.email.dao.EmailTemplateDAO;
 import com.google.inject.Provider;
 import com.google.inject.Inject;
 
@@ -13,12 +13,12 @@ import javax.persistence.EntityManager;
  * <p/>
  * History:
  */
-public class SubstitutionDAOProvider implements Provider<SubstitutionDAO> {
+public class EmailTemplateDAOProvider implements Provider<EmailTemplateDAO> {
 
     private Provider<EntityManager> em;
 
-    public SubstitutionDAO get() {
-        return new SubstitutionDAO(em.get());
+    public EmailTemplateDAO get() {
+        return new EmailTemplateDAO(em.get());
     }
 
     @Inject

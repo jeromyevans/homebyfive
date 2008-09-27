@@ -1,4 +1,4 @@
-package com.blueskyminds.homebyfive.framework.framework.guice.providers;
+package com.blueskyminds.homebyfive.framework.core.providers;
 
 import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.Substitution;
 import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.dao.SubstitutionDAO;
