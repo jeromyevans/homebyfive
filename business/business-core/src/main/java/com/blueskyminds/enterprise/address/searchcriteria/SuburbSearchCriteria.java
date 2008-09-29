@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.searchcriteria;
 
-//import com.blueskyminds.framework.persistence.hibernate.query.HibernateCriteriaImpl;
+//import com.blueskyminds.homebyfive.framework.core.persistence.hibernate.query.HibernateCriteriaImpl;
 //import org.hibernate.criterion.DetachedCriteria;
 //import org.hibernate.criterion.Expression;
 
