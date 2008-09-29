@@ -2,11 +2,11 @@ package com.blueskyminds.homebyfive.framework.core.providers;
 
 import com.google.inject.Provider;
 import com.google.inject.Inject;
-import com.blueskyminds.homebyfive.framework.framework.email.EmailService;
-import com.blueskyminds.homebyfive.framework.framework.email.BlockingEmailer;
-import com.blueskyminds.homebyfive.framework.framework.email.MockEmailer;
-import com.blueskyminds.homebyfive.framework.framework.email.dao.EmailTemplateDAO;
-import com.blueskyminds.homebyfive.framework.framework.template.TemplateManager;
+import com.blueskyminds.homebyfive.framework.core.email.EmailService;
+import com.blueskyminds.homebyfive.framework.core.email.BlockingEmailer;
+import com.blueskyminds.homebyfive.framework.core.email.MockEmailer;
+import com.blueskyminds.homebyfive.framework.core.email.dao.EmailTemplateDAO;
+import com.blueskyminds.homebyfive.framework.core.template.TemplateManager;
 
 import javax.mail.Session;
 

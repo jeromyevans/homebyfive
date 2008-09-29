@@ -1,7 +1,7 @@
 package com.blueskyminds.homebyfive.framework.core.providers;
 
-import com.blueskyminds.homebyfive.framework.framework.template.TemplateManager;
-import com.blueskyminds.homebyfive.framework.framework.template.FreemarkerTemplateManager;
+import com.blueskyminds.homebyfive.framework.core.template.TemplateManager;
+import com.blueskyminds.homebyfive.framework.core.template.FreemarkerTemplateManager;
 import com.google.inject.Provider;
 
 /**

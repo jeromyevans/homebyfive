@@ -1,8 +1,8 @@
 package com.blueskyminds.homebyfive.framework.core.providers;
 
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.dao.SubstitutionDAO;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionServiceImpl;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionServiceImpl;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.dao.SubstitutionDAO;
 import com.google.inject.Provider;
 import com.google.inject.Inject;
 

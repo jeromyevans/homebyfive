@@ -1,6 +1,6 @@
 package com.blueskyminds.homebyfive.framework.core.providers;
 
-import com.blueskyminds.homebyfive.framework.framework.email.dao.EmailTemplateDAO;
+import com.blueskyminds.homebyfive.framework.core.email.dao.EmailTemplateDAO;
 import com.google.inject.Provider;
 import com.google.inject.Inject;
 
