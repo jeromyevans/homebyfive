@@ -213,7 +213,8 @@ public class TaskCoordinator {
                             } catch (InterruptedException e) {
                                 LOG.warn("A task was interrupted.  Rescheduling if not shutting down.");
                             } catch (ExecutionException e) {
-                                LOG.error("A task failed execution.  Rescheduling if not shutting down.", e);   // todo: remove task?/abort all?
+                                LOG.error("A task failed execution.  This task coordinator will be stopped.", e);   // todo: remove task?/abort all?
+                                shutdown = true;
                             } catch (CancellationException e) {
                                 LOG.warn("A task was cancelled.  Rescheduling if not shutting down.");
                             }

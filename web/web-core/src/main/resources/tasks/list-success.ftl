@@ -10,6 +10,7 @@
       <th>Commands</th>
     </tr>
   </thead>
+  <tbody>
 <@s.iterator>
   <tr>
     <td><@s.property value="key"/></td>
@@ -20,10 +21,12 @@
       <form action="/tasks/controlPanel/<@s.property value="key"/>" method="POST">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" name="_stop" value="Stop">
-      <form>
+      </form>
     </td>
   </tr>
+  
 </@s.iterator>
+  </tbody>
 </table>
 </@s.if>
 <@s.else>

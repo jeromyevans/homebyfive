@@ -1,0 +1,152 @@
+<html><head><title>Asynchronous Tasks</title>
+
+
+
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Keywords" content="">
+    <meta name="Robots" content="Index,Follow">
+    <meta name="Author" content="Blue Sky Minds Pty Ltd">
+    <meta name="Copyright" content="Blue Sky Minds Pty Ltd">
+
+    <script type="text/javascript"></script>
+
+
+
+      <link type="text/css" rel="stylesheet" href="/yui/build/reset-fonts-grids/reset-fonts-grids.css">
+      <link type="text/css" rel="stylesheet" href="/yui/build/assets/skins/sam/skin.css">
+      <link type="text/css" rel="stylesheet" href="/css/landmine.css"></head><body id="body" class="yui-skin-sam">
+
+      <!--<iframe id="yui-history-iframe" src="/static/images/title.png"></iframe>-->
+
+    <!--<input id="yui-history-field" type="hidden">-->
+
+    <div id="doc3">
+      <div id="hd">
+
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+
+
+<div class="boxed commands">
+  <h1>Active Tasks</h1>
+  <div id="activeTaskList"><table>
+  <thead>
+
+    <tr>
+      <th>Key</th>
+      <th>Timetamp</th>
+      <th>Status</th>
+      <th>Model</th>
+      <th>Commands</th>
+
+    </tr>
+  </thead>
+  <tbody><tr>
+    <td>AdvertisementImportQueueWorker</td>
+    <td></td>
+    <td></td>
+    <td>&lt;linked-list&gt;
+  &lt;com.blueskyminds.homebyfive.framework.core.tasks.AsynchronousTaskStatus&gt;Idle&lt;/com.blueskyminds.homebyfive.framework.core.tasks.AsynchronousTaskStatus&gt;
+
+&lt;/linked-list&gt;</td>
+    <td>
+      <form action="/tasks/controlPanel/AdvertisementImportQueueWorker" method="post">
+        <input name="_method" value="delete" type="hidden">
+        <input name="_stop" value="Stop" type="submit">
+
+    </form>
+  </td>
+  <tr>
+    <td>ExtractorQueueWorker</td>
+
+    <td></td>
+    <td></td>
+    <td>&lt;linked-list&gt;
+  &lt;com.blueskyminds.homebyfive.framework.core.tasks.AsynchronousTaskStatus&gt;Idle&lt;/com.blueskyminds.homebyfive.framework.core.tasks.AsynchronousTaskStatus&gt;
+&lt;/linked-list&gt;</td>
+    <td>
+
+        <input name="_method" value="delete" type="hidden">
+
+        <input name="_stop" value="Stop" type="submit">
+
+    </td>
+  </tr>
+</tr></tbody>
+30/09/2008 12:17:32</table></div>
+</div>
+
+<div class="boxed commands">
+  <h1>Available Tasks</h1>
+  <div id="availableTaskList"><table cellpadding="2" cellspacing="2">
+
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Params</th>
+      <th>Commands</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+    <td>syncroniseFromRepository</td>
+    <td>
+    </td>
+    <td>
+      <form action="/tasks/controlPanel/syncroniseFromRepository" method="post">
+<input name="_method" value="PUT" id="_method" type="hidden"><input name="params['key']" value="" id="params__key__" type="text">        <input name="_start" value="Start" type="submit">
+
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+30/09/2008 12:17:32</div>
+</div>
+
+
+          </div>
+        </div>
+
+      </div>
+      <div id="ft">
+      </div>
+    </div>
+
+  <script type="text/javascript" src="/yui/build/utilities/utilities.js"></script>
+  <script type="text/javascript" src="/yui/build/element/element-beta-min.js"></script>
+  <script type="text/javascript" src="/yui/build/button/button-min.js"></script>
+
+  <script type="text/javascript" src="/yui/build/datasource/datasource-beta-min.js"></script>
+  <script type="text/javascript" src="/yui/build/datatable/datatable-beta-min.js"></script>
+  <script type="text/javascript" src="/yui/build/dragdrop/dragdrop-min.js"></script>
+  <script type="text/javascript" src="/yui/build/resize/resize-beta-min.js"></script>
+  <script type="text/javascript" src="/yui/build/layout/layout-beta-min.js"></script>
+  <script type="text/javascript" src="/yui/build/container/container-min.js"></script>
+
+  <script type="text/javascript" src="/yui/build/history/history-min.js"></script>
+  <script type="text/javascript" src="/yui/build/json/json-min.js"></script>
+
+  <script type="text/javascript" src="/js/tools-min.js"></script>
+
+  <script type="text/javascript" src="/js/yui-patches.js"></script>
+
+  <script type="text/javascript" src="/js/blueskyminds-core.js"></script>
+  <script type="text/javascript" src="/js/blueskyminds-dom.js"></script>
+
+  <script type="text/javascript" src="/js/blueskyminds-events.js"></script>
+  <script type="text/javascript" src="/js/blueskyminds-net.js"></script>
+  <script type="text/javascript" src="/js/blueskyminds-ui.js"></script>
+  <script type="text/javascript" src="/js/housepad-ui.js"></script>
+  <script type="text/javascript" src="/static/tasks.js"></script>
+  <script type="text/javascript" src="/js/landmine.js"></script>
+
+
+
+  </body></html>

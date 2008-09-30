@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -131,28 +132,28 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library name="org.hibernate:hibernate-entitymanager:3.3.1.ga">
+      <library name="org.hibernate:hibernate-entitymanager:3.3.2.GA">
         <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/3.3.1.ga/hibernate-entitymanager-3.3.1.ga.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/3.3.2.GA/hibernate-entitymanager-3.3.2.GA.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/3.3.1.ga/hibernate-entitymanager-3.3.1.ga-javadoc.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/3.3.2.GA/hibernate-entitymanager-3.3.2.GA-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/3.3.1.ga/hibernate-entitymanager-3.3.1.ga-sources.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/3.3.2.GA/hibernate-entitymanager-3.3.2.GA-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library name="org.hibernate:hibernate:3.2.4.ga">
+      <library name="org.hibernate:hibernate:3.2.6.ga">
         <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.4.ga/hibernate-3.2.4.ga.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.6.ga/hibernate-3.2.6.ga.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.4.ga/hibernate-3.2.4.ga-javadoc.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.6.ga/hibernate-3.2.6.ga-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.4.ga/hibernate-3.2.4.ga-sources.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.6.ga/hibernate-3.2.6.ga-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -261,15 +262,15 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library name="org.hibernate:hibernate-annotations:3.3.0.ga">
+      <library name="org.hibernate:hibernate-annotations:3.3.1.GA">
         <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-annotations/3.3.0.ga/hibernate-annotations-3.3.0.ga.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-annotations/3.3.1.GA/hibernate-annotations-3.3.1.GA.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-annotations/3.3.0.ga/hibernate-annotations-3.3.0.ga-javadoc.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-annotations/3.3.1.GA/hibernate-annotations-3.3.1.GA-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-annotations/3.3.0.ga/hibernate-annotations-3.3.0.ga-sources.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-annotations/3.3.1.GA/hibernate-annotations-3.3.1.GA-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -287,41 +288,28 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library name="org.hibernate:hibernate-validator:3.0.0.ga">
+      <library name="org.hibernate:ejb3-persistence:1.0.1.GA">
         <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-validator/3.0.0.ga/hibernate-validator-3.0.0.ga.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/ejb3-persistence/1.0.1.GA/ejb3-persistence-1.0.1.GA.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-validator/3.0.0.ga/hibernate-validator-3.0.0.ga-javadoc.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/ejb3-persistence/1.0.1.GA/ejb3-persistence-1.0.1.GA-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-validator/3.0.0.ga/hibernate-validator-3.0.0.ga-sources.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/ejb3-persistence/1.0.1.GA/ejb3-persistence-1.0.1.GA-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library name="jboss:javassist:3.3.ga">
+      <library name="javassist:javassist:3.4.GA">
         <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/jboss/javassist/3.3.ga/javassist-3.3.ga.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/javassist/javassist/3.4.GA/javassist-3.4.GA.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/jboss/javassist/3.3.ga/javassist-3.3.ga-javadoc.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/javassist/javassist/3.4.GA/javassist-3.4.GA-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/jboss/javassist/3.3.ga/javassist-3.3.ga-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="jboss:jboss-common-core:2.0.4.GA">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/jboss/jboss-common-core/2.0.4.GA/jboss-common-core-2.0.4.GA.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MAVEN_REPOSITORY$/jboss/jboss-common-core/2.0.4.GA/jboss-common-core-2.0.4.GA-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/jboss/jboss-common-core/2.0.4.GA/jboss-common-core-2.0.4.GA-sources.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/javassist/javassist/3.4.GA/javassist-3.4.GA-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

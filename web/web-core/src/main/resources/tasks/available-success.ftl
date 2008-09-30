@@ -8,6 +8,7 @@
       <th>Commands</th>
     </tr>
   </thead>
+  <tbody>
 <@s.iterator>
   <tr>
     <td><@s.property value="key"/></td>
@@ -21,13 +22,14 @@
         <@s.hidden name="_method" value="PUT"/>
         <@s.iterator value="availableParams">
           <@s.textfield name="params['%{key}']" label="%{key}" value="%{value}"/>
-        </@s.iterator>
-        <@s.submit name="_start" value="Start"/>
+        </@s.iterator>        
+        <input type="submit" name="_start" value="Start"/>
+        <#-- <@s.submit name="_start" value="Start"/>-->
       </form>
     </td>
-
-  </tr>
+  </tr>  
 </@s.iterator>
+  </tbody>
 </table>
 </@s.if>
 <@s.else>
