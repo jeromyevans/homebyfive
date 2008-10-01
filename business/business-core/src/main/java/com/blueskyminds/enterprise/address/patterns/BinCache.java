@@ -4,8 +4,8 @@ import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
 
 import java.util.Map;
 import java.util.HashMap;

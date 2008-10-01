@@ -5,8 +5,8 @@ import com.blueskyminds.enterprise.party.dao.PartyDAO;
 import com.blueskyminds.enterprise.contact.PartyPOC;
 import com.blueskyminds.enterprise.contact.POCType;
 import com.blueskyminds.enterprise.contact.interaction.POCInteraction;
-import com.blueskyminds.homebyfive.framework.framework.tools.selector.SingleSelector;
-import com.blueskyminds.homebyfive.framework.framework.tools.selector.FirstSelector;
+import com.blueskyminds.homebyfive.framework.core.tools.selector.SingleSelector;
+import com.blueskyminds.homebyfive.framework.core.tools.selector.FirstSelector;
 
 import javax.persistence.EntityManager;
 import java.util.Collection;

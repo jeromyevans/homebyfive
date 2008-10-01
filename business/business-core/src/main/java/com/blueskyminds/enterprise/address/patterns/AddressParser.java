@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.enterprise.address.Address;
-import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherException;
+import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherException;
 
 import java.util.List;
 

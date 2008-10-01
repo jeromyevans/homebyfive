@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.guice.providers;
 
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.enterprise.address.patterns.AddressParserFactory;
 import com.blueskyminds.enterprise.address.patterns.DepthFirstAddressParserFactory;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;

@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise;
 
-import com.blueskyminds.homebyfive.framework.framework.test.TestTools;
-import com.blueskyminds.homebyfive.framework.framework.persistence.jdbc.PersistenceTools;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceService;
+import com.blueskyminds.homebyfive.framework.core.test.TestTools;
+import com.blueskyminds.homebyfive.framework.core.persistence.jdbc.PersistenceTools;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
 import com.blueskyminds.enterprise.party.Company;
 import com.blueskyminds.enterprise.party.Individual;
 import com.blueskyminds.enterprise.party.Title;
@@ -19,8 +19,8 @@ import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbFactory;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.Substitution;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.SubstitutionsFileReader;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.SubstitutionsFileReader;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

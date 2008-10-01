@@ -1,11 +1,11 @@
 package com.blueskyminds.landmine.core.test;
 
-import com.blueskyminds.homebyfive.framework.framework.test.TestTools;
-import com.blueskyminds.homebyfive.framework.framework.tools.filters.StringFilter;
-import com.blueskyminds.homebyfive.framework.framework.tools.filters.NonBlankFilter;
-import com.blueskyminds.homebyfive.framework.framework.tools.ResourceTools;
-import com.blueskyminds.homebyfive.framework.framework.tools.FileTools;
-import com.blueskyminds.homebyfive.framework.framework.persistence.jdbc.PersistenceTools;
+import com.blueskyminds.homebyfive.framework.core.test.TestTools;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.StringFilter;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.NonBlankFilter;
+import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
+import com.blueskyminds.homebyfive.framework.core.tools.FileTools;
+import com.blueskyminds.homebyfive.framework.core.persistence.jdbc.PersistenceTools;
 
 import java.sql.Connection;
 import java.sql.SQLException;

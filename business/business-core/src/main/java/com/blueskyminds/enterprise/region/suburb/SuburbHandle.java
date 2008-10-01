@@ -6,7 +6,7 @@ import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.address.Street;
-import com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus;
+import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
 

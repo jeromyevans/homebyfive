@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.party;
 
-import com.blueskyminds.homebyfive.framework.framework.DomainObject;
-import com.blueskyminds.homebyfive.framework.framework.MergeUnsupportedException;
+import com.blueskyminds.homebyfive.framework.core.DomainObject;
+import com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException;
 
 import javax.persistence.Basic;
 import javax.persistence.DiscriminatorValue;
@@ -89,13 +89,13 @@ public class Organisation extends Party {
     /**
      * Merge the properties of another Organisation into this Organisation.
      * <p/>
-     * The default implementation throws {@link com.blueskyminds.homebyfive.framework.framework.MergeUnsupportedException}.
+     * The default implementation throws {@link com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException}.
      * <p/>
      * An implmentation should copy the non-null values of the other object into this object where the
      * value does not already exist.
      *
      * @param other the object to extract properties from into this object
-     * @throws com.blueskyminds.homebyfive.framework.framework.MergeUnsupportedException
+     * @throws com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException
      *          when this domain object hasn't implemented the operation
      */
     public <T extends DomainObject> void mergeWith(T other) throws MergeUnsupportedException {

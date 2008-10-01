@@ -1,7 +1,7 @@
 package com.blueskyminds.struts2.securityplugin.model;
 
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.tools.Named;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.tools.Named;
 
 import javax.persistence.Table;
 import javax.persistence.Entity;

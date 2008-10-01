@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address.tools;
 
-import com.blueskyminds.homebyfive.framework.framework.tools.csv.CsvOptions;
-import com.blueskyminds.homebyfive.framework.framework.tools.csv.CsvTextReader;
-import com.blueskyminds.homebyfive.framework.framework.tools.DebugTools;
+import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvOptions;
+import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvTextReader;
+import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 
 import java.io.InputStream;
 import java.util.*;

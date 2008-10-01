@@ -4,10 +4,10 @@ import com.blueskyminds.enterprise.pricing.InconsistentPricingException;
 import com.blueskyminds.enterprise.pricing.Money;
 import com.blueskyminds.enterprise.pricing.Price;
 import com.blueskyminds.enterprise.pricing.TaxMap;
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.datetime.Interval;
-import com.blueskyminds.homebyfive.framework.framework.datetime.PeriodTypes;
-import com.blueskyminds.homebyfive.framework.framework.measurement.Quantity;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.datetime.Interval;
+import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
+import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;
 
 import javax.persistence.*;
 import java.io.PrintStream;

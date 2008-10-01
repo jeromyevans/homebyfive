@@ -10,7 +10,7 @@ import com.blueskyminds.enterprise.accounting.Journalisable;
 import com.blueskyminds.enterprise.pricing.terms.PrepaidInFull;
 import com.blueskyminds.enterprise.pricing.terms.PrepaidRecurring;
 import com.blueskyminds.enterprise.taxpolicy.TaxPolicy;
-import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.core.journal.Journal;
 
 import javax.persistence.*;
 import java.io.PrintStream;

@@ -1,7 +1,7 @@
 package com.blueskyminds.housepad.core.region;
 
 import org.apache.commons.lang.StringUtils;
-import com.blueskyminds.homebyfive.framework.framework.tools.text.StringTools;
+import com.blueskyminds.homebyfive.framework.core.tools.text.StringTools;
 
 /**
  * Date Started: 5/01/2008

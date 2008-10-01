@@ -1,6 +1,6 @@
 package com.blueskyminds.housepad.core.user.model.users;
 
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 import com.blueskyminds.housepad.core.user.model.beans.Setting;
 
 import javax.persistence.*;

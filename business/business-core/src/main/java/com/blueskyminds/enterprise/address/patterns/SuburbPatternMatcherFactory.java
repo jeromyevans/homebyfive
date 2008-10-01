@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException;
+import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 
 /**
@@ -16,7 +16,7 @@ public interface SuburbPatternMatcherFactory {
      * Create a broad matcher for the specified country
      * @param iso3DigitCode
      * @return
-     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
     SuburbPatternMatcher create(String iso3DigitCode) throws PatternMatcherInitialisationException;
 
@@ -25,7 +25,7 @@ public interface SuburbPatternMatcherFactory {
      *
      * @param suburb
      * @return
-     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
     SuburbPatternMatcher create(StateHandle suburb) throws PatternMatcherInitialisationException;
 }

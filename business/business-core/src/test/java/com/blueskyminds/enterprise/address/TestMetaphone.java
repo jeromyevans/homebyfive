@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.homebyfive.framework.framework.test.BaseTestCase;
+import com.blueskyminds.homebyfive.framework.core.test.BaseTestCase;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.codec.language.DoubleMetaphone;

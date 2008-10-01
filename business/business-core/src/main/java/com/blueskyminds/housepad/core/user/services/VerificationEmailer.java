@@ -1,13 +1,13 @@
 package com.blueskyminds.housepad.core.user.services;
 
-import com.blueskyminds.landmine.core.events.EventRegistry;
-import com.blueskyminds.landmine.core.events.EventHandler;
+import com.blueskyminds.homebyfive.framework.core.events.EventRegistry;
+import com.blueskyminds.homebyfive.framework.core.events.EventHandler;
 import com.blueskyminds.housepad.core.user.services.UserEvents;
 import com.blueskyminds.housepad.core.user.services.UserService;
 import com.blueskyminds.housepad.core.user.model.users.UserProfile;
-import com.blueskyminds.homebyfive.framework.framework.email.EmailService;
-import com.blueskyminds.homebyfive.framework.framework.email.EmailTemplate;
-import com.blueskyminds.homebyfive.framework.framework.email.EmailerException;
+import com.blueskyminds.homebyfive.framework.core.email.EmailService;
+import com.blueskyminds.homebyfive.framework.core.email.EmailTemplate;
+import com.blueskyminds.homebyfive.framework.core.email.EmailerException;
 import com.google.inject.Inject;
 import com.wideplay.warp.persist.Transactional;
 

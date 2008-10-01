@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.homebyfive.framework.framework.tools.Named;
+import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.enterprise.region.RegionTypes;
 
 /**

@@ -2,7 +2,7 @@ package com.blueskyminds.housepad.web.plugin.components;
 
 import org.apache.struts2.components.Component;
 import com.opensymphony.xwork2.util.ValueStack;
-import com.blueskyminds.homebyfive.framework.framework.security.PrincipalRoles;
+import com.blueskyminds.homebyfive.framework.core.security.PrincipalRoles;
 
 import java.io.Writer;
 import java.security.Principal;

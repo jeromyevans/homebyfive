@@ -2,7 +2,7 @@ package com.blueskyminds.housepad.web.plugin.components;
 
 import org.apache.struts2.dispatcher.RequestMap;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
-import com.blueskyminds.homebyfive.framework.framework.tools.FileTools;
+import com.blueskyminds.homebyfive.framework.core.tools.FileTools;
 import com.opensymphony.xwork2.util.ValueStack;
 
 import javax.servlet.http.HttpServletRequest;

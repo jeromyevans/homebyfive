@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException;
+import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import org.apache.commons.logging.LogFactory;
@@ -34,7 +34,7 @@ public class SuburbPatternMatcherFactoryImpl implements SuburbPatternMatcherFact
      *
      * @param iso3Code
      * @return
-     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      *
      */
     public SuburbPatternMatcher create(String iso3Code) throws PatternMatcherInitialisationException {
@@ -52,7 +52,7 @@ public class SuburbPatternMatcherFactoryImpl implements SuburbPatternMatcherFact
      *
      * @param stateHandle
      * @return
-     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      *
      */
     public SuburbPatternMatcher create(StateHandle stateHandle) throws PatternMatcherInitialisationException {

@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.dao;
 
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;
 

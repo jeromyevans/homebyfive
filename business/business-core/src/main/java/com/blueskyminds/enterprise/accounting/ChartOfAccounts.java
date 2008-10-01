@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.accounting;
 
-import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.core.journal.Journal;
 import com.blueskyminds.enterprise.Enterprise;
 import com.blueskyminds.enterprise.Schedule;
 

@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.tools.Named;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.*;

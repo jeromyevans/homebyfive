@@ -1,12 +1,12 @@
 package com.blueskyminds.enterprise;
 
-import com.blueskyminds.homebyfive.framework.framework.test.DbTestCase;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceSession;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceService;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceServiceException;
-import com.blueskyminds.homebyfive.framework.framework.datetime.PeriodTypes;
-import com.blueskyminds.homebyfive.framework.framework.measurement.QuantityUnits;
-import com.blueskyminds.homebyfive.framework.framework.measurement.Quantity;
+import com.blueskyminds.homebyfive.framework.core.test.DbTestCase;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceSession;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
+import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
+import com.blueskyminds.homebyfive.framework.core.measurement.QuantityUnits;
+import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;
 import com.blueskyminds.enterprise.pricing.*;
 import com.blueskyminds.enterprise.taxpolicy.GST;
 import com.blueskyminds.enterprise.pricing.policy.PricingPolicy;
@@ -18,7 +18,7 @@ import com.blueskyminds.enterprise.party.IndividualRole;
 import com.blueskyminds.enterprise.license.License;
 import com.blueskyminds.enterprise.license.LicenseTypes;
 import com.blueskyminds.enterprise.Enterprise;
-import com.blueskyminds.homebyfive.framework.framework.test.TestTools;
+import com.blueskyminds.homebyfive.framework.core.test.TestTools;
 
 import java.util.Currency;
 

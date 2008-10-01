@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.pricing;
 
 import com.blueskyminds.enterprise.Schedule;
-import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.core.journal.Journal;
 import com.blueskyminds.enterprise.Enterprise;
 
 import java.util.*;

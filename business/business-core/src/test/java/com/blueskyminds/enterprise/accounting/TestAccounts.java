@@ -2,11 +2,11 @@ package com.blueskyminds.enterprise.accounting;
 
 import com.blueskyminds.enterprise.Enterprise;
 import com.blueskyminds.enterprise.pricing.Money;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceSession;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceService;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceServiceException;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceSession;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
 import com.blueskyminds.enterprise.party.Company;
-import com.blueskyminds.homebyfive.framework.framework.test.DbTestCase;
+import com.blueskyminds.homebyfive.framework.core.test.DbTestCase;
 
 import java.util.Currency;
 import java.util.Date;

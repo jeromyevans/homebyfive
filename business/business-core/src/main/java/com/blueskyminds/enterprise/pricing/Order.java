@@ -5,8 +5,8 @@ import com.blueskyminds.enterprise.accounting.FinancialTransaction;
 import com.blueskyminds.enterprise.accounting.FinancialTransactionException;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.pricing.terms.Terms;
-import com.blueskyminds.homebyfive.framework.framework.datetime.Interval;
-import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.core.datetime.Interval;
+import com.blueskyminds.homebyfive.framework.core.journal.Journal;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;

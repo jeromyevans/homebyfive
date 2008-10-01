@@ -5,7 +5,7 @@ import com.blueskyminds.housepad.core.user.model.applications.Application;
 import com.blueskyminds.housepad.core.user.model.beans.UserSettings;
 import com.blueskyminds.housepad.core.user.dao.UserProfileDAO;
 import com.blueskyminds.housepad.core.user.dao.UserGroupDAO;
-import com.blueskyminds.landmine.core.events.EventRegistry;
+import com.blueskyminds.homebyfive.framework.core.events.EventRegistry;
 import com.blueskyminds.housepad.core.user.services.UserEvents;
 import com.blueskyminds.struts2.securityplugin.services.UserAccountService;
 import com.google.inject.Inject;

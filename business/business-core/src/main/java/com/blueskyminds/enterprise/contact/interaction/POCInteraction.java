@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.contact.interaction;
 
 import com.blueskyminds.enterprise.contact.PartyPOC;
 import com.blueskyminds.enterprise.contact.interaction.PCIMap;
-import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 
 import javax.persistence.*;
 import java.util.Date;

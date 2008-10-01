@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.region;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

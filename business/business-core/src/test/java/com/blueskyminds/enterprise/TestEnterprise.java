@@ -14,13 +14,13 @@ import com.blueskyminds.enterprise.taxpolicy.GST;
 import com.blueskyminds.enterprise.taxpolicy.GSTFree;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeFactory;
-import com.blueskyminds.homebyfive.framework.framework.datetime.PeriodTypes;
-import com.blueskyminds.homebyfive.framework.framework.measurement.Quantity;
-import com.blueskyminds.homebyfive.framework.framework.measurement.QuantityUnits;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceService;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceServiceException;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceSession;
-import com.blueskyminds.homebyfive.framework.framework.test.DbTestCase;
+import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
+import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;
+import com.blueskyminds.homebyfive.framework.core.measurement.QuantityUnits;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceSession;
+import com.blueskyminds.homebyfive.framework.core.test.DbTestCase;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
 package com.blueskyminds.struts2.securityplugin.model;
 
-import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 
 import javax.persistence.*;
 

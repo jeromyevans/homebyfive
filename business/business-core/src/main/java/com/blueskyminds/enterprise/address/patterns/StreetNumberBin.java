@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.homebyfive.framework.framework.patterns.bins.RegExSubstitutionBin;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
+import com.blueskyminds.homebyfive.framework.core.patterns.bins.RegExSubstitutionBin;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
 
 /**
  * Matches words to street number patterns

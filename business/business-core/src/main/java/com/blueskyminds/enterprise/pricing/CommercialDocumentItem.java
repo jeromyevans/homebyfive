@@ -1,9 +1,9 @@
 package com.blueskyminds.enterprise.pricing;
 
 import com.blueskyminds.enterprise.pricing.policy.PricingPolicy;
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.datetime.Interval;
-import com.blueskyminds.homebyfive.framework.framework.measurement.Quantity;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.datetime.Interval;
+import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;
 
 import javax.persistence.*;
 

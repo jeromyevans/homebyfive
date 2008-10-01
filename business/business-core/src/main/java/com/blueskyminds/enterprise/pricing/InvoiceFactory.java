@@ -2,9 +2,9 @@ package com.blueskyminds.enterprise.pricing;
 
 import com.blueskyminds.enterprise.pricing.terms.PrepaidInFull;
 import com.blueskyminds.enterprise.pricing.terms.PrepaidRecurring;
-import com.blueskyminds.homebyfive.framework.framework.datetime.Interval;
-import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
-import com.blueskyminds.homebyfive.framework.framework.recurrence.Recurrence;
+import com.blueskyminds.homebyfive.framework.core.datetime.Interval;
+import com.blueskyminds.homebyfive.framework.core.journal.Journal;
+import com.blueskyminds.homebyfive.framework.core.recurrence.Recurrence;
 
 import java.util.Date;
 import java.util.Iterator;

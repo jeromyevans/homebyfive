@@ -12,7 +12,7 @@
     <named-query name="hp.countries">
         <query>
            select country from CountryBean country where country.status =
-          com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+          com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -29,7 +29,7 @@
         <query>
            select country from CountryBean country
              where country.path = :path and
-                   country.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -46,7 +46,7 @@
         <query>
            select country from CountryBean country
              where country.countryHandle= :handle and
-                   country.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -63,7 +63,7 @@
         <query>
            select state from StateBean state
              where state.parentPath = :path and
-                   state.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -80,7 +80,7 @@
         <query>
            select state from StateBean state
              where state.path = :path and
-                   state.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -96,7 +96,7 @@
         <query>
            select state from StateBean state
              where state.stateHandle = :handle and
-                   state.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -114,7 +114,7 @@
         <query>
            select suburb from SuburbBean suburb
              where suburb.parentPath = :path and
-                   suburb.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -131,7 +131,7 @@
            select suburb from SuburbBean suburb
              left join suburb.postCodeBean postCodeBean
              where postCodeBean.path = :postCode and
-                   postCodeBean.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   postCodeBean.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -148,7 +148,7 @@
         <query>
            select suburb from SuburbBean suburb
              where suburb.path = :path and
-                   suburb.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -164,7 +164,7 @@
         <query>
            select suburb from SuburbBean suburb
              where suburb.suburbHandle = :handle and
-                   suburb.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -181,7 +181,7 @@
         <query>
            select postCode from PostCodeBean postCode
              where postCode.parentPath = :path and
-                   postCode.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -198,7 +198,7 @@
         <query>
            select postCode from PostCodeBean postCode
              where postCode.path = :path and
-                   postCode.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -214,7 +214,7 @@
         <query>
            select postCode from PostCodeBean postCode
              where postCode.postCodeHandle = :handle and
-                   postCode.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 

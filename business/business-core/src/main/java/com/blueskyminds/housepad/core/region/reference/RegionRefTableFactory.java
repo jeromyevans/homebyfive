@@ -1,8 +1,8 @@
 package com.blueskyminds.housepad.core.region.reference;
 
-import com.blueskyminds.housepad.core.model.TableModel;
-import com.blueskyminds.housepad.core.model.TableModelBuilder;
-import com.blueskyminds.housepad.core.model.ColumnModel;
+import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
+import com.blueskyminds.homebyfive.framework.core.table.model.TableModelBuilder;
+import com.blueskyminds.homebyfive.framework.core.table.model.ColumnModel;
 import com.blueskyminds.enterprise.region.RegionHandle;
 
 import java.util.*;

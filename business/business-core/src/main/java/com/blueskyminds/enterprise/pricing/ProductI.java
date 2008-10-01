@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.pricing;
 
-import com.blueskyminds.homebyfive.framework.framework.DomainObject;
+import com.blueskyminds.homebyfive.framework.core.DomainObject;
 
 /**
  * A generic interface to goods that can be traded

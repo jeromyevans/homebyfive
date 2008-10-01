@@ -1,7 +1,7 @@
 package com.blueskyminds.landmine.extractor.web;
 
-import com.blueskyminds.homebyfive.framework.framework.tasks.service.TaskingService;
-import com.blueskyminds.homebyfive.framework.framework.tasks.service.TaskingServiceImpl;
+import com.blueskyminds.homebyfive.framework.core.tasks.service.TaskingService;
+import com.blueskyminds.homebyfive.framework.core.tasks.service.TaskingServiceImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

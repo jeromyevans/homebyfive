@@ -1,7 +1,7 @@
 package com.blueskyminds.housepad.core.user.services;
 
-import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
-import com.blueskyminds.homebyfive.framework.framework.tools.CryptoTools;
+import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.core.tools.CryptoTools;
 import com.blueskyminds.housepad.core.user.dao.UserProfileDAO;
 import com.blueskyminds.housepad.core.user.dao.UserGroupDAO;
 import com.blueskyminds.housepad.core.user.dao.ApplicationDAO;

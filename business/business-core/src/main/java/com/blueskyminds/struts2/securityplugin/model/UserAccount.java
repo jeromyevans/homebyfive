@@ -1,9 +1,9 @@
 package com.blueskyminds.struts2.securityplugin.model;
 
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.transformer.Transformer;
-import com.blueskyminds.homebyfive.framework.framework.tools.filters.FilterTools;
-import com.blueskyminds.homebyfive.framework.framework.tools.filters.Filter;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.transformer.Transformer;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.Filter;
 
 import javax.persistence.*;
 import java.util.Set;

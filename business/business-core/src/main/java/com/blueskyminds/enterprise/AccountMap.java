@@ -2,8 +2,8 @@ package com.blueskyminds.enterprise;
 
 import com.blueskyminds.enterprise.Enterprise;
 import com.blueskyminds.enterprise.accounting.Account;
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.DomainObject;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.DomainObject;
 
 import javax.persistence.Transient;
 import java.util.Map;

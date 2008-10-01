@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.patterns.*;
-import com.blueskyminds.homebyfive.framework.framework.patterns.comparison.IgnoreCaseComparator;
+import com.blueskyminds.homebyfive.framework.core.patterns.*;
+import com.blueskyminds.homebyfive.framework.core.patterns.comparison.IgnoreCaseComparator;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.region.state.StateHandle;

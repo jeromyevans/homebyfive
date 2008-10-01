@@ -1,6 +1,6 @@
 package com.blueskyminds.housepad.core.user.services;
 
-import com.blueskyminds.landmine.core.events.EventRegistry;
+import com.blueskyminds.homebyfive.framework.core.events.EventRegistry;
 import com.blueskyminds.housepad.core.user.services.UserEvents;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

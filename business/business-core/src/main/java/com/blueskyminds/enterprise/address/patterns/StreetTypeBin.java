@@ -1,9 +1,9 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.homebyfive.framework.framework.patterns.bins.EnumSubstitutionBin;
+import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
+import com.blueskyminds.homebyfive.framework.core.patterns.bins.EnumSubstitutionBin;
 import com.blueskyminds.enterprise.address.StreetType;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
 
 /**
  * Matches words to street types

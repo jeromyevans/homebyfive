@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address.parser;
 
-import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.dao.SubstitutionDAO;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionServiceImpl;
+import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.dao.SubstitutionDAO;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionServiceImpl;
 import com.blueskyminds.enterprise.address.patterns.*;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.service.AddressServiceImpl;

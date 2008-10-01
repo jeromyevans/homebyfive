@@ -5,8 +5,8 @@ import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.service.RegionGraphServiceImpl;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
-import com.blueskyminds.homebyfive.framework.framework.tools.DebugTools;
+import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

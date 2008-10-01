@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.taxpolicy;
 
 import com.blueskyminds.enterprise.pricing.Money;
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 import org.apache.commons.lang.time.DateUtils;
 
 import javax.persistence.*;

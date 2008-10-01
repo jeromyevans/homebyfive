@@ -17,33 +17,33 @@ To do: many of these properties need to be able to be changed -->
     <mapping-file>META-INF/queries_enterprise_tag.xml</mapping-file>
 
     <!-- Persistent classes from the Framework module-->
-    <class>com.blueskyminds.homebyfive.framework.framework.measurement.Quantity</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.measurement.Area</class>
+    <class>com.blueskyminds.homebyfive.framework.core.measurement.Quantity</class>
+    <class>com.blueskyminds.homebyfive.framework.core.measurement.Area</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.datetime.Interval</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.datetime.TimeOfDay</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.datetime.MonthOfYear</class>
+    <class>com.blueskyminds.homebyfive.framework.core.datetime.Interval</class>
+    <class>com.blueskyminds.homebyfive.framework.core.datetime.TimeOfDay</class>
+    <class>com.blueskyminds.homebyfive.framework.core.datetime.MonthOfYear</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.Recurrence</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.MonthlyRecurrence</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.HourlyRecurrence</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.OnceOffRecurrence</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.RecurrenceStrategy</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.LastDayOfMonth</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.NthDayOfMonth</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.NthDayOfWeekOfMonth</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.OnSpecificDate</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.RecurrenceConstraint</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.After</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.Before</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.NoEarlierThan</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.NoLaterThan</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.Recurrence</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.MonthlyRecurrence</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.HourlyRecurrence</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.OnceOffRecurrence</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.RecurrenceStrategy</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.LastDayOfMonth</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.NthDayOfMonth</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.NthDayOfWeekOfMonth</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.OnSpecificDate</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.RecurrenceConstraint</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.After</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.Before</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.NoEarlierThan</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.NoLaterThan</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.memento.CaretakerDomainObject</class>
+    <class>com.blueskyminds.homebyfive.framework.core.memento.CaretakerDomainObject</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.tasks.Task</class>
+    <class>com.blueskyminds.homebyfive.framework.core.tasks.Task</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.tools.substitutions.Substitution</class>
+    <class>com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution</class>
 
     <!--- end of framework -->
 
@@ -88,33 +88,33 @@ To do: many of these properties need to be able to be changed -->
     <mapping-file>META-INF/queries_enterprise_tag.xml</mapping-file>
     
     <!-- Persistent classes from the Framework module-->
-    <class>com.blueskyminds.homebyfive.framework.framework.measurement.Quantity</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.measurement.Area</class>
+    <class>com.blueskyminds.homebyfive.framework.core.measurement.Quantity</class>
+    <class>com.blueskyminds.homebyfive.framework.core.measurement.Area</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.datetime.Interval</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.datetime.TimeOfDay</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.datetime.MonthOfYear</class>
+    <class>com.blueskyminds.homebyfive.framework.core.datetime.Interval</class>
+    <class>com.blueskyminds.homebyfive.framework.core.datetime.TimeOfDay</class>
+    <class>com.blueskyminds.homebyfive.framework.core.datetime.MonthOfYear</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.Recurrence</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.MonthlyRecurrence</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.HourlyRecurrence</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.OnceOffRecurrence</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.RecurrenceStrategy</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.LastDayOfMonth</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.NthDayOfMonth</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.NthDayOfWeekOfMonth</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.strategy.OnSpecificDate</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.RecurrenceConstraint</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.After</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.Before</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.NoEarlierThan</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.NoLaterThan</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.Recurrence</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.MonthlyRecurrence</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.HourlyRecurrence</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.OnceOffRecurrence</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.RecurrenceStrategy</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.LastDayOfMonth</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.NthDayOfMonth</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.NthDayOfWeekOfMonth</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.strategy.OnSpecificDate</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.RecurrenceConstraint</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.After</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.Before</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.NoEarlierThan</class>
+    <class>com.blueskyminds.homebyfive.framework.core.recurrence.constraint.NoLaterThan</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.memento.CaretakerDomainObject</class>
+    <class>com.blueskyminds.homebyfive.framework.core.memento.CaretakerDomainObject</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.tasks.Task</class>
+    <class>com.blueskyminds.homebyfive.framework.core.tasks.Task</class>
 
-    <class>com.blueskyminds.homebyfive.framework.framework.tools.substitutions.Substitution</class>
+    <class>com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution</class>
 
     <!--- end of framework -->
 
@@ -282,8 +282,8 @@ To do: many of these properties need to be able to be changed -->
     <!--<mapping-file>META-INF/queries_auth.xml</mapping-file>  --><!-- security-plugin -->
 
     <!-- Entities from the Framework module-->
-    <class>com.blueskyminds.homebyfive.framework.framework.tools.substitutions.Substitution</class>
-    <class>com.blueskyminds.homebyfive.framework.framework.email.EmailTemplate</class>
+    <class>com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution</class>
+    <class>com.blueskyminds.homebyfive.framework.core.email.EmailTemplate</class>
 
     <!-- Entities from the Enterprise module-->
     <class>com.blueskyminds.enterprise.party.Party</class>

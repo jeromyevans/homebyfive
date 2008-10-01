@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.pricing;
 
-import com.blueskyminds.homebyfive.framework.framework.measurement.Quantity;
+import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;
 import com.blueskyminds.enterprise.party.Party;
 
 import java.util.Date;

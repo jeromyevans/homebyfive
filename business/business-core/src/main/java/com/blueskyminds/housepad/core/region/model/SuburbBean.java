@@ -1,7 +1,7 @@
 package com.blueskyminds.housepad.core.region.model;
 
-import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
-import com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus;
+import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.housepad.core.region.model.RegionBean;
 import com.blueskyminds.housepad.core.region.PathHelper;
 import com.blueskyminds.housepad.core.region.reference.PostCodeRef;

@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.pricing;
 
 import com.blueskyminds.enterprise.pricing.policy.PricingPolicy;
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.journal.Journal;
 
 import javax.persistence.*;
 import java.io.PrintStream;

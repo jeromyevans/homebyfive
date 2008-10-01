@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.homebyfive.framework.framework.test.BaseTestCase;
-import com.blueskyminds.homebyfive.framework.framework.patterns.LevensteinDistanceTools;
+import com.blueskyminds.homebyfive.framework.core.test.BaseTestCase;
+import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

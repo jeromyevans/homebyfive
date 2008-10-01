@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.contact;
 
-import com.blueskyminds.homebyfive.framework.framework.TypedRelationship;
-import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.core.TypedRelationship;
+import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.enterprise.party.Party;
 
 import javax.persistence.*;

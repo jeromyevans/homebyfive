@@ -1,9 +1,9 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.homebyfive.framework.framework.persistence.query.ParameterisedQuery;
-import com.blueskyminds.homebyfive.framework.framework.persistence.query.QueryParameterMixin;
-import com.blueskyminds.homebyfive.framework.framework.persistence.query.QueryParameter;
-import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.query.JpaQueryParameterMapper;
+import com.blueskyminds.homebyfive.framework.core.persistence.query.ParameterisedQuery;
+import com.blueskyminds.homebyfive.framework.core.persistence.query.QueryParameterMixin;
+import com.blueskyminds.homebyfive.framework.core.persistence.query.QueryParameter;
+import com.blueskyminds.homebyfive.framework.core.persistence.jpa.query.JpaQueryParameterMapper;
 
 import javax.persistence.TemporalType;
 import javax.persistence.Query;

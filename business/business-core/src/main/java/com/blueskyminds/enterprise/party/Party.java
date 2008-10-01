@@ -6,12 +6,12 @@ import com.blueskyminds.enterprise.tag.TagTools;
 import com.blueskyminds.enterprise.tag.Taggable;
 import com.blueskyminds.enterprise.tag.TagConstants;
 import com.blueskyminds.enterprise.address.Address;
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.DomainObject;
-import com.blueskyminds.homebyfive.framework.framework.MergeUnsupportedException;
-import com.blueskyminds.homebyfive.framework.framework.tools.filters.Filter;
-import com.blueskyminds.homebyfive.framework.framework.tools.filters.FilterTools;
-import com.blueskyminds.homebyfive.framework.framework.transformer.Transformer;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.DomainObject;
+import com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.Filter;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
+import com.blueskyminds.homebyfive.framework.core.transformer.Transformer;
 
 import javax.persistence.*;
 import java.io.PrintStream;

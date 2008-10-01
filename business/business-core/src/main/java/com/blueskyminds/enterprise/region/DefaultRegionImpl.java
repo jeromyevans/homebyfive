@@ -1,10 +1,10 @@
 package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
-import com.blueskyminds.homebyfive.framework.framework.DomainObject;
-import com.blueskyminds.homebyfive.framework.framework.MergeUnsupportedException;
-import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.DomainObject;
+import com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException;
+import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Enumerated;

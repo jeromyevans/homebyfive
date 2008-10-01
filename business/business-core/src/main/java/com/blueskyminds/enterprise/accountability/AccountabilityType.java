@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.accountability;
 
-import com.blueskyminds.homebyfive.framework.framework.hierarchy.AbstractHierarchy;
+import com.blueskyminds.homebyfive.framework.core.hierarchy.AbstractHierarchy;
 
 /**
  * A typed relationship for accountability between two parties.

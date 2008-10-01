@@ -1,10 +1,10 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.dao.SubstitutionDAO;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionServiceImpl;
-import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
-import com.blueskyminds.homebyfive.framework.framework.patterns.*;
-import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.ScoringStrategy;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.dao.SubstitutionDAO;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionServiceImpl;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.core.patterns.*;
+import com.blueskyminds.homebyfive.framework.core.patterns.scoring.ScoringStrategy;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.region.country.CountryHandle;

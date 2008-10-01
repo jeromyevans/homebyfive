@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.patterns.*;
-import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.ScoringStrategy;
+import com.blueskyminds.homebyfive.framework.core.patterns.*;
+import com.blueskyminds.homebyfive.framework.core.patterns.scoring.ScoringStrategy;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
@@ -45,7 +45,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      *
      * @param iso3CountryCode   3 digit ISO code for the country
      * @param em                the entity manager
-     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
      public SuburbPatternMatcher(String iso3CountryCode, EntityManager em) throws PatternMatcherInitialisationException {
         super(new SuburbScoringStrategy());
@@ -63,7 +63,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      *
      * @param state
      * @param em
-     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
     public SuburbPatternMatcher(StateHandle state, EntityManager em) throws PatternMatcherInitialisationException {
         super(new SuburbScoringStrategy());
@@ -79,7 +79,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      *
      * @param stateHandle
      * @param scoringStrategy
-     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
     public SuburbPatternMatcher(StateHandle stateHandle, ScoringStrategy scoringStrategy) throws PatternMatcherInitialisationException {
         super(scoringStrategy);
@@ -93,7 +93,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      *
      * @param iso3DigitCode
      * @param scoringStrategy
-     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
     public SuburbPatternMatcher(String iso3DigitCode, ScoringStrategy scoringStrategy) throws PatternMatcherInitialisationException {
         super(scoringStrategy);

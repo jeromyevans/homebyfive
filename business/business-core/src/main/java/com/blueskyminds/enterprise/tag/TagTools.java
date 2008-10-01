@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.tag;
 
-import com.blueskyminds.homebyfive.framework.framework.tools.filters.FilterTools;
-import com.blueskyminds.homebyfive.framework.framework.tools.filters.Filter;
-import com.blueskyminds.homebyfive.framework.framework.transformer.Transformer;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.Filter;
+import com.blueskyminds.homebyfive.framework.core.transformer.Transformer;
 
 import java.util.Set;
 import java.util.Collection;

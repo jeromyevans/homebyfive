@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.address;
 
 import junit.framework.TestCase;
 import com.blueskyminds.enterprise.address.tools.AusPostCodes;
-import com.blueskyminds.homebyfive.framework.framework.tools.ResourceTools;
+import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
 
 import java.util.Collection;
 

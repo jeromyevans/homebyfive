@@ -1,9 +1,9 @@
 package com.blueskyminds.enterprise.pricing.terms;
 
 import com.blueskyminds.enterprise.pricing.PaymentTerms;
-import com.blueskyminds.homebyfive.framework.framework.recurrence.Recurrence;
-import com.blueskyminds.homebyfive.framework.framework.recurrence.RecurrenceFactory;
-import com.blueskyminds.homebyfive.framework.framework.datetime.PeriodTypes;
+import com.blueskyminds.homebyfive.framework.core.recurrence.Recurrence;
+import com.blueskyminds.homebyfive.framework.core.recurrence.RecurrenceFactory;
+import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
 
 import javax.persistence.*;
 import java.util.Date;

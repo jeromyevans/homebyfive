@@ -1,0 +1,17 @@
+package com.blueskyminds.homebyfive.framework.core;
+
+/**
+ * An entity with an Id that can be used as its identity
+ *
+ * Date Started: 15/02/2007
+ * <p/>
+ * History:
+ * <p/>
+ * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
+ */
+@Deprecated // see HasIdentity
+public interface Identity {
+
+    Long getId();
+
+}

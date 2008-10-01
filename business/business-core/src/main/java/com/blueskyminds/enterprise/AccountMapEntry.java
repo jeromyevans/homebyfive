@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise;
 
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 import com.blueskyminds.enterprise.accounting.Account;
 
 /**

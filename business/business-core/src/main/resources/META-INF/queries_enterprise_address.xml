@@ -26,7 +26,7 @@
              left join fetch country.country impl
              left join fetch country.regionAliases
              where impl.iso3CountryCode = :iso3CountryCode and
-                   country.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -46,7 +46,7 @@
              left join fetch country.country impl
              left join fetch country.regionAliases
              where impl.iso2CountryCode = :iso2CountryCode and
-                   country.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -128,7 +128,7 @@
          left join fetch state.regionAliases
          left join fetch state.state
          where map.parent.id = :countryId and
-         state.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+         state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
     </query>
     <hint name="org.hibernate.cacheable" value="true"/>
   </named-query>
@@ -149,7 +149,7 @@
          left join fetch state.regionAliases alias
          left join fetch state.state 
          where map.parent.id = :countryId and
-               state.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid and
+               state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
               (state.name like :name or alias.name like :name)
     </query>
   </named-query>
@@ -171,7 +171,7 @@
          left join fetch state.state
          left join state.state impl
          where map.parent.id = :countryId and
-               state.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid and
+               state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
               (impl.abbreviation like :abbr)
     </query>
   </named-query>
@@ -197,7 +197,7 @@
          left join fetch postCode.regionAliases
          left join fetch postCode.postCode
          where stateMap.parent.id = :countryId and
-               postCode.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+               postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
       </query>
       <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -221,7 +221,7 @@
          left join fetch postCode.regionAliases
          left join fetch postCode.postCode
          where state.id = :stateId and
-               postCode.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+               postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
       </query>
       <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -244,7 +244,7 @@
           left join fetch suburb.regionAliases
           left join fetch suburb.suburb
           where map.parent.id = :stateId and
-                suburb.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
       </query>
       <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -268,7 +268,7 @@
          left join fetch suburb.regionAliases alias
          left join fetch suburb.suburb
          where map.parent.id = :stateId and
-               suburb.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid and
+               suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
               (lower(suburb.name) = :name or lower(alias.name) = :name)
       </query>
     </named-query>
@@ -292,7 +292,7 @@
          left join fetch postCode.regionAliases alias
          left join fetch postCode.postCode
          where map.parent.id = :stateId and
-               postCode.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid and
+               postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
               (lower(postCode.name) = :name or lower(alias.name) = :name)
       </query>
     </named-query>
@@ -315,7 +315,7 @@
           left join fetch suburb.regionAliases
           left join fetch suburb.suburb
           where map.parent.id = :postCodeId and
-                suburb.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -349,7 +349,7 @@
         <query>
           select country from CountryHandle country
              left join fetch country.regionAliases where
-             country.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+             country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -373,7 +373,7 @@
              left join state.parentRegionMaps parentMap2
              where parentMap2.parent = :country and
                    state.class = com.blueskyminds.enterprise.region.state.StateHandle and
-                   suburb.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
+                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>

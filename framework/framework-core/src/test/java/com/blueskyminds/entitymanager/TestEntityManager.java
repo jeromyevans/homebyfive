@@ -6,17 +6,17 @@ import org.apache.commons.logging.Log;
 import javax.persistence.*;
 import java.util.*;
 
-import com.blueskyminds.homebyfive.framework.framework.tools.LoggerTools;
-import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.EntityEventListener;
-import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.EntityEventNotifier;
-import com.blueskyminds.homebyfive.framework.framework.DomainObject;
-import com.blueskyminds.homebyfive.framework.framework.test.TestTools;
-import com.blueskyminds.homebyfive.framework.framework.datetime.Weekdays;
-import com.blueskyminds.homebyfive.framework.framework.datetime.WeekOfMonth;
-import com.blueskyminds.homebyfive.framework.framework.recurrence.MonthlyRecurrence;
-import com.blueskyminds.homebyfive.framework.framework.recurrence.Recurrence;
-import com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.NoEarlierThan;
-import com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.Before;
+import com.blueskyminds.homebyfive.framework.core.tools.LoggerTools;
+import com.blueskyminds.homebyfive.framework.core.persistence.jpa.EntityEventListener;
+import com.blueskyminds.homebyfive.framework.core.persistence.jpa.EntityEventNotifier;
+import com.blueskyminds.homebyfive.framework.core.DomainObject;
+import com.blueskyminds.homebyfive.framework.core.test.TestTools;
+import com.blueskyminds.homebyfive.framework.core.datetime.Weekdays;
+import com.blueskyminds.homebyfive.framework.core.datetime.WeekOfMonth;
+import com.blueskyminds.homebyfive.framework.core.recurrence.MonthlyRecurrence;
+import com.blueskyminds.homebyfive.framework.core.recurrence.Recurrence;
+import com.blueskyminds.homebyfive.framework.core.recurrence.constraint.NoEarlierThan;
+import com.blueskyminds.homebyfive.framework.core.recurrence.constraint.Before;
 
 /**
  * Tests setup of an EntityManager

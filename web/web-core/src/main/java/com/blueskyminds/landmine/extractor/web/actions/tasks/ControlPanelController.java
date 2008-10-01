@@ -1,7 +1,7 @@
 package com.blueskyminds.landmine.extractor.web.actions.tasks;
 
-import com.blueskyminds.homebyfive.framework.framework.tasks.service.TaskingException;
-import com.blueskyminds.homebyfive.framework.framework.tasks.service.TaskingService;
+import com.blueskyminds.homebyfive.framework.core.tasks.service.TaskingException;
+import com.blueskyminds.homebyfive.framework.core.tasks.service.TaskingService;
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.logging.Log;

@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceService;
-import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
+import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;

@@ -6,8 +6,8 @@ import java.util.Map;
 import java.math.BigDecimal;
 
 import com.opensymphony.xwork2.conversion.TypeConversionException;
-import com.blueskyminds.homebyfive.framework.framework.measurement.Area;
-import com.blueskyminds.homebyfive.framework.framework.measurement.UnitsOfArea;
+import com.blueskyminds.homebyfive.framework.core.measurement.Area;
+import com.blueskyminds.homebyfive.framework.core.measurement.UnitsOfArea;
 
 /**
  * Todo; the string->area conversion is crap and not required.  the comonents of an Area should be converted separately.

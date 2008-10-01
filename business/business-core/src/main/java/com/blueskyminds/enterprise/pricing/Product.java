@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.pricing;
 
-import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;

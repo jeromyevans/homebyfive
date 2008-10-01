@@ -1,11 +1,11 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
-import com.blueskyminds.homebyfive.framework.framework.tools.csv.CsvOptions;
-import com.blueskyminds.homebyfive.framework.framework.tools.csv.CsvTextReader;
-import com.blueskyminds.homebyfive.framework.framework.tools.ResourceTools;
-import com.blueskyminds.homebyfive.framework.framework.tools.FileTools;
-import com.blueskyminds.homebyfive.framework.framework.persistence.jdbc.PersistenceTools;
+import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvOptions;
+import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvTextReader;
+import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
+import com.blueskyminds.homebyfive.framework.core.tools.FileTools;
+import com.blueskyminds.homebyfive.framework.core.persistence.jdbc.PersistenceTools;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.service.AddressServiceImpl;
 import com.blueskyminds.enterprise.AddressTestTools;

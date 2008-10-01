@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.patterns.*;
+import com.blueskyminds.homebyfive.framework.core.patterns.*;
 
 /**
  * Uses simple patterns to match a street name

@@ -3,11 +3,11 @@ package com.blueskyminds.taxes;
 import com.blueskyminds.enterprise.Enterprise;
 import com.blueskyminds.enterprise.pricing.Money;
 import com.blueskyminds.enterprise.taxpolicy.*;
-import com.blueskyminds.homebyfive.framework.framework.measurement.Limits;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceService;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceServiceException;
-import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceSession;
-import com.blueskyminds.homebyfive.framework.framework.test.DbTestCase;
+import com.blueskyminds.homebyfive.framework.core.measurement.Limits;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
+import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceSession;
+import com.blueskyminds.homebyfive.framework.core.test.DbTestCase;
 
 import java.math.BigDecimal;
 import java.util.Collection;

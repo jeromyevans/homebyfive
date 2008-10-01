@@ -2,7 +2,7 @@ package com.blueskyminds.housepad.core.region.service;
 
 import com.blueskyminds.housepad.core.region.group.RegionGroup;
 import com.blueskyminds.housepad.core.region.model.*;
-import com.blueskyminds.housepad.core.model.TableModel;
+import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;

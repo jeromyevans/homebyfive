@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise;
 
-import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
-import com.blueskyminds.homebyfive.framework.framework.DomainObjectList;
-import com.blueskyminds.homebyfive.framework.framework.DomainObject;
+import com.blueskyminds.homebyfive.framework.core.journal.Journal;
+import com.blueskyminds.homebyfive.framework.core.DomainObjectList;
+import com.blueskyminds.homebyfive.framework.core.DomainObject;
 import com.blueskyminds.enterprise.Enterprise;
 
 /**

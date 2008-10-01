@@ -4,7 +4,7 @@ import com.blueskyminds.enterprise.Enterprise;
 import com.blueskyminds.enterprise.Schedule;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.pricing.Money;
-import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.core.journal.Journal;
 import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.*;

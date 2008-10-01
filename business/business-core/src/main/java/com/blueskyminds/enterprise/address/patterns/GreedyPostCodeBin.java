@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.homebyfive.framework.framework.patterns.*;
+import com.blueskyminds.homebyfive.framework.core.patterns.*;
 
 /**
  * Matches words to australian postcodes using a basic battern "dddd"

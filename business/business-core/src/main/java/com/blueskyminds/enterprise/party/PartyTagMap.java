@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.party;
 import com.blueskyminds.enterprise.tag.TagMap;
 import com.blueskyminds.enterprise.tag.Tag;
 import com.blueskyminds.enterprise.tag.Taggable;
-import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 
 import javax.persistence.*;
 
