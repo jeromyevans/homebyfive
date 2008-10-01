@@ -1,7 +1,6 @@
 package com.blueskyminds.enterprise.contact;
 
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.tools.filters.FilterTools;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
 import com.blueskyminds.enterprise.tag.Taggable;
 import com.blueskyminds.enterprise.tag.Tag;
 import com.blueskyminds.enterprise.tag.TagTools;

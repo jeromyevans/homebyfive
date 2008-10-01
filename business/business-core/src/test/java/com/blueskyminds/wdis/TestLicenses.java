@@ -7,11 +7,11 @@ import com.blueskyminds.enterprise.license.*;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.party.PartyTypes;
 import com.blueskyminds.enterprise.party.ScheduleOfParties;
-import com.blueskyminds.framework.journal.Journal;
-import com.blueskyminds.framework.persistence.PersistenceService;
-import com.blueskyminds.framework.persistence.PersistenceServiceException;
-import com.blueskyminds.framework.persistence.PersistenceSession;
-import com.blueskyminds.framework.test.DbTestCase;
+import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceService;
+import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceServiceException;
+import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceSession;
+import com.blueskyminds.homebyfive.framework.framework.test.DbTestCase;
 
 import java.util.Collection;
 import java.util.Currency;

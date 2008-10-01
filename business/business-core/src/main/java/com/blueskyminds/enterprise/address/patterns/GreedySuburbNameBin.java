@@ -1,19 +1,6 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.*;
-import com.blueskyminds.framework.patterns.comparison.NamedStringComparator;
-import com.blueskyminds.framework.patterns.comparison.IgnoreCaseComparator;
-import com.blueskyminds.framework.patterns.comparison.ExactComparator;
-import com.blueskyminds.framework.patterns.comparison.PassComparator;
-import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
-
-import java.util.Collection;
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
+import com.blueskyminds.homebyfive.framework.framework.patterns.*;
 
 /**
  * Uses simple patterns to match a suburb name

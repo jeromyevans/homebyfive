@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;

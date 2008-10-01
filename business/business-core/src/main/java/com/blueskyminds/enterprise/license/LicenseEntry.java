@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.license;
 
-import com.blueskyminds.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
 
 import javax.persistence.*;
 import java.util.Date;

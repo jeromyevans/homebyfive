@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.license;
 
 import com.blueskyminds.enterprise.Schedule;
 import com.blueskyminds.enterprise.Enterprise;
-import com.blueskyminds.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
 import com.blueskyminds.enterprise.party.Party;
 
 import javax.persistence.*;

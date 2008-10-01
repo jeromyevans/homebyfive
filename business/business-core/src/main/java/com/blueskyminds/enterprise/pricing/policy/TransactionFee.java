@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.pricing.policy;
 
 import com.blueskyminds.enterprise.pricing.Price;
-import com.blueskyminds.framework.datetime.PeriodTypes;
+import com.blueskyminds.homebyfive.framework.framework.datetime.PeriodTypes;
 
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;

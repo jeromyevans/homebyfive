@@ -1,8 +1,7 @@
 package com.blueskyminds.enterprise.contact;
 
-import com.blueskyminds.framework.TypedRelationship;
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.framework.TypedRelationship;
+import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
 import com.blueskyminds.enterprise.party.Party;
 
 import javax.persistence.*;

@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.party;
 
-import com.blueskyminds.framework.TypedManyRelationship;
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.tools.Named;
+import com.blueskyminds.homebyfive.framework.framework.TypedManyRelationship;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.tools.Named;
 
 import javax.persistence.*;
 import java.util.*;

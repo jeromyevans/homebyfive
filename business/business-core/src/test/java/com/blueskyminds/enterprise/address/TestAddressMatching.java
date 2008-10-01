@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.service.AddressServiceImpl;

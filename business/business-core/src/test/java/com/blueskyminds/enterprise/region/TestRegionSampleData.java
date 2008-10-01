@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.AddressTestTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

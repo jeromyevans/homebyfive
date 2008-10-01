@@ -6,8 +6,8 @@ import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.region.*;
 import com.blueskyminds.enterprise.address.SuburbStreetMap;
 import com.blueskyminds.enterprise.address.Street;
-import com.blueskyminds.framework.DomainObject;
-import com.blueskyminds.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.framework.DomainObject;
+import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -93,7 +93,7 @@ public class Suburb extends DefaultRegionImpl implements Region, SuburbI {
      * The streets defined in the other suburb are copied over to this suburb
      *
      * @param otherRegion
-     * @throws com.blueskyminds.framework.MergeUnsupportedException
+     * @throws com.blueskyminds.homebyfive.framework.framework.MergeUnsupportedException
      */
     public <T extends DomainObject> void mergeWith(T otherRegion) {
         super.mergeWith(otherRegion);

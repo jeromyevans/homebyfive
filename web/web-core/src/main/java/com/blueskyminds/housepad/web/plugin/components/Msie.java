@@ -5,7 +5,7 @@ import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import org.apache.commons.lang.StringUtils;
 import com.opensymphony.xwork2.util.ValueStack;
-import com.blueskyminds.framework.tools.text.StringTools;
+import com.blueskyminds.homebyfive.framework.framework.tools.text.StringTools;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Writer;

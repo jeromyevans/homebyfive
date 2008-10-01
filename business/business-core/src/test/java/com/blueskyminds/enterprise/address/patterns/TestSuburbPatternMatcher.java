@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

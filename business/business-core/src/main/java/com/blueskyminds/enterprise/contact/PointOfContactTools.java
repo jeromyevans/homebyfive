@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.contact;
 
-import com.blueskyminds.framework.tools.filters.FilterTools;
-import com.blueskyminds.framework.transformer.Transformer;
+import com.blueskyminds.homebyfive.framework.framework.tools.filters.FilterTools;
+import com.blueskyminds.homebyfive.framework.framework.transformer.Transformer;
 
 import java.util.Set;
 import java.util.Collection;

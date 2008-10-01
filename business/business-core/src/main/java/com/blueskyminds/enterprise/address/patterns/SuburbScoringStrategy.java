@@ -1,10 +1,10 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.scoring.ScoringStrategy;
-import com.blueskyminds.framework.patterns.scoring.Score;
-import com.blueskyminds.framework.patterns.scoring.AbstractScoringStrategy;
-import com.blueskyminds.framework.patterns.PhraseToBinAllocationSequence;
-import com.blueskyminds.framework.patterns.PhraseSequence;
+import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.ScoringStrategy;
+import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.Score;
+import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.AbstractScoringStrategy;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PhraseToBinAllocationSequence;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PhraseSequence;
 
 /**
  * Date Started: 31/05/2008

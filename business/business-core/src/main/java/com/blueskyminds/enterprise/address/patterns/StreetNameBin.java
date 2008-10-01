@@ -1,9 +1,8 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.*;
-import com.blueskyminds.framework.patterns.bins.RegExSubstitutionBin;
-import com.blueskyminds.framework.tools.substitutions.dao.SubstitutionDAO;
-import com.blueskyminds.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.framework.patterns.*;
+import com.blueskyminds.homebyfive.framework.framework.patterns.bins.RegExSubstitutionBin;
+import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.Street;
 import com.blueskyminds.enterprise.region.country.CountryHandle;

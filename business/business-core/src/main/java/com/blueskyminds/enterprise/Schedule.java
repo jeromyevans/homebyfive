@@ -1,12 +1,9 @@
 package com.blueskyminds.enterprise;
 
-import com.blueskyminds.framework.journal.Journal;
-import com.blueskyminds.framework.DomainObjectList;
-import com.blueskyminds.framework.DomainObject;
+import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.framework.DomainObjectList;
+import com.blueskyminds.homebyfive.framework.framework.DomainObject;
 import com.blueskyminds.enterprise.Enterprise;
-
-import java.util.List;
-import java.util.LinkedList;
 
 /**
  * A schedule manages a related collection of Domain Objects

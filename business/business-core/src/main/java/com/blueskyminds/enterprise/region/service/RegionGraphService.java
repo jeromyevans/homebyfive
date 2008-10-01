@@ -2,7 +2,6 @@ package com.blueskyminds.enterprise.region.service;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.framework.DomainObjectStatus;
 
 import java.util.List;
 import java.util.Set;

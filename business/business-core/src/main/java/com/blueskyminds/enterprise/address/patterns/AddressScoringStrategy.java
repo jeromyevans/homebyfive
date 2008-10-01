@@ -1,12 +1,12 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.Phrase;
-import com.blueskyminds.framework.patterns.PhraseSequence;
-import com.blueskyminds.framework.patterns.PhraseToBinAllocation;
-import com.blueskyminds.framework.patterns.PhraseToBinAllocationSequence;
-import com.blueskyminds.framework.patterns.scoring.AbstractScoringStrategy;
-import com.blueskyminds.framework.patterns.scoring.Score;
-import com.blueskyminds.framework.patterns.scoring.ScoringStrategy;
+import com.blueskyminds.homebyfive.framework.framework.patterns.Phrase;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PhraseSequence;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PhraseToBinAllocation;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PhraseToBinAllocationSequence;
+import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.AbstractScoringStrategy;
+import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.Score;
+import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.ScoringStrategy;
 
 /**
  * Implements the ScoringStrategy interface to getScore candidate addresses created by the pattern matcher

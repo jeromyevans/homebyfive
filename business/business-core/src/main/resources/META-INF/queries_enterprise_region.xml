@@ -49,7 +49,7 @@
             left join fetch child.regionAliases where
             map.parent.id = :parentId and
             child.type = :type and
-            child.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+            child.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -70,7 +70,7 @@
           left join map.parent parent
           left join fetch parent.regionAliases where
           map.child = :child and
-          parent.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+          parent.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -101,7 +101,7 @@
           select region from RegionHandle region
           left join region.regionAliases alias where
           region.type = :type and
-          region.status = com.blueskyminds.framework.DomainObjectStatus.Valid and
+          region.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid and
           (region.name like :name or alias.name like :name)
         </query>
     </named-query>
@@ -121,7 +121,7 @@
           left outer join child.regionAliases alias where
           map.parent = :parent and
           child.type = :type and
-          child.status = com.blueskyminds.framework.DomainObjectStatus.Valid and
+          child.status = com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid and
           (child.name like :name or alias.name like :name)
         </query>
     </named-query>

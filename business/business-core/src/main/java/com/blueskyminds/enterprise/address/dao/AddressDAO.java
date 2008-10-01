@@ -5,9 +5,9 @@ import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.framework.persistence.PersistenceServiceException;
-import com.blueskyminds.framework.persistence.jpa.dao.AbstractDAO;
-import com.blueskyminds.framework.tools.filters.FilterTools;
+import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceServiceException;
+import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.framework.tools.filters.FilterTools;
 import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.EntityManager;

@@ -1,6 +1,6 @@
 package com.blueskyminds.housepad.core.region.model;
 
-import com.blueskyminds.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
 import com.blueskyminds.housepad.core.region.eao.SuburbEAO;
 import com.blueskyminds.housepad.core.region.model.SuburbBean;
 import com.blueskyminds.housepad.core.region.model.CountryBean;

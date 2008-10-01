@@ -1,10 +1,8 @@
 package com.blueskyminds.enterprise.party;
 
 import com.blueskyminds.enterprise.pricing.Contract;
-import com.blueskyminds.framework.journal.Journal;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  * Maping between a Party and their Contract

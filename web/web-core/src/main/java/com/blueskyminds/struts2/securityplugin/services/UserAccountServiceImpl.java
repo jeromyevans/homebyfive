@@ -4,8 +4,8 @@ import com.blueskyminds.struts2.securityplugin.model.UserAccount;
 import com.blueskyminds.struts2.securityplugin.model.UserRole;
 import com.blueskyminds.struts2.securityplugin.dao.UserRoleDAO;
 import com.blueskyminds.struts2.securityplugin.dao.UserAccountDAOImpl;
-import com.blueskyminds.framework.tools.CryptoTools;
-import com.blueskyminds.framework.tools.CryptoException;
+import com.blueskyminds.homebyfive.framework.framework.tools.CryptoTools;
+import com.blueskyminds.homebyfive.framework.framework.tools.CryptoException;
 import com.google.inject.Inject;
 
 import java.util.List;

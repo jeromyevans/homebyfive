@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.taxpolicy;
 
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.measurement.Limits;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.measurement.Limits;
 
 import javax.persistence.*;
 import java.io.PrintStream;

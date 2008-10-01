@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.Region;
 import org.apache.commons.logging.Log;

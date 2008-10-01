@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.*;
+import com.blueskyminds.homebyfive.framework.framework.patterns.*;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;

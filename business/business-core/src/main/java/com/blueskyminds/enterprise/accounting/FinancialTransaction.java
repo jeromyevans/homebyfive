@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.accounting;
 
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.pricing.Money;
-import com.blueskyminds.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
 
 import javax.persistence.*;
 import java.util.*;

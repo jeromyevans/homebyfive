@@ -5,9 +5,9 @@ import com.blueskyminds.landmine.core.events.EventHandler;
 import com.blueskyminds.housepad.core.user.services.UserEvents;
 import com.blueskyminds.housepad.core.user.services.UserService;
 import com.blueskyminds.housepad.core.user.model.users.UserProfile;
-import com.blueskyminds.framework.email.EmailService;
-import com.blueskyminds.framework.email.EmailTemplate;
-import com.blueskyminds.framework.email.EmailerException;
+import com.blueskyminds.homebyfive.framework.framework.email.EmailService;
+import com.blueskyminds.homebyfive.framework.framework.email.EmailTemplate;
+import com.blueskyminds.homebyfive.framework.framework.email.EmailerException;
 import com.google.inject.Inject;
 import com.wideplay.warp.persist.Transactional;
 

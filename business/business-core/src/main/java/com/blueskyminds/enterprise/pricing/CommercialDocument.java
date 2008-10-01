@@ -3,12 +3,12 @@ package com.blueskyminds.enterprise.pricing;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.pricing.terms.Terms;
 import com.blueskyminds.enterprise.taxpolicy.TaxPolicy;
-import com.blueskyminds.framework.datetime.Interval;
-import com.blueskyminds.framework.journal.Journal;
-import com.blueskyminds.framework.measurement.Quantity;
-import com.blueskyminds.framework.recurrence.Recurrence;
-import com.blueskyminds.framework.recurrence.constraint.NoEarlierThan;
-import com.blueskyminds.framework.recurrence.constraint.NoLaterThan;
+import com.blueskyminds.homebyfive.framework.framework.datetime.Interval;
+import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.framework.measurement.Quantity;
+import com.blueskyminds.homebyfive.framework.framework.recurrence.Recurrence;
+import com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.NoEarlierThan;
+import com.blueskyminds.homebyfive.framework.framework.recurrence.constraint.NoLaterThan;
 
 import javax.persistence.*;
 import java.util.Date;

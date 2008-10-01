@@ -1,7 +1,6 @@
 package com.blueskyminds.enterprise.party;
 
-import com.blueskyminds.framework.ManyToManyMap;
-import com.blueskyminds.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

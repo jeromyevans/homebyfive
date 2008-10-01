@@ -3,7 +3,6 @@ package com.blueskyminds.housepad.core.region;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.StreetSection;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
-import com.blueskyminds.framework.tools.text.StringTools;
 
 import java.util.Map;
 

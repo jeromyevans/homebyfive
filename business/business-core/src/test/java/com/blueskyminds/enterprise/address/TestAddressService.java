@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.test.JPATestCase;
-import com.blueskyminds.framework.tools.DebugTools;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.tools.DebugTools;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.region.RegionHandle;

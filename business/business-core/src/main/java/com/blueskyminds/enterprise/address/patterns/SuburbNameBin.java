@@ -1,14 +1,13 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.*;
-import com.blueskyminds.framework.patterns.comparison.IgnoreCaseComparator;
+import com.blueskyminds.homebyfive.framework.framework.patterns.*;
+import com.blueskyminds.homebyfive.framework.framework.patterns.comparison.IgnoreCaseComparator;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 
-import java.util.Set;
 import java.util.List;
 import java.util.LinkedList;
 

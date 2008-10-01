@@ -3,8 +3,8 @@ package com.blueskyminds.enterprise.pricing;
 import com.blueskyminds.enterprise.accounting.Journalisable;
 import com.blueskyminds.enterprise.accounting.FinancialTransaction;
 import com.blueskyminds.enterprise.accounting.FinancialTransactionException;
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.DomainObjectStatus;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.Enterprise;
 

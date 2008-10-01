@@ -1,7 +1,7 @@
 package com.blueskyminds.housepad.core.user.dao;
 
 import com.blueskyminds.housepad.core.user.model.applications.Application;
-import com.blueskyminds.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
 import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;

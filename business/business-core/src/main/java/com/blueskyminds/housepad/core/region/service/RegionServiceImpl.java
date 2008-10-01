@@ -14,7 +14,7 @@ import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.framework.DomainObjectStatus;
+import com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus;
 import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;

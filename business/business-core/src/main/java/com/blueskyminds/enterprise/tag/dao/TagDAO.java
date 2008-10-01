@@ -1,12 +1,11 @@
 package com.blueskyminds.enterprise.tag.dao;
 
 import com.blueskyminds.enterprise.tag.Tag;
-import com.blueskyminds.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Date Started: 6/08/2007

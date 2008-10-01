@@ -1,15 +1,12 @@
 package com.blueskyminds.enterprise.guice.providers;
 
-import com.blueskyminds.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.enterprise.address.patterns.AddressParserFactory;
-import com.blueskyminds.enterprise.address.patterns.AddressPatternMatcherFactoryImpl;
 import com.blueskyminds.enterprise.address.patterns.DepthFirstAddressParserFactory;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.google.inject.Provider;
 import com.google.inject.Inject;
-
-import javax.persistence.EntityManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

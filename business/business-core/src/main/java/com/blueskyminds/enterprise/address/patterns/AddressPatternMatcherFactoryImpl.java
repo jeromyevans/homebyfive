@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException;
+import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import org.apache.commons.logging.LogFactory;
@@ -39,7 +39,7 @@ public class AddressPatternMatcherFactoryImpl implements AddressParserFactory {
      *
      * @param iso3Code
      * @return
-     * @throws com.blueskyminds.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
      *
      */
     public AddressParser create(String iso3Code) {
@@ -64,7 +64,7 @@ public class AddressPatternMatcherFactoryImpl implements AddressParserFactory {
      *
      * @param suburb
      * @return
-     * @throws com.blueskyminds.framework.patterns.PatternMatcherInitialisationException
+     * @throws com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException
      *
      */
     public AddressParser create(SuburbHandle suburb) {

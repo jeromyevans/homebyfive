@@ -1,9 +1,9 @@
 package com.blueskyminds.housepad.core.user.model.applications;
 
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.tools.Named;
-import com.blueskyminds.framework.tools.filters.FilterTools;
-import com.blueskyminds.framework.tools.filters.Filter;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.tools.Named;
+import com.blueskyminds.homebyfive.framework.framework.tools.filters.FilterTools;
+import com.blueskyminds.homebyfive.framework.framework.tools.filters.Filter;
 
 import javax.persistence.*;
 import java.util.Set;

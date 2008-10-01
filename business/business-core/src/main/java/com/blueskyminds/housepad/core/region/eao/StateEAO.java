@@ -1,6 +1,6 @@
 package com.blueskyminds.housepad.core.region.eao;
 
-import com.blueskyminds.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.housepad.core.region.model.StateBean;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.google.inject.Inject;

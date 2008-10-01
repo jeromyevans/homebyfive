@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.contact.interaction;
 
-import com.blueskyminds.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
 import com.blueskyminds.enterprise.contact.interaction.POCInteraction;
 import com.blueskyminds.enterprise.contact.PartyPOC;
 

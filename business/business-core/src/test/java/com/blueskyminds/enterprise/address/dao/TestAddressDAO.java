@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.framework.test.JPATestCase;
-import com.blueskyminds.framework.test.TestTools;
-import com.blueskyminds.framework.tools.DebugTools;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.TestTools;
+import com.blueskyminds.homebyfive.framework.framework.tools.DebugTools;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;

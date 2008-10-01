@@ -1,7 +1,7 @@
 package com.blueskyminds.housepad.core.region;
 
 import com.blueskyminds.housepad.core.region.reference.RegionRefType;
-import com.blueskyminds.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
 import java.util.Date;
 
 import javax.persistence.*;

@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.party;
 
-import com.blueskyminds.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.contact.EmailAddress;
 import com.blueskyminds.enterprise.contact.POCRole;
 import com.blueskyminds.enterprise.contact.PhoneNumberTypes;

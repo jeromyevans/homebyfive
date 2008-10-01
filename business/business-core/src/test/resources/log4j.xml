@@ -20,11 +20,11 @@
     <!-- Limit categories -->
     <!-- ================ -->
   
-    <category name="com.blueskyminds.framework.persistence">
+    <category name="com.blueskyminds.homebyfive.framework.framework.persistence">
         <priority value="info"/>
     </category>
 
-    <category name="com.blueskyminds.framework.persistence.jpa">
+    <category name="com.blueskyminds.homebyfive.framework.framework.persistence.jpa">
         <priority value="info"/>
     </category>
 
@@ -32,7 +32,7 @@
         <priority value="info"/>
     </category>
 
-    <category name="com.blueskyminds.framework.patterns.PatternMatcher">
+    <category name="com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcher">
         <priority value="info"/>
     </category>
 
@@ -65,7 +65,7 @@
     </category>
 
   
-    <category name="com.blueskyminds.framework.test.JPATestCase">
+    <category name="com.blueskyminds.homebyfive.framework.framework.test.JPATestCase">
         <priority value="debug"/>
     </category>
 

@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.party.dao;
 
 import com.blueskyminds.enterprise.party.*;
-import com.blueskyminds.framework.persistence.PersistenceServiceException;
-import com.blueskyminds.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.framework.persistence.PersistenceServiceException;
+import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.enterprise.contact.*;
 import com.blueskyminds.enterprise.address.Address;
 

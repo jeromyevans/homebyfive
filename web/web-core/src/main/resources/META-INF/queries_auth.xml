@@ -17,7 +17,8 @@
     -->
     <named-query name="auth.userAccount.byUsernamePassword">
       <query>
-        select userAccount from UserAccount userAccount where userAccount.username =:username and userAccount.status = com.blueskyminds.framework.DomainObjectStatus.Valid and userAccount.hashedPassword = :hashedPassword
+        select userAccount from UserAccount userAccount where userAccount.username =:username and userAccount.status =
+        com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid and userAccount.hashedPassword = :hashedPassword
       </query>
     </named-query>
 
@@ -61,7 +62,8 @@
     -->
     <named-query name="auth.userRole.byName">
       <query>
-        select userRole from UserRole userRole where userRole.status = com.blueskyminds.framework.DomainObjectStatus.Valid and userRole.name =:name
+        select userRole from UserRole userRole where userRole.status =
+        com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid and userRole.name =:name
       </query>
     </named-query>
 
@@ -73,7 +75,8 @@
     -->
     <named-query name="auth.userRoles">
       <query>
-        select userRole from UserRole userRole where userRole.status = com.blueskyminds.framework.DomainObjectStatus.Valid
+        select userRole from UserRole userRole where userRole.status =
+        com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus.Valid
       </query>
     </named-query>
 

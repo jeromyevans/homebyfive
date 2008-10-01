@@ -5,8 +5,6 @@ import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.region.*;
 import com.blueskyminds.enterprise.region.RegionMixin;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.framework.DomainObject;
-import com.blueskyminds.framework.MergeUnsupportedException;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;

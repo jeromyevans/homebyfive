@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.framework.patterns.NamedBin;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException;
+import com.blueskyminds.homebyfive.framework.framework.patterns.NamedBin;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 
 /**

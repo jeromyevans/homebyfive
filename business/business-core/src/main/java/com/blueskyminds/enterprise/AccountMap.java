@@ -2,15 +2,14 @@ package com.blueskyminds.enterprise;
 
 import com.blueskyminds.enterprise.Enterprise;
 import com.blueskyminds.enterprise.accounting.Account;
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.DomainObject;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.DomainObject;
 
 import javax.persistence.Transient;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collection;
 import java.util.HashSet;
-import java.io.PrintWriter;
 import java.io.PrintStream;
 
 /**

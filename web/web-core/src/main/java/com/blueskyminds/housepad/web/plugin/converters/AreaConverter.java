@@ -1,14 +1,13 @@
 package com.blueskyminds.housepad.web.plugin.converters;
 
 import org.apache.struts2.util.StrutsTypeConverter;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Map;
 import java.math.BigDecimal;
 
 import com.opensymphony.xwork2.conversion.TypeConversionException;
-import com.blueskyminds.framework.measurement.Area;
-import com.blueskyminds.framework.measurement.UnitsOfArea;
+import com.blueskyminds.homebyfive.framework.framework.measurement.Area;
+import com.blueskyminds.homebyfive.framework.framework.measurement.UnitsOfArea;
 
 /**
  * Todo; the string->area conversion is crap and not required.  the comonents of an Area should be converted separately.

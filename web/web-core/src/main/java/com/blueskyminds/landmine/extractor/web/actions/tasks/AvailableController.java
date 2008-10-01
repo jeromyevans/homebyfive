@@ -1,14 +1,12 @@
 package com.blueskyminds.landmine.extractor.web.actions.tasks;
 
-import com.blueskyminds.framework.tasks.AvailableTask;
-import com.blueskyminds.framework.tasks.ActiveTask;
-import com.blueskyminds.framework.tasks.RuntimeTaskInfo;
-import com.blueskyminds.framework.tasks.service.TaskingService;
+import com.blueskyminds.homebyfive.framework.framework.tasks.AvailableTask;
+import com.blueskyminds.homebyfive.framework.framework.tasks.RuntimeTaskInfo;
+import com.blueskyminds.homebyfive.framework.framework.tasks.service.TaskingService;
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.thoughtworks.xstream.XStream;
-import org.apache.struts2.config.Result;
 import org.apache.struts2.rest.DefaultHttpHeaders;
 import org.apache.struts2.rest.HttpHeaders;
 

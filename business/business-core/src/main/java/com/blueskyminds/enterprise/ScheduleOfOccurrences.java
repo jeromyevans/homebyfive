@@ -2,9 +2,9 @@ package com.blueskyminds.enterprise;
 
 import com.blueskyminds.enterprise.Schedule;
 import com.blueskyminds.enterprise.Enterprise;
-import com.blueskyminds.framework.journal.Journal;
-import com.blueskyminds.framework.recurrence.Occurrence;
-import com.blueskyminds.framework.recurrence.OccurrenceTypes;
+import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.framework.recurrence.Occurrence;
+import com.blueskyminds.homebyfive.framework.framework.recurrence.OccurrenceTypes;
 
 import java.util.Date;
 

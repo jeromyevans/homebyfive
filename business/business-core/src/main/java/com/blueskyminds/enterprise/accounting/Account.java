@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.accounting;
 
 import com.blueskyminds.enterprise.pricing.Money;
-import com.blueskyminds.framework.AbstractHierarchicalDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.AbstractHierarchicalDomainObject;
 import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.*;

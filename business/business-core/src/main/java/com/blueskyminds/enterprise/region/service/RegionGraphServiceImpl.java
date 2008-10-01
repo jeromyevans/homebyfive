@@ -3,8 +3,8 @@ package com.blueskyminds.enterprise.region.service;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
-import com.blueskyminds.framework.patterns.LevensteinDistanceTools;
-import com.blueskyminds.framework.DomainObjectStatus;
+import com.blueskyminds.homebyfive.framework.framework.patterns.LevensteinDistanceTools;
+import com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus;
 
 import javax.persistence.EntityManager;
 import java.util.HashSet;

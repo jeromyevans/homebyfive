@@ -1,6 +1,6 @@
 package com.blueskyminds.homebyfive.web.core.startup;
 
-import com.blueskyminds.framework.tools.LoggerTools;
+import com.blueskyminds.homebyfive.framework.framework.tools.LoggerTools;
 
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;

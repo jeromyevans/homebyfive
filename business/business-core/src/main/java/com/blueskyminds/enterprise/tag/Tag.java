@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.tag;
 
-import com.blueskyminds.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
 import javax.persistence.Column;

@@ -5,7 +5,7 @@ import com.blueskyminds.enterprise.party.Individual;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.contact.PartyPOC;
 import com.blueskyminds.enterprise.contact.POCType;
-import com.blueskyminds.framework.tools.selector.SingleSelector;
+import com.blueskyminds.homebyfive.framework.framework.tools.selector.SingleSelector;
 
 import java.util.Set;
 

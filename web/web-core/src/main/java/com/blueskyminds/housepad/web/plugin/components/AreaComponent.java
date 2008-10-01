@@ -3,11 +3,10 @@ package com.blueskyminds.housepad.web.plugin.components;
 import org.apache.struts2.views.annotations.StrutsTag;
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
 import com.opensymphony.xwork2.util.ValueStack;
-import com.blueskyminds.framework.measurement.Area;
+import com.blueskyminds.homebyfive.framework.framework.measurement.Area;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 /**
  * Date Started: 25/04/2008

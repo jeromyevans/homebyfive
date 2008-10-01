@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.framework.tools.Named;
-import com.blueskyminds.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.framework.tools.Named;
+import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
 
 import javax.persistence.*;
 

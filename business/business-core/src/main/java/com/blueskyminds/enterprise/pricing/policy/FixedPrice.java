@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.pricing.policy;
 
-import com.blueskyminds.framework.datetime.PeriodTypes;
+import com.blueskyminds.homebyfive.framework.framework.datetime.PeriodTypes;
 import com.blueskyminds.enterprise.pricing.policy.PricingPolicy;
 import com.blueskyminds.enterprise.pricing.Price;
 

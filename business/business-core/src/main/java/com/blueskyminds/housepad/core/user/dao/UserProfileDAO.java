@@ -2,7 +2,7 @@ package com.blueskyminds.housepad.core.user.dao;
 
 import com.google.inject.Inject;
 import com.blueskyminds.housepad.core.user.model.users.UserProfile;
-import com.blueskyminds.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

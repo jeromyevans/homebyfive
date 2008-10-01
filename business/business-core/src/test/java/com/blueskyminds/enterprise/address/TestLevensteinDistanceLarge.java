@@ -1,11 +1,11 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.framework.test.JPATestCase;
-import com.blueskyminds.framework.test.TestTools;
-import com.blueskyminds.framework.tools.Named;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.TestTools;
+import com.blueskyminds.homebyfive.framework.framework.tools.Named;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.framework.patterns.LevensteinDistanceTools;
+import com.blueskyminds.homebyfive.framework.framework.patterns.LevensteinDistanceTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.lang.time.StopWatch;

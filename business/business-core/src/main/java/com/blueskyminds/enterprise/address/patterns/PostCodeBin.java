@@ -1,9 +1,9 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.Bin;
-import com.blueskyminds.framework.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.framework.patterns.comparison.NamedStringComparator;
-import com.blueskyminds.framework.patterns.comparison.IgnoreCaseComparator;
+import com.blueskyminds.homebyfive.framework.framework.patterns.Bin;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PatternMatcherInitialisationException;
+import com.blueskyminds.homebyfive.framework.framework.patterns.comparison.NamedStringComparator;
+import com.blueskyminds.homebyfive.framework.framework.patterns.comparison.IgnoreCaseComparator;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;

@@ -2,19 +2,11 @@ package com.blueskyminds.struts2.securityplugin.services;
 
 import com.blueskyminds.struts2.securityplugin.dao.UserAccountDAO;
 import com.blueskyminds.struts2.securityplugin.model.UserAccount;
-import com.blueskyminds.struts2.securityplugin.model.UserRole;
-import com.blueskyminds.struts2.securityplugin.session.SessionRegistry;
 import com.blueskyminds.struts2.securityplugin.token.TokenRegistry;
-import com.blueskyminds.framework.tools.CryptoTools;
-import com.blueskyminds.framework.tools.CryptoException;
+import com.blueskyminds.homebyfive.framework.framework.tools.CryptoTools;
+import com.blueskyminds.homebyfive.framework.framework.tools.CryptoException;
 import com.blueskyminds.housepad.core.user.model.token.TokenProvider;
 import com.google.inject.Inject;
-import com.opensymphony.xwork2.ActionContext;
-
-import javax.servlet.ServletContext;
-import java.util.Map;
-import java.util.UUID;
-import java.util.List;
 
 /**
  * Date Started: 9/05/2008

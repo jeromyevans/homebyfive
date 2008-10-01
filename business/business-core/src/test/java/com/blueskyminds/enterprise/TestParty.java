@@ -6,7 +6,7 @@ import com.blueskyminds.enterprise.party.IndividualRole;
 import com.blueskyminds.enterprise.party.dao.PartyDAO;
 import com.blueskyminds.enterprise.party.service.PartyService;
 import com.blueskyminds.enterprise.party.service.PartyServiceImpl;
-import com.blueskyminds.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
 import com.blueskyminds.enterprise.contact.*;
 
 import java.util.Currency;

@@ -4,7 +4,7 @@ import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.RegionHandleAware;
-import com.blueskyminds.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

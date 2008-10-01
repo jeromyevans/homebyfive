@@ -1,9 +1,9 @@
 package com.blueskyminds.housepad.core.user.model.users;
 
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.transformer.Transformer;
-import com.blueskyminds.framework.tools.filters.FilterTools;
-import com.blueskyminds.framework.tools.filters.Filter;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.transformer.Transformer;
+import com.blueskyminds.homebyfive.framework.framework.tools.filters.FilterTools;
+import com.blueskyminds.homebyfive.framework.framework.tools.filters.Filter;
 import com.blueskyminds.housepad.core.user.model.applications.Application;
 import com.blueskyminds.housepad.core.user.model.applications.ApplicationStatus;
 

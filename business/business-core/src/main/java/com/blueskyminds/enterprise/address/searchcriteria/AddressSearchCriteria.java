@@ -1,11 +1,6 @@
 package com.blueskyminds.enterprise.address.searchcriteria;
 
-import com.blueskyminds.framework.persistence.query.PersistenceQuery;
 //import com.blueskyminds.framework.persistence.hibernate.query.HibernateCriteriaImpl;
-import com.blueskyminds.enterprise.address.Address;
-import com.blueskyminds.enterprise.address.StreetAddress;
-import com.blueskyminds.enterprise.address.LotAddress;
-import com.blueskyminds.enterprise.address.UnitAddress;
 //import org.hibernate.criterion.DetachedCriteria;
 //import org.hibernate.criterion.Expression;
 

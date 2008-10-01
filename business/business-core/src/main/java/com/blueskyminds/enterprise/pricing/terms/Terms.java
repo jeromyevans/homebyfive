@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.pricing.terms;
 
 import com.blueskyminds.enterprise.pricing.PaymentTerms;
-import com.blueskyminds.framework.recurrence.Recurrence;
-import com.blueskyminds.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.recurrence.Recurrence;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
 
 import javax.persistence.*;
 import java.util.Date;

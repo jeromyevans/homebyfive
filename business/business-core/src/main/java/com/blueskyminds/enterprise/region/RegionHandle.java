@@ -1,12 +1,12 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.framework.AbstractEntity;
-import com.blueskyminds.framework.DomainObject;
-import com.blueskyminds.framework.AbstractDomainObject;
-import com.blueskyminds.framework.DomainObjectStatus;
-import com.blueskyminds.framework.alias.Aliased;
-import com.blueskyminds.framework.tools.Named;
-import com.blueskyminds.framework.tools.NamedTools;
+import com.blueskyminds.homebyfive.framework.framework.AbstractEntity;
+import com.blueskyminds.homebyfive.framework.framework.DomainObject;
+import com.blueskyminds.homebyfive.framework.framework.AbstractDomainObject;
+import com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus;
+import com.blueskyminds.homebyfive.framework.framework.alias.Aliased;
+import com.blueskyminds.homebyfive.framework.framework.tools.Named;
+import com.blueskyminds.homebyfive.framework.framework.tools.NamedTools;
 import com.blueskyminds.enterprise.region.RegionTypes;
 
 import javax.persistence.*;

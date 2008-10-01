@@ -2,7 +2,7 @@ package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.framework.DomainObjectStatus;
+import com.blueskyminds.homebyfive.framework.framework.DomainObjectStatus;
 
 /**
  * Date Started: 3/03/2008

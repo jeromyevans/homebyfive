@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.pricing;
 
 import com.blueskyminds.enterprise.Enterprise;
 import com.blueskyminds.enterprise.Schedule;
-import com.blueskyminds.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
 
 import javax.persistence.*;
 import java.io.PrintStream;

@@ -19,12 +19,12 @@ import com.blueskyminds.enterprise.taxpolicy.ScheduleOfTaxes;
 import com.blueskyminds.enterprise.taxpolicy.TaxPolicy;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeFactory;
-import com.blueskyminds.framework.datetime.PeriodTypes;
-import com.blueskyminds.framework.journal.Journal;
-import com.blueskyminds.framework.measurement.Quantity;
-import com.blueskyminds.framework.measurement.QuantityUnits;
-import com.blueskyminds.framework.test.JPATestCase;
-import com.blueskyminds.framework.test.TestTools;
+import com.blueskyminds.homebyfive.framework.framework.datetime.PeriodTypes;
+import com.blueskyminds.homebyfive.framework.framework.journal.Journal;
+import com.blueskyminds.homebyfive.framework.framework.measurement.Quantity;
+import com.blueskyminds.homebyfive.framework.framework.measurement.QuantityUnits;
+import com.blueskyminds.homebyfive.framework.framework.test.JPATestCase;
+import com.blueskyminds.homebyfive.framework.framework.test.TestTools;
 
 import java.util.*;
 

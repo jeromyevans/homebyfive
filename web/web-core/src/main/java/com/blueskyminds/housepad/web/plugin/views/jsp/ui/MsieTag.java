@@ -4,9 +4,7 @@ import org.apache.struts2.components.Component;
 import org.apache.struts2.views.jsp.ComponentTagSupport;
 import org.apache.commons.lang.StringUtils;
 import com.opensymphony.xwork2.util.ValueStack;
-import com.blueskyminds.housepad.web.plugin.components.Guard;
 import com.blueskyminds.housepad.web.plugin.components.Msie;
-import com.blueskyminds.framework.tools.text.StringTools;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

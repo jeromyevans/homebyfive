@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.party;
 
-import com.blueskyminds.framework.DomainObject;
-import com.blueskyminds.framework.MergeUnsupportedException;
-import com.blueskyminds.framework.tools.ArrayTools;
+import com.blueskyminds.homebyfive.framework.framework.DomainObject;
+import com.blueskyminds.homebyfive.framework.framework.MergeUnsupportedException;
+import com.blueskyminds.homebyfive.framework.framework.tools.ArrayTools;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 
@@ -359,7 +359,7 @@ public class Individual extends Party {
      * <p/>
      *
      * @param other the object to extract properties from into this object
-     * @throws com.blueskyminds.framework.MergeUnsupportedException
+     * @throws com.blueskyminds.homebyfive.framework.framework.MergeUnsupportedException
      *          when this domain object hasn't implemented the operation
      */
     public <T extends DomainObject> void mergeWith(T other) throws MergeUnsupportedException {

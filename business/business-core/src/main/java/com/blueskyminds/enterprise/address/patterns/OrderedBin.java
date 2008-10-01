@@ -1,9 +1,8 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.Bin;
-import com.blueskyminds.framework.patterns.PhraseToBinAllocation;
-import com.blueskyminds.framework.patterns.PhraseList;
-import com.blueskyminds.framework.patterns.PhraseToBinAllocationSequence;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PhraseToBinAllocation;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PhraseList;
+import com.blueskyminds.homebyfive.framework.framework.patterns.PhraseToBinAllocationSequence;
 
 import java.util.List;
 

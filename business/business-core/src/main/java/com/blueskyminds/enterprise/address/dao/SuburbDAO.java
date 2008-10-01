@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.dao;
 
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.framework.persistence.jpa.dao.AbstractDAO;
+import com.blueskyminds.homebyfive.framework.framework.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;
 

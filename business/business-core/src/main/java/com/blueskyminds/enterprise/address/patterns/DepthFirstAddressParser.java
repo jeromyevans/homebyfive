@@ -1,9 +1,9 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.framework.patterns.*;
-import com.blueskyminds.framework.patterns.scoring.Score;
-import com.blueskyminds.framework.patterns.scoring.ScoringStrategy;
-import com.blueskyminds.framework.tools.substitutions.service.SubstitutionService;
+import com.blueskyminds.homebyfive.framework.framework.patterns.*;
+import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.Score;
+import com.blueskyminds.homebyfive.framework.framework.patterns.scoring.ScoringStrategy;
+import com.blueskyminds.homebyfive.framework.framework.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;

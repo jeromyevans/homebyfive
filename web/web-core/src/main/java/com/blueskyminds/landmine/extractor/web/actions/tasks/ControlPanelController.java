@@ -1,12 +1,11 @@
 package com.blueskyminds.landmine.extractor.web.actions.tasks;
 
-import com.blueskyminds.framework.tasks.service.TaskingException;
-import com.blueskyminds.framework.tasks.service.TaskingService;
+import com.blueskyminds.homebyfive.framework.framework.tasks.service.TaskingException;
+import com.blueskyminds.homebyfive.framework.framework.tasks.service.TaskingService;
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.NullResult;
 
