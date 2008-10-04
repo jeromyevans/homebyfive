@@ -2,7 +2,6 @@ package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.graph.RegionHandle;
-import com.blueskyminds.enterprise.region.graph.RegionHandleAware;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -57,27 +56,6 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
 
     public RegionGraphDAO(EntityManager em) {
         super(em, RegionHandle.class);
-    }
-
-    /**
-     * Attempt to extract the handle for the Region implementation
-     *
-     * @param childRegion
-     * @return
-     */
-    private RegionHandle getHandle(RegionHandle childRegion) {
-        RegionHandle handle = null;
-        if (childRegion instanceof RegionHandle) {
-            handle = (RegionHandle) childRegion;
-        } else {
-            if (childRegion instanceof RegionHandleAware) {
-                handle = ((RegionHandleAware) childRegion).getRegionHandle();
-            } else {
-                // we don't have a handle....should we look it up here?
-                LOG.warn("RegionHandle is null");
-            }
-        }
-        return handle;
     }
 
     /**

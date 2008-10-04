@@ -487,9 +487,6 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
              addAlias(alias);
          }
 
-         // merge the implementations
-         mergeImplementation(anotherRegion);
-
          // remove the other region from its parents
          for (RegionHandle parent: parentsToUpdate) {
              parent.removeChildRegion(anotherRegion);
@@ -500,19 +497,5 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
              child.removeParentRegion(anotherRegion);
          }
      }
-
-
-    /**
-     * Merge the implementation referenced by this RegionHandle with the implementation referenced by the other
-     * RegionHandle.
-     *
-     * This method is executed AFTER the other RegionHandle has already been merged into this one but before
-     *  the other region is removed from its parents or has its children removed
-     *
-     * @param anotherRegion
-     */
-    private void mergeImplementation(RegionHandle anotherRegion) {
-        ((AbstractDomainObject) getRegion()).mergeWith((DomainObject) anotherRegion.getRegion());
-    }
 
 }

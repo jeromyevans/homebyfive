@@ -16,6 +16,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="RegionBean")
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="Impl", discriminatorType = DiscriminatorType.CHAR)
+@DiscriminatorValue("R")
 public abstract class RegionBean extends AbstractEntity {
 
     protected String parentPath;

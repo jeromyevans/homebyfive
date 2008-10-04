@@ -5,7 +5,7 @@ import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import javax.persistence.*;
 
 /**
- * A directional map between two regions.  Each region is abstracted by a RegionHandle
+ * A directional map between two regions.
  *
  * An edge between two vertices in a region graph.
  *
