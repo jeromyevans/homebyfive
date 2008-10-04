@@ -1,10 +1,7 @@
 package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.enterprise.region.Region;
-import com.blueskyminds.enterprise.region.suburb.SuburbFactory;
-import com.blueskyminds.enterprise.region.postcode.PostCodeFactory;
-import com.blueskyminds.enterprise.region.state.StateFactory;
-import com.blueskyminds.enterprise.region.country.CountryFactory;
+import com.blueskyminds.enterprise.region.country.RegionFactory;
 
 import javax.persistence.EntityManager;
 
@@ -76,29 +73,29 @@ public class TestRegionTools {
 //    }
 
     public static Region initialiseAusRegionsX(EntityManager em) {
-        Region australia = new CountryFactory().createCountry(AUSTRALIA, "AU", "AUS", "AUD'");
+        Region australia = new RegionFactory().createCountry(AUSTRALIA, "AU", "AUS", "AUD'");
 
-        Region wa = new StateFactory().createState("Western Australia", "WA");
-        Region bullCreek = new SuburbFactory().createSuburb(BULL_CREEK);
-        Region leeming = new SuburbFactory().createSuburb(LEEMING);
-        Region willetton = new SuburbFactory().createSuburb(WILLETTON);
+        Region wa = new RegionFactory().createState("Western Australia", "WA");
+        Region bullCreek = new RegionFactory().createSuburb(BULL_CREEK);
+        Region leeming = new RegionFactory().createSuburb(LEEMING);
+        Region willetton = new RegionFactory().createSuburb(WILLETTON);
         wa.addChildRegion(bullCreek);
         wa.addChildRegion(leeming);
         wa.addChildRegion(willetton);
 
-        Region nsw = new StateFactory().createState("New South Wales", "NSW");
-        Region neutralBay = new SuburbFactory().createSuburb(NEUTRAL_BAY);
-        Region kirribilli = new SuburbFactory().createSuburb("Kirribilli");
+        Region nsw = new RegionFactory().createState("New South Wales", "NSW");
+        Region neutralBay = new RegionFactory().createSuburb(NEUTRAL_BAY);
+        Region kirribilli = new RegionFactory().createSuburb("Kirribilli");
         nsw.addChildRegion(neutralBay);
         nsw.addChildRegion(kirribilli);
 
         australia.addChildRegion(wa);
         australia.addChildRegion(nsw);
 
-        Region pc6149 = new PostCodeFactory().createPostCode(POSTCODE_6149);
-        Region pc6155 = new PostCodeFactory().createPostCode(POSTCODE_6155);
-        Region pc2089 = new PostCodeFactory().createPostCode(POSTCODE_2089);
-        Region pc2060 = new PostCodeFactory().createPostCode("2060");
+        Region pc6149 = new RegionFactory().createPostCode(POSTCODE_6149);
+        Region pc6155 = new RegionFactory().createPostCode(POSTCODE_6155);
+        Region pc2089 = new RegionFactory().createPostCode(POSTCODE_2089);
+        Region pc2060 = new RegionFactory().createPostCode("2060");
 
         wa.addChildRegion(pc6149);
         wa.addChildRegion(pc6155);

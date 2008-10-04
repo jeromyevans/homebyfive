@@ -23,9 +23,8 @@
     <named-query name="country.byIso3Code">
         <query>
            select country from CountryHandle country
-             left join fetch country.country impl
              left join fetch country.regionAliases
-             where impl.iso3CountryCode = :iso3CountryCode and
+             where country.iso3CountryCode = :iso3CountryCode and
                    country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
@@ -43,9 +42,8 @@
     <named-query name="country.byIso2Code">
         <query>
            select country from CountryHandle country
-             left join fetch country.country impl
              left join fetch country.regionAliases
-             where impl.iso2CountryCode = :iso2CountryCode and
+             where country.iso2CountryCode = :iso2CountryCode and
                    country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
@@ -126,7 +124,6 @@
       select state from StateHandle state
          left join state.parentRegionMaps map
          left join fetch state.regionAliases
-         left join fetch state.state
          where map.parent.id = :countryId and
          state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
     </query>
@@ -147,7 +144,6 @@
       select state from StateHandle state
          left join state.parentRegionMaps map
          left join fetch state.regionAliases alias
-         left join fetch state.state 
          where map.parent.id = :countryId and
                state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
               (state.name like :name or alias.name like :name)
@@ -168,11 +164,9 @@
       select state from StateHandle state
          left join state.parentRegionMaps map
          left join fetch state.regionAliases
-         left join fetch state.state
-         left join state.state impl
          where map.parent.id = :countryId and
                state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
-              (impl.abbreviation like :abbr)
+              (state.abbreviation like :abbr)
     </query>
   </named-query>
 
@@ -195,7 +189,6 @@
          left join map.parent state
          left join state.parentRegionMaps stateMap
          left join fetch postCode.regionAliases
-         left join fetch postCode.postCode
          where stateMap.parent.id = :countryId and
                postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
       </query>
@@ -219,7 +212,6 @@
          left join postCode.parentRegionMaps map
          left join map.parent state
          left join fetch postCode.regionAliases
-         left join fetch postCode.postCode
          where state.id = :stateId and
                postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
       </query>
@@ -242,7 +234,6 @@
         select suburb from SuburbHandle suburb
           left join suburb.parentRegionMaps map
           left join fetch suburb.regionAliases
-          left join fetch suburb.suburb
           where map.parent.id = :stateId and
                 suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
       </query>
@@ -313,7 +304,6 @@
         select suburb from SuburbHandle suburb
           left join suburb.parentRegionMaps map
           left join fetch suburb.regionAliases
-          left join fetch suburb.suburb
           where map.parent.id = :postCodeId and
                 suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -367,7 +357,6 @@
         <query>
           select suburb from SuburbHandle suburb
              left join fetch suburb.regionAliases
-             left join fetch suburb.suburb
              left join suburb.parentRegionMaps parentMap1
              left join parentMap1.parent state
              left join state.parentRegionMaps parentMap2
@@ -414,7 +403,6 @@
              left join suburb.parentRegionMaps parentMap1
              left join parentMap1.parent state
              left join state.parentRegionMaps parentMap2
-             left join suburb.suburb impl
              left join impl.suburbStreetMaps map
              left join map.street street
              where parentMap2.parent = :country and
@@ -434,7 +422,6 @@
     <named-query name="street.listAllBySuburb">
         <query>
           select street from SuburbHandle suburb
-             left join suburb.suburb impl
              left join impl.suburbStreetMaps map
              left join map.street street
              where suburb = :suburb
@@ -455,7 +442,6 @@
           select street from SuburbHandle suburb
              left join suburb.parentRegionMaps parentMap1
              left join parentMap1.parent postCode
-             left join suburb.suburb impl
              left join impl.suburbStreetMaps map
              left join map.street street
              where postCode.class = com.blueskyminds.enterprise.region.postcode.PostCodeHandle

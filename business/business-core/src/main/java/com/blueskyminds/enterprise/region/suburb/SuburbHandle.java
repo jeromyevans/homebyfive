@@ -26,9 +26,8 @@ public class SuburbHandle extends RegionHandle implements SuburbI {
 
     private Suburb suburb;
 
-    protected SuburbHandle(String name, Suburb suburb) {
+    protected SuburbHandle(String name) {
         super(name, RegionTypes.Suburb);
-        this.suburb= suburb;
     }
 
     protected SuburbHandle() {
@@ -43,12 +42,6 @@ public class SuburbHandle extends RegionHandle implements SuburbI {
 
     public void setSuburb(Suburb suburb) {
         this.suburb = suburb;
-    }
-
-    @Transient
-    protected Region getRegionTarget() {
-        this.suburb.setRegionHandle(this);
-        return suburb;
     }
 
     /**

@@ -50,11 +50,11 @@ public class PathHelper {
     }
 
     public static String buildPath(CountryHandle countryHandle) {
-        return joinPaths(ROOT, KeyGenerator.generateId(countryHandle.getISO2DigitCode()));
+        return joinPaths(ROOT, KeyGenerator.generateId(countryHandle.getAbbreviation()));
     }
 
     public static String buildPath(StateHandle stateHandle) {
-        return joinPaths(buildPath(stateHandle.getCountry()), KeyGenerator.generateId(stateHandle.getAbbr()));
+        return joinPaths(buildPath(stateHandle.getCountry()), KeyGenerator.generateId(stateHandle.getAbbreviation()));
     }
 
     public static String buildPath(SuburbHandle suburbHandle) {

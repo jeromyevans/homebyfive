@@ -22,33 +22,12 @@ public class StateHandle extends RegionHandle implements StateI {
     /** A special case StateHandle instance used to indentify an invalid State rather than a null value */
     public static final StateHandle INVALID = invalid();
 
-    private State state;
-
-    protected StateHandle(String name, State state, String abbreviation) {
+    protected StateHandle(String name, String abbreviation) {
         super(name, RegionTypes.State, abbreviation);
-        this.state = state;
     }
 
     protected StateHandle() {
     }
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="StateId")
-    public State getState() {
-        state.setRegionHandle(this);
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    @Transient
-    protected Region getRegionTarget() {
-        state.setRegionHandle(this);
-        return state;
-    }
-
 
     /**
      * Add a postcode to this state
@@ -86,13 +65,7 @@ public class StateHandle extends RegionHandle implements StateI {
         } else {
             return null;
         }
-    }
-
-    /** Get the abbreviation from the implementation */
-    @Transient
-    public String getAbbr() {
-        return state.getAbbreviation();
-    }
+    }   
 
      private static StateHandle invalid() {
         StateHandle invalid = new StateHandle();

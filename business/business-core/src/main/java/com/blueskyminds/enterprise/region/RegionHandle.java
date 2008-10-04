@@ -34,6 +34,7 @@ import java.util.HashSet;
 public abstract class RegionHandle extends AbstractEntity implements Named, Aliased, Region {
 
     private String name;
+    private String abbreviation;    
     private RegionTypes type;
     private Set<RegionAlias> aliases;
     private Set<RegionHierarchy> parentRegions;
@@ -75,6 +76,16 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name="Abbr")
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 
     @Enumerated
@@ -153,17 +164,17 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
     }
 
     /** Get the region referenced by this handle */
-    @Transient
-    public final Region getRegion() {
-        Region region = getRegionTarget();
-        if (region != null) {
-            injectRegionHandle(region);
-        }
-        return region;
-    }
+//    @Transient
+//    public final Region getRegion() {
+//        Region region = getRegionTarget();
+//        if (region != null) {
+//            injectRegionHandle(region);
+//        }
+//        return region;
+//    }
 
     @Transient
-    protected abstract Region getRegionTarget();
+//    protected abstract Region getRegionTarget();
     
     /**
      * Get the parent regions.

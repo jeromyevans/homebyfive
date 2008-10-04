@@ -19,37 +19,13 @@ import javax.persistence.*;
 @DiscriminatorValue("P")
 public class PostCodeHandle extends RegionHandle {
 
-    private PostCode postCode;
-
-    protected PostCodeHandle(String name, PostCode postCode) {
+    protected PostCodeHandle(String name) {
         super(name, RegionTypes.PostCode);
-        this.postCode = postCode;
     }
 
     protected PostCodeHandle() {
     }
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="PostCodeId")
-    public PostCode getPostCode() {
-        if (postCode != null) {
-            postCode.setRegionHandle(this);
-        }
-        return postCode;
-    }
-
-    public void setPostCode(PostCode postCode) {
-        this.postCode = postCode;
-    }
-
-    @Transient
-    protected Region getRegionTarget() {
-        if (postCode != null) {
-            postCode.setRegionHandle(this);
-        }
-        return postCode;
-    }
-
+    
     /**
      * Gets the parent StateHandle
      * Deproxies the instance if necessary

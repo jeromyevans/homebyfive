@@ -390,7 +390,7 @@ public class RegionServiceImpl implements RegionService {
     public CountryBean lookupOrCreateCountry(CountryHandle countryHandle) {
         CountryBean existing = countryEAO.lookupCountry(countryHandle);
         if (existing == null) {
-            CountryBean countryBean =  new CountryBean(countryHandle.getName(), countryHandle.getCountry().getIso2CountryCode());
+            CountryBean countryBean =  new CountryBean(countryHandle.getName(), countryHandle.getAbbreviation());
             countryBean.setCountryHandle(countryHandle);
             em.persist(countryBean);
 
@@ -409,7 +409,7 @@ public class RegionServiceImpl implements RegionService {
         StateBean existing = stateEAO.lookupState(stateHandle);
         if (existing == null) {
             CountryBean country = lookupOrCreateCountry(stateHandle.getCountry());
-            StateBean stateBean =  new StateBean(country, stateHandle.getName(),  stateHandle.getState().getAbbreviation());
+            StateBean stateBean =  new StateBean(country, stateHandle.getName(),  stateHandle.getAbbreviation());
             stateBean.setStateHandle(stateHandle);
             em.persist(stateBean);
 

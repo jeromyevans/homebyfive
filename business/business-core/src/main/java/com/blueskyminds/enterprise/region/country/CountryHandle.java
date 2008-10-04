@@ -19,7 +19,13 @@ import javax.persistence.*;
 @DiscriminatorValue("C")
 public class CountryHandle extends RegionHandle implements CountryI {
 
-    private Country country;
+    public static final String AUS = "AUS";
+
+    /** The ISO-3166-1 Alpha 3-digit code */
+    private String iso3CountryCode;
+
+    /** The default currency code */
+    private String currencyCode;
 
     /**
      * Create a new CountryHandle pointing to the Country implementation
@@ -28,38 +34,19 @@ public class CountryHandle extends RegionHandle implements CountryI {
      *
      * @param name
      */
-    protected CountryHandle(String name, Country country) {
+    protected CountryHandle(String name) {
         super(name, RegionTypes.Country);
-        this.country = country;
     }
 
     /**
      * Create a new CountryHandle pointing to the Country implementation
      * Use the factory to create new instances
      */
-    protected CountryHandle(String name, Country country, String... aliases) {
+    protected CountryHandle(String name, String... aliases) {
         super(name, RegionTypes.Country, aliases);
-        this.country = country;
     }
 
     protected CountryHandle() {
-    }
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="CountryId")
-    public Country getCountry() {
-        country.setRegionHandle(this);
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    @Transient
-    protected Region getRegionTarget() {
-        country.setRegionHandle(this);        
-        return country;
     }
 
     /**
@@ -78,7 +65,31 @@ public class CountryHandle extends RegionHandle implements CountryI {
      * @return
      */
     @Transient
-    public String getISO2DigitCode() {
-        return country.getIso2CountryCode();
+    public String getIso2CountryCode() {
+        return getAbbreviation();
+    }
+
+    public void setIso2CountryCode(String iso2CountryCode) {
+        setAbbreviation(iso2CountryCode);
+    }
+
+    @Basic
+    @Column(name="ISO3DigitCountryCode")
+    public String getIso3CountryCode() {
+        return iso3CountryCode;
+    }
+
+    public void setIso3CountryCode(String iso3CountryCode) {
+        this.iso3CountryCode = iso3CountryCode;
+    }
+
+    @Basic
+    @Column(name="CurrencyCode")
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 }

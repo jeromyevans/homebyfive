@@ -5,13 +5,10 @@ import com.blueskyminds.enterprise.address.dao.*;
 import com.blueskyminds.enterprise.address.patterns.*;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
-import com.blueskyminds.enterprise.region.country.CountryFactory;
+import com.blueskyminds.enterprise.region.country.RegionFactory;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeFactory;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.state.StateFactory;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbFactory;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherException;
@@ -457,22 +454,22 @@ public class AddressServiceImpl implements AddressService {
 
     /** Create and persist a new country */
     public CountryHandle createCountry(String name, String iso2CountryCode, String iso3CountryCode, String currencyCode) {
-        CountryFactory countryFactory = new CountryFactory();
-        RegionHandle handle = countryFactory.createCountry(name, iso2CountryCode, iso3CountryCode, currencyCode);
+        RegionFactory regionFactory = new RegionFactory();
+        RegionHandle handle = regionFactory.createCountry(name, iso2CountryCode, iso3CountryCode, currencyCode);
         em.persist(handle);
         return (CountryHandle) handle;
     }
 
     /** Create and persist a new state */
     public StateHandle createState(String name, String abbreviation, CountryHandle parent) {
-        StateFactory stateFactory = new StateFactory();
+        RegionFactory stateFactory = new RegionFactory();
         RegionHandle handle = stateFactory.createState(name, abbreviation);
         return (StateHandle) createChildRegion(handle, parent);
     }
 
     /** Create and persist a new PostCode */
     public PostCodeHandle createPostCode(String name, StateHandle parent) {
-        PostCodeHandle handle = new PostCodeFactory().createPostCode(name);
+        PostCodeHandle handle = new RegionFactory().createPostCode(name);
         return (PostCodeHandle) createChildRegion(handle, parent);
     }
 
@@ -483,7 +480,7 @@ public class AddressServiceImpl implements AddressService {
      *
      *  */
     public SuburbHandle createSuburb(String name, StateHandle parent) {
-        SuburbHandle handle = new SuburbFactory().createSuburb(name);
+        SuburbHandle handle = new RegionFactory().createSuburb(name);
         return (SuburbHandle) createChildRegion(handle, parent);
     }
 

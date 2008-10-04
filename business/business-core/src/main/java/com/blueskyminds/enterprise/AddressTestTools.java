@@ -10,14 +10,11 @@ import com.blueskyminds.enterprise.contact.*;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.pricing.Contract;
 import com.blueskyminds.enterprise.pricing.Product;
-import com.blueskyminds.enterprise.region.country.CountryFactory;
+import com.blueskyminds.enterprise.region.country.RegionFactory;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.state.StateFactory;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeFactory;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbFactory;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.SubstitutionsFileReader;
@@ -109,17 +106,17 @@ public class AddressTestTools extends TestTools {
     }
 
     public static void initialiseAddresses(EntityManager em) {
-        CountryHandle australia = new CountryFactory().createCountry("Australia");
+        CountryHandle australia = new RegionFactory().createCountry("Australia");
 
-        StateHandle nsw = australia.addState(new StateFactory().createState("New South Wales", "NSW"));
+        StateHandle nsw = australia.addState(new RegionFactory().createState("New South Wales", "NSW"));
 
-        PostCodeHandle nbPostCode = nsw.addPostCode(new PostCodeFactory().createPostCode("2089"));
-        PostCodeHandle kPostCode = nsw.addPostCode(new PostCodeFactory().createPostCode("2060"));
-        PostCodeHandle mPostCode = nsw.addPostCode(new PostCodeFactory().createPostCode("2088"));
+        PostCodeHandle nbPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2089"));
+        PostCodeHandle kPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2060"));
+        PostCodeHandle mPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2088"));
 
-        SuburbHandle mosmon = nsw.addSuburb(new SuburbFactory().createSuburb("Mosmon", mPostCode));
-        SuburbHandle neutralBay = nsw.addSuburb(new SuburbFactory().createSuburb("Neutral Bay", nbPostCode));
-        SuburbHandle kirribilli = nsw.addSuburb(new SuburbFactory().createSuburb("Kirribilli", kPostCode));
+        SuburbHandle mosmon = nsw.addSuburb(new RegionFactory().createSuburb("Mosmon", mPostCode));
+        SuburbHandle neutralBay = nsw.addSuburb(new RegionFactory().createSuburb("Neutral Bay", nbPostCode));
+        SuburbHandle kirribilli = nsw.addSuburb(new RegionFactory().createSuburb("Kirribilli", kPostCode));
 
         Street sprusonStreet = neutralBay.addStreet(new Street("Spruson", StreetType.Street));
         Street philipStreet = neutralBay.addStreet(new Street("Phillip", StreetType.Street));
