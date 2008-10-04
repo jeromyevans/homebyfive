@@ -1,12 +1,16 @@
 package com.blueskyminds.housepad.core.region.service;
 
 import com.blueskyminds.housepad.core.region.group.RegionGroup;
-import com.blueskyminds.housepad.core.region.model.*;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.country.CountryBean;
 import com.blueskyminds.enterprise.region.state.StateHandle;
+import com.blueskyminds.enterprise.region.state.StateBean;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
+import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
+import com.blueskyminds.enterprise.region.RegionBean;
 import com.blueskyminds.enterprise.address.Street;
 
 import java.util.Set;

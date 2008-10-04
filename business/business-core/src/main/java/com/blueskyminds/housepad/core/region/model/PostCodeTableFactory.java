@@ -5,6 +5,7 @@ import com.blueskyminds.homebyfive.framework.core.table.model.TableModelBuilder;
 import com.blueskyminds.homebyfive.framework.core.table.model.ColumnModel;
 import com.blueskyminds.housepad.core.region.reference.RegionRefFactory;
 import com.blueskyminds.housepad.core.region.reference.RegionRefType;
+import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
 
 import java.util.Collection;
 import java.util.Map;

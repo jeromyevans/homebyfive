@@ -2,11 +2,9 @@ package com.blueskyminds.housepad.core.address.model;
 
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
+import com.blueskyminds.enterprise.region.RegionBean;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.housepad.core.region.model.RegionBean;
-import com.blueskyminds.housepad.core.region.model.SuburbBean;
-import org.apache.commons.lang.StringUtils;
+import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 
 /**
  * Simple bean for creating an address.  Specializes the MultifieldAddress to include a path and flags to

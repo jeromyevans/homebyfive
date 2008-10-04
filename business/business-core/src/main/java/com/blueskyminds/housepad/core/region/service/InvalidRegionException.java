@@ -1,6 +1,6 @@
 package com.blueskyminds.housepad.core.region.service;
 
-import com.blueskyminds.housepad.core.region.model.RegionBean;
+import com.blueskyminds.enterprise.region.RegionBean;
 
 /**
  * Exception indicates that an attempt was made to create a new region with invalid properties

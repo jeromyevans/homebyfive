@@ -1,8 +1,8 @@
 package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
-import com.blueskyminds.housepad.core.region.eao.CountryEAO;
-import com.blueskyminds.housepad.core.region.model.CountryBean;
+import com.blueskyminds.enterprise.region.dao.CountryEAO;
+import com.blueskyminds.enterprise.region.country.CountryBean;
 import com.blueskyminds.housepad.core.region.PathHelper;
 
 import java.util.Set;

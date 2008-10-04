@@ -118,16 +118,28 @@ public class TaskingServiceImpl implements TaskingService {
     }
 
     /**
-     * List the currently active tasks
+     * List the currently active tasks.  The active of listing the tasks will cause the list be update.
      *
      * @return map of active tasks, with unique key as the key and an ActiveTask as the value
      */
     public Set<RuntimeTaskInfo> listActive() {
 
         Set<RuntimeTaskInfo> activeTaskInfos = new HashSet<RuntimeTaskInfo>();
+        Set<String> toRemove = new HashSet<String>();
         synchronized (activeTasks) {
-            for (ActiveTask activeTask : activeTasks.values()) {
-                activeTaskInfos.add(activeTask.getInfo());
+            for (Map.Entry<String, ActiveTask> entry : activeTasks.entrySet()) {
+                ActiveTask activeTask = entry.getValue();
+                if (activeTask.isRunning()) {
+                    activeTaskInfos.add(activeTask.getInfo());
+                } else {
+                    toRemove.add(entry.getKey());
+                }
+            }
+
+            if (toRemove.size() > 0) {
+                for (String task : toRemove) {
+                    activeTasks.remove(task);
+                }
             }
         }
 

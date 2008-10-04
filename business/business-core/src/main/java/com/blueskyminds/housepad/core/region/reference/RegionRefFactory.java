@@ -2,16 +2,20 @@ package com.blueskyminds.housepad.core.region.reference;
 
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
+import com.blueskyminds.enterprise.region.RegionBean;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
+import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.country.Country;
+import com.blueskyminds.enterprise.region.country.CountryBean;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.state.State;
+import com.blueskyminds.enterprise.region.state.StateBean;
 import com.blueskyminds.enterprise.address.Street;
 import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.housepad.core.region.*;
-import com.blueskyminds.housepad.core.region.model.*;
 //import com.blueskyminds.landmine.core.property.Premise;
 
 import java.util.List;

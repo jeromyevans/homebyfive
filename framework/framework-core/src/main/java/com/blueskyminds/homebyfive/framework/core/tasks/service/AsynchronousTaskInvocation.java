@@ -74,6 +74,7 @@ public class AsynchronousTaskInvocation implements Runnable {
             LOG.error(e);
             lastException = new TaskingException(e);
         }
+        LOG.info("AsynhronousTaskInvocation("+key+") exiting run()");
     }
 
     public TaskCoordinator getTaskCoordinator() {

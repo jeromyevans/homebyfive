@@ -56,10 +56,10 @@ public class JsonLibContentTypeHandler implements ContentTypeHandler {
     public String fromObject(Object obj, String resultCode, Writer stream) throws IOException {
         if (obj != null) {
             if (isArray(obj)) {
-                JSONArray jsonArray = JSONArray.fromObject(obj);
+                JSONArray jsonArray = JSONArray.fromObject(obj, prepareJsonConfig());
                 stream.write(jsonArray.toString());
             } else {
-                JSONObject jsonObject = JSONObject.fromObject(obj);
+                JSONObject jsonObject = JSONObject.fromObject(obj, prepareJsonConfig());
                 stream.write(jsonObject.toString());
             }
         }

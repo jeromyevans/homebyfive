@@ -356,10 +356,10 @@ To do: many of these properties need to be able to be changed -->
     <class>com.blueskyminds.landmine.core.property.assets.PremiseAsset</class>
     <class>com.blueskyminds.landmine.core.property.assets.PremiseAssetMap</class>
 
-    <class>com.blueskyminds.housepad.core.region.model.CountryBean</class>
-    <class>com.blueskyminds.housepad.core.region.model.StateBean</class>
-    <class>com.blueskyminds.housepad.core.region.model.PostCodeBean</class>
-    <class>com.blueskyminds.housepad.core.region.model.SuburbBean</class>
+    <class>com.blueskyminds.enterprise.region.country.CountryBean</class>
+    <class>com.blueskyminds.enterprise.region.state.StateBean</class>
+    <class>com.blueskyminds.enterprise.region.postcode.PostCodeBean</class>
+    <class>com.blueskyminds.enterprise.region.suburb.SuburbBean</class>
 
     <class>com.blueskyminds.housepad.core.property.model.PropertyBean</class>
 

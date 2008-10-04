@@ -1,8 +1,8 @@
-package com.blueskyminds.housepad.core.region.model;
+package com.blueskyminds.enterprise.region.country;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.housepad.core.region.model.RegionBean;
+import com.blueskyminds.enterprise.region.RegionBean;
 import com.blueskyminds.housepad.core.region.PathHelper;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;

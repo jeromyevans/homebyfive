@@ -1,6 +1,5 @@
 package com.blueskyminds.housepad.core.region.service;
 
-import com.blueskyminds.housepad.core.region.eao.*;
 import com.blueskyminds.housepad.core.region.group.RegionGroupFactory;
 import com.blueskyminds.housepad.core.region.group.RegionGroup;
 import com.blueskyminds.housepad.core.region.*;
@@ -10,10 +9,19 @@ import com.wideplay.warp.persist.Transactional;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.Street;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.country.CountryBean;
 import com.blueskyminds.enterprise.region.state.StateHandle;
+import com.blueskyminds.enterprise.region.state.StateBean;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
+import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
 import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.RegionBean;
+import com.blueskyminds.enterprise.region.dao.CountryEAO;
+import com.blueskyminds.enterprise.region.dao.PostCodeEAO;
+import com.blueskyminds.enterprise.region.dao.StateEAO;
+import com.blueskyminds.enterprise.region.dao.SuburbEAO;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.google.inject.Inject;
 
