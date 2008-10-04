@@ -5,8 +5,8 @@ import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitial
 import com.blueskyminds.homebyfive.framework.core.patterns.comparison.NamedStringComparator;
 import com.blueskyminds.homebyfive.framework.core.patterns.comparison.IgnoreCaseComparator;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
 
 import java.util.Collection;
 

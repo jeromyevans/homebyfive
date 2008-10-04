@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;

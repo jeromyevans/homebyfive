@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.homebyfive.framework.core.patterns.NamedBin;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
 
 /**
  *

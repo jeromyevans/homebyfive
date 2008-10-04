@@ -1,9 +1,9 @@
 package com.blueskyminds.enterprise.region;
 
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
 
 /**
  * Date Started: 8/07/2007

@@ -1,11 +1,8 @@
 package com.blueskyminds.enterprise.address.dao;
 
 import com.blueskyminds.enterprise.address.*;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.*;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;

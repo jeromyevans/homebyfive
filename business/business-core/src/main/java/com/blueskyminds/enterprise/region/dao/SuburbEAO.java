@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.enterprise.region.index.SuburbBean;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.google.inject.Inject;
 
 import javax.persistence.Query;

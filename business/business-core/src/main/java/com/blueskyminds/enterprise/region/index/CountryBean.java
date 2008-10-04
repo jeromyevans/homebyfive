@@ -1,11 +1,9 @@
 package com.blueskyminds.enterprise.region.index;
 
-import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.enterprise.region.index.RegionBean;
 import com.blueskyminds.enterprise.region.PathHelper;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 

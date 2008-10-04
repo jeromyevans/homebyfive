@@ -2,15 +2,13 @@ package com.blueskyminds.enterprise.region.index;
 
 import javax.persistence.*;
 
-import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.enterprise.region.index.RegionBean;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.reference.CountryRef;
 import com.blueskyminds.enterprise.region.reference.StateRef;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.tools.KeyGenerator;

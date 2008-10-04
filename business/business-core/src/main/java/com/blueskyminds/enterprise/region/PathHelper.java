@@ -3,12 +3,12 @@ package com.blueskyminds.enterprise.region;
 import org.apache.commons.lang.StringUtils;
 
 import com.blueskyminds.enterprise.address.*;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
 /**

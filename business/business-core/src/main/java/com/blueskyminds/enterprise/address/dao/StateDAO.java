@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.enterprise.region.state.StateHandle;
+import com.blueskyminds.enterprise.region.graph.StateHandle;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;

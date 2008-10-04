@@ -4,9 +4,9 @@ import com.blueskyminds.homebyfive.framework.core.patterns.*;
 import com.blueskyminds.homebyfive.framework.core.patterns.bins.RegExSubstitutionBin;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 
 import java.util.Set;
 import java.util.HashSet;

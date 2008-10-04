@@ -9,7 +9,7 @@ import com.blueskyminds.enterprise.address.service.AddressServiceImpl;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

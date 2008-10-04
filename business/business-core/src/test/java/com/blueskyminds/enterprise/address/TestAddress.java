@@ -2,13 +2,10 @@ package com.blueskyminds.enterprise.address;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.test.TestTools;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.region.RegionFactory;
-import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.AddressTestTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -4,10 +4,10 @@ import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.*;
 
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.StreetHandle;
 
 import java.io.PrintStream;
 

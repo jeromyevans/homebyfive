@@ -7,8 +7,8 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import com.blueskyminds.enterprise.address.MultilineAddress;
 import com.blueskyminds.enterprise.address.Address;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
 
 /**
  * A simple plain text address for a contact

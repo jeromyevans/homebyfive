@@ -4,7 +4,7 @@ import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.patterns.AddressPatternMatcher;
 import com.blueskyminds.enterprise.address.*;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
 import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvOptions;

@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;

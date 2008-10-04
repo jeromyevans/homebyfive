@@ -1,11 +1,8 @@
 package com.blueskyminds.enterprise.region.reference;
 
 import com.blueskyminds.enterprise.region.*;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
+import com.blueskyminds.enterprise.region.graph.*;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.blueskyminds.enterprise.region.index.*;
 import com.blueskyminds.enterprise.address.Address;
 //import com.blueskyminds.landmine.core.property.Premise;

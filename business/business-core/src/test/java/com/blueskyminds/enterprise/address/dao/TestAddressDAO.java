@@ -4,11 +4,8 @@ import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.test.TestTools;
 import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
@@ -39,7 +39,7 @@ public class BinCache {
         binMap = new HashMap<BinType, OrderedBin>();
     }
 
-    public BinCache(SuburbHandle suburbHandle, AddressDAO addressDAO, SubstitutionService substitutionService) {        
+    public BinCache(SuburbHandle suburbHandle, AddressDAO addressDAO, SubstitutionService substitutionService) {
         this.addressDAO = addressDAO;
         this.substitutionService = substitutionService;
 

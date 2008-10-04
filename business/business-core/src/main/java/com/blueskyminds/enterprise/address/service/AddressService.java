@@ -4,11 +4,8 @@ import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.StreetSection;
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.*;
+import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 
 import java.util.List;
 import java.util.Set;

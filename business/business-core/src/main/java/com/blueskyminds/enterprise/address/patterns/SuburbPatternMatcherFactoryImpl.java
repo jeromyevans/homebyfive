@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.enterprise.region.state.StateHandle;
+import com.blueskyminds.enterprise.region.graph.StateHandle;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;

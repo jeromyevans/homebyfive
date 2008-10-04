@@ -1,10 +1,10 @@
-package com.blueskyminds.enterprise.region.suburb;
+package com.blueskyminds.enterprise.region.graph;
 
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
+import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.StateHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.street.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.StreetHandle;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
