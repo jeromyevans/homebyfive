@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.address.service;
 import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.StreetSection;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 

@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region.index;
 
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;

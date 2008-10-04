@@ -8,7 +8,7 @@ import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
 import com.blueskyminds.enterprise.region.graph.StateHandle;
 import com.blueskyminds.enterprise.region.graph.StreetHandle;
 import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
 /**

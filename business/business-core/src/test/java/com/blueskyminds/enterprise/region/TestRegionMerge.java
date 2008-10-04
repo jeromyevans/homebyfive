@@ -2,6 +2,7 @@ package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 
 /**
  * Date: 31/03/2008

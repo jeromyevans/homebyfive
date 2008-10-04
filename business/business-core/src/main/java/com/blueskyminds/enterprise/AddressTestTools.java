@@ -13,7 +13,7 @@ import com.blueskyminds.enterprise.pricing.Product;
 import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.SubstitutionsFileReader;
 import org.apache.commons.logging.Log;

@@ -1,4 +1,4 @@
-package com.blueskyminds.enterprise.region.country;
+package com.blueskyminds.enterprise.region;
 
 /**
  * Date Started: 4/10/2008

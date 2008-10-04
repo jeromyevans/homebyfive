@@ -5,7 +5,7 @@ import com.blueskyminds.homebyfive.framework.core.test.TestTools;
 import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.AddressTestTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

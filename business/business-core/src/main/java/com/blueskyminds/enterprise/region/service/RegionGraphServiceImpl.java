@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.service;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;

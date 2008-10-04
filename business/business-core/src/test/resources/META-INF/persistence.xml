@@ -177,7 +177,7 @@ To do: many of these properties need to be able to be changed -->
         <!--<class>com.blueskyminds.enterprise.license.RegionLicense</class>-->
 
         <!--<class>com.blueskyminds.enterprise.region.RegionScheme</class>-->
-        <!--<class>com.blueskyminds.enterprise.region.Region</class>-->
+
 
         <class>com.blueskyminds.enterprise.accounting.ChartOfAccounts</class>
         <class>com.blueskyminds.enterprise.accounting.FinancialJournal</class>
@@ -219,9 +219,9 @@ To do: many of these properties need to be able to be changed -->
         <class>com.blueskyminds.enterprise.address.PlainTextAddress</class>
 
 
-        <class>com.blueskyminds.enterprise.region.RegionHierarchy</class>
-        <class>com.blueskyminds.enterprise.region.RegionAlias</class>
-        <class>com.blueskyminds.enterprise.region.RegionHandle</class>
+        <class>com.blueskyminds.enterprise.region.graph.RegionHierarchy</class>
+        <class>com.blueskyminds.enterprise.region.graph.RegionAlias</class>
+        <class>com.blueskyminds.enterprise.region.graph.RegionHandle</class>
         <class>com.blueskyminds.enterprise.region.graph.CountryHandle</class>
         <class>com.blueskyminds.enterprise.region.graph.StateHandle</class>
 
@@ -318,9 +318,9 @@ To do: many of these properties need to be able to be changed -->
     <class>com.blueskyminds.enterprise.address.PlainTextAddress</class>
 
 
-    <class>com.blueskyminds.enterprise.region.RegionHierarchy</class>
-    <class>com.blueskyminds.enterprise.region.RegionAlias</class>
-    <class>com.blueskyminds.enterprise.region.RegionHandle</class>
+    <class>com.blueskyminds.enterprise.region.graph.RegionHierarchy</class>
+    <class>com.blueskyminds.enterprise.region.graph.RegionAlias</class>
+    <class>com.blueskyminds.enterprise.region.graph.RegionHandle</class>
     <class>com.blueskyminds.enterprise.region.graph.CountryHandle</class>
     <class>com.blueskyminds.enterprise.region.graph.StateHandle</class>
 

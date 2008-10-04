@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region.graph;
 
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.region.graph.StateHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
 

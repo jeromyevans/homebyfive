@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.graph;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.region.graph.CountryHandle;
 import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
 import com.blueskyminds.enterprise.region.graph.SuburbHandle;

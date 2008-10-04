@@ -4,7 +4,7 @@ import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.test.TestTools;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

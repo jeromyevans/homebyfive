@@ -3,11 +3,7 @@ package com.blueskyminds.enterprise.address;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.Region;
-import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.service.RegionGraphServiceImpl;
@@ -122,18 +118,18 @@ public class TestAddressService extends JPATestCase {
     }
 
      public void testFindCountry() throws Exception {
-        List<? extends Region> countries1 = addressService.findCountry("Australia");
+        List<CountryHandle> countries1 = addressService.findCountry("Australia");
         assertNotNull(countries1);
         assertEquals(1, countries1.size());
-        Region x = countries1.get(0);
+        CountryHandle x = countries1.get(0);
         assertEquals("Australia", x.getName());
 
-        List<? extends Region> countries2 = addressService.findCountry("AUS");
+        List<CountryHandle> countries2 = addressService.findCountry("AUS");
         assertNotNull(countries2);
         assertEquals(1, countries2.size());
         assertEquals("Australia", countries2.iterator().next().getName());
 
-        List<? extends Region> countries3 = addressService.findCountry("Australa");
+        List<CountryHandle> countries3 = addressService.findCountry("Australa");
         assertNotNull(countries3);
         assertEquals(2, countries3.size());
         assertEquals("Australia", countries3.iterator().next().getName());

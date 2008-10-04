@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.license;
 
 import com.blueskyminds.enterprise.license.LicenseTypes;
 import com.blueskyminds.enterprise.license.License;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

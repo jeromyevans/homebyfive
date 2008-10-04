@@ -1,4 +1,4 @@
-package com.blueskyminds.enterprise.region;
+package com.blueskyminds.enterprise.region.graph;
 
 /**
  * A Region that includes a proxy

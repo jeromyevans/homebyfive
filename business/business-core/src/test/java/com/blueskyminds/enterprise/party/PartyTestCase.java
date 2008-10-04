@@ -12,7 +12,7 @@ import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.tag.service.TagService;
 import com.blueskyminds.enterprise.tag.service.TagServiceImpl;
 import com.blueskyminds.enterprise.tag.Tag;
-import com.blueskyminds.enterprise.region.country.Countries;
+import com.blueskyminds.enterprise.region.Countries;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.region.reference;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModelBuilder;
 import com.blueskyminds.homebyfive.framework.core.table.model.ColumnModel;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 
 import java.util.*;
 

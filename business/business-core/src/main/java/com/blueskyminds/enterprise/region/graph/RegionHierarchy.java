@@ -1,4 +1,4 @@
-package com.blueskyminds.enterprise.region;
+package com.blueskyminds.enterprise.region.graph;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 

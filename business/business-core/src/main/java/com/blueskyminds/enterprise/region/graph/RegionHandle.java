@@ -1,4 +1,4 @@
-package com.blueskyminds.enterprise.region;
+package com.blueskyminds.enterprise.region.graph;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObject;
@@ -31,7 +31,7 @@ import java.util.HashSet;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Impl", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("R")
-public abstract class RegionHandle extends AbstractEntity implements Named, Aliased, Region {
+public abstract class RegionHandle extends AbstractEntity implements Named, Aliased {
 
     private String name;
     private String abbreviation;    
@@ -222,14 +222,12 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      *
      * After an update like this both the parent and child need to be persisted
      *
-     * @param childRegion
+     * @param childHandle
      * @return true if added ok
      */
-    public boolean addChildRegion(Region childRegion) {
-        RegionHandle childHandle;
+    public boolean addChildRegion(RegionHandle childHandle) {
         boolean added = false;
 
-        childHandle = getHandle(childRegion);
         if (childHandle != null) {
             RegionHierarchy map = new RegionHierarchy(this, childHandle);
 
@@ -323,25 +321,6 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
         return removed;
     }
 
-    /**
-     * Attempt to extract the handle for the Region implementation
-     *
-     * @param childRegion
-     * @return
-     */
-    @Transient
-    private RegionHandle getHandle(Region childRegion) {
-        RegionHandle handle = null;
-        if (childRegion instanceof RegionHandle) {
-            handle = (RegionHandle) childRegion;
-        } else {
-            if (childRegion instanceof RegionHandleAware) {
-                handle = ((RegionHandleAware) childRegion).getRegionHandle();
-            }
-        }
-        return handle;
-    }
-
     private boolean doAddParentMap(RegionHierarchy map) {
         return parentRegions.add(map);
     }
@@ -358,15 +337,13 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      *
      * After an update like this both the parent and child need to be persisted
      *
-     * @param parentRegion
+     * @param parentHandle
      * @return true if added ok
      */
-    public boolean addParentRegion(Region parentRegion) {
+    public boolean addParentRegion(RegionHandle parentHandle) {
 
-        RegionHandle parentHandle;
         boolean added = false;
 
-        parentHandle = getHandle(parentRegion);
         if (parentHandle != null) {
             RegionHierarchy map = new RegionHierarchy(parentHandle, this);
 
@@ -376,18 +353,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
             }
         }
         return added;                
-    }
-
-    /**
-     * Inject this handle into the referenced region.
-     */
-    private void injectRegionHandle(Region region) {
-        if (region != null) {
-            if (region instanceof RegionHandleAware) {
-                ((RegionHandleAware) region).setRegionHandle(this);
-            }
-        }
-    }
+    }    
 
     /**
      * The toString method has been overridden to show the short className, id and hashcode

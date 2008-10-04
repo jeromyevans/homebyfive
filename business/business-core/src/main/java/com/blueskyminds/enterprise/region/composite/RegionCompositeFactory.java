@@ -9,7 +9,7 @@ import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
 import com.blueskyminds.enterprise.region.index.PostCodeBean;
 import com.blueskyminds.enterprise.region.graph.StateHandle;
 import com.blueskyminds.enterprise.region.index.StateBean;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.graph.CountryHandle;
 import com.blueskyminds.enterprise.region.index.CountryBean;

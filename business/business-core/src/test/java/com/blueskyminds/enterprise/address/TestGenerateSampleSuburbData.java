@@ -16,7 +16,6 @@ import com.blueskyminds.enterprise.region.graph.CountryHandle;
 import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
 import com.blueskyminds.enterprise.region.graph.StateHandle;
 import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.service.AddressServiceImpl;
@@ -77,7 +76,7 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
         Locale[] locales = Locale.getAvailableLocales();
         for (Locale locale : locales) {
             try {
-                Region thisCountry = addressService.createCountry(locale.getDisplayCountry(), locale.getCountry(), locale.getISO3Country(), Currency.getInstance(locale).getCurrencyCode());
+                CountryHandle thisCountry = addressService.createCountry(locale.getDisplayCountry(), locale.getCountry(), locale.getISO3Country(), Currency.getInstance(locale).getCurrencyCode());
                 LOG.debug("Created country: "+thisCountry.getName());
                 countries++;
             } catch (IllegalArgumentException e) {

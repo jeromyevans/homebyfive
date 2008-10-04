@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.address.service;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.dao.*;
 import com.blueskyminds.enterprise.address.patterns.*;
-import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
 import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.graph.*;

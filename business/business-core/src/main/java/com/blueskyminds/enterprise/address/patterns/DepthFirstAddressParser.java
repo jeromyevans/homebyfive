@@ -9,7 +9,7 @@ import com.blueskyminds.enterprise.region.graph.SuburbHandle;
 import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
 import com.blueskyminds.enterprise.region.graph.CountryHandle;
 import com.blueskyminds.enterprise.region.graph.StreetHandle;
-import com.blueskyminds.enterprise.region.country.Countries;
+import com.blueskyminds.enterprise.region.Countries;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;

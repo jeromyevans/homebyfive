@@ -1,9 +1,8 @@
 package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.Region;
-import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.RegionHandleAware;
+import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.RegionHandleAware;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -66,7 +65,7 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
      * @param childRegion
      * @return
      */
-    private RegionHandle getHandle(Region childRegion) {
+    private RegionHandle getHandle(RegionHandle childRegion) {
         RegionHandle handle = null;
         if (childRegion instanceof RegionHandle) {
             handle = (RegionHandle) childRegion;
@@ -119,9 +118,8 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
      *
      * @return set of RegionHandles
      **/
-    public Set<RegionHandle> findChildren(RegionHandle region) {
+    public Set<RegionHandle> findChildren(RegionHandle handle) {
         Set<RegionHandle> regions;
-        RegionHandle handle = getHandle(region);
 
         Query query = em.createNamedQuery(QUERY_REGION_CHILDREN);
         query.setParameter(PARAM_REGION_PARENT, handle);
@@ -135,9 +133,8 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
      *
      * @return set of RegionHandles
      **/
-    public Set<RegionHandle> findChildrenOfType(RegionHandle parent, RegionTypes type) {
+    public Set<RegionHandle> findChildrenOfType(RegionHandle parentHandle, RegionTypes type) {
         Set<RegionHandle> regions;
-        RegionHandle parentHandle = getHandle(parent);
 
         Query query = em.createNamedQuery(QUERY_REGION_CHILDREN_AND_TYPE);
         query.setParameter(PARAM_REGION_PARENT_ID, parentHandle.getId());
@@ -150,10 +147,8 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
     /**
      * Quick lookup of the parents of the specified region
      **/
-    public Set<RegionHandle> findParents(RegionHandle region) {
+    public Set<RegionHandle> findParents(RegionHandle handle) {
         Set<RegionHandle> regions;
-
-        RegionHandle handle = getHandle(region);
 
         Query query = em.createNamedQuery(QUERY_REGION_PARENTS);
         query.setParameter(PARAM_REGION_CHILD, handle);
@@ -168,13 +163,13 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
      * @param name
      * @return
      */
-    public Region getCountry(String name) {
-        Set<Region> regions;
+    public RegionHandle getCountry(String name) {
+        Set<RegionHandle> regions;
 
         Query query = em.createNamedQuery(QUERY_REGION_BY_NAME_AND_TYPE);
         query.setParameter(PARAM_NAME, name);
         query.setParameter(PARAM_TYPE, RegionTypes.Country);
-        regions = new HashSet<Region>(query.getResultList());
+        regions = new HashSet<RegionHandle>(query.getResultList());
 
         if (regions.size() > 0) {
             return regions.iterator().next();
@@ -188,19 +183,17 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
      *
      * @param name
      * @param type
-     * @param parent
+     * @param parentHandle
      * @return
      */
-    private Region getRegionByNameTypeParent(String name, RegionTypes type, Region parent) {
-        Set<Region> regions;
-
-        RegionHandle parentHandle = getHandle(parent);
+    private RegionHandle getRegionByNameTypeParent(String name, RegionTypes type, RegionHandle parentHandle) {
+        Set<RegionHandle> regions;
 
         Query query = em.createNamedQuery(QUERY_REGION_BY_NAME_TYPE_AND_PARENT);
         query.setParameter(PARAM_NAME, name);
         query.setParameter(PARAM_TYPE, type);
         query.setParameter(PARAM_REGION_PARENT, parentHandle);
-        regions = new HashSet<Region>(query.getResultList());
+        regions = new HashSet<RegionHandle>(query.getResultList());
 
         if (regions.size() > 0) {
             return regions.iterator().next();
@@ -215,7 +208,7 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
      * @param name
      * @return
      */
-    public Region getState(String name, Region country) {
+    public RegionHandle getState(String name, RegionHandle country) {
         return getRegionByNameTypeParent(name, RegionTypes.State, country);
     }
 
@@ -225,7 +218,7 @@ public class RegionGraphDAO extends AbstractDAO<RegionHandle> {
      * @param name
      * @return
      */
-    public Region getPostCode(String name, Region state) {
+    public RegionHandle getPostCode(String name, RegionHandle state) {
         return getRegionByNameTypeParent(name, RegionTypes.PostCode, state);
     }
 
