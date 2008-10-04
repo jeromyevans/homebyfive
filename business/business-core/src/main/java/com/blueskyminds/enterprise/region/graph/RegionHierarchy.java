@@ -18,10 +18,10 @@ import javax.persistence.*;
 @Entity
 public class RegionHierarchy extends AbstractEntity {
 
-    protected RegionHandle parent;
-    protected RegionHandle child;
+    protected Region parent;
+    protected Region child;
 
-    public RegionHierarchy(RegionHandle parent, RegionHandle child) {
+    public RegionHierarchy(Region parent, Region child) {
         this.parent = parent;
         this.child = child;
     }
@@ -32,21 +32,21 @@ public class RegionHierarchy extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parentId")
-    public RegionHandle getParent() {
+    public Region getParent() {
         return parent;
     }
 
-    public void setParent(RegionHandle parent) {
+    public void setParent(Region parent) {
         this.parent = parent;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "childId")
-    public RegionHandle getChild() {
+    public Region getChild() {
         return child;
     }
 
-    public void setChild(RegionHandle child) {
+    public void setChild(Region child) {
         this.child = child;
     }
 }

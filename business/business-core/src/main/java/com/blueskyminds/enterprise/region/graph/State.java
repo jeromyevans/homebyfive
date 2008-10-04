@@ -1,10 +1,10 @@
 package com.blueskyminds.enterprise.region.graph;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
@@ -16,16 +16,16 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("S")
-public class StateHandle extends RegionHandle {
+public class State extends Region {
 
     /** A special case StateHandle instance used to indentify an invalid State rather than a null value */
-    public static final StateHandle INVALID = invalid();
+    public static final State INVALID = invalid();
 
-    public StateHandle(String name, String abbreviation) {
+    public State(String name, String abbreviation) {
         super(name, RegionTypes.State, abbreviation);
     }
 
-    protected StateHandle() {
+    protected State() {
     }
 
     /**
@@ -34,7 +34,7 @@ public class StateHandle extends RegionHandle {
      * @param postCode
      * @return
      */
-    public PostCodeHandle addPostCode(PostCodeHandle postCode) {
+    public PostalCode addPostCode(PostalCode postCode) {
         addChildRegion(postCode);
         return postCode;
     }
@@ -45,7 +45,7 @@ public class StateHandle extends RegionHandle {
      * @param suburb
      * @return
      */
-    public SuburbHandle addSuburb(SuburbHandle suburb) {
+    public Suburb addSuburb(Suburb suburb) {
         addChildRegion(suburb);
         return suburb;
     }
@@ -57,17 +57,17 @@ public class StateHandle extends RegionHandle {
      * @return
      */
     @Transient
-    public CountryHandle getCountry() {
-        RegionHandle parent = getParent(RegionTypes.Country);
+    public Country getCountry() {
+        Region parent = getParent(RegionTypes.Country);
         if (parent != null) {
-            return (CountryHandle) parent.unproxy().getModel();
+            return (Country) parent.unproxy().getModel();
         } else {
             return null;
         }
     }   
 
-     private static StateHandle invalid() {
-        StateHandle invalid = new StateHandle();
+     private static State invalid() {
+        State invalid = new State();
         invalid.setName("INVALID");
         invalid.setStatus(DomainObjectStatus.Deleted);
         return invalid;

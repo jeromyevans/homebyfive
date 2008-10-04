@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.address.dao;
 
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.region.graph.*;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
@@ -97,14 +97,14 @@ public class AddressDAO extends AbstractDAO {
      * @param iso3DigitCode (it will be converted to uppercase for the query)
      * @return Country instance, or null if not found
      */
-    public CountryHandle lookupCountry(String iso3DigitCode) {
-        List<CountryHandle> countries;
+    public Country lookupCountry(String iso3DigitCode) {
+        List<Country> countries;
         Query query = em.createNamedQuery(QUERY_COUNTRY_BY_ISO3_CODE);
         query.setParameter(PARAM_ISO3_CODE, StringUtils.upperCase(iso3DigitCode));
-        countries = new LinkedList<CountryHandle>(query.getResultList());
+        countries = new LinkedList<Country>(query.getResultList());
 
         if (countries.size() > 0) {
-            return (CountryHandle) countries.iterator().next();
+            return (Country) countries.iterator().next();
         } else {
             return null;
         }
@@ -116,11 +116,11 @@ public class AddressDAO extends AbstractDAO {
      * @param iso2DigitCode (it will be converted to uppercase for the query)
      * @return Country instance, or null if not found
      */
-    public CountryHandle findCountryByISO2DigitCode(String iso2DigitCode) {
-        List<CountryHandle> countries;
+    public Country findCountryByISO2DigitCode(String iso2DigitCode) {
+        List<Country> countries;
         Query query = em.createNamedQuery(QUERY_COUNTRY_BY_ISO2_CODE);
         query.setParameter(PARAM_ISO2_CODE, StringUtils.upperCase(iso2DigitCode));
-        countries = new LinkedList<CountryHandle>(query.getResultList());
+        countries = new LinkedList<Country>(query.getResultList());
 
         if (countries.size() > 0) {
             return countries.iterator().next();
@@ -136,12 +136,12 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return Country instance, or null if not found
      */
-    public Set<StateHandle> listStatesInCountry(CountryHandle country) {
+    public Set<State> listStatesInCountry(Country country) {
 
-        Set<StateHandle> regions;
+        Set<State> regions;
         Query query = em.createNamedQuery(QUERY_ALL_STATES_BY_COUNTRY_ID);
         query.setParameter(PARAM_COUNTRY_ID, country.getId());
-        regions = new HashSet<StateHandle>(query.getResultList());
+        regions = new HashSet<State>(query.getResultList());
 
         return regions;
     }
@@ -151,12 +151,12 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return Country instance, or null if not found
      */
-    public StateHandle lookupState(String name, CountryHandle country) {
-        Set<StateHandle> regions;
+    public State lookupState(String name, Country country) {
+        Set<State> regions;
         Query query = em.createNamedQuery(QUERY_STATE_BY_COUNTRY_ID_AND_NAME);
         query.setParameter(PARAM_COUNTRY_ID, country.getId());
         query.setParameter(PARAM_NAME, name);
-        regions = new HashSet<StateHandle>(query.getResultList());
+        regions = new HashSet<State>(query.getResultList());
         if (regions.size() > 0) {
             return regions.iterator().next();
         } else {
@@ -169,12 +169,12 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return Country instance, or null if not found
      */
-    public StateHandle lookupStateByAbbr(String abbr, CountryHandle country) {
-        Set<StateHandle> regions;
+    public State lookupStateByAbbr(String abbr, Country country) {
+        Set<State> regions;
         Query query = em.createNamedQuery(QUERY_STATE_BY_COUNTRY_ID_AND_ABBR);
         query.setParameter(PARAM_COUNTRY_ID, country.getId());
         query.setParameter(PARAM_ABBR, abbr);
-        regions = new HashSet<StateHandle>(query.getResultList());
+        regions = new HashSet<State>(query.getResultList());
         if (regions.size() > 0) {
             return regions.iterator().next();
         } else {
@@ -187,12 +187,12 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return SuburbHandle instance, or null if not found
      */
-    public SuburbHandle lookupSuburb(String name, StateHandle state) {
-        Set<SuburbHandle> regions;
+    public Suburb lookupSuburb(String name, State state) {
+        Set<Suburb> regions;
         Query query = em.createNamedQuery(QUERY_SUBURB_BY_STATE_ID_AND_NAME);
         query.setParameter(PARAM_STATE_ID, state.getId());
         query.setParameter(PARAM_NAME, StringUtils.lowerCase(name));
-        regions = new HashSet<SuburbHandle>(query.getResultList());
+        regions = new HashSet<Suburb>(query.getResultList());
         if (regions.size() > 0) {
             return regions.iterator().next();
         } else {
@@ -205,12 +205,12 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return PostCodeHandle instance, or null if not found
      */
-    public PostCodeHandle lookupPostCode(String name, StateHandle state) {
-        Set<PostCodeHandle> regions;
+    public PostalCode lookupPostCode(String name, State state) {
+        Set<PostalCode> regions;
         Query query = em.createNamedQuery(QUERY_POSTCODE_BY_STATE_ID_AND_NAME);
         query.setParameter(PARAM_STATE_ID, state.getId());
         query.setParameter(PARAM_NAME, StringUtils.lowerCase(name));
-        regions = new HashSet<PostCodeHandle>(query.getResultList());
+        regions = new HashSet<PostalCode>(query.getResultList());
         if (regions.size() > 0) {
             return regions.iterator().next();
         } else {
@@ -243,11 +243,11 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return loist of suburbs
      */
-    public Set<SuburbHandle> listSuburbsInState(StateHandle state) {
-        Set<SuburbHandle> regions;
+    public Set<Suburb> listSuburbsInState(State state) {
+        Set<Suburb> regions;
         Query query = em.createNamedQuery(QUERY_ALL_SUBURBS_BY_STATE_ID);
         query.setParameter(PARAM_STATE_ID, state.getId());
-        regions = new HashSet<SuburbHandle>(query.getResultList());
+        regions = new HashSet<Suburb>(query.getResultList());
         return regions;
     }
 
@@ -256,10 +256,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<PostCodeHandle> listPostCodesInState(StateHandle state) {
+    public Set<PostalCode> listPostCodesInState(State state) {
         Query query = em.createNamedQuery(QUERY_ALL_POSTCODES_BY_STATE_ID);
         query.setParameter(PARAM_STATE_ID, state.getId());
-        return new HashSet<PostCodeHandle>(query.getResultList());
+        return new HashSet<PostalCode>(query.getResultList());
     }
 
     /**
@@ -268,9 +268,9 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<CountryHandle> listCountries() {
+    public Set<Country> listCountries() {
         Query query = em.createNamedQuery(QUERY_ALL_COUNTRIES);
-        return new HashSet<CountryHandle>(query.getResultList());
+        return new HashSet<Country>(query.getResultList());
     }
 
     /**
@@ -278,10 +278,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<SuburbHandle> listSuburbsInCountry(CountryHandle countryHandle) {
+    public Set<Suburb> listSuburbsInCountry(Country countryHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_SUBURBS_BY_COUNTRY);
         query.setParameter("country", countryHandle);
-        return new HashSet<SuburbHandle>(query.getResultList());
+        return new HashSet<Suburb>(query.getResultList());
     }
 
     /**
@@ -289,10 +289,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<PostCodeHandle> listPostCodesInCountry(CountryHandle countryHandle) {
+    public Set<PostalCode> listPostCodesInCountry(Country countryHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_POSTCODES_BY_COUNTRY_ID);
         query.setParameter(PARAM_COUNTRY_ID, countryHandle.getId());
-        return new HashSet<PostCodeHandle>(query.getResultList());
+        return new HashSet<PostalCode>(query.getResultList());
     }
 
     /**
@@ -300,10 +300,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<StreetHandle> listStreetsInCountry(CountryHandle countryHandle) {
+    public Set<Street> listStreetsInCountry(Country countryHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_STREETS_BY_COUNTRY);
         query.setParameter(PARAM_COUNTRY, countryHandle);
-        return new HashSet<StreetHandle>(FilterTools.getNonNull(query.getResultList()));
+        return new HashSet<Street>(FilterTools.getNonNull(query.getResultList()));
     }
 
      /**
@@ -311,10 +311,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<StreetHandle> listStreetsInSuburb(SuburbHandle suburbHandle) {
+    public Set<Street> listStreetsInSuburb(Suburb suburbHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_STREETS_BY_SUBURB);
         query.setParameter(PARAM_SUBURB, suburbHandle);
-        return new HashSet<StreetHandle>(FilterTools.getNonNull(query.getResultList()));
+        return new HashSet<Street>(FilterTools.getNonNull(query.getResultList()));
     }
 
      /**
@@ -322,10 +322,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<StreetHandle> listStreetsInPostCode(PostCodeHandle postCodeHandle) {
+    public Set<Street> listStreetsInPostCode(PostalCode postCodeHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_STREETS_BY_POSTCODE);
         query.setParameter(PARAM_POSTCODE, postCodeHandle);
-        return new HashSet<StreetHandle>(FilterTools.getNonNull(query.getResultList()));
+        return new HashSet<Street>(FilterTools.getNonNull(query.getResultList()));
     }
 
     /**
@@ -333,7 +333,7 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<Address> listAddressesInSuburb(SuburbHandle suburbHandle) {
+    public Set<Address> listAddressesInSuburb(Suburb suburbHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_ADDRESSES_BY_SUBURB);
         query.setParameter(PARAM_SUBURB, suburbHandle);
         return new HashSet<Address>(FilterTools.getNonNull(query.getResultList()));
@@ -344,7 +344,7 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<Address> listAddressesInPostCode(PostCodeHandle postCodeHandle) {
+    public Set<Address> listAddressesInPostCode(PostalCode postCodeHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_ADDRESSES_BY_POSTCODE);
         query.setParameter(PARAM_POSTCODE, postCodeHandle);
         return new HashSet<Address>(FilterTools.getNonNull(query.getResultList()));
@@ -355,7 +355,7 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<Address> listAddressesInStreet(StreetHandle street) {
+    public Set<Address> listAddressesInStreet(Street street) {
         Query query = em.createNamedQuery(QUERY_ALL_ADDRESSES_BY_STREET);
         query.setParameter(PARAM_STREET, street);
         return new HashSet<Address>(FilterTools.getNonNull(query.getResultList()));
@@ -368,8 +368,8 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return Street instance, or null if not found
      */
-    public StreetHandle getStreetByName(String streetName, StreetType type, StreetSection section, SuburbHandle suburb) {
-        StreetHandle street;
+    public Street getStreetByName(String streetName, StreetType type, StreetSection section, Suburb suburb) {
+        Street street;
         Query query;
 
         if (type != null) {
@@ -387,7 +387,7 @@ public class AddressDAO extends AbstractDAO {
         query.setParameter(PARAM_STREET_NAME, streetName);
         query.setParameter(PARAM_STREET_SUBURB, suburb);
 
-        street = (StreetHandle) findOne(query);
+        street = (Street) findOne(query);
 
         return street;
     }
@@ -423,7 +423,7 @@ public class AddressDAO extends AbstractDAO {
                     queryBuilder.setParameter("street", streetAddress.getStreet());
                 } else {
                     // match street by name
-                    StreetHandle street = streetAddress.getStreet();
+                    Street street = streetAddress.getStreet();
                     if (StringUtils.isNotBlank(street.getName())) {
                         queryBuilder.addCondition("lower(address.street.name) = :streetName");
                         queryBuilder.setParameter("streetName", StringUtils.lowerCase(street.getName()));

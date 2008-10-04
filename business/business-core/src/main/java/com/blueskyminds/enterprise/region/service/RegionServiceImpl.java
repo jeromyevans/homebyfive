@@ -70,7 +70,7 @@ public class RegionServiceImpl implements RegionService {
             CountryBean existing = countryEAO.lookupCountry(countryBean.getPath());
             if (existing == null) {
                 // check if the node exists in the region graph and reference it/create it
-                CountryHandle country = addressService.lookupCountry(countryBean.getAbbr());
+                Country country = addressService.lookupCountry(countryBean.getAbbr());
                 if (country == null) {
                     country = addressService.createCountry(countryBean.getName(), countryBean.getAbbr(), null, null);
                 }
@@ -120,7 +120,7 @@ public class RegionServiceImpl implements RegionService {
         StateBean existing = stateEAO.lookupState(stateBean.getPath());
         if (existing == null) {
             // check if the node exists in the region graph and reference it/create it
-            StateHandle stateHandle = addressService.lookupStateByAbbr(stateBean.getAbbr(), stateBean.getCountryBean().getCountryHandle());
+            State stateHandle = addressService.lookupStateByAbbr(stateBean.getAbbr(), stateBean.getCountryBean().getCountryHandle());
             if (stateHandle == null) {
                 stateHandle = addressService.createState(stateBean.getName(), stateBean.getAbbr(), stateBean.getCountryBean().getCountryHandle());
             }
@@ -166,7 +166,7 @@ public class RegionServiceImpl implements RegionService {
         SuburbBean existing = suburbEAO.lookupSuburb(suburbBean.getPath());
         if (existing == null) {
             // check if the node exists in the region graph and reference it/create it
-            SuburbHandle suburbHandle = addressService.lookupSuburb(suburbBean.getName(), suburbBean.getStateBean().getStateHandle());
+            Suburb suburbHandle = addressService.lookupSuburb(suburbBean.getName(), suburbBean.getStateBean().getStateHandle());
             if (suburbHandle == null) {
                 suburbHandle = addressService.createSuburb(suburbBean.getName(), suburbBean.getStateBean().getStateHandle());
             }
@@ -182,7 +182,7 @@ public class RegionServiceImpl implements RegionService {
         return suburbEAO.lookupSuburb(PathHelper.buildPath(country, state, suburb));
     }
 
-    public SuburbBean lookupSuburb(SuburbHandle suburbHandle) {
+    public SuburbBean lookupSuburb(Suburb suburbHandle) {
         return suburbEAO.lookupSuburb(suburbHandle);
     }
 
@@ -202,7 +202,7 @@ public class RegionServiceImpl implements RegionService {
         PostCodeBean existing = postCodeEAO.lookupPostCode(postCodeBean.getPath());
         if (existing == null) {
             // check if the node exists in the region graph and reference it/create it
-            PostCodeHandle postCodeHandle = addressService.lookupPostCode(postCodeBean.getName(), postCodeBean.getStateBean().getStateHandle());
+            PostalCode postCodeHandle = addressService.lookupPostCode(postCodeBean.getName(), postCodeBean.getStateBean().getStateHandle());
             if (postCodeHandle == null) {
                 postCodeHandle = addressService.createPostCode(postCodeBean.getName(), postCodeBean.getStateBean().getStateHandle());
             }
@@ -358,14 +358,14 @@ public class RegionServiceImpl implements RegionService {
 
     private void deleteRegion(RegionBean regionBean) {
         if (regionBean != null) {
-            RegionHandle regionHandle = regionBean.getRegionHandle();
+            Region regionHandle = regionBean.getRegionHandle();
             regionBean.setStatus(DomainObjectStatus.Deleted);
             em.persist(regionBean);
             deleteRegionHandle(regionHandle);
         }
     }
 
-    private void deleteRegionHandle(RegionHandle regionHandle) {
+    private void deleteRegionHandle(Region regionHandle) {
         if (regionHandle != null) {
             addressService.deleteRegionById(regionHandle.getId());
         }
@@ -376,7 +376,7 @@ public class RegionServiceImpl implements RegionService {
      *
      */
     @Transactional
-    public CountryBean lookupOrCreateCountry(CountryHandle countryHandle) {
+    public CountryBean lookupOrCreateCountry(Country countryHandle) {
         CountryBean existing = countryEAO.lookupCountry(countryHandle);
         if (existing == null) {
             CountryBean countryBean =  new CountryBean(countryHandle.getName(), countryHandle.getAbbreviation());
@@ -394,7 +394,7 @@ public class RegionServiceImpl implements RegionService {
      *
      */
     @Transactional
-    public StateBean lookupOrCreateState(StateHandle stateHandle) {
+    public StateBean lookupOrCreateState(State stateHandle) {
         StateBean existing = stateEAO.lookupState(stateHandle);
         if (existing == null) {
             CountryBean country = lookupOrCreateCountry(stateHandle.getCountry());
@@ -413,7 +413,7 @@ public class RegionServiceImpl implements RegionService {
      *
      */
     @Transactional
-    public PostCodeBean lookupOrCreatePostCode(PostCodeHandle postCodeHandle) {
+    public PostCodeBean lookupOrCreatePostCode(PostalCode postCodeHandle) {
         PostCodeBean existing = postCodeEAO.lookupPostCode(postCodeHandle);
         if (existing == null) {
             CountryBean country = lookupOrCreateCountry(postCodeHandle.getState().getCountry());
@@ -433,10 +433,10 @@ public class RegionServiceImpl implements RegionService {
      *
      */
     @Transactional()
-    public SuburbBean lookupOrCreateSuburb(SuburbHandle suburbHandle) {
+    public SuburbBean lookupOrCreateSuburb(Suburb suburbHandle) {
         SuburbBean existing = suburbEAO.lookupSuburb(suburbHandle);
         if (existing == null) {
-            StateHandle stateHandle = suburbHandle.getState();
+            State stateHandle = suburbHandle.getState();
             CountryBean country = lookupOrCreateCountry(stateHandle.getCountry());
             StateBean state = lookupOrCreateState(suburbHandle.getState());
             PostCodeBean postCode = lookupOrCreatePostCode(suburbHandle.getPostCode());

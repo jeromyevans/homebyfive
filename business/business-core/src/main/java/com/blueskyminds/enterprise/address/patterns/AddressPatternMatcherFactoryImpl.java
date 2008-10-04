@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;
@@ -67,7 +67,7 @@ public class AddressPatternMatcherFactoryImpl implements AddressParserFactory {
      * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      *
      */
-    public AddressParser create(SuburbHandle suburb) {
+    public AddressParser create(Suburb suburb) {
         LOG.info("Creating a new AddressPatternMatcher for " + suburb);
         try {
             AddressPatternMatcher matcher = new AddressPatternMatcher(suburb, addressScoringStrategy);

@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -38,7 +38,7 @@ public class TestSuburbPatternMatcher extends JPATestCase {
 
      public void testSuburbCleansing1() throws Exception {
          String inputText = "Neutral Bay NSW 2089";         
-         SuburbHandle suburb = matcher.extractBest(inputText);
+         Suburb suburb = matcher.extractBest(inputText);
          System.out.println(StringUtils.leftPad(inputText, 38)+"|"+(suburb != null ? suburb.toString() : "FAIL"));
          assertNotNull(suburb);
     }

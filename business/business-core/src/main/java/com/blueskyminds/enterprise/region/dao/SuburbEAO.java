@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.enterprise.region.index.SuburbBean;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.google.inject.Inject;
 
 import javax.persistence.Query;
@@ -72,7 +72,7 @@ public class SuburbEAO extends AbstractDAO<SuburbBean> {
      *
      * @return SuburbBean, or null if not found
      */
-    public SuburbBean lookupSuburb(SuburbHandle suburbHandle) {
+    public SuburbBean lookupSuburb(Suburb suburbHandle) {
 
         Query query = em.createNamedQuery(QUERY_SUBURB_BY_HANDLE);
         query.setParameter(PARAM_HANDLE, suburbHandle);

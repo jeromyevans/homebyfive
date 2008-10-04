@@ -5,8 +5,8 @@ import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitial
 import com.blueskyminds.homebyfive.framework.core.patterns.comparison.NamedStringComparator;
 import com.blueskyminds.homebyfive.framework.core.patterns.comparison.IgnoreCaseComparator;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.Country;
 
 import java.util.Collection;
 
@@ -25,10 +25,10 @@ import java.util.Collection;
  */
 public class PostCodeBin extends Bin {
 
-    public PostCodeBin(CountryHandle country, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
-        Collection<PostCodeHandle> postCodes = addressDAO.listPostCodesInCountry(country);
+    public PostCodeBin(Country country, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
+        Collection<PostalCode> postCodes = addressDAO.listPostCodesInCountry(country);
 
-        for (PostCodeHandle postCode : postCodes) {
+        for (PostalCode postCode : postCodes) {
             addPattern(postCode, new NamedStringComparator(new IgnoreCaseComparator()), true, -1, postCode);
              
 //            for (String alias : postCode.getNames()) {

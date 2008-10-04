@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -39,9 +39,9 @@ public class TestRegionXDAO2 extends JPATestCase {
 
 
     public void testFindChildren() throws Exception {
-        RegionHandle nsw = regionGraphDAO.findRegionByName(TestRegionTools.NSW).iterator().next();
+        Region nsw = regionGraphDAO.findRegionByName(TestRegionTools.NSW).iterator().next();
         // find suburbs in NSW
-        Set<RegionHandle> children = regionGraphDAO.findChildren(nsw);
+        Set<Region> children = regionGraphDAO.findChildren(nsw);
         assertNotNull(children);
         assertTrue(children.size() > 0);
     }

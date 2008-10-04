@@ -5,7 +5,7 @@ import com.blueskyminds.enterprise.region.index.RegionBean;
 import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.reference.CountryRef;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
@@ -100,11 +100,11 @@ public class StateBean extends RegionBean implements CountryRef {
     }
 
     @Transient
-    public StateHandle getStateHandle() {
-        return (StateHandle) regionHandle;
+    public State getStateHandle() {
+        return (State) regionHandle;
     }
 
-    public void setStateHandle(StateHandle stateHandle) {
+    public void setStateHandle(State stateHandle) {
         this.regionHandle = stateHandle;
     }
 

@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.region.index;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.enterprise.region.index.RegionBean;
 import com.blueskyminds.enterprise.region.PathHelper;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
@@ -61,11 +61,11 @@ public class CountryBean extends RegionBean {
      * @return
      */
     @Transient
-    public CountryHandle getCountryHandle() {
-        return (CountryHandle) regionHandle;
+    public Country getCountryHandle() {
+        return (Country) regionHandle;
     }
 
-    public void setCountryHandle(CountryHandle countryHandle) {
+    public void setCountryHandle(Country countryHandle) {
         this.regionHandle = countryHandle;
     }
 

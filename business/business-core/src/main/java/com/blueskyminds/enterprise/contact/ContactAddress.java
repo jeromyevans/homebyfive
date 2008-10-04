@@ -7,8 +7,8 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import com.blueskyminds.enterprise.address.MultilineAddress;
 import com.blueskyminds.enterprise.address.Address;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
 
 /**
  * A simple plain text address for a contact
@@ -39,7 +39,7 @@ public class ContactAddress extends PointOfContact {
      * @param postcode
      * @param role
      */
-    public ContactAddress(String address1, String address2, String address3, String address4, SuburbHandle suburb, PostCodeHandle postcode, POCRole role) {
+    public ContactAddress(String address1, String address2, String address3, String address4, Suburb suburb, PostalCode postcode, POCRole role) {
         super(role);
         this.address = new MultilineAddress(address1, address2, address3, address4, suburb, postcode);
     }

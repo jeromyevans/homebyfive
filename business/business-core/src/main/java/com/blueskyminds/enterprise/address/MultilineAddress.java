@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.Street;
 
 import javax.persistence.*;
 
@@ -28,7 +28,7 @@ public class MultilineAddress extends Address {
 
     // ------------------------------------------------------------------------------------------------------
 
-    public MultilineAddress(String addressLine1, String addressLine2, String addressLine3, String addressLine4, SuburbHandle suburb, PostCodeHandle postCode) {
+    public MultilineAddress(String addressLine1, String addressLine2, String addressLine3, String addressLine4, Suburb suburb, PostalCode postCode) {
         super(suburb, postCode);
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
@@ -47,7 +47,7 @@ public class MultilineAddress extends Address {
     }
 
     @Transient
-    public StreetHandle getStreet() {
+    public Street getStreet() {
         return null;
     }
 

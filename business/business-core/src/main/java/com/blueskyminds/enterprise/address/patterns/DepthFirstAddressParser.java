@@ -4,11 +4,8 @@ import com.blueskyminds.homebyfive.framework.core.patterns.*;
 import com.blueskyminds.homebyfive.framework.core.patterns.scoring.Score;
 import com.blueskyminds.homebyfive.framework.core.patterns.scoring.ScoringStrategy;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.region.Countries;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.service.AddressService;
@@ -42,10 +39,10 @@ public class DepthFirstAddressParser implements AddressParser {
 
     private PhraseToBinAllocationSequence bestSequence;
 
-    private final CountryHandle countryHandle;
-    private final SuburbHandle suburbHandle;
+    private final Country countryHandle;
+    private final Suburb suburbHandle;
 
-    public DepthFirstAddressParser(AddressService addressService, AddressDAO addressDAO, SubstitutionService substitutionService, CountryHandle countryHandle) {
+    public DepthFirstAddressParser(AddressService addressService, AddressDAO addressDAO, SubstitutionService substitutionService, Country countryHandle) {
         this.addressService = addressService;
         this.addressDAO = addressDAO;
         this.substitutionService = substitutionService;
@@ -53,7 +50,7 @@ public class DepthFirstAddressParser implements AddressParser {
         this.suburbHandle = null;
     }
 
-    public DepthFirstAddressParser(AddressService addressService, AddressDAO addressDAO, SubstitutionService substitutionService, SuburbHandle suburbHandle) {
+    public DepthFirstAddressParser(AddressService addressService, AddressDAO addressDAO, SubstitutionService substitutionService, Suburb suburbHandle) {
         this.addressService = addressService;
         this.addressDAO = addressDAO;
         this.substitutionService = substitutionService;
@@ -144,7 +141,7 @@ public class DepthFirstAddressParser implements AddressParser {
         String lotNumber = candidate.extractValue(LotNumberBin.class);
         StreetType streetType = candidate.extractMetadata(StreetType.class, StreetTypeBin.class);
 
-        StateHandle state = candidate.extractMetadata(StateHandle.class, StateBin.class);
+        State state = candidate.extractMetadata(State.class, StateBin.class);
 
         StreetSection streetSection = candidate.extractMetadata(StreetSection.class, StreetSectionBin.class);
         if (streetSection == null) {
@@ -156,13 +153,13 @@ public class DepthFirstAddressParser implements AddressParser {
         String postCodeName = candidate.extractValue(GreedyPostCodeBin.class);
 
         //String postCodeName = candidate.extractValue(PostCodeBin.class);
-        SuburbHandle suburb = null;
-        PostCodeHandle postCode = null;
-        StreetHandle street = null;
+        Suburb suburb = null;
+        PostalCode postCode = null;
+        Street street = null;
 
         if (suburbHandle == null) {
             if (StringUtils.isNotBlank(suburbName)) {
-                List<SuburbHandle> suburbCandidates;
+                List<Suburb> suburbCandidates;
                 if (state != null) {
                     suburbCandidates = addressService.findSuburb(suburbName, state);
                 } else {
@@ -174,7 +171,7 @@ public class DepthFirstAddressParser implements AddressParser {
                     postCode = addressService.lookupPostCode(postCodeName, state);
                     if (postCode != null) {
                         boolean okay = false;
-                        for (SuburbHandle suburbCandidate : suburbCandidates) {
+                        for (Suburb suburbCandidate : suburbCandidates) {
                             // check if the post code is a a parent
                             if (postCode.hasChild(suburbCandidate)) {
                                 okay = true;
@@ -201,13 +198,13 @@ public class DepthFirstAddressParser implements AddressParser {
         if (suburb != null) {
             if (streetName != null) {
                 // lookup the street
-                List<StreetHandle> streetCandidates = addressService.findStreet(streetName, streetType, streetSection, suburb);
+                List<Street> streetCandidates = addressService.findStreet(streetName, streetType, streetSection, suburb);
 
                 if (streetCandidates.size() > 0) {
                     street = streetCandidates.iterator().next();
                 } else {
                     // the street doesn't exist - create a new instance
-                    street = new StreetHandle(streetName, streetType, streetSection);
+                    street = new Street(streetName, streetType, streetSection);
                 }
             }
 

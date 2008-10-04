@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.enterprise.region.index.CountryBean;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.google.inject.Inject;
 
 import javax.persistence.Query;
@@ -53,7 +53,7 @@ public class CountryEAO extends AbstractDAO<CountryBean> {
      *
      * @return CountryBean, or null if not found
      */
-    public CountryBean lookupCountry(CountryHandle countryHandle) {
+    public CountryBean lookupCountry(Country countryHandle) {
 
         Query query = em.createNamedQuery(QUERY_COUNTRY_BY_HANDLE);
         query.setParameter(PARAM_HANDLE, countryHandle);

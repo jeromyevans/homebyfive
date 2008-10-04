@@ -4,7 +4,7 @@ import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.test.TestTools;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -57,11 +57,11 @@ public class TestLevensteinDistanceLarge  extends JPATestCase {
     public void testSuburbMatch() throws Exception {
         AddressTestTools.initialiseCountryList();
 
-        Collection<RegionHandle> allSuburbs = TestTools.findAll(RegionHandle.class, em);
+        Collection<Region> allSuburbs = TestTools.findAll(Region.class, em);
 
         Set<RegionNode> regionsNodes = new HashSet<RegionNode>(allSuburbs.size());
         // transfer to a simple set of nodes
-        for (RegionHandle suburb : allSuburbs) {
+        for (Region suburb : allSuburbs) {
             regionsNodes.add(new RegionNode(suburb.getId(), suburb.getName()));
         }
 
@@ -87,12 +87,12 @@ public class TestLevensteinDistanceLarge  extends JPATestCase {
     public void testSuburbMatchLarger() throws Exception {
         AddressTestTools.initialiseCountryList();
 
-        Collection<RegionHandle> allSuburbs = TestTools.findAll(RegionHandle.class, em);
+        Collection<Region> allSuburbs = TestTools.findAll(Region.class, em);
 
         Set<RegionNode> regionsNodes = new HashSet<RegionNode>(allSuburbs.size());
         for (int i = 0; i < 7; i++) {
             // transfer to a simple set of nodes
-            for (RegionHandle suburb : allSuburbs) {
+            for (Region suburb : allSuburbs) {
                 regionsNodes.add(new RegionNode(suburb.getId(), suburb.getName()));
             }
         }

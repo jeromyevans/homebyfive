@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -36,15 +36,15 @@ public class TestRegionXDAO extends JPATestCase {
 
     public void testFind() throws Exception {
 
-        Set<RegionHandle> australia1 = new RegionGraphDAO(em).findRegionByName("Australia");
+        Set<Region> australia1 = new RegionGraphDAO(em).findRegionByName("Australia");
         assertNotNull(australia1);
         assertEquals(1, australia1.size());
 
-        Set<RegionHandle> australia2 = new RegionGraphDAO(em).findRegionByName("AUS");
+        Set<Region> australia2 = new RegionGraphDAO(em).findRegionByName("AUS");
         assertNotNull(australia2);
         assertEquals(1, australia2.size());
 
-        Set<RegionHandle> australia3 = new RegionGraphDAO(em).findRegionByName("AU");
+        Set<Region> australia3 = new RegionGraphDAO(em).findRegionByName("AU");
         assertNotNull(australia3);
         assertEquals(1, australia3.size());
 

@@ -2,8 +2,8 @@ package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.homebyfive.framework.core.patterns.*;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.State;
 
 import java.util.*;
 
@@ -32,7 +32,7 @@ public class StateBin extends NamedBin implements OrderedBin {
         BinType.PostCodeBin
     };
 
-    public StateBin(CountryHandle country, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
+    public StateBin(Country country, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
         addNamed(addressDAO.listStatesInCountry(country));
     }
 
@@ -66,10 +66,10 @@ public class StateBin extends NamedBin implements OrderedBin {
      *
      * @return list of candidate states
      */
-    public List<StateHandle> getCandidateStates() {
-        List<StateHandle> states = new LinkedList<StateHandle>();
+    public List<State> getCandidateStates() {
+        List<State> states = new LinkedList<State>();
         for (PhraseToBinAllocation allocation : getAllocations()) {
-            StateHandle state = (StateHandle) allocation.getPattern().getMetadata();
+            State state = (State) allocation.getPattern().getMetadata();
             if (!states.contains(state)) {
                 states.add(state);
             }

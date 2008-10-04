@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
@@ -23,32 +23,32 @@ public class BinCache {
 
     private static final Log LOG = LogFactory.getLog(BinCache.class);
 
-    private final CountryHandle countryHandle;
+    private final Country countryHandle;
     private AddressDAO addressDAO;    
     private SubstitutionService substitutionService;
 
-    private final Map<RegionHandle, StateBin> stateBinCache;
+    private final Map<Region, StateBin> stateBinCache;
     private final Map<BinType, OrderedBin> binMap;
 
-    public BinCache(CountryHandle countryHandle, AddressDAO addressDAO, SubstitutionService substitutionService) {
+    public BinCache(Country countryHandle, AddressDAO addressDAO, SubstitutionService substitutionService) {
         this.countryHandle = countryHandle;
         this.addressDAO = addressDAO;
         this.substitutionService = substitutionService;
 
-        stateBinCache = new HashMap<RegionHandle, StateBin>();
+        stateBinCache = new HashMap<Region, StateBin>();
         binMap = new HashMap<BinType, OrderedBin>();
     }
 
-    public BinCache(SuburbHandle suburbHandle, AddressDAO addressDAO, SubstitutionService substitutionService) {
+    public BinCache(Suburb suburbHandle, AddressDAO addressDAO, SubstitutionService substitutionService) {
         this.addressDAO = addressDAO;
         this.substitutionService = substitutionService;
 
-        stateBinCache = new HashMap<RegionHandle, StateBin>();
+        stateBinCache = new HashMap<Region, StateBin>();
         binMap = new HashMap<BinType, OrderedBin>();
         countryHandle = null;
     }
 
-    public StateBin getStateBin(CountryHandle aus) {
+    public StateBin getStateBin(Country aus) {
         try {
             StateBin stateBin = stateBinCache.get(aus);
             if (stateBin == null) {

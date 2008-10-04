@@ -82,7 +82,7 @@
      -->
     <named-query name="region.byName">
         <query>
-          select region from RegionHandle region
+          select region from Region region
           left outer join region.regionAliases alias where
           region.name like :name or
           alias.name like :name
@@ -98,7 +98,7 @@
      -->
     <named-query name="region.byNameAndType">
         <query>
-          select region from RegionHandle region
+          select region from Region region
           left join region.regionAliases alias where
           region.type = :type and
           region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and

@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 
 /**
  * Creates an AddressParser within the specified context
@@ -42,5 +42,5 @@ public interface AddressParserFactory {
      * @param suburb
      * @return
      */
-    AddressParser create(SuburbHandle suburb);
+    AddressParser create(Suburb suburb);
 }

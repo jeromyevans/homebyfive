@@ -4,7 +4,7 @@ import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.service.RegionGraphServiceImpl;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import org.apache.commons.logging.Log;
@@ -50,27 +50,27 @@ public class TestRegionService  extends JPATestCase {
     public void testLookupMethods() throws Exception {
 
         LOG.info("Searching for NSW...");
-        RegionHandle nsw = regionGraphDAO.findRegionByName(TestRegionTools.NSW).iterator().next();
+        Region nsw = regionGraphDAO.findRegionByName(TestRegionTools.NSW).iterator().next();
 
         assertNotNull(nsw);
         LOG.info("Found :"+nsw.getName());
 
         LOG.info("Matching "+TestRegionTools.NEUTRAL_BAY);
-        List<RegionHandle> matches1 = regionGraphService.findRegion(nsw, TestRegionTools.NEUTRAL_BAY);
+        List<Region> matches1 = regionGraphService.findRegion(nsw, TestRegionTools.NEUTRAL_BAY);
 
         assertNotNull(matches1);
         assertEquals(1, matches1.size());
 
         // test a minor spelling mistake
         LOG.info("Matching 'Neutrel Bay'");
-        List<RegionHandle> matches2 = regionGraphService.findRegion(nsw, "Neutrel bay");
+        List<Region> matches2 = regionGraphService.findRegion(nsw, "Neutrel bay");
 
         assertNotNull(matches2);
         assertEquals(1, matches2.size());
 
         // test a gross spelling mistake
         LOG.info("Matching 'Neut bay'");
-        List<RegionHandle> matches3 = regionGraphService.findRegion(nsw, "Neut bay");
+        List<Region> matches3 = regionGraphService.findRegion(nsw, "Neut bay");
 
         assertNotNull(matches3);
         assertEquals(0, matches3.size());
@@ -82,10 +82,10 @@ public class TestRegionService  extends JPATestCase {
      * @throws Exception
      */
     public void testListAncestors() throws Exception {
-        RegionHandle nsw = regionGraphDAO.findRegionByName(TestRegionTools.NSW).iterator().next();
-        RegionHandle neutralBay = regionGraphService.findRegion(nsw, TestRegionTools.NEUTRAL_BAY).iterator().next();
+        Region nsw = regionGraphDAO.findRegionByName(TestRegionTools.NSW).iterator().next();
+        Region neutralBay = regionGraphService.findRegion(nsw, TestRegionTools.NEUTRAL_BAY).iterator().next();
 
-        Set<RegionHandle> ancestors = regionGraphService.listAncestors(neutralBay);
+        Set<Region> ancestors = regionGraphService.listAncestors(neutralBay);
 
         DebugTools.printCollection(ancestors);
         assertEquals(3, ancestors.size());

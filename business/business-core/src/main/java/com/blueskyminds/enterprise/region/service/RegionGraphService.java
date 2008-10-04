@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.service;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 
 import java.util.List;
 import java.util.Set;
@@ -23,7 +23,7 @@ public interface RegionGraphService {
      * <p/>
      * Uses Levenshtein Distance matching and returns results in order of relevance
      */
-    List<RegionHandle> findRegion(RegionHandle parentRegion, String name);
+    List<Region> findRegion(Region parentRegion, String name);
 
     /**
      * Lookup a region by its name and type.
@@ -31,7 +31,7 @@ public interface RegionGraphService {
      * <p/>
      * Uses Levenshtein Distance matching and returns results in order of relevance
      */
-    List<RegionHandle> findRegion(RegionHandle parentRegion, String name, RegionTypes type);
+    List<Region> findRegion(Region parentRegion, String name, RegionTypes type);
 
     /**
      * Gets the set of regions that are ancestors of the specified region
@@ -39,7 +39,7 @@ public interface RegionGraphService {
      * @param region
      * @return
      */
-    Set<RegionHandle> listAncestors(RegionHandle region);
+    Set<Region> listAncestors(Region region);
 
     /**
      * Gets the set of regions that are descendants for the current region
@@ -47,12 +47,12 @@ public interface RegionGraphService {
      * @param region
      * @return
      */
-    Set<RegionHandle> listDescendants(RegionHandle region);
+    Set<Region> listDescendants(Region region);
 
-    RegionHandle lookupRegionById(Long id);
+    Region lookupRegionById(Long id);
 
     /** Sets the status of the specified RegionHandle to Deleted */
     void deleteRegionById(Long id);
 
-    List<RegionHandle> autocompleteRegion(String name);
+    List<Region> autocompleteRegion(String name);
 }

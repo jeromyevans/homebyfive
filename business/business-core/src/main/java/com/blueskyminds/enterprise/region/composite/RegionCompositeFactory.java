@@ -4,14 +4,11 @@ import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.address.StreetAddress;
 import com.blueskyminds.enterprise.address.UnitAddress;
 import com.blueskyminds.enterprise.address.LotAddress;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
 import com.blueskyminds.enterprise.region.index.PostCodeBean;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
 import com.blueskyminds.enterprise.region.index.StateBean;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.PathHelper;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.index.SuburbBean;
 import com.blueskyminds.enterprise.region.reference.RegionRefFactory;
@@ -57,11 +54,11 @@ public class RegionCompositeFactory {
         }
 
 
-        SuburbHandle suburb = address.getSuburb();
+        Suburb suburb = address.getSuburb();
         if (suburb != null) {
             regionComposite.add(RegionRefFactory.createRef(suburb));
         }
-        PostCodeHandle postCode = address.getPostCode();
+        PostalCode postCode = address.getPostCode();
         if (postCode != null) {
             regionComposite.add(RegionRefFactory.createRef(postCode));
         } else {
@@ -80,29 +77,29 @@ public class RegionCompositeFactory {
      * @param regionHandle
      * @return
      */
-    public static RegionComposite create(RegionHandle regionHandle) {
+    public static RegionComposite create(Region regionHandle) {
         RegionComposite result = null;
         switch (regionHandle.getType()) {
             case Country:
-                result = createCountry((CountryHandle) regionHandle);
+                result = createCountry((Country) regionHandle);
                 break;
             case PostCode:
-                result = createPostCode((PostCodeHandle) regionHandle);
+                result = createPostCode((PostalCode) regionHandle);
                 break;
             case State:
-                result = createState((StateHandle) regionHandle);
+                result = createState((State) regionHandle);
                 break;
             case Suburb:
-                result = createSuburb((SuburbHandle) regionHandle);
+                result = createSuburb((Suburb) regionHandle);
                 break;
         }
 
         return result;
     }
 
-    public static List<RegionComposite> createList(List<RegionHandle> regionHandles) {
+    public static List<RegionComposite> createList(List<Region> regionHandles) {
         List<RegionComposite> list = new ArrayList<RegionComposite>(regionHandles.size());
-        for (RegionHandle regionHandle : regionHandles) {
+        for (Region regionHandle : regionHandles) {
             list.add(create(regionHandle));
         }
         return list;
@@ -114,12 +111,12 @@ public class RegionCompositeFactory {
      * @param suburb
      * @return
      */
-    public static RegionComposite createSuburb(SuburbHandle suburb) {
+    public static RegionComposite createSuburb(Suburb suburb) {
         RegionComposite regionComposite = new RegionComposite();
 
         regionComposite.add(RegionRefFactory.createRef(suburb));
         regionComposite.add(RegionRefFactory.createRef(suburb.getPostCode()));
-        StateHandle state = suburb.getState();
+        State state = suburb.getState();
         regionComposite.add(RegionRefFactory.createRef(state));
         if (state != null) {
             regionComposite.add(RegionRefFactory.createRef(state.getCountry()));
@@ -167,11 +164,11 @@ public class RegionCompositeFactory {
      * @param postCode
      * @return
      */
-    public static RegionComposite createPostCode(PostCodeHandle postCode) {
+    public static RegionComposite createPostCode(PostalCode postCode) {
         RegionComposite regionComposite = new RegionComposite();
 
         regionComposite.add(RegionRefFactory.createRef(postCode));
-        StateHandle stateHandle = postCode.getState();
+        State stateHandle = postCode.getState();
         if (stateHandle != null) {
             regionComposite.add(RegionRefFactory.createRef(stateHandle));
             regionComposite.add(RegionRefFactory.createRef(stateHandle.getCountry()));
@@ -186,7 +183,7 @@ public class RegionCompositeFactory {
      * @param countryHandle
      * @return
      */
-    public static RegionComposite createCountry(CountryHandle countryHandle) {
+    public static RegionComposite createCountry(Country countryHandle) {
         RegionComposite regionComposite = new RegionComposite();
         regionComposite.add(RegionRefFactory.createRef(countryHandle));        
         return regionComposite;
@@ -198,7 +195,7 @@ public class RegionCompositeFactory {
      * @param state
      * @return
      */
-    public static RegionComposite createState(StateHandle state) {
+    public static RegionComposite createState(State state) {
         RegionComposite regionComposite = new RegionComposite();
 
         regionComposite.add(RegionRefFactory.createRef(state));

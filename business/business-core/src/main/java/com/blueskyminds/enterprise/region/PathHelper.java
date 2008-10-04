@@ -3,12 +3,8 @@ package com.blueskyminds.enterprise.region;
 import org.apache.commons.lang.StringUtils;
 
 import com.blueskyminds.enterprise.address.*;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
 /**
@@ -45,47 +41,47 @@ public class PathHelper {
         return joinPaths(ROOT, country, state, suburb, street, streetNo, unitNo);
     }
 
-    public static String buildPath(CountryHandle countryHandle) {
+    public static String buildPath(Country countryHandle) {
         return joinPaths(ROOT, KeyGenerator.generateId(countryHandle.getAbbreviation()));
     }
 
-    public static String buildPath(StateHandle stateHandle) {
+    public static String buildPath(State stateHandle) {
         return joinPaths(buildPath(stateHandle.getCountry()), KeyGenerator.generateId(stateHandle.getAbbreviation()));
     }
 
-    public static String buildPath(SuburbHandle suburbHandle) {
+    public static String buildPath(Suburb suburbHandle) {
         return joinPaths(buildPath(suburbHandle.getState()), KeyGenerator.generateId(suburbHandle.getName()));
     }
 
-    public static String buildPath(PostCodeHandle postCodeHandle) {
+    public static String buildPath(PostalCode postCodeHandle) {
         return joinPaths(buildPath(postCodeHandle.getState()), KeyGenerator.generateId(postCodeHandle.getName()));
     }
 
-    public static String buildPath(SuburbHandle suburbHandle, StreetHandle street) {
+    public static String buildPath(Suburb suburbHandle, Street street) {
         return joinPaths(buildPath(suburbHandle.getState()), KeyGenerator.generateId(suburbHandle.getName()), buildStreetNameKey(street));
     }
 
-    public static String buildPath(RegionHandle regionHandle) {
+    public static String buildPath(Region regionHandle) {
         String path = null;
         switch (regionHandle.getType()) {
             case Country:
-                path = buildPath((CountryHandle) regionHandle.unproxy().getModel());
+                path = buildPath((Country) regionHandle.unproxy().getModel());
                 break;
             case PostCode:
-                path = buildPath((PostCodeHandle) regionHandle.unproxy().getModel());
+                path = buildPath((PostalCode) regionHandle.unproxy().getModel());
                 break;
             case Suburb:
-                path = buildPath((SuburbHandle) regionHandle.unproxy().getModel());
+                path = buildPath((Suburb) regionHandle.unproxy().getModel());
                 break;
             case State:
-                path = buildPath((StateHandle) regionHandle.unproxy().getModel());
+                path = buildPath((State) regionHandle.unproxy().getModel());
                 break;
         }
         return path;
     }
 
     public static String buildPath(Address address) {
-        SuburbHandle suburbHandle = address.getSuburb();
+        Suburb suburbHandle = address.getSuburb();
         if (suburbHandle != null) {
             if (address instanceof UnitAddress) {
                 return joinPaths(buildPath(address.getSuburb(), address.getStreet()), KeyGenerator.generateId(((UnitAddress)address).getStreetNumber()), KeyGenerator.generateId(((UnitAddress)address).getUnitNumber()));
@@ -160,7 +156,7 @@ public class PathHelper {
         }                
     }
 
-    public static String buildStreetNameKey(StreetHandle street) {
+    public static String buildStreetNameKey(Street street) {
         if (street != null) {
             return buildStreetNameKey(street.getName(), street.getStreetType(), street.getSection());
         } else {

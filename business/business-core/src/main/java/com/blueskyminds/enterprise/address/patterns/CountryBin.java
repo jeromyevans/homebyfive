@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.homebyfive.framework.core.patterns.NamedBin;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
 
 /**
  *
@@ -17,7 +17,7 @@ import com.blueskyminds.enterprise.region.graph.CountryHandle;
  */
 public class CountryBin extends NamedBin {
        
-    public CountryBin(CountryHandle country) throws PatternMatcherInitialisationException {
+    public CountryBin(Country country) throws PatternMatcherInitialisationException {
         if (country != null) {
             addNamed(country);
         } else {

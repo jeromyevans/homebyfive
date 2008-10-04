@@ -4,9 +4,9 @@ import com.blueskyminds.homebyfive.framework.core.patterns.*;
 import com.blueskyminds.homebyfive.framework.core.patterns.bins.RegExSubstitutionBin;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.Street;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -27,18 +27,18 @@ import java.util.List;
 public class StreetNameBin extends RegExSubstitutionBin {
 
     private static final String GROUP_NAME = "StreetName";
-    private CountryHandle country;
-    private SuburbHandle suburb;
+    private Country country;
+    private Suburb suburb;
     private AddressDAO addressDAO;
 
-    public StreetNameBin(CountryHandle country, AddressDAO addressDAO, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
+    public StreetNameBin(Country country, AddressDAO addressDAO, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
         super(GROUP_NAME, substitutionDAO);
         //streets = addressDAO.listStreetsInCountry(country);
         this.country = country;
         this.addressDAO = addressDAO;
     }
 
-    public StreetNameBin(SuburbHandle suburb, AddressDAO addressDAO, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
+    public StreetNameBin(Suburb suburb, AddressDAO addressDAO, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
         super(GROUP_NAME, substitutionDAO);
         //streets = addressDAO.listStreetsInSuburb(suburb);
         this.suburb = suburb;
@@ -83,7 +83,7 @@ public class StreetNameBin extends RegExSubstitutionBin {
     protected Set<PatternMatch> wordMatchesKnownStreet(String word) {
         boolean exclusive = true;
         Set<PatternMatch> matches = new HashSet<PatternMatch>();
-        Set<StreetHandle> streets;
+        Set<Street> streets;
                 
         if (country != null) {
             streets = addressDAO.listStreetsInCountry(country);
@@ -92,9 +92,9 @@ public class StreetNameBin extends RegExSubstitutionBin {
         }
 
         if (streets.size() > 0) {
-            List<StreetHandle> matchingStreets = LevensteinDistanceTools.matchName(word, streets);
+            List<Street> matchingStreets = LevensteinDistanceTools.matchName(word, streets);
 
-            for (StreetHandle match : matchingStreets) {
+            for (Street match : matchingStreets) {
                 if (word.equalsIgnoreCase(match.getName())) {
                     matches.add(new PatternMatch(new NamedPatternDecorator(match), exclusive, null, PatternMatchType.Exact));
                 } else {

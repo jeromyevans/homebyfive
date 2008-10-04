@@ -4,9 +4,9 @@ import com.blueskyminds.homebyfive.framework.core.patterns.*;
 import com.blueskyminds.homebyfive.framework.core.patterns.comparison.IgnoreCaseComparator;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.StreetType;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.State;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 
 import java.util.List;
 import java.util.LinkedList;
@@ -25,7 +25,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class SuburbNameBin extends NamedBin {
 
-    private StateHandle state;
+    private State state;
 
     /**
      * Extends the default implementation to ensure that suburb names start with a letter
@@ -49,7 +49,7 @@ public class SuburbNameBin extends NamedBin {
      * @param addressDAO
      * @throws PatternMatcherInitialisationException
      */
-    public SuburbNameBin(StateHandle state, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
+    public SuburbNameBin(State state, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
         this.state = state;
 
         // add all the street types as exclusions
@@ -63,7 +63,7 @@ public class SuburbNameBin extends NamedBin {
      * @param addressDAO
      * @throws PatternMatcherInitialisationException
      */
-    public SuburbNameBin(CountryHandle country, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
+    public SuburbNameBin(Country country, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
         // add all the street types as exclusions
         addExclusion(StreetType.asList(), new IgnoreCaseComparator());
         addNamedGroupByMetaphone(addressDAO.listSuburbsInCountry(country));
@@ -89,10 +89,10 @@ public class SuburbNameBin extends NamedBin {
      *
      * @return list of candidate suburbs
      */
-    public List<SuburbHandle> getCandidateSuburbs() {
-        List<SuburbHandle> suburbs = new LinkedList<SuburbHandle>();
+    public List<Suburb> getCandidateSuburbs() {
+        List<Suburb> suburbs = new LinkedList<Suburb>();
         for (PhraseToBinAllocation allocation : getAllocations()) {
-            SuburbHandle suburb = (SuburbHandle) allocation.getPattern().getMetadata();
+            Suburb suburb = (Suburb) allocation.getPattern().getMetadata();
             if (!suburbs.contains(suburb)) {
                 suburbs.add(suburb);
             }

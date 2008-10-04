@@ -9,7 +9,7 @@ import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.reference.PostCodeRef;
 import com.blueskyminds.enterprise.region.reference.StateRef;
 import com.blueskyminds.enterprise.region.reference.CountryRef;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
@@ -179,11 +179,11 @@ public class SuburbBean extends RegionBean implements CountryRef, StateRef, Post
      * @return
      */
     @Transient
-    public SuburbHandle getSuburbHandle() {
-        return (SuburbHandle) regionHandle;
+    public Suburb getSuburbHandle() {
+        return (Suburb) regionHandle;
     }
 
-    public void setSuburbHandle(SuburbHandle suburbHandle) {
+    public void setSuburbHandle(Suburb suburbHandle) {
         this.regionHandle = suburbHandle;
     }
 

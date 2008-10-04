@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.State;
 
 /**
  * Sets up a SuburbPatternMatcher
@@ -27,5 +27,5 @@ public interface SuburbPatternMatcherFactory {
      * @return
      * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
-    SuburbPatternMatcher create(StateHandle suburb) throws PatternMatcherInitialisationException;
+    SuburbPatternMatcher create(State suburb) throws PatternMatcherInitialisationException;
 }

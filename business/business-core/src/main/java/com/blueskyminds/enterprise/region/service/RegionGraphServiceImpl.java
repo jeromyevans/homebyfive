@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.service;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
@@ -55,10 +55,10 @@ public class RegionGraphServiceImpl implements RegionGraphService {
      * <p/>
      * Uses Levenshtein Distance matching and returns results in order of relevance
      */
-    public List<RegionHandle> findRegion(RegionHandle parentRegion, String name) {
+    public List<Region> findRegion(Region parentRegion, String name) {
         RegionGraphDAO regionGraphDAO = new RegionGraphDAO(em);
          // todo: eagerly load aliases
-        Set<RegionHandle> children = regionGraphDAO.findChildren(parentRegion);
+        Set<Region> children = regionGraphDAO.findChildren(parentRegion);
         return LevensteinDistanceTools.matchName(name, children);
     }
 
@@ -68,10 +68,10 @@ public class RegionGraphServiceImpl implements RegionGraphService {
      * <p/>
      * Uses Levenshtein Distance matching and returns results in order of relevance
      */
-    public List<RegionHandle> findRegion(RegionHandle parentRegion, String name, RegionTypes type) {
+    public List<Region> findRegion(Region parentRegion, String name, RegionTypes type) {
         RegionGraphDAO regionGraphDAO = new RegionGraphDAO(em);
 
-        Set<RegionHandle> children = regionGraphDAO.findChildrenOfType(parentRegion, type);
+        Set<Region> children = regionGraphDAO.findChildrenOfType(parentRegion, type);
         return LevensteinDistanceTools.matchName(name, children);
     }
 
@@ -81,11 +81,11 @@ public class RegionGraphServiceImpl implements RegionGraphService {
      * @param region
      * @return
      */
-    public Set<RegionHandle> listAncestors(RegionHandle region) {
-        Set<RegionHandle> ancestors = new HashSet<RegionHandle>();
+    public Set<Region> listAncestors(Region region) {
+        Set<Region> ancestors = new HashSet<Region>();
 
-        Set<RegionHandle> parents = regionGraphDAO.findParents(region);
-        for (RegionHandle parent : parents) {
+        Set<Region> parents = regionGraphDAO.findParents(region);
+        for (Region parent : parents) {
             visitAncestors(parent, ancestors);
         }
 
@@ -93,11 +93,11 @@ public class RegionGraphServiceImpl implements RegionGraphService {
     }
 
     /** Recursive method to visit all the ancestors of a region once */
-    private void visitAncestors(RegionHandle region, Set<RegionHandle> ancestors) {
+    private void visitAncestors(Region region, Set<Region> ancestors) {
         ancestors.add(region);
-        Set<RegionHandle> parents = regionGraphDAO.findParents(region);
+        Set<Region> parents = regionGraphDAO.findParents(region);
 
-        for (RegionHandle parent : parents) {
+        for (Region parent : parents) {
             if (!ancestors.contains(parent)) {
                 visitAncestors(parent, ancestors);
             }
@@ -110,29 +110,29 @@ public class RegionGraphServiceImpl implements RegionGraphService {
      * @param region
      * @return
      */
-    public Set<RegionHandle> listDescendants(RegionHandle region) {
-        Set<RegionHandle> descendants = new HashSet<RegionHandle>();
+    public Set<Region> listDescendants(Region region) {
+        Set<Region> descendants = new HashSet<Region>();
 
-        Set<RegionHandle> children = regionGraphDAO.findChildren(region);
-        for (RegionHandle child : children) {
+        Set<Region> children = regionGraphDAO.findChildren(region);
+        for (Region child : children) {
             visitDescendants(child, descendants);
         }
 
         return descendants;
     }
 
-    public RegionHandle lookupRegionById(Long id) {
+    public Region lookupRegionById(Long id) {
         return regionGraphDAO.findById(id);
     }
 
     public void deleteRegionById(Long id) {
-        RegionHandle regionHandle = regionGraphDAO.findById(id);
+        Region regionHandle = regionGraphDAO.findById(id);
         if (regionHandle != null) {
             regionHandle.setStatus(DomainObjectStatus.Deleted);
         }
     }
 
-    public List<RegionHandle> autocompleteRegion(String name) {
+    public List<Region> autocompleteRegion(String name) {
         return regionGraphDAO.autocompleteRegionByName(name);
     }
 
@@ -140,11 +140,11 @@ public class RegionGraphServiceImpl implements RegionGraphService {
      * Recursive method to visit all the descendants of a region once
      * This can be very slow...
      * */
-    private void visitDescendants(RegionHandle region, Set<RegionHandle> descendants) {
+    private void visitDescendants(Region region, Set<Region> descendants) {
         descendants.add(region);
-        Set<RegionHandle> children = regionGraphDAO.findChildren(region);
+        Set<Region> children = regionGraphDAO.findChildren(region);
 
-        for (RegionHandle child : children) {
+        for (Region child : children) {
             if (!descendants.contains(child)) {
                 visitDescendants(child, descendants);
             }

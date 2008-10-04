@@ -4,10 +4,10 @@ import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.*;
 
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.State;
+import com.blueskyminds.enterprise.region.graph.Street;
 
 import java.io.PrintStream;
 
@@ -25,7 +25,7 @@ import java.io.PrintStream;
 public class StreetAddress extends Address {
 
     private String streetNumber;
-    private StreetHandle street;
+    private Street street;
 
     // ------------------------------------------------------------------------------------------------------
     // ------------------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ public class StreetAddress extends Address {
      * @param street
      * @param suburb
      */
-    public StreetAddress(String streetNumber, StreetHandle street, SuburbHandle suburb, PostCodeHandle postCode) {
+    public StreetAddress(String streetNumber, Street street, Suburb suburb, PostalCode postCode) {
         super(suburb, postCode);
 
         this.streetNumber = streetNumber;
@@ -52,7 +52,7 @@ public class StreetAddress extends Address {
      * @param street
      * @param suburb
      */
-    public StreetAddress(StreetHandle street, SuburbHandle suburb, PostCodeHandle postCode) {
+    public StreetAddress(Street street, Suburb suburb, PostalCode postCode) {
         super(suburb, postCode);
 
         this.street = street;
@@ -91,11 +91,11 @@ public class StreetAddress extends Address {
      */
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="StreetId")
-    public StreetHandle getStreet() {
+    public Street getStreet() {
         return street;
     }
 
-    public void setStreet(StreetHandle street) {
+    public void setStreet(Street street) {
         this.street = street;
     }
 
@@ -127,11 +127,11 @@ public class StreetAddress extends Address {
     protected void appendSuburb(StringBuilder buffer) {
         if (getSuburb() != null) {
             buffer.append(StringUtils.isNotBlank(getSuburb().toString()) ? getSuburb()+ " " : "");
-            StateHandle stateHandle = getSuburb().getState();
+            State stateHandle = getSuburb().getState();
             if (stateHandle != null) {
                 buffer.append(stateHandle.toString()+" ");
             }
-            PostCodeHandle postCode = getSuburb().getPostCode();
+            PostalCode postCode = getSuburb().getPostCode();
             if (postCode != null) {
                 buffer.append(postCode.toString()+" ");
             }

@@ -1,7 +1,7 @@
 package com.blueskyminds.wdis;
 
 import com.blueskyminds.enterprise.Enterprise;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.license.*;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.party.PartyTypes;
@@ -54,7 +54,7 @@ public class TestLicenses extends DbTestCase {
         LicenseAccount accountB = sola.createLicenseAccount(testParty);
 
         //RegionType postCode = new RegionType(RegionTypes.PostCode);
-        RegionHandle region = new RegionFactory().createPostCode("TestRegion");
+        Region region = new RegionFactory().createPostCode("TestRegion");
 
         // create a new license in the unallocated account
         License testLicenseA = sol.createLicense(new RegionLicense(region, LicenseTypes.Exclusive), sola.getUnallocatedAccount());

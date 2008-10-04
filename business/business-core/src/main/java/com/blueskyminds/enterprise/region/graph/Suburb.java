@@ -1,10 +1,10 @@
 package com.blueskyminds.enterprise.region.graph;
 
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.Street;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
@@ -18,28 +18,28 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("B")
-public class SuburbHandle extends RegionHandle {
+public class Suburb extends Region {
 
     /** A special case SuburbHandle instance used to indentify an invalid Suburb rather than a null value */
-    public static final SuburbHandle INVALID = invalid();
+    public static final Suburb INVALID = invalid();
 
-    public SuburbHandle(String name) {
+    public Suburb(String name) {
         super(name, RegionTypes.Suburb);
     }
 
-    protected SuburbHandle() {
+    protected Suburb() {
     }
 
     /**
      * Associate the specified street with this suburb
      */
-    public StreetHandle addStreet(StreetHandle street) {
+    public Street addStreet(Street street) {
         addChildRegion(street);
         return street;
     }
 
     /** Determine if this suburb contains the specified street */
-    public boolean contains(StreetHandle street) {        
+    public boolean contains(Street street) {
         return hasChild(street);
     }
      /**
@@ -49,10 +49,10 @@ public class SuburbHandle extends RegionHandle {
      * @return
      */
     @Transient
-    public StateHandle getState() {
-        RegionHandle parent = getParent(RegionTypes.State);
+    public State getState() {
+        Region parent = getParent(RegionTypes.State);
         if (parent != null) {
-            return (StateHandle) parent.unproxy().getModel();
+            return (State) parent.unproxy().getModel();
         } else {
             return null;
         }
@@ -65,17 +65,17 @@ public class SuburbHandle extends RegionHandle {
      * @return
      */
     @Transient
-    public PostCodeHandle getPostCode() {
-         RegionHandle parent = getParent(RegionTypes.PostCode);
+    public PostalCode getPostCode() {
+         Region parent = getParent(RegionTypes.PostCode);
          if (parent != null) {
-            return (PostCodeHandle) parent.unproxy().getModel();
+            return (PostalCode) parent.unproxy().getModel();
          } else {
              return null;
          }
     }
 
-    private static SuburbHandle invalid() {
-        SuburbHandle invalid = new SuburbHandle();
+    private static Suburb invalid() {
+        Suburb invalid = new Suburb();
         invalid.setName("INVALID");
         invalid.setStatus(DomainObjectStatus.Deleted);
         return invalid;

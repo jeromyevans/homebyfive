@@ -3,9 +3,9 @@ package com.blueskyminds.enterprise.address.service;
 import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.StreetSection;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.graph.*;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 
 import java.util.List;
 import java.util.Set;
@@ -95,7 +95,7 @@ public interface AddressService {
 //    Country lookupCountry(Region region);
 
     @Deprecated
-    List<SuburbHandle> findSuburbLike(String name, String iso3CountryCode);
+    List<Suburb> findSuburbLike(String name, String iso3CountryCode);
 
     /**
      * Lookup an address in the specified country.  Returns possible matches
@@ -106,23 +106,23 @@ public interface AddressService {
     List<Address> findAddress(String addressString, String iso3CountryCode);
 
     /** Create and persist a new country */
-    CountryHandle createCountry(String name, String iso2CountryCode, String iso3CountryCode, String currencyCode);
+    Country createCountry(String name, String iso2CountryCode, String iso3CountryCode, String currencyCode);
 
     /** Create and persist a new state */
-    StateHandle createState(String name, String abbreviation, CountryHandle parent);
+    State createState(String name, String abbreviation, Country parent);
 
     /** Create and persist a new PostCode */
-    PostCodeHandle createPostCode(String name, StateHandle parent);
+    PostalCode createPostCode(String name, State parent);
 
     /** Create and persist a new Suburb */
-    SuburbHandle createSuburb(String name, StateHandle parent);
+    Suburb createSuburb(String name, State parent);
 
     /**
      * Find the country with the specified name
      *
      * Performs a fuzzy match and returns the matches in order of rank
      **/
-    List<CountryHandle> findCountry(String name);
+    List<Country> findCountry(String name);
 
     /**
      * Get an instance of a country matching the 2 digit country code  eg. AU
@@ -130,14 +130,14 @@ public interface AddressService {
      * @param iso2DigitCode
      * @return Country instance, or null if not found
      */
-    CountryHandle lookupCountry(String iso2DigitCode);
+    Country lookupCountry(String iso2DigitCode);
 
     /**
      * Get a state by its abbreviation in the specified country
      *
      * @return Country instance, or null if not found
      */
-    StateHandle lookupStateByAbbr(String abbr, CountryHandle country);
+    State lookupStateByAbbr(String abbr, Country country);
 
     /**
      * Find a suburb in the specified country
@@ -145,7 +145,7 @@ public interface AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    List<SuburbHandle> findSuburb(String name, String iso3DigitCountryCode);
+    List<Suburb> findSuburb(String name, String iso3DigitCountryCode);
 
      /**
      * Find a suburb in the specified state
@@ -153,14 +153,14 @@ public interface AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    List<SuburbHandle> findSuburb(String name, StateHandle state);
+    List<Suburb> findSuburb(String name, State state);
 
      /**
      * Get a suburb by its name in the specified state
      *
      * @return Country instance, or null if not found
      */
-    SuburbHandle lookupSuburb(String name, StateHandle state);
+    Suburb lookupSuburb(String name, State state);
 
     /**
      * Find a postcode in the specified country
@@ -168,14 +168,14 @@ public interface AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    List<PostCodeHandle> findPostCode(String name, String iso3DigitCountryCode);
+    List<PostalCode> findPostCode(String name, String iso3DigitCountryCode);
 
     /**
      * Get a postcode by its name in the specified state
      *
      * @return PostCodeHandloe instance, or null if not found
      */
-    PostCodeHandle lookupPostCode(String name, StateHandle state);
+    PostalCode lookupPostCode(String name, State state);
 
     /**
      * Find a street in the specified country
@@ -183,9 +183,9 @@ public interface AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    List<StreetHandle> findStreet(String name, String iso3DigitCountryCode);
+    List<Street> findStreet(String name, String iso3DigitCountryCode);
 
-    List<StreetHandle> findStreet(String name, StreetType streetType, StreetSection streetSection, SuburbHandle suburb);
+    List<Street> findStreet(String name, StreetType streetType, StreetSection streetSection, Suburb suburb);
 
     /**
      * List all known addresses in a suburb
@@ -193,7 +193,7 @@ public interface AddressService {
      * @param suburb
      * @return
      */
-    Set<Address> listAddresses(SuburbHandle suburb);
+    Set<Address> listAddresses(Suburb suburb);
 
     /**
      * List all known addresses in a postCode
@@ -201,7 +201,7 @@ public interface AddressService {
      * @param postCode
      * @return
      */
-    Set<Address> listAddresses(PostCodeHandle postCode);
+    Set<Address> listAddresses(PostalCode postCode);
 
     /**
      * List all known addresses on a street
@@ -209,50 +209,50 @@ public interface AddressService {
      * @param street
      * @return
      */
-    Set<Address> listAddresses(StreetHandle street);
+    Set<Address> listAddresses(Street street);
 
     /**
      * Lookup a country by its unique ID
      * @param id
      * @return
      */
-    CountryHandle getCountryById(long id);
+    Country getCountryById(long id);
 
     /**
      * Lookup a state by its unique ID
      * @param id
      * @return
      */
-    StateHandle getStateById(long id);
+    State getStateById(long id);
 
     /**
      * Lookup a suburb by its unique ID
      * @param id
      * @return
      */
-    SuburbHandle getSuburbById(long id);
+    Suburb getSuburbById(long id);
 
      /**
      * Lookup a postcode by its unique ID
      * @param id
      * @return
      */
-    PostCodeHandle getPostCodeById(long id);
+    PostalCode getPostCodeById(long id);
 
     /**
      * Get the set of Countries
      *
      * @return
      */
-    Set<CountryHandle> listCountries();
+    Set<Country> listCountries();
 
-    Set<StateHandle> listStates(CountryHandle country);
+    Set<State> listStates(Country country);
 
     /** List the suburbs in the specified state */
-    Set<SuburbHandle> listSuburbs(StateHandle state);
+    Set<Suburb> listSuburbs(State state);
 
     /** List the postCodes in the specified state */
-    Set<PostCodeHandle> listPostCodes(StateHandle state);
+    Set<PostalCode> listPostCodes(State state);
 
 
     /**
@@ -268,7 +268,7 @@ public interface AddressService {
      * @param source
      * @return
      */
-    RegionHandle mergeRegions(RegionHandle target, RegionHandle source);
+    Region mergeRegions(Region target, Region source);
 
     /**
      * Delete the specified Region by Id, setting its status to Deleted
@@ -284,7 +284,7 @@ public interface AddressService {
      * @param name
      * @return
      */
-    List<RegionHandle> autocompleteRegion(String name);
+    List<Region> autocompleteRegion(String name);
 
 
 }

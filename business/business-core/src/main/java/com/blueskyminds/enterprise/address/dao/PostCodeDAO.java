@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;
@@ -12,9 +12,9 @@ import javax.persistence.EntityManager;
  * <p/>
  * History:
  */
-public class PostCodeDAO extends AbstractDAO<PostCodeHandle> {
+public class PostCodeDAO extends AbstractDAO<PostalCode> {
 
     public PostCodeDAO(EntityManager em) {
-        super(em, PostCodeHandle.class);
+        super(em, PostalCode.class);
     }
 }

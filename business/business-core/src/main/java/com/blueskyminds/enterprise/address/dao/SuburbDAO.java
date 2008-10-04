@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;
@@ -12,9 +12,9 @@ import javax.persistence.EntityManager;
  * <p/>
  * History:
  */
-public class SuburbDAO extends AbstractDAO<SuburbHandle> {
+public class SuburbDAO extends AbstractDAO<Suburb> {
 
     public SuburbDAO(EntityManager em) {
-        super(em, SuburbHandle.class);
+        super(em, Suburb.class);
     }
 }

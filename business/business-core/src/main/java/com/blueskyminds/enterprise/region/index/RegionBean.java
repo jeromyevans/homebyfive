@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region.index;
 
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
@@ -29,7 +29,7 @@ public abstract class RegionBean extends AbstractEntity {
     protected DomainObjectStatus status;
 
     protected RegionBean parent;
-    protected RegionHandle regionHandle;
+    protected Region regionHandle;
 
     /** The unique path of this region's primary parent */
     @Basic
@@ -113,11 +113,11 @@ public abstract class RegionBean extends AbstractEntity {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="RegionHandleId")
-    public RegionHandle getRegionHandle() {
+    public Region getRegionHandle() {
         return regionHandle;
     }
 
-    public void setRegionHandle(RegionHandle regionHandle) {
+    public void setRegionHandle(Region regionHandle) {
         this.regionHandle = regionHandle;
     }
 

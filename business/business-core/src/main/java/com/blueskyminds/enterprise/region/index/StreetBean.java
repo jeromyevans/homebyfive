@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.region.index;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.Street;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.Entity;
@@ -21,8 +21,8 @@ public class StreetBean extends RegionBean {
     }
 
     @Transient
-    public StreetHandle getStreetHandle() {
-        return (StreetHandle) regionHandle;
+    public Street getStreetHandle() {
+        return (Street) regionHandle;
     }
 
     public void populateAttributes() {

@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region.graph;
 
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.StreetSection;
@@ -19,19 +19,19 @@ import org.apache.commons.lang.StringUtils;
  */
 @Entity
 @DiscriminatorValue("T")
-public class StreetHandle extends RegionHandle {
+public class Street extends Region {
 
     private StreetType streetType;
     private StreetSection section;
 
-    public StreetHandle(String name) {
+    public Street(String name) {
         super(name, RegionTypes.Street);
     }
 
     /**
      * Create a new instance of a street without the standard set of properties
      */
-    public StreetHandle(String name, StreetType streetType, StreetSection section) {
+    public Street(String name, StreetType streetType, StreetSection section) {
         super(name, RegionTypes.Street);
         this.streetType = streetType;
         this.section = section;
@@ -40,12 +40,12 @@ public class StreetHandle extends RegionHandle {
     /**
      * Create a new instance of a street without a street section (street sections are rare)
      */
-    public StreetHandle(String name, StreetType streetType) {
+    public Street(String name, StreetType streetType) {
         super(name, RegionTypes.Street);
         this.streetType = streetType;
     }
 
-    protected StreetHandle() {
+    protected Street() {
     }
 
     /**

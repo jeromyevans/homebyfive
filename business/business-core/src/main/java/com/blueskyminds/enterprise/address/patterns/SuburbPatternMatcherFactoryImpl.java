@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;
@@ -55,7 +55,7 @@ public class SuburbPatternMatcherFactoryImpl implements SuburbPatternMatcherFact
      * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      *
      */
-    public SuburbPatternMatcher create(StateHandle stateHandle) throws PatternMatcherInitialisationException {
+    public SuburbPatternMatcher create(State stateHandle) throws PatternMatcherInitialisationException {
         LOG.info("Creating a new SuburbPatternMatcher for " + stateHandle);
         SuburbPatternMatcher matcher = new SuburbPatternMatcher(stateHandle, suburbScoringStrategy);
 

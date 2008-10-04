@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;
@@ -10,10 +10,10 @@ import javax.persistence.EntityManager;
  * <p/>
  * History:
  */
-public class CountryDAO extends AbstractDAO<CountryHandle> {
+public class CountryDAO extends AbstractDAO<Country> {
 
     public CountryDAO(EntityManager em) {
-        super(em, CountryHandle.class);
+        super(em, Country.class);
     }
 
 }

@@ -1,8 +1,6 @@
 package com.blueskyminds.enterprise.region.graph;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
-import com.blueskyminds.homebyfive.framework.core.DomainObject;
-import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.homebyfive.framework.core.alias.Aliased;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;
@@ -31,7 +29,7 @@ import java.util.HashSet;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Impl", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("R")
-public abstract class RegionHandle extends AbstractEntity implements Named, Aliased {
+public abstract class Region extends AbstractEntity implements Named, Aliased {
 
     private String name;
     private String abbreviation;    
@@ -41,14 +39,14 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
     private Set<RegionHierarchy> childRegions;
     private DomainObjectStatus status;
 
-    protected RegionHandle(String name, RegionTypes type) {
+    protected Region(String name, RegionTypes type) {
         this.name = name;
         this.type = type;
         init();
     }
 
     /** Create a RegionHandle with the specified name and aliases */ 
-    protected RegionHandle(String name, RegionTypes type, String...aliases) {
+    protected Region(String name, RegionTypes type, String...aliases) {
         this.name = name;
         this.type = type;
         init();
@@ -57,7 +55,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
         }
     }
 
-    protected RegionHandle() {
+    protected Region() {
         init();
     }
 
@@ -225,7 +223,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param childHandle
      * @return true if added ok
      */
-    public boolean addChildRegion(RegionHandle childHandle) {
+    public boolean addChildRegion(Region childHandle) {
         boolean added = false;
 
         if (childHandle != null) {
@@ -249,7 +247,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param childHandle
      * @return true if found and removed ok
      */
-    public boolean removeChildRegion(RegionHandle childHandle) {
+    public boolean removeChildRegion(Region childHandle) {
 
         boolean removed = false;
         RegionHierarchy childEntryToRemove = null;
@@ -290,7 +288,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param parentHandle
      * @return true if found and removed ok
      */
-    public boolean removeParentRegion(RegionHandle parentHandle) {
+    public boolean removeParentRegion(Region parentHandle) {
 
         boolean removed = false;
         RegionHierarchy childEntryToRemove = null;
@@ -340,7 +338,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param parentHandle
      * @return true if added ok
      */
-    public boolean addParentRegion(RegionHandle parentHandle) {
+    public boolean addParentRegion(Region parentHandle) {
 
         boolean added = false;
 
@@ -370,7 +368,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param regionHandle
      * @return true if this does
      */
-    public boolean hasChild(RegionHandle regionHandle) {
+    public boolean hasChild(Region regionHandle) {
         for (RegionHierarchy map : childRegions) {
             if (map.getChild().equals(regionHandle)) {
                 return true;
@@ -385,7 +383,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param regionHandle
      * @return true if this does
      */
-    public boolean hasParent(RegionHandle regionHandle) {
+    public boolean hasParent(Region regionHandle) {
         for (RegionHierarchy map : parentRegions) {
             if (map.getParent().equals(regionHandle)) {
                 return true;
@@ -400,7 +398,7 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param type
      * @return
      */
-     public RegionHandle getParent(RegionTypes type) {
+     public Region getParent(RegionTypes type) {
         for (RegionHierarchy map : parentRegions) {
             if (type.equals(map.getParent().getType())) {
                 return map.getParent();
@@ -415,8 +413,8 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param type
      * @return
      */
-     public Set<RegionHandle> getChildren(RegionTypes type) {
-        Set<RegionHandle> matchedChildren = new HashSet<RegionHandle>();
+     public Set<Region> getChildren(RegionTypes type) {
+        Set<Region> matchedChildren = new HashSet<Region>();
         for (RegionHierarchy map : childRegions) {
             if (type.equals(map.getChild().getType())) {
                 matchedChildren.add(map.getChild());
@@ -442,13 +440,13 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
      * @param anotherRegion
      * @return
      */
-    public void mergeWith(RegionHandle anotherRegion) {
+    public void mergeWith(Region anotherRegion) {
          Set<RegionHierarchy> otherParents = anotherRegion.getParentRegionMaps();
-         Set<RegionHandle> parentsToAdd = new HashSet<RegionHandle>();
-         Set<RegionHandle> childrenToAdd = new HashSet<RegionHandle>();
+         Set<Region> parentsToAdd = new HashSet<Region>();
+         Set<Region> childrenToAdd = new HashSet<Region>();
          Set<String> aliasesToAdd = new HashSet<String>();
-         Set<RegionHandle> parentsToUpdate = new HashSet<RegionHandle>();
-         Set<RegionHandle> childrenToUpdate = new HashSet<RegionHandle>();
+         Set<Region> parentsToUpdate = new HashSet<Region>();
+         Set<Region> childrenToUpdate = new HashSet<Region>();
 
          // determine which parents need to be added
          for (RegionHierarchy regionHierarchy : otherParents) {
@@ -475,11 +473,11 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
          }
 
          // apply the changes to this regionHandle
-         for (RegionHandle parentRegion : parentsToAdd) {
+         for (Region parentRegion : parentsToAdd) {
              addParentRegion(parentRegion);
          }
 
-         for (RegionHandle childRegion : childrenToAdd) {
+         for (Region childRegion : childrenToAdd) {
              addChildRegion(childRegion);
          }
 
@@ -488,12 +486,12 @@ public abstract class RegionHandle extends AbstractEntity implements Named, Alia
          }
 
          // remove the other region from its parents
-         for (RegionHandle parent: parentsToUpdate) {
+         for (Region parent: parentsToUpdate) {
              parent.removeChildRegion(anotherRegion);
          }
 
          // remove the other region's children
-         for (RegionHandle child : childrenToUpdate) {
+         for (Region child : childrenToUpdate) {
              child.removeParentRegion(anotherRegion);
          }
      }

@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -41,8 +41,8 @@ public class TestRegionDAO extends JPATestCase {
     public void testDescendants() throws Exception {
         RegionGraphDAO regionGraphDAO = new RegionGraphDAO(em);
 
-        RegionHandle aus = regionGraphDAO.findRegionByName(TestRegionTools.AUSTRALIA).iterator().next();
-        RegionHandle neutralBay = regionGraphDAO.findRegionByName(TestRegionTools.NEUTRAL_BAY).iterator().next();
+        Region aus = regionGraphDAO.findRegionByName(TestRegionTools.AUSTRALIA).iterator().next();
+        Region neutralBay = regionGraphDAO.findRegionByName(TestRegionTools.NEUTRAL_BAY).iterator().next();
 
         // find all descendants of AUS
 //        Set<Region> foundDescendants = regionGraphDAO.findDescendants(aus);
@@ -57,8 +57,8 @@ public class TestRegionDAO extends JPATestCase {
      public void testAncestors() throws Exception {
         RegionGraphDAO regionGraphDAO = new RegionGraphDAO(em);
 
-        RegionHandle neutralBay = regionGraphDAO.findRegionByName(TestRegionTools.NEUTRAL_BAY).iterator().next();
-        RegionHandle nsw = regionGraphDAO.findRegionByName(TestRegionTools.NSW).iterator().next();
+        Region neutralBay = regionGraphDAO.findRegionByName(TestRegionTools.NEUTRAL_BAY).iterator().next();
+        Region nsw = regionGraphDAO.findRegionByName(TestRegionTools.NSW).iterator().next();
 
         // find all ancestors of Neutral Bay
 //        Set<Region> foundAncestors = regionGraphDAO.findAncestors(neutralBay);

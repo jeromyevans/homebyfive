@@ -1,11 +1,8 @@
 package com.blueskyminds.enterprise.address;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.*;
 
 import javax.persistence.*;
 
@@ -27,10 +24,10 @@ import org.apache.commons.lang.StringUtils;
 public abstract class Address extends AbstractDomainObject {
 
     /** The suburb the address is in */
-    private SuburbHandle suburb;
+    private Suburb suburb;
 
     /** The postcode for the address - usually implied by the suburb, but not always */
-    private PostCodeHandle postCode;
+    private PostalCode postCode;
 
     // ------------------------------------------------------------------------------------------------------
     // ------------------------------------------------------------------------------------------------------
@@ -41,7 +38,7 @@ public abstract class Address extends AbstractDomainObject {
      * @param suburb        Suburb of this address (inferring the state and country)
      * @param postCode      PostCode for the address (usually the suburb's postcode)
      */
-    public Address(SuburbHandle suburb, PostCodeHandle postCode) {
+    public Address(Suburb suburb, PostalCode postCode) {
         this.suburb = suburb;
         this.postCode = postCode;
     }
@@ -59,11 +56,11 @@ public abstract class Address extends AbstractDomainObject {
      */
     @ManyToOne(cascade = CascadeType.ALL)  // cascade is required if Street is added to the Suburb
     @JoinColumn(name="SuburbId")
-    public SuburbHandle getSuburb() {
+    public Suburb getSuburb() {
         return suburb;
     }
 
-    public void setSuburb(SuburbHandle suburb) {
+    public void setSuburb(Suburb suburb) {
         this.suburb = suburb;
     }
 
@@ -78,11 +75,11 @@ public abstract class Address extends AbstractDomainObject {
      */
     @ManyToOne
     @JoinColumn(name="PostCodeId")
-    public PostCodeHandle getPostCode() {
+    public PostalCode getPostCode() {
         return postCode;
     }
 
-    public void setPostCode(PostCodeHandle postCode) {
+    public void setPostCode(PostalCode postCode) {
         this.postCode = postCode;
     }
 
@@ -99,7 +96,7 @@ public abstract class Address extends AbstractDomainObject {
      * @return
      */
     @Transient
-    public StateHandle getState() {
+    public State getState() {
         if (hasSuburb()) {
             return suburb.getState();
         } else {
@@ -117,8 +114,8 @@ public abstract class Address extends AbstractDomainObject {
      * @return
      */
     @Transient
-    public CountryHandle getCountry() {
-        StateHandle state = getState();
+    public Country getCountry() {
+        State state = getState();
         if (state != null) {
             return state.getCountry();
         } else {
@@ -140,7 +137,7 @@ public abstract class Address extends AbstractDomainObject {
      * @return street or null if not applicable
      */
     @Transient
-    public abstract StreetHandle getStreet();
+    public abstract Street getStreet();
 
     /**
      * Format the address into a human readable string
@@ -160,21 +157,21 @@ public abstract class Address extends AbstractDomainObject {
             buffer.append(StringUtils.isNotBlank(suburbName) ? suburbName+ " " : "");
 
             if (includeState) {
-                StateHandle stateHandle = getSuburb().getState();
+                State stateHandle = getSuburb().getState();
                 if (stateHandle != null) {
                     buffer.append(stateHandle.getName()+" ");
                 }
             }
 
             if (includePostCode) {
-                PostCodeHandle postCode = getSuburb().getPostCode();
+                PostalCode postCode = getSuburb().getPostCode();
                 if (postCode != null) {
                     buffer.append(postCode.getName()+" ");
                 }
             }
 
             if (includeCountry) {
-                CountryHandle countryHandle = getCountry();
+                Country countryHandle = getCountry();
                 if (countryHandle != null) {
                     buffer.append(countryHandle.getName()+" ");
                 }

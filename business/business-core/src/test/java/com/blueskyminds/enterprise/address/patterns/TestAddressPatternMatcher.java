@@ -4,7 +4,7 @@ import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.patterns.AddressPatternMatcher;
 import com.blueskyminds.enterprise.address.*;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
 import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvOptions;
@@ -149,7 +149,7 @@ public class TestAddressPatternMatcher extends JPATestCase {
         AddressTestTools.initialiseCountryList();
         AddressTestTools.initialiseAddressSubstitutionPatterns(em);
 
-        CountryHandle country = new AddressDAO(em).lookupCountry("AUS");
+        Country country = new AddressDAO(em).lookupCountry("AUS");
 
         CsvOptions csvOptions = new CsvOptions();
         csvOptions.setQuoteOutput(false);

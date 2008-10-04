@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.graph;
 
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.RegionTypes;
 
 import javax.persistence.*;
@@ -15,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("C")
-public class CountryHandle extends RegionHandle {
+public class Country extends Region {
 
     public static final String AUS = "AUS";
 
@@ -32,7 +32,7 @@ public class CountryHandle extends RegionHandle {
      *
      * @param name
      */
-    public CountryHandle(String name) {
+    public Country(String name) {
         super(name, RegionTypes.Country);
     }
 
@@ -40,11 +40,11 @@ public class CountryHandle extends RegionHandle {
      * Create a new CountryHandle pointing to the Country implementation
      * Use the factory to create new instances
      */
-    public CountryHandle(String name, String... aliases) {
+    public Country(String name, String... aliases) {
         super(name, RegionTypes.Country, aliases);
     }
 
-    protected CountryHandle() {
+    protected Country() {
     }
 
     /**
@@ -52,7 +52,7 @@ public class CountryHandle extends RegionHandle {
      *
      * @param state
      */
-    public StateHandle addState(StateHandle state) {
+    public State addState(State state) {
         addChildRegion(state);
         return state;
     }

@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.region.group;
 
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.State;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.region.index.RegionBean;
 import com.blueskyminds.enterprise.region.index.*;
 import com.blueskyminds.enterprise.region.composite.RegionCompositeFactory;
@@ -46,10 +46,10 @@ public class RegionGroupFactory {
      * Create a RegionGroup for a collection of suburbs.
      * Each suburb is represented as a composite
      * */
-    public static RegionGroup createSuburbs(StateHandle state, Collection<? extends SuburbHandle> suburbs) {
+    public static RegionGroup createSuburbs(State state, Collection<? extends Suburb> suburbs) {
         RegionCompositeFactory regionCompositeFactory = new RegionCompositeFactory();
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(state));
-        for (SuburbHandle suburb : suburbs) {
+        for (Suburb suburb : suburbs) {
             regionGroup.add(regionCompositeFactory.createSuburb(suburb));
         }
         return regionGroup;
@@ -59,10 +59,10 @@ public class RegionGroupFactory {
      * Create a RegionGroup for a collection of states.
      * Each suburb is represented as a composite
      * */
-    public static RegionGroup createStates(CountryHandle country, Collection<? extends StateHandle> states) {
+    public static RegionGroup createStates(Country country, Collection<? extends State> states) {
         RegionCompositeFactory regionCompositeFactory = new RegionCompositeFactory();
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(country));
-        for (StateHandle stateHandle : states) {
+        for (State stateHandle : states) {
             regionGroup.add(regionCompositeFactory.createState(stateHandle));
         }
         return regionGroup;

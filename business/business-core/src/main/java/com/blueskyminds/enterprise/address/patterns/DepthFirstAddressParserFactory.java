@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address.patterns;
 
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
@@ -30,7 +30,7 @@ public class DepthFirstAddressParserFactory implements AddressParserFactory {
     * @return
     */
     public AddressParser create(String iso3DigitCode) {
-        CountryHandle countryHandle = addressDAO.lookupCountry(iso3DigitCode);
+        Country countryHandle = addressDAO.lookupCountry(iso3DigitCode);
         DepthFirstAddressParser addressParser = new DepthFirstAddressParser(addressService, addressDAO, substitutionService, countryHandle);
         return addressParser;
     }
@@ -41,7 +41,7 @@ public class DepthFirstAddressParserFactory implements AddressParserFactory {
      * @param suburb
      * @return
      */
-    public AddressParser create(SuburbHandle suburb) {
+    public AddressParser create(Suburb suburb) {
         DepthFirstAddressParser addressParser = new DepthFirstAddressParser(addressService, addressDAO, substitutionService, suburb);
         return addressParser;
     }

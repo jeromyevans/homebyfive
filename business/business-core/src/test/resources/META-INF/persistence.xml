@@ -221,13 +221,13 @@ To do: many of these properties need to be able to be changed -->
 
         <class>com.blueskyminds.enterprise.region.graph.RegionHierarchy</class>
         <class>com.blueskyminds.enterprise.region.graph.RegionAlias</class>
-        <class>com.blueskyminds.enterprise.region.graph.RegionHandle</class>
-        <class>com.blueskyminds.enterprise.region.graph.CountryHandle</class>
-        <class>com.blueskyminds.enterprise.region.graph.StateHandle</class>
+        <class>com.blueskyminds.enterprise.region.graph.Region</class>
+        <class>com.blueskyminds.enterprise.region.graph.Country</class>
+        <class>com.blueskyminds.enterprise.region.graph.State</class>
 
-        <class>com.blueskyminds.enterprise.region.graph.PostCodeHandle</class>
+        <class>com.blueskyminds.enterprise.region.graph.PostalCode</class>
 
-        <class>com.blueskyminds.enterprise.region.graph.SuburbHandle</class>
+        <class>com.blueskyminds.enterprise.region.graph.Suburb</class>
 
 
         <!-- end of enterprise -->
@@ -320,13 +320,13 @@ To do: many of these properties need to be able to be changed -->
 
     <class>com.blueskyminds.enterprise.region.graph.RegionHierarchy</class>
     <class>com.blueskyminds.enterprise.region.graph.RegionAlias</class>
-    <class>com.blueskyminds.enterprise.region.graph.RegionHandle</class>
-    <class>com.blueskyminds.enterprise.region.graph.CountryHandle</class>
-    <class>com.blueskyminds.enterprise.region.graph.StateHandle</class>
+    <class>com.blueskyminds.enterprise.region.graph.Region</class>
+    <class>com.blueskyminds.enterprise.region.graph.Country</class>
+    <class>com.blueskyminds.enterprise.region.graph.State</class>
 
-    <class>com.blueskyminds.enterprise.region.graph.PostCodeHandle</class>
+    <class>com.blueskyminds.enterprise.region.graph.PostalCode</class>
 
-    <class>com.blueskyminds.enterprise.region.graph.SuburbHandle</class>
+    <class>com.blueskyminds.enterprise.region.graph.Suburb</class>
 
 
     <!-- landmine entities -->

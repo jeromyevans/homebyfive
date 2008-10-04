@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.address.dao;
 
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 
 import javax.persistence.EntityManager;
@@ -10,9 +10,9 @@ import javax.persistence.EntityManager;
  * <p/>
  * History:
  */
-public class StateDAO extends AbstractDAO<StateHandle> {
+public class StateDAO extends AbstractDAO<State> {
 
     public StateDAO(EntityManager em) {
-        super(em, StateHandle.class);
+        super(em, State.class);
     }
 }

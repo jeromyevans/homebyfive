@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.Street;
 
 import javax.persistence.*;
 import java.io.PrintStream;
@@ -32,7 +32,7 @@ public class PlainTextAddress extends Address {
 
     /* Create an address that is in the full-text form - unvalidated and not separated into fields, but with a
      known suburb*/
-    public PlainTextAddress(String address, SuburbHandle suburb, PostCodeHandle postCode) {
+    public PlainTextAddress(String address, Suburb suburb, PostalCode postCode) {
         super(suburb, postCode);
         this.value = address;
     }
@@ -48,7 +48,7 @@ public class PlainTextAddress extends Address {
     }
 
     @Transient
-    public StreetHandle getStreet() {
+    public Street getStreet() {
         return null;  
     }
 

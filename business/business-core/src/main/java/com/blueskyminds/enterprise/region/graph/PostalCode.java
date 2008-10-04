@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.graph;
 
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.RegionTypes;
 
 import javax.persistence.*;
@@ -15,13 +15,13 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("P")
-public class PostCodeHandle extends RegionHandle {
+public class PostalCode extends Region {
 
-    public PostCodeHandle(String name) {
+    public PostalCode(String name) {
         super(name, RegionTypes.PostCode);
     }
 
-    protected PostCodeHandle() {
+    protected PostalCode() {
     }
     
     /**
@@ -31,10 +31,10 @@ public class PostCodeHandle extends RegionHandle {
      * @return
      */
     @Transient
-    public StateHandle getState() {
-        RegionHandle parent = getParent(RegionTypes.State);
+    public State getState() {
+        Region parent = getParent(RegionTypes.State);
         if (parent != null) {
-            return (StateHandle) parent.unproxy().getModel();
+            return (State) parent.unproxy().getModel();
         } else {
             return null;
         }

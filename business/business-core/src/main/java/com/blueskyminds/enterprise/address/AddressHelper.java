@@ -1,10 +1,7 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.*;
 
 /**
  * Access fields of an address without knowing its implementation
@@ -72,7 +69,7 @@ public class AddressHelper {
      * @param address
      * @return
      */
-    public static StreetHandle street(Address address) {
+    public static Street street(Address address) {
         return address.getStreet();
     }
 
@@ -84,7 +81,7 @@ public class AddressHelper {
      * @return
      */
     public static String streetName(Address address) {
-        StreetHandle street = address.getStreet();
+        Street street = address.getStreet();
         if (street != null) {
             return street.getName();
         }
@@ -99,7 +96,7 @@ public class AddressHelper {
      * @return
      */
     public static String streetNameFull(Address address) {
-        StreetHandle street = address.getStreet();
+        Street street = address.getStreet();
         if (street != null) {
             return street.getFullName();
         }
@@ -113,7 +110,7 @@ public class AddressHelper {
      * @return
      */
     public static StreetType streetType(Address address) {
-        StreetHandle street = address.getStreet();
+        Street street = address.getStreet();
         if (street != null) {
             return street.getStreetType();
         }
@@ -127,7 +124,7 @@ public class AddressHelper {
      * @return
      */
     public static StreetSection streetSection(Address address) {        
-        StreetHandle street = address.getStreet();
+        Street street = address.getStreet();
         if (street != null) {
             return street.getSection();
         }
@@ -141,7 +138,7 @@ public class AddressHelper {
      * @return
      */
     public static String suburb(Address address) {
-        SuburbHandle suburb = address.getSuburb();
+        Suburb suburb = address.getSuburb();
         if (suburb != null) {
             return suburb.getName();
         }
@@ -155,7 +152,7 @@ public class AddressHelper {
      * @return
      */
     public static String postCode(Address address) {
-        PostCodeHandle postCodeHandle = address.getPostCode();
+        PostalCode postCodeHandle = address.getPostCode();
         if (postCodeHandle != null) {
             return postCodeHandle.getName();
         }
@@ -169,7 +166,7 @@ public class AddressHelper {
      * @return
      */
     public static String state(Address address) {
-        StateHandle stateHandle = address.getState();
+        State stateHandle = address.getState();
         if (stateHandle != null) {
             return stateHandle.getName();
         }
@@ -183,7 +180,7 @@ public class AddressHelper {
      * @return
      */
     public static String country(Address address) {
-        CountryHandle countryHandle = address.getCountry();
+        Country countryHandle = address.getCountry();
         if (countryHandle != null) {
             return countryHandle.getName();
         }

@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region.reference;
 
 import com.blueskyminds.enterprise.region.*;
 import com.blueskyminds.enterprise.region.graph.*;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.enterprise.region.index.*;
 import com.blueskyminds.enterprise.address.Address;
 //import com.blueskyminds.landmine.core.property.Premise;
@@ -25,7 +25,7 @@ public class RegionRefFactory {
      * @param regionHandle
      * @return
      */
-    public static RegionRef createRef(SuburbHandle regionHandle) {
+    public static RegionRef createRef(Suburb regionHandle) {
         if (regionHandle != null) {
             RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
@@ -41,7 +41,7 @@ public class RegionRefFactory {
      * @param regionHandle
      * @return
      */
-    public static RegionRef createRef(StateHandle regionHandle) {
+    public static RegionRef createRef(State regionHandle) {
         if (regionHandle != null) {
             RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
@@ -57,7 +57,7 @@ public class RegionRefFactory {
      * @param regionHandle
      * @return
      */
-    public static RegionRef createRef(CountryHandle regionHandle) {
+    public static RegionRef createRef(Country regionHandle) {
         if (regionHandle != null) {
             RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
@@ -73,7 +73,7 @@ public class RegionRefFactory {
      * @param regionHandle
      * @return
      */
-    public static RegionRef createRef(PostCodeHandle regionHandle) {
+    public static RegionRef createRef(PostalCode regionHandle) {
         if (regionHandle != null) {
             RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
@@ -89,7 +89,7 @@ public class RegionRefFactory {
     * @param regionHandle
     * @return
     */
-    public static RegionRef createRef(RegionHandle regionHandle) {
+    public static RegionRef createRef(Region regionHandle) {
         if (regionHandle != null) {
             RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
@@ -169,7 +169,7 @@ public class RegionRefFactory {
      * @param street
      * @return
      */
-    public static RegionRef createRef(StreetHandle street, Address address) {
+    public static RegionRef createRef(Street street, Address address) {
         if (street != null) {
             RegionRef regionRef = new RegionRef(street.getId(), PathHelper.buildPath(address.getSuburb(), street), street.getFullName(), null, RegionRefType.Street);
 
@@ -270,18 +270,18 @@ public class RegionRefFactory {
         }
     }
 
-    public static List<RegionRef> createRefs(List<RegionHandle> regionHandles) {
+    public static List<RegionRef> createRefs(List<Region> regionHandles) {
         List<RegionRef> regionRefs = new ArrayList<RegionRef>(regionHandles.size());
-        for (RegionHandle region : regionHandles) {
+        for (Region region : regionHandles) {
             regionRefs.add(createRef(region));
         }
         return regionRefs;
     }
 
     /** Applies some useful attributes to a RegionRef */
-    private static void populateAttributes(RegionRef regionRef, RegionHandle regionHandle) {
-        RegionHandle suburb;
-        if (regionHandle instanceof SuburbHandle) {
+    private static void populateAttributes(RegionRef regionRef, Region regionHandle) {
+        Region suburb;
+        if (regionHandle instanceof Suburb) {
             suburb = regionHandle;
         } else {
             suburb = regionHandle.getParent(RegionTypes.Suburb);
@@ -291,8 +291,8 @@ public class RegionRefFactory {
             regionRef.setAttribute(RegionRefAttributes.SUBURB, RegionTools.encode(suburb.getName()));
         }
 
-        RegionHandle state;
-        if (regionHandle instanceof StateHandle) {
+        Region state;
+        if (regionHandle instanceof State) {
             state = regionHandle;
         } else {
             state = regionHandle.getParent(RegionTypes.State);
@@ -302,8 +302,8 @@ public class RegionRefFactory {
             regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(state.getAbbreviation()));
         }
 
-        RegionHandle postCode;
-        if (regionHandle instanceof PostCodeHandle) {
+        Region postCode;
+        if (regionHandle instanceof PostalCode) {
             postCode = regionHandle;
         } else {
             postCode = regionHandle.getParent(RegionTypes.PostCode);
@@ -313,7 +313,7 @@ public class RegionRefFactory {
             regionRef.setAttribute(RegionRefAttributes.POSTCODE, RegionTools.encode(postCode.getName()));
         }
 
-        RegionHandle country;
+        Region country;
         if (state != null) {
             country = state.getParent(RegionTypes.Country);
             if (country != null) {
@@ -328,9 +328,9 @@ public class RegionRefFactory {
 
     /** Applies some useful attributes to a RegionRef */  
     public static void populateAttributes(RegionRef regionRef, Address address) {
-        RegionHandle suburb = address.getSuburb();
-        RegionHandle state = address.getState();
-        RegionHandle postCode = address.getPostCode();
+        Region suburb = address.getSuburb();
+        Region state = address.getState();
+        Region postCode = address.getPostCode();
         if (suburb != null) {
             regionRef.setAttribute(RegionRefAttributes.SUBURB, RegionTools.encode(suburb.getName()));
         }
@@ -340,7 +340,7 @@ public class RegionRefFactory {
         if (state != null) {
             regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(state.getAbbreviation()));
 
-            RegionHandle country = state.getParent(RegionTypes.Country);
+            Region country = state.getParent(RegionTypes.Country);
             if (country != null) {
                 regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbreviation()));
             }

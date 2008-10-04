@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.license;
 
 import com.blueskyminds.enterprise.license.LicenseTypes;
 import com.blueskyminds.enterprise.license.License;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -23,7 +23,7 @@ public class RegionLicense extends License {
     /**
      * The region that this license represents allocated by this allocation
      **/
-    private RegionHandle region;
+    private Region region;
 
     // -------------------------------------------------------------------------------------------------------
     /**
@@ -32,7 +32,7 @@ public class RegionLicense extends License {
     * @param region
     * @param type
     */
-    public RegionLicense(RegionHandle region, LicenseTypes type) {
+    public RegionLicense(Region region, LicenseTypes type) {
         super(type);
         this.region = region;
     }
@@ -45,11 +45,11 @@ public class RegionLicense extends License {
 
     @ManyToOne
     @JoinColumn(name="RegionId")
-    public RegionHandle getRegion() {
+    public Region getRegion() {
         return region;
     }
 
-    public void setRegion(RegionHandle region) {
+    public void setRegion(Region region) {
         this.region = region;
     }
     // -------------------------------------------------------------------------------------------------------

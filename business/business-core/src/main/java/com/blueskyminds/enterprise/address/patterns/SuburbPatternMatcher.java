@@ -4,10 +4,10 @@ import com.blueskyminds.homebyfive.framework.core.patterns.*;
 import com.blueskyminds.homebyfive.framework.core.patterns.scoring.ScoringStrategy;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.State;
+import com.blueskyminds.enterprise.region.graph.Street;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -26,7 +26,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd<br/>
  */
-public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
+public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
 
     private static final Log LOG = LogFactory.getLog(SuburbPatternMatcher.class);
 
@@ -35,8 +35,8 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
     private EntityManager em;
 
     private AddressDAO addressDAO;
-    private CountryHandle country;
-    private StateHandle state;
+    private Country country;
+    private State state;
 
     /**
      * Create an SuburbPatternMatcher for the specified country with default settings.  Sets up all the bins for
@@ -66,7 +66,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      * @param em
      * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
-    public SuburbPatternMatcher(StateHandle state, EntityManager em) throws PatternMatcherInitialisationException {
+    public SuburbPatternMatcher(State state, EntityManager em) throws PatternMatcherInitialisationException {
         super(new SuburbScoringStrategy());
         this.state = state;
         this.em = em;
@@ -82,7 +82,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      * @param scoringStrategy
      * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
-    public SuburbPatternMatcher(StateHandle stateHandle, ScoringStrategy scoringStrategy) throws PatternMatcherInitialisationException {
+    public SuburbPatternMatcher(State stateHandle, ScoringStrategy scoringStrategy) throws PatternMatcherInitialisationException {
         super(scoringStrategy);
         this.state = stateHandle;
     }
@@ -184,7 +184,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
             PhraseToBinAllocation suburbAllocation = allocation.getAllocationForBin(SuburbNameBin.class);
 
             if (suburbAllocation != null) {
-                SuburbHandle suburb = (SuburbHandle) suburbAllocation.getPattern().getMetadata();
+                Suburb suburb = (Suburb) suburbAllocation.getPattern().getMetadata();
 
                 if ((suburb != null) && (suburb.isIdSet())) {
                     suburb = em.merge(suburb);
@@ -193,7 +193,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
                     // ensure the state allocation is consistent with the state
                     PhraseToBinAllocation stateAllocation = allocation.getAllocationForBin(StateBin.class);
                     if (stateAllocation != null) {
-                        StateHandle state = (StateHandle) stateAllocation.getPattern().getMetadata();
+                        State state = (State) stateAllocation.getPattern().getMetadata();
                         if ((state != null) && (state.isIdSet())) {
                             state = em.merge(state);
                         }
@@ -209,8 +209,8 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
                         PhraseToBinAllocation streetNameAllocation = allocation.getAllocationForBin(StreetNameBin.class);
                         if (streetNameAllocation != null) {
                             Object metadata = streetNameAllocation.getPattern().getMetadata();
-                            if ((metadata != null) && (metadata instanceof StreetHandle)) {
-                                StreetHandle street = (StreetHandle) metadata;
+                            if ((metadata != null) && (metadata instanceof Street)) {
+                                Street street = (Street) metadata;
                                 if (street.isIdSet()) {
                                     street = em.merge(street);
                                 }
@@ -234,8 +234,8 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      * @param allocation
      * @return the suburb, or null if the allocation is not valid or there's no underlying suburb metadata
      */
-    private SuburbHandle extractSuburb(PhraseToBinAllocation allocation) {
-        return extractMetadata(SuburbHandle.class, allocation);
+    private Suburb extractSuburb(PhraseToBinAllocation allocation) {
+        return extractMetadata(Suburb.class, allocation);
     }
 
     // ------------------------------------------------------------------------------------------------------
@@ -245,8 +245,8 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      * @param allocation
      * @return the state, or null if the allocation is not valid or there's no underlying state metadata
      */
-    private StateHandle extractState(PhraseToBinAllocation allocation) {
-        return extractMetadata(StateHandle.class, allocation);
+    private State extractState(PhraseToBinAllocation allocation) {
+        return extractMetadata(State.class, allocation);
     }
 
     // ------------------------------------------------------------------------------------------------------
@@ -257,8 +257,8 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
      * @return the country specified in the address, or the country specified by the constructor of
      * this pattern matcher if htere's no country defined in the allocation
      */
-    private CountryHandle extractCountry(PhraseToBinAllocation allocation) {
-        CountryHandle value = extractMetadata(CountryHandle.class, allocation);
+    private Country extractCountry(PhraseToBinAllocation allocation) {
+        Country value = extractMetadata(Country.class, allocation);
         if (value == null) {
             // use the country specified by the constructor
             return country;
@@ -287,20 +287,20 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
     // ------------------------------------------------------------------------------------------------------
 
     /** Parses the input and extracts the based-candidate Address */
-    public SuburbHandle extractBest(String inputString) throws PatternMatcherException {
+    public Suburb extractBest(String inputString) throws PatternMatcherException {
         return super.extractBest(inputString);
     }
 
      /** Parses the input and extracts the based maxMatches results */
-    public List<SuburbHandle> extractMatches(String inputString, int maxMatches) throws PatternMatcherException {
+    public List<Suburb> extractMatches(String inputString, int maxMatches) throws PatternMatcherException {
         return super.extractMatches(prefilterAddressText(inputString), maxMatches);
     }
 
     /** Creates an SuburbHandle from a candidate allocation */
-    protected SuburbHandle extractCandidate(CandidateAllocation candidate) throws PatternMatcherException {
+    protected Suburb extractCandidate(CandidateAllocation candidate) throws PatternMatcherException {
 
         // extract all of the components
-        SuburbHandle suburb = extractSuburb(candidate.getAllocationForBin(SuburbNameBin.class));
+        Suburb suburb = extractSuburb(candidate.getAllocationForBin(SuburbNameBin.class));
         return suburb;
     }
 
@@ -309,7 +309,7 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
     // ------------------------------------------------------------------------------------------------------
 
     /** Convert the input plaintext address into a structured SuburbHandle */
-    public SuburbHandle extract(PlainTextAddress address) throws PatternMatcherException {
+    public Suburb extract(PlainTextAddress address) throws PatternMatcherException {
         return extractBest(address.getAddress());
     }
 

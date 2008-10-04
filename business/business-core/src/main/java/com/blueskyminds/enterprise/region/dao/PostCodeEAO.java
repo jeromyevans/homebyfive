@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.enterprise.region.index.PostCodeBean;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
 import com.google.inject.Inject;
 
 import javax.persistence.Query;
@@ -58,7 +58,7 @@ public class PostCodeEAO extends AbstractDAO<PostCodeBean> {
      *
      * @return PostCodeBean, or null if not found
      */
-    public PostCodeBean lookupPostCode(PostCodeHandle postCodeHandle) {
+    public PostCodeBean lookupPostCode(PostalCode postCodeHandle) {
 
         Query query = em.createNamedQuery(QUERY_POSTCODE_BY_HANDLE);
         query.setParameter(PARAM_HANDLE, postCodeHandle);

@@ -1,8 +1,8 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Street;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -132,15 +132,15 @@ public class MultifieldAddress {
      * @param suburb
      * @return a new Address implementation if possible, otherwise null
      */
-    public Address augmentWithKnown(SuburbHandle suburb) {
+    public Address augmentWithKnown(Suburb suburb) {
         Address address = null;
-        PostCodeHandle postCode;
+        PostalCode postCode;
 
         if (suburb != null) {
 
             postCode = suburb.getPostCode();
             
-            StreetHandle street = new StreetHandle(streetName, streetType, streetSection);
+            Street street = new Street(streetName, streetType, streetSection);
 
             if (StringUtils.isNotBlank(unitNo)) {
                 address = new UnitAddress(unitNo, streetNo, street, suburb, postCode);

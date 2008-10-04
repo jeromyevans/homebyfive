@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 
 /**
  * Date: 31/03/2008
@@ -34,12 +34,12 @@ public class TestRegionMerge extends JPATestCase {
         newTransaction(); // clear hashsets to enable remove functions
 
         regionGraphDAO = new RegionGraphDAO(em);
-        RegionHandle bullcreek = regionGraphDAO.findRegionByName(TestRegionTools.BULL_CREEK).iterator().next();
-        RegionHandle willetton = regionGraphDAO.findRegionByName(TestRegionTools.WILLETTON).iterator().next();
+        Region bullcreek = regionGraphDAO.findRegionByName(TestRegionTools.BULL_CREEK).iterator().next();
+        Region willetton = regionGraphDAO.findRegionByName(TestRegionTools.WILLETTON).iterator().next();
 
-        RegionHandle state1 = regionGraphDAO.findRegionByName("WA").iterator().next();
-        RegionHandle postCode1 = regionGraphDAO.findRegionByName("6149").iterator().next();
-        RegionHandle postCode2 = regionGraphDAO.findRegionByName("6155").iterator().next();
+        Region state1 = regionGraphDAO.findRegionByName("WA").iterator().next();
+        Region postCode1 = regionGraphDAO.findRegionByName("6149").iterator().next();
+        Region postCode2 = regionGraphDAO.findRegionByName("6155").iterator().next();
 
 
         assertTrue(state1.hasChild(bullcreek));

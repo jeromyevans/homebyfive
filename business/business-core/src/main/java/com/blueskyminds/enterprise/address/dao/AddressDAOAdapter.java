@@ -4,11 +4,11 @@ import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 
 import java.util.*;
 
@@ -83,8 +83,8 @@ public class AddressDAOAdapter extends AbstractDAO {
      * @param iso3DigitCode (it will be converted to uppercase for the query)
      * @return Country instance, or null if not found
      */
-    public CountryHandle getCountry(String iso3DigitCode) {
-        return (CountryHandle) new RegionGraphDAO(em).getCountry(iso3DigitCode);
+    public Country getCountry(String iso3DigitCode) {
+        return (Country) new RegionGraphDAO(em).getCountry(iso3DigitCode);
     }
 
     // ------------------------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ public class AddressDAOAdapter extends AbstractDAO {
      *
      * @return Country instance, or null if not found
      */
-    public Collection<StateHandle> getStates(CountryHandle country) {
+    public Collection<State> getStates(Country country) {
         return (Set) new RegionGraphDAO(em).findChildrenOfType(country, RegionTypes.State);
     }
 
@@ -105,7 +105,7 @@ public class AddressDAOAdapter extends AbstractDAO {
      *
      * @return Country instance, or null if not found
      */
-    public Collection<PostCodeHandle> getPostCodes(CountryHandle country) {
+    public Collection<PostalCode> getPostCodes(Country country) {
 
         return (Set) new AddressDAO(em).listPostCodesInCountry(country);
     }
@@ -117,7 +117,7 @@ public class AddressDAOAdapter extends AbstractDAO {
      *
      * @return loist of suburbs
      */
-    public Collection<SuburbHandle> getSuburbs(StateHandle state) {
+    public Collection<Suburb> getSuburbs(State state) {
 
         return (Set) new RegionGraphDAO(em).findChildrenOfType(state, RegionTypes.Suburb);
     }

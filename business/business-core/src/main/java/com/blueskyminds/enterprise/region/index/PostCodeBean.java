@@ -8,7 +8,7 @@ import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.reference.CountryRef;
 import com.blueskyminds.enterprise.region.reference.StateRef;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
@@ -128,11 +128,11 @@ public class PostCodeBean extends RegionBean implements CountryRef, StateRef {
     }
 
     @Transient
-    public PostCodeHandle getPostCodeHandle() {
-        return (PostCodeHandle) regionHandle;
+    public PostalCode getPostCodeHandle() {
+        return (PostalCode) regionHandle;
     }
 
-    public void setPostCodeHandle(PostCodeHandle postCodeHandle) {
+    public void setPostCodeHandle(PostalCode postCodeHandle) {
         this.regionHandle = postCodeHandle;
     }
 

@@ -4,9 +4,9 @@ import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.*;
 
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
-import com.blueskyminds.enterprise.region.graph.StreetHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.enterprise.region.graph.Street;
 
 /**
  * A Lot address is a type of physical address typically used to:
@@ -27,7 +27,7 @@ public class LotAddress extends StreetAddress {
 
     // ------------------------------------------------------------------------------------------------------
 
-    public LotAddress(String lotNumber, String streetNumber, StreetHandle street, SuburbHandle suburb, PostCodeHandle postCode) {
+    public LotAddress(String lotNumber, String streetNumber, Street street, Suburb suburb, PostalCode postCode) {
         super(streetNumber, street, suburb,  postCode);
         this.lotNumber = lotNumber;
     }

@@ -3,11 +3,11 @@ package com.blueskyminds.enterprise.address.service;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.dao.*;
 import com.blueskyminds.enterprise.address.patterns.*;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.graph.*;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherException;
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
@@ -46,15 +46,15 @@ public class AddressServiceImpl implements AddressService {
     private Map<String, AddressParser> matcherCache;
 
     /** Allow AddressParser's created in this instance to be reused */
-    private Map<SuburbHandle, AddressParser> matcherCacheBySuburb;
+    private Map<Suburb, AddressParser> matcherCacheBySuburb;
 
-    private Map<StateHandle, SuburbPatternMatcher> suburbMatcherCache;
+    private Map<State, SuburbPatternMatcher> suburbMatcherCache;
 
     /** Cache of recently used suburb names */
-    private Map<String, SuburbHandle> suburbNameCache;
+    private Map<String, Suburb> suburbNameCache;
 
     /** Cache of recently used state names */
-    private Map<String, List<StateHandle>> stateNameCache;
+    private Map<String, List<State>> stateNameCache;
 
     // ------------------------------------------------------------------------------------------------------
 
@@ -85,10 +85,10 @@ public class AddressServiceImpl implements AddressService {
      */
     private void init() {
         matcherCache = new HashMap<String, AddressParser>();
-        matcherCacheBySuburb = new HashMap<SuburbHandle, AddressParser>();
-        suburbMatcherCache = new HashMap<StateHandle, SuburbPatternMatcher>();
-        suburbNameCache = new HashMap<String, SuburbHandle>();
-        stateNameCache = new HashMap<String, List<StateHandle>>();
+        matcherCacheBySuburb = new HashMap<Suburb, AddressParser>();
+        suburbMatcherCache = new HashMap<State, SuburbPatternMatcher>();
+        suburbNameCache = new HashMap<String, Suburb>();
+        stateNameCache = new HashMap<String, List<State>>();
     }
 
     // ------------------------------------------------------------------------------------------------------   
@@ -137,7 +137,7 @@ public class AddressServiceImpl implements AddressService {
 
 
     /** Select an AddressParser from the cache or create a new one */
-    private AddressParser selectMatcher(SuburbHandle suburbHandle) throws PatternMatcherInitialisationException {
+    private AddressParser selectMatcher(Suburb suburbHandle) throws PatternMatcherInitialisationException {
         AddressParser matcher = matcherCacheBySuburb.get(suburbHandle);
         if (matcher == null) {
             if (addressParserFactory == null) {
@@ -168,16 +168,16 @@ public class AddressServiceImpl implements AddressService {
 
         Address address = null;
         try {
-            List<SuburbHandle> suburbCandidates = null;
+            List<Suburb> suburbCandidates = null;
 
             if (StringUtils.isNotBlank(suburbString)) {
 
-                SuburbHandle suburbHandle = suburbNameCache.get(iso3CountryCode+":"+stateString+":"+suburbString);
+                Suburb suburbHandle = suburbNameCache.get(iso3CountryCode+":"+stateString+":"+suburbString);
                 if (suburbHandle == null) {
                     LOG.info("suburbName "+iso3CountryCode+":"+stateString+":"+suburbString+" is not cached");
                     // lookup the suburb candidate(s)
                     if (StringUtils.isNotBlank(stateString)) {
-                        List<StateHandle> stateCandidates = findState(stateString, iso3CountryCode);
+                        List<State> stateCandidates = findState(stateString, iso3CountryCode);
                         if (stateCandidates.size() > 0) {
                             suburbCandidates = findSuburb(suburbString, stateCandidates);
                         }
@@ -196,7 +196,7 @@ public class AddressServiceImpl implements AddressService {
                         suburbNameCache.put(iso3CountryCode+":"+stateString+":"+suburbString, suburbHandle);
                     } else {
                         // special-case: record an invalid entry so we don't look again
-                        suburbNameCache.put(iso3CountryCode+":"+stateString+":"+suburbString, SuburbHandle.INVALID);
+                        suburbNameCache.put(iso3CountryCode+":"+stateString+":"+suburbString, Suburb.INVALID);
                     }
                 }
 
@@ -274,7 +274,7 @@ public class AddressServiceImpl implements AddressService {
     // ------------------------------------------------------------------------------------------------------
 
     /** Adds a new Street to a Suburb.  The street and the suburb are persisted if necessary  */
-    private StreetHandle persistNewStreet(SuburbHandle suburb, StreetHandle street) throws PersistenceServiceException {
+    private Street persistNewStreet(Suburb suburb, Street street) throws PersistenceServiceException {
         if (street != null) {
             if (!street.isIdSet()) {
                 if (suburb != null) {
@@ -321,7 +321,7 @@ public class AddressServiceImpl implements AddressService {
                     StreetAddress streetAddress = (StreetAddress) address;
                     if (streetAddress.getStreet() != null) {
                         if (!streetAddress.getStreet().isIdSet()) {
-                            StreetHandle street = streetAddress.getStreet();
+                            Street street = streetAddress.getStreet();
                             // ensure the name is capitalized before persistence
                             street.setName(StringUtils.capitalize(street.getName()));
 
@@ -381,11 +381,11 @@ public class AddressServiceImpl implements AddressService {
      * @return
      */
     @Deprecated
-    public List<SuburbHandle> findSuburbLike(String name, String iso3CountryCode) {
+    public List<Suburb> findSuburbLike(String name, String iso3CountryCode) {
         AddressDAO addressDAO = new AddressDAO(em);
 
-        CountryHandle country = addressDAO.lookupCountry(iso3CountryCode);
-        Set<SuburbHandle> suburbs = new HashSet<SuburbHandle>(addressDAO.listSuburbsInCountry(country));
+        Country country = addressDAO.lookupCountry(iso3CountryCode);
+        Set<Suburb> suburbs = new HashSet<Suburb>(addressDAO.listSuburbsInCountry(country));
 
         return LevensteinDistanceTools.matchName(name, suburbs);
     }
@@ -440,7 +440,7 @@ public class AddressServiceImpl implements AddressService {
      * @param parent
      * @return
      */
-    private RegionHandle createChildRegion(RegionHandle child, RegionHandle parent) {
+    private Region createChildRegion(Region child, Region parent) {
         if (parent != null) {
             parent.addChildRegion(child);
             em.persist(parent);
@@ -451,24 +451,24 @@ public class AddressServiceImpl implements AddressService {
 
 
     /** Create and persist a new country */
-    public CountryHandle createCountry(String name, String iso2CountryCode, String iso3CountryCode, String currencyCode) {
+    public Country createCountry(String name, String iso2CountryCode, String iso3CountryCode, String currencyCode) {
         RegionFactory regionFactory = new RegionFactory();
-        RegionHandle handle = regionFactory.createCountry(name, iso2CountryCode, iso3CountryCode, currencyCode);
+        Region handle = regionFactory.createCountry(name, iso2CountryCode, iso3CountryCode, currencyCode);
         em.persist(handle);
-        return (CountryHandle) handle;
+        return (Country) handle;
     }
 
     /** Create and persist a new state */
-    public StateHandle createState(String name, String abbreviation, CountryHandle parent) {
+    public State createState(String name, String abbreviation, Country parent) {
         RegionFactory stateFactory = new RegionFactory();
-        RegionHandle handle = stateFactory.createState(name, abbreviation);
-        return (StateHandle) createChildRegion(handle, parent);
+        Region handle = stateFactory.createState(name, abbreviation);
+        return (State) createChildRegion(handle, parent);
     }
 
     /** Create and persist a new PostCode */
-    public PostCodeHandle createPostCode(String name, StateHandle parent) {
-        PostCodeHandle handle = new RegionFactory().createPostCode(name);
-        return (PostCodeHandle) createChildRegion(handle, parent);
+    public PostalCode createPostCode(String name, State parent) {
+        PostalCode handle = new RegionFactory().createPostCode(name);
+        return (PostalCode) createChildRegion(handle, parent);
     }
 
     /** Create and persist a new Suburb
@@ -477,9 +477,9 @@ public class AddressServiceImpl implements AddressService {
      * The SuburbHandle is added as a child of the StateHandle
      *
      *  */
-    public SuburbHandle createSuburb(String name, StateHandle parent) {
-        SuburbHandle handle = new RegionFactory().createSuburb(name);
-        return (SuburbHandle) createChildRegion(handle, parent);
+    public Suburb createSuburb(String name, State parent) {
+        Suburb handle = new RegionFactory().createSuburb(name);
+        return (Suburb) createChildRegion(handle, parent);
     }
 
     /**
@@ -487,12 +487,12 @@ public class AddressServiceImpl implements AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    public List<CountryHandle> findCountry(String name) {
-        Set<CountryHandle> countries = new AddressDAO(em).listCountries();
+    public List<Country> findCountry(String name) {
+        Set<Country> countries = new AddressDAO(em).listCountries();
         return LevensteinDistanceTools.matchName(name, countries);
     }
 
-    public CountryHandle lookupCountry(String iso2DigitCode) {
+    public Country lookupCountry(String iso2DigitCode) {
         AddressDAO addressDAO = new AddressDAO(em);
         return addressDAO.findCountryByISO2DigitCode(iso2DigitCode);
     }
@@ -503,11 +503,11 @@ public class AddressServiceImpl implements AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    public List<SuburbHandle> findSuburb(String name, String iso3DigitCountryCode) {
+    public List<Suburb> findSuburb(String name, String iso3DigitCountryCode) {
         AddressDAO addressDAO = new AddressDAO(em);
 
-        CountryHandle country = addressDAO.lookupCountry(iso3DigitCountryCode);
-        Set<SuburbHandle> suburbs = addressDAO.listSuburbsInCountry(country);
+        Country country = addressDAO.lookupCountry(iso3DigitCountryCode);
+        Set<Suburb> suburbs = addressDAO.listSuburbsInCountry(country);
 
         return LevensteinDistanceTools.matchName(name, suburbs);
     }
@@ -518,17 +518,17 @@ public class AddressServiceImpl implements AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    public List<SuburbHandle> findSuburb(String name, List<StateHandle> states) {
+    public List<Suburb> findSuburb(String name, List<State> states) {
 
-        List<SuburbHandle> suburbs = new LinkedList<SuburbHandle>();
+        List<Suburb> suburbs = new LinkedList<Suburb>();
 
         AddressDAO addressDAO = new AddressDAO(em);
 
-        List<StateHandle> statesNotMatched = new LinkedList<StateHandle>();
+        List<State> statesNotMatched = new LinkedList<State>();
 
         // find using the cache first
-        for (StateHandle state : states) {
-            SuburbHandle suburbHandle = suburbNameCache.get(state.getName()+":"+name);
+        for (State state : states) {
+            Suburb suburbHandle = suburbNameCache.get(state.getName()+":"+name);
             if (suburbHandle != null) {
                 if (!suburbHandle.isInvalid()) {  // when it's not null but invalid we should discard it as we know not to search
                     suburbs.add(suburbHandle);
@@ -539,12 +539,12 @@ public class AddressServiceImpl implements AddressService {
         }
 
         if (statesNotMatched.size() > 0) {
-            List<StateHandle> statesStillNotMatched = new LinkedList<StateHandle>();
+            List<State> statesStillNotMatched = new LinkedList<State>();
 
             // find using exact match
-            for (StateHandle state : statesNotMatched) {
+            for (State state : statesNotMatched) {
 
-                SuburbHandle suburbHandle;
+                Suburb suburbHandle;
 
                 if (LOG.isInfoEnabled()) {
                     LOG.info("Finding suburb '"+name+"' using exact pattern matching in "+state.getName());
@@ -560,13 +560,13 @@ public class AddressServiceImpl implements AddressService {
             // find using fuzzy matching
             if (statesStillNotMatched.size() > 0) {
                 if (suburbPatternMatcherFactory != null) {
-                    for (StateHandle state : statesStillNotMatched) {
+                    for (State state : statesStillNotMatched) {
                         try {
                             if (LOG.isInfoEnabled()) {
                                 LOG.info("Finding suburb '"+name+"' using fuzzy pattern matching in "+state.getName());
                             }
                             SuburbPatternMatcher patternMatcher = selectSuburbMatcher(state);
-                            SuburbHandle suburb = patternMatcher.extractBest(name);
+                            Suburb suburb = patternMatcher.extractBest(name);
                             if (suburb != null) {
                                 suburbs.add(suburb);
                             }
@@ -579,8 +579,8 @@ public class AddressServiceImpl implements AddressService {
                         LOG.info("Finding suburb '"+name+"' using fuzzy word matching across all states");
                     }
 
-                    Set<SuburbHandle> suburbSet = new HashSet<SuburbHandle>();
-                    for (StateHandle state : statesNotMatched) {
+                    Set<Suburb> suburbSet = new HashSet<Suburb>();
+                    for (State state : statesNotMatched) {
                         suburbSet.addAll(addressDAO.listSuburbsInState(state));
                     }
 
@@ -590,8 +590,8 @@ public class AddressServiceImpl implements AddressService {
 
             if (suburbs.size() > 0) {
                 // put suburb into the cache
-                for (StateHandle state : states) {
-                    for (SuburbHandle suburb : suburbs) {
+                for (State state : states) {
+                    for (Suburb suburb : suburbs) {
                         if (suburb.getState().equals(state)) {
                             suburbNameCache.put(state.getName()+":"+name, suburb);
                         }
@@ -599,8 +599,8 @@ public class AddressServiceImpl implements AddressService {
                 }
             } else {
                 // store invalid suburb entries in the cache so we don't look again
-                for (StateHandle state : states) {
-                    suburbNameCache.put(state.getName()+":"+name, SuburbHandle.INVALID);
+                for (State state : states) {
+                    suburbNameCache.put(state.getName()+":"+name, Suburb.INVALID);
                 }
             }
         }
@@ -608,7 +608,7 @@ public class AddressServiceImpl implements AddressService {
         return suburbs;
     }
 
-    private SuburbPatternMatcher selectSuburbMatcher(StateHandle state) throws PatternMatcherInitialisationException {
+    private SuburbPatternMatcher selectSuburbMatcher(State state) throws PatternMatcherInitialisationException {
         SuburbPatternMatcher patternMatcher = suburbMatcherCache.get(state);
         if (patternMatcher == null) {
             if (LOG.isInfoEnabled()) {
@@ -628,8 +628,8 @@ public class AddressServiceImpl implements AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    public List<SuburbHandle> findSuburb(String name, StateHandle state) {
-        LinkedList<StateHandle> states = new LinkedList<StateHandle>();
+    public List<Suburb> findSuburb(String name, State state) {
+        LinkedList<State> states = new LinkedList<State>();
         states.add(state);
         return findSuburb(name, states);
     }
@@ -640,13 +640,13 @@ public class AddressServiceImpl implements AddressService {
     * <p/>
     * Performs a fuzzy match and returns the matches in order of rank
     */
-    public List<StateHandle> findState(String name, String iso3DigitCountryCode) {
-        List<StateHandle> states = stateNameCache.get(iso3DigitCountryCode + ":" + name);
+    public List<State> findState(String name, String iso3DigitCountryCode) {
+        List<State> states = stateNameCache.get(iso3DigitCountryCode + ":" + name);
         if (states == null) {
             AddressDAO addressDAO = new AddressDAO(em);
 
-            CountryHandle country = addressDAO.lookupCountry(iso3DigitCountryCode);
-            Set<StateHandle> allStates = addressDAO.listStatesInCountry(country);
+            Country country = addressDAO.lookupCountry(iso3DigitCountryCode);
+            Set<State> allStates = addressDAO.listStatesInCountry(country);
 
             states = LevensteinDistanceTools.matchName(name, allStates);
 
@@ -662,7 +662,7 @@ public class AddressServiceImpl implements AddressService {
      *
      * @return Country instance, or null if not found
      */
-    public SuburbHandle lookupSuburb(String name, StateHandle state) {
+    public Suburb lookupSuburb(String name, State state) {
         AddressDAO addressDAO = new AddressDAO(em);
         return addressDAO.lookupSuburb(name, state);
     }
@@ -672,7 +672,7 @@ public class AddressServiceImpl implements AddressService {
      *
      * @return Country instance, or null if not found
      */
-    public StateHandle lookupStateByAbbr(String abbr, CountryHandle country) {
+    public State lookupStateByAbbr(String abbr, Country country) {
         AddressDAO addressDAO = new AddressDAO(em);
         return addressDAO.lookupStateByAbbr(abbr, country);
     }
@@ -683,11 +683,11 @@ public class AddressServiceImpl implements AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    public List<PostCodeHandle> findPostCode(String name, String iso3DigitCountryCode) {
+    public List<PostalCode> findPostCode(String name, String iso3DigitCountryCode) {
         AddressDAO addressDAO = new AddressDAO(em);
 
-        CountryHandle country = addressDAO.lookupCountry(iso3DigitCountryCode);
-        Set<PostCodeHandle> suburbs = addressDAO.listPostCodesInCountry(country);
+        Country country = addressDAO.lookupCountry(iso3DigitCountryCode);
+        Set<PostalCode> suburbs = addressDAO.listPostCodesInCountry(country);
 
         return LevensteinDistanceTools.matchName(name, suburbs);
     }
@@ -697,7 +697,7 @@ public class AddressServiceImpl implements AddressService {
      *
      * @return PostCodeHandloe instance, or null if not found
      */
-    public PostCodeHandle lookupPostCode(String name, StateHandle state) {
+    public PostalCode lookupPostCode(String name, State state) {
         AddressDAO addressDAO = new AddressDAO(em);
         return addressDAO.lookupPostCode(name, state);
     }
@@ -708,20 +708,20 @@ public class AddressServiceImpl implements AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    public List<StreetHandle> findStreet(String name, String iso3DigitCountryCode) {
+    public List<Street> findStreet(String name, String iso3DigitCountryCode) {
         AddressDAO addressDAO = new AddressDAO(em);
 
-        CountryHandle country = addressDAO.lookupCountry(iso3DigitCountryCode);
-        Set<StreetHandle> streets = addressDAO.listStreetsInCountry(country);
+        Country country = addressDAO.lookupCountry(iso3DigitCountryCode);
+        Set<Street> streets = addressDAO.listStreetsInCountry(country);
 
         return LevensteinDistanceTools.matchName(name, streets);
     }
 
-    public List<StreetHandle> findStreet(String name, final StreetType streetType, final StreetSection streetSection, SuburbHandle suburb) {
+    public List<Street> findStreet(String name, final StreetType streetType, final StreetSection streetSection, Suburb suburb) {
         AddressDAO addressDAO = new AddressDAO(em);
-        Set<StreetHandle> streets = addressDAO.listStreetsInSuburb(suburb);
-        List<StreetHandle> filteredStreets = FilterTools.getMatching(streets, new Filter<StreetHandle>() {
-            public boolean accept(StreetHandle street) {
+        Set<Street> streets = addressDAO.listStreetsInSuburb(suburb);
+        List<Street> filteredStreets = FilterTools.getMatching(streets, new Filter<Street>() {
+            public boolean accept(Street street) {
                 return ((streetType == null || streetType.equals(street.getStreetType())) && (streetSection == null || streetSection == StreetSection.NA || streetSection.equals(street.getSection())));
             }
         });
@@ -734,7 +734,7 @@ public class AddressServiceImpl implements AddressService {
      * @param suburb
      * @return
      */
-    public Set<Address> listAddresses(SuburbHandle suburb) {
+    public Set<Address> listAddresses(Suburb suburb) {
         AddressDAO addressDAO = new AddressDAO(em);
 
         return addressDAO.listAddressesInSuburb(suburb);
@@ -746,7 +746,7 @@ public class AddressServiceImpl implements AddressService {
      * @param postCode
      * @return
      */
-    public Set<Address> listAddresses(PostCodeHandle postCode) {
+    public Set<Address> listAddresses(PostalCode postCode) {
         AddressDAO addressDAO = new AddressDAO(em);
 
         return addressDAO.listAddressesInPostCode(postCode);
@@ -758,13 +758,13 @@ public class AddressServiceImpl implements AddressService {
      * @param street
      * @return
      */
-    public Set<Address> listAddresses(StreetHandle street) {
+    public Set<Address> listAddresses(Street street) {
         AddressDAO addressDAO = new AddressDAO(em);
 
         return addressDAO.listAddressesInStreet(street);
      }
 
-    public CountryHandle getCountryById(long id) {
+    public Country getCountryById(long id) {
         CountryDAO suburbDAO = new CountryDAO(em);
         return suburbDAO.findById(id);
     }
@@ -775,7 +775,7 @@ public class AddressServiceImpl implements AddressService {
      * @param id
      * @return
      */
-    public StateHandle getStateById(long id) {
+    public State getStateById(long id) {
         StateDAO stateDAO = new StateDAO(em);
         return stateDAO.findById(id);
     }
@@ -785,7 +785,7 @@ public class AddressServiceImpl implements AddressService {
      * @param id
      * @return
      */
-    public SuburbHandle getSuburbById(long id) {
+    public Suburb getSuburbById(long id) {
         SuburbDAO suburbDAO = new SuburbDAO(em);
         return suburbDAO.findById(id);
     }
@@ -795,30 +795,30 @@ public class AddressServiceImpl implements AddressService {
      * @param id
      * @return
      */
-    public PostCodeHandle getPostCodeById(long id) {
+    public PostalCode getPostCodeById(long id) {
         PostCodeDAO postCodeDAO = new PostCodeDAO(em);
         return postCodeDAO.findById(id);
     }
 
-    public Set<CountryHandle> listCountries() {
+    public Set<Country> listCountries() {
         AddressDAO addressDAO = new AddressDAO(em);
         return addressDAO.listCountries();
     }
 
     /** List the states in the specified country */
-    public Set<StateHandle> listStates(CountryHandle country) {
+    public Set<State> listStates(Country country) {
         AddressDAO addressDAO= new AddressDAO(em);
         return addressDAO.listStatesInCountry(country);
     }
 
     /** List the suburbs in the specified state */
-    public Set<SuburbHandle> listSuburbs(StateHandle state) {
+    public Set<Suburb> listSuburbs(State state) {
         AddressDAO addressDAO= new AddressDAO(em);
         return addressDAO.listSuburbsInState(state);
     }
 
      /** List the postCodes in the specified state */
-    public Set<PostCodeHandle> listPostCodes(StateHandle state) {
+    public Set<PostalCode> listPostCodes(State state) {
         AddressDAO addressDAO= new AddressDAO(em);
         return addressDAO.listPostCodesInState(state);
     }
@@ -836,7 +836,7 @@ public class AddressServiceImpl implements AddressService {
      * @param source
      * @return
      */
-    public RegionHandle mergeRegions(RegionHandle target, RegionHandle source) {
+    public Region mergeRegions(Region target, Region source) {
 
         target.mergeWith(source);
         em.persist(source);
@@ -854,7 +854,7 @@ public class AddressServiceImpl implements AddressService {
         regionGraphService.deleteRegionById(id);
     }
 
-    public List<RegionHandle> autocompleteRegion(String name) {
+    public List<Region> autocompleteRegion(String name) {
         return regionGraphService.autocompleteRegion(name);
     }
 

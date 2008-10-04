@@ -12,7 +12,7 @@ import com.blueskyminds.enterprise.pricing.policy.RecurringPrice;
 import com.blueskyminds.enterprise.pricing.policy.TransactionFee;
 import com.blueskyminds.enterprise.taxpolicy.GST;
 import com.blueskyminds.enterprise.taxpolicy.GSTFree;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
 import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;
 import com.blueskyminds.homebyfive.framework.core.measurement.QuantityUnits;
@@ -50,7 +50,7 @@ public class TestEnterprise extends DbTestCase {
         LicenseAccount accountAHolder = sola.createLicenseAccount(testParty);
 
         //RegionType postCode = new RegionType(RegionTypes.PostCode);
-        RegionHandle region = new RegionFactory().createPostCode("TestRegion");
+        Region region = new RegionFactory().createPostCode("TestRegion");
 
         // create a new license in the unallocated account
         License testLicenseA = enterprise.getScheduleOfLicenses().createLicense(new RegionLicense(region, LicenseTypes.Exclusive), sola.getUnallocatedAccount());

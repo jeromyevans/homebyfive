@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.address;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.enterprise.region.index.RegionBean;
 import com.blueskyminds.enterprise.region.index.SuburbBean;
 
@@ -85,10 +85,10 @@ public class AddressBean extends MultifieldAddress {
      */
     public Address toAddress(RegionBean regionBean) {
         Address address = null;
-        SuburbHandle suburb = null;
+        Suburb suburb = null;
         if (regionBean != null) {
             if (RegionTypes.Suburb.equals(regionBean.getType())) {
-                suburb = (SuburbHandle) regionBean.getRegionHandle();
+                suburb = (Suburb) regionBean.getRegionHandle();
 
                 address = super.augmentWithKnown(suburb);
             }

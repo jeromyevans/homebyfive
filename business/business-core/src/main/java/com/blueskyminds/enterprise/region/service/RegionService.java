@@ -2,11 +2,11 @@ package com.blueskyminds.enterprise.region.service;
 
 import com.blueskyminds.enterprise.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
-import com.blueskyminds.enterprise.region.graph.SuburbHandle;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.region.index.*;
-import com.blueskyminds.enterprise.region.graph.StateHandle;
-import com.blueskyminds.enterprise.region.graph.PostCodeHandle;
+import com.blueskyminds.enterprise.region.graph.State;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
 import com.blueskyminds.enterprise.region.index.RegionBean;
 
 import java.util.Set;
@@ -44,7 +44,7 @@ public interface RegionService {
 
     SuburbBean lookupSuburb(String country, String state, String suburb);
 
-    SuburbBean lookupSuburb(SuburbHandle suburbHandle);
+    SuburbBean lookupSuburb(Suburb suburbHandle);
 
     SuburbBean lookupSuburb(String path);
 
@@ -110,23 +110,23 @@ public interface RegionService {
      * Create/lookup a Country from an entry in the RegionGraph
      *
      */
-    CountryBean lookupOrCreateCountry(CountryHandle countryHandle);
+    CountryBean lookupOrCreateCountry(Country countryHandle);
 
      /**
      * Create/lookup a State from an entry in the RegionGraph
      *
      */
-    StateBean lookupOrCreateState(StateHandle stateHandle);
+    StateBean lookupOrCreateState(State stateHandle);
 
      /**
      * Create/lookup a PostCode from an entry in the RegionGraph
      *
      */
-    PostCodeBean lookupOrCreatePostCode(PostCodeHandle postCodeHandle);
+    PostCodeBean lookupOrCreatePostCode(PostalCode postCodeHandle);
     /**
      * Create/lookup a new suburb from an entry in the RegionGraph
      *
      */
-    SuburbBean lookupOrCreateSuburb(SuburbHandle suburbHandle);
+    SuburbBean lookupOrCreateSuburb(Suburb suburbHandle);
 
 }

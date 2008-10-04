@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.region.reference;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModelBuilder;
 import com.blueskyminds.homebyfive.framework.core.table.model.ColumnModel;
-import com.blueskyminds.enterprise.region.graph.RegionHandle;
+import com.blueskyminds.enterprise.region.graph.Region;
 
 import java.util.*;
 
@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class RegionRefTableFactory {
 
-    public static TableModel createFromHandles(List<RegionHandle> regionHandles) {
+    public static TableModel createFromHandles(List<Region> regionHandles) {
         List<RegionRef> regionRefs = RegionRefFactory.createRefs(regionHandles);
         return create(regionRefs);
     }

@@ -9,7 +9,7 @@ import com.blueskyminds.enterprise.address.service.AddressServiceImpl;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.AddressTestTools;
-import com.blueskyminds.enterprise.region.graph.CountryHandle;
+import com.blueskyminds.enterprise.region.graph.Country;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -26,7 +26,7 @@ public class TestFastAddressParser extends JPATestCase {
 
     private static final String TEST_ENTERPRISE_PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";
 
-    private CountryHandle aus;
+    private Country aus;
     private AddressService addressService;
     private AddressDAO addressDAO;
     private SubstitutionDAO substitutionDAO;
