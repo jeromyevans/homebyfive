@@ -34,7 +34,7 @@ public class CountryHandle extends RegionHandle implements CountryI {
      *
      * @param name
      */
-    protected CountryHandle(String name) {
+    public CountryHandle(String name) {
         super(name, RegionTypes.Country);
     }
 
@@ -42,7 +42,7 @@ public class CountryHandle extends RegionHandle implements CountryI {
      * Create a new CountryHandle pointing to the Country implementation
      * Use the factory to create new instances
      */
-    protected CountryHandle(String name, String... aliases) {
+    public CountryHandle(String name, String... aliases) {
         super(name, RegionTypes.Country, aliases);
     }
 

@@ -26,7 +26,7 @@ public class SuburbHandle extends RegionHandle implements SuburbI {
 
     private Suburb suburb;
 
-    protected SuburbHandle(String name) {
+    public SuburbHandle(String name) {
         super(name, RegionTypes.Suburb);
     }
 

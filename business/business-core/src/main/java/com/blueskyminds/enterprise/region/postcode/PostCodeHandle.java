@@ -19,7 +19,7 @@ import javax.persistence.*;
 @DiscriminatorValue("P")
 public class PostCodeHandle extends RegionHandle {
 
-    protected PostCodeHandle(String name) {
+    public PostCodeHandle(String name) {
         super(name, RegionTypes.PostCode);
     }
 

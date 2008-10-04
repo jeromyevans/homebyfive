@@ -22,7 +22,7 @@ public class StateHandle extends RegionHandle implements StateI {
     /** A special case StateHandle instance used to indentify an invalid State rather than a null value */
     public static final StateHandle INVALID = invalid();
 
-    protected StateHandle(String name, String abbreviation) {
+    public StateHandle(String name, String abbreviation) {
         super(name, RegionTypes.State, abbreviation);
     }
 

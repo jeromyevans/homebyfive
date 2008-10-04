@@ -13,7 +13,7 @@ public enum RegionTypes {
    Country,
    PostCode,
    State,
-   Spare1,  /* was Council */
+   Street,  
    Spare2,  /* was Shire */
    Spare3,  /* was County */
    Spare4,  /* was Borough */
