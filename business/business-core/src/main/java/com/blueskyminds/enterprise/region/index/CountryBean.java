@@ -17,7 +17,7 @@ import org.apache.commons.lang.StringUtils;
  * History:
  */
 @Entity
-@Table(name="hpCountry")
+@DiscriminatorValue("C")
 public class CountryBean extends RegionBean {
     
     private String abbr;

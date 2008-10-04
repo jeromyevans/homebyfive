@@ -21,7 +21,7 @@ import com.blueskyminds.enterprise.tools.KeyGenerator;
  * History:
  */
 @Entity
-@Table(name="hpPostCode")
+@DiscriminatorValue("P")
 public class PostCodeBean extends RegionBean implements CountryRef, StateRef {
 
     private CountryBean countryBean;

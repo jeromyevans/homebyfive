@@ -21,7 +21,7 @@ import javax.persistence.*;
  * History:
  */
 @Entity
-@Table(name="hpSuburb")
+@DiscriminatorValue("B")
 public class SuburbBean extends RegionBean implements CountryRef, StateRef, PostCodeRef {
 
     private CountryBean countryBean;

@@ -8,6 +8,7 @@ import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
+import javax.persistence.DiscriminatorValue;
 
 /**
  * Date Started: 4/10/2008
@@ -15,6 +16,7 @@ import javax.persistence.Transient;
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
 @Entity
+@DiscriminatorValue("T")
 public class StreetBean extends RegionBean {
 
     public StreetBean() {

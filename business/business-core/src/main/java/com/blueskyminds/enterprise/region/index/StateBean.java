@@ -17,7 +17,7 @@ import javax.persistence.*;
  * History:
  */
 @Entity
-@Table(name="hpState")
+@DiscriminatorValue("S")
 public class StateBean extends RegionBean implements CountryRef {
 
     private CountryBean countryBean;
