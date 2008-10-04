@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.region.country;
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.enterprise.region.RegionBean;
-import com.blueskyminds.housepad.core.region.PathHelper;
+import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;

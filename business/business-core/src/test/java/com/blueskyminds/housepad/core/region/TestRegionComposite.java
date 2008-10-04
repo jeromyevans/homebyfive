@@ -3,8 +3,8 @@ package com.blueskyminds.housepad.core.region;
 import junit.framework.TestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.blueskyminds.housepad.core.region.reference.RegionRefType;
-import com.blueskyminds.housepad.core.region.composite.RegionComposite;
+import com.blueskyminds.enterprise.region.reference.RegionRefType;
+import com.blueskyminds.enterprise.region.composite.RegionComposite;
 
 /**
  * Date Started: 16/09/2007

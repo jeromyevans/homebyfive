@@ -1,7 +1,7 @@
 package com.blueskyminds.housepad.core.region.model;
 
 import junit.framework.TestCase;
-import com.blueskyminds.housepad.core.region.PathHelper;
+import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
 /**
