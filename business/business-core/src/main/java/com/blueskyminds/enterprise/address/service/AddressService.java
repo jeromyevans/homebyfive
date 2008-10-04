@@ -1,11 +1,10 @@
 package com.blueskyminds.enterprise.address.service;
 
 import com.blueskyminds.enterprise.address.Address;
-import com.blueskyminds.enterprise.address.Street;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.StreetSection;
-import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
@@ -24,8 +23,6 @@ import java.util.Set;
  * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
  */
 public interface AddressService {
-
-    public static final String AUS = "AUS";
 
     /**
      * Creates an Address from a plain-text address string
@@ -189,9 +186,9 @@ public interface AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    List<Street> findStreet(String name, String iso3DigitCountryCode);
+    List<StreetHandle> findStreet(String name, String iso3DigitCountryCode);
 
-    List<Street> findStreet(String name, StreetType streetType, StreetSection streetSection, SuburbHandle suburb);
+    List<StreetHandle> findStreet(String name, StreetType streetType, StreetSection streetSection, SuburbHandle suburb);
 
     /**
      * List all known addresses in a suburb
@@ -215,7 +212,7 @@ public interface AddressService {
      * @param street
      * @return
      */
-    Set<Address> listAddresses(Street street);
+    Set<Address> listAddresses(StreetHandle street);
 
     /**
      * Lookup a country by its unique ID

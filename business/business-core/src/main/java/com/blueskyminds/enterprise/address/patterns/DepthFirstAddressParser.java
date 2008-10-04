@@ -8,6 +8,8 @@ import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.country.Countries;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.service.AddressService;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
@@ -156,7 +158,7 @@ public class DepthFirstAddressParser implements AddressParser {
         //String postCodeName = candidate.extractValue(PostCodeBin.class);
         SuburbHandle suburb = null;
         PostCodeHandle postCode = null;
-        Street street = null;
+        StreetHandle street = null;
 
         if (suburbHandle == null) {
             if (StringUtils.isNotBlank(suburbName)) {
@@ -164,7 +166,7 @@ public class DepthFirstAddressParser implements AddressParser {
                 if (state != null) {
                     suburbCandidates = addressService.findSuburb(suburbName, state);
                 } else {
-                    suburbCandidates = addressService.findSuburb(suburbName, AddressService.AUS);
+                    suburbCandidates = addressService.findSuburb(suburbName, Countries.AUS);
                 }
                 if (suburbCandidates.size() > 0 && postCodeName != null) {
 
@@ -199,13 +201,13 @@ public class DepthFirstAddressParser implements AddressParser {
         if (suburb != null) {
             if (streetName != null) {
                 // lookup the street
-                List<Street> streetCandidates = addressService.findStreet(streetName, streetType, streetSection, suburb);
+                List<StreetHandle> streetCandidates = addressService.findStreet(streetName, streetType, streetSection, suburb);
 
                 if (streetCandidates.size() > 0) {
                     street = streetCandidates.iterator().next();
                 } else {
                     // the street doesn't exist - create a new instance
-                    street = new Street(streetName, streetType, streetSection);
+                    street = new StreetHandle(streetName, streetType, streetSection);
                 }
             }
 

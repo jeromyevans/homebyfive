@@ -1,9 +1,9 @@
-package com.blueskyminds.enterprise.region.state;
+package com.blueskyminds.enterprise.region.index;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.enterprise.region.RegionBean;
-import com.blueskyminds.enterprise.region.country.CountryBean;
+import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.reference.CountryRef;
 import com.blueskyminds.enterprise.region.state.StateHandle;
@@ -20,18 +20,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="hpState")
-public class StateBean extends AbstractEntity implements RegionBean, CountryRef {
+public class StateBean extends RegionBean implements CountryRef {
 
-    private String parentPath;
-    private String path;    
     private CountryBean countryBean;
     private String countryName;
     private String countryPath;
-    private String stateId;
-    private String name;
     private String abbr;
-    private StateHandle stateHandle;
-    private DomainObjectStatus status;
 
     public StateBean() {
     }
@@ -48,25 +42,6 @@ public class StateBean extends AbstractEntity implements RegionBean, CountryRef 
         populateAttributes();
     }
 
-    @Basic
-    @Column(name="ParentPath")
-    public String getParentPath() {
-        return parentPath;
-    }
-
-    protected void setParentPath(String parentPath) {
-        this.parentPath = parentPath;
-    }
-
-    @Basic
-    @Column(name="Path")
-    public String getPath() {
-        return path;
-    }
-
-    protected void setPath(String path) {
-        this.path = path;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="CountryId")
@@ -107,25 +82,13 @@ public class StateBean extends AbstractEntity implements RegionBean, CountryRef 
      * Lowercase unique state code in the country
      * @return
      */
-    @Basic
-    @Column(name="StateId")
+    @Transient
     public String getStateId() {
-        return stateId;
+        return key;
     }
 
     protected void setStateId(String stateId) {
-        this.stateId = stateId;
-    }
-
-    /** Full human-readable name */
-    @Basic
-    @Column(name="Name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.key = stateId;
     }
 
     @Basic
@@ -139,28 +102,12 @@ public class StateBean extends AbstractEntity implements RegionBean, CountryRef 
     }
 
     @Transient
-    public RegionBean getParent() {
-        return countryBean;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="StateHandleId")
     public StateHandle getStateHandle() {
-        return stateHandle;
+        return (StateHandle) regionHandle;
     }
 
     public void setStateHandle(StateHandle stateHandle) {
-        this.stateHandle = stateHandle;
-    }
-
-    @Enumerated
-    @Column(name="Status")
-    public DomainObjectStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(DomainObjectStatus status) {
-        this.status = status;
+        this.regionHandle = stateHandle;
     }
 
     /**
@@ -170,24 +117,16 @@ public class StateBean extends AbstractEntity implements RegionBean, CountryRef 
         this.parentPath = countryBean.getPath();
         this.countryName = countryBean.getName();
         this.countryPath = countryBean.getPath();
-        this.stateId = KeyGenerator.generateId(abbr);
-        this.path = PathHelper.joinPath(parentPath, stateId);
+        this.key = KeyGenerator.generateId(abbr);
+        this.path = PathHelper.joinPath(parentPath, key);
         this.status = DomainObjectStatus.Valid;
+        this.type = RegionTypes.State;
     }
 
     public void mergeWith(RegionBean otherState) {
         if (otherState instanceof StateBean) {
-            stateHandle.mergeWith(((StateBean) otherState).getStateHandle());
+            getStateHandle().mergeWith(((StateBean) otherState).getStateHandle());
         }
     }
 
-    @Transient
-    public RegionHandle getRegionHandle() {
-        return stateHandle;
-    }
-
-    @Transient
-    public RegionTypes getType() {
-        return RegionTypes.State;
-    }
 }

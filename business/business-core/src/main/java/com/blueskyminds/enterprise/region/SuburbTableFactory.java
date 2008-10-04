@@ -5,7 +5,7 @@ import com.blueskyminds.homebyfive.framework.core.table.model.TableModelBuilder;
 import com.blueskyminds.homebyfive.framework.core.table.model.ColumnModel;
 import com.blueskyminds.enterprise.region.reference.RegionRefFactory;
 import com.blueskyminds.enterprise.region.reference.RegionRefType;
-import com.blueskyminds.enterprise.region.suburb.SuburbBean;
+import com.blueskyminds.enterprise.region.index.SuburbBean;
 import com.blueskyminds.enterprise.region.DefaultPerspectives;
 
 import java.util.Collection;

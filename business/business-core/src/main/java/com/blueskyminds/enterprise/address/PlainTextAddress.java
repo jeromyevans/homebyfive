@@ -2,8 +2,7 @@ package com.blueskyminds.enterprise.address;
 
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 import javax.persistence.*;
 import java.io.PrintStream;
@@ -49,7 +48,7 @@ public class PlainTextAddress extends Address {
     }
 
     @Transient
-    public Street getStreet() {
+    public StreetHandle getStreet() {
         return null;  
     }
 

@@ -3,15 +3,11 @@ package com.blueskyminds.enterprise.region.service;
 import com.blueskyminds.enterprise.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.country.CountryBean;
+import com.blueskyminds.enterprise.region.index.*;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.state.StateBean;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
-import com.blueskyminds.enterprise.region.RegionBean;
-import com.blueskyminds.enterprise.address.Street;
+import com.blueskyminds.enterprise.region.index.RegionBean;
 
 import java.util.Set;
 
@@ -67,8 +63,6 @@ public interface RegionService {
     TableModel listSuburbsAsTable(String country, String state, String postCode);
 
     RegionBean lookupRegion(String path);
-
-    Street lookupStreet(String path);
 
     /**
      * Permanently merge two regions into one.

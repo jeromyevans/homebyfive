@@ -1,10 +1,10 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.enterprise.region.suburb.Suburb;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 /**
  * Access fields of an address without knowing its implementation
@@ -72,7 +72,7 @@ public class AddressHelper {
      * @param address
      * @return
      */
-    public static Street street(Address address) {
+    public static StreetHandle street(Address address) {
         return address.getStreet();
     }
 
@@ -84,7 +84,7 @@ public class AddressHelper {
      * @return
      */
     public static String streetName(Address address) {
-        Street street = address.getStreet();
+        StreetHandle street = address.getStreet();
         if (street != null) {
             return street.getName();
         }
@@ -99,7 +99,7 @@ public class AddressHelper {
      * @return
      */
     public static String streetNameFull(Address address) {
-        Street street = address.getStreet();
+        StreetHandle street = address.getStreet();
         if (street != null) {
             return street.getFullName();
         }
@@ -113,9 +113,9 @@ public class AddressHelper {
      * @return
      */
     public static StreetType streetType(Address address) {
-        Street street = address.getStreet();
+        StreetHandle street = address.getStreet();
         if (street != null) {
-            return street.getType();
+            return street.getStreetType();
         }
         return null;
     }
@@ -127,7 +127,7 @@ public class AddressHelper {
      * @return
      */
     public static StreetSection streetSection(Address address) {        
-        Street street = address.getStreet();
+        StreetHandle street = address.getStreet();
         if (street != null) {
             return street.getSection();
         }

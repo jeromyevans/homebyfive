@@ -11,6 +11,7 @@ import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -251,12 +252,12 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
                         PhraseToBinAllocation streetNameAllocation = allocation.getAllocationForBin(StreetNameBin.class);
                         if (streetNameAllocation != null) {
                             Object metadata = streetNameAllocation.getPattern().getMetadata();
-                            if ((metadata != null) && (metadata instanceof Street)) {
-                                Street street = (Street) metadata;
+                            if ((metadata != null) && (metadata instanceof StreetHandle)) {
+                                StreetHandle street = (StreetHandle) metadata;
                                 if (street.isIdSet()) {
                                     street = em.merge(street);
                                 }
-                                if (!suburb.getSuburb().contains(street)) {
+                                if (!suburb.contains(street)) {
                                     // this is a conflict - the street isn't known to exist in this suburb
                                     allocationsToRemove.add(allocation);
                                 }
@@ -289,8 +290,8 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
      * @param allocation
      * @return the street, or null if a known street was not matched
      */
-    private Street extractStreet(PhraseToBinAllocation allocation) {
-        return extractMetadata(Street.class, allocation);
+    private StreetHandle extractStreet(PhraseToBinAllocation allocation) {
+        return extractMetadata(StreetHandle.class, allocation);
     }
 
     // ------------------------------------------------------------------------------------------------------
@@ -394,7 +395,7 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
         String streetNumber = extractValue(candidate.getAllocationForBin(StreetNumberBin.class));
         String lotNumber = extractValue(candidate.getAllocationForBin(LotNumberBin.class));
         StreetType streetType = extractStreetType(candidate.getAllocationForBin(StreetTypeBin.class));
-        Street street = extractStreet(candidate.getAllocationForBin(StreetNameBin.class));
+        StreetHandle street = extractStreet(candidate.getAllocationForBin(StreetNameBin.class));
         if (street == null) {
             streetName = extractValue(candidate.getAllocationForBin(StreetNameBin.class));
         }
@@ -416,7 +417,7 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
 
                 if (street == null) {
                     // the street doesn't exist - create a new instance
-                    street = new Street(streetName, streetType, streetSection);
+                    street = new StreetHandle(streetName, streetType, streetSection);
                 }
             }
         }

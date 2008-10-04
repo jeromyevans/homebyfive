@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region.suburb;
 
-import com.blueskyminds.enterprise.address.Street;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 /**
  * Date Started: 9/10/2007
@@ -10,5 +10,5 @@ import com.blueskyminds.enterprise.address.Street;
 public interface SuburbI {
 
     /** Associate the specified street with this suburb */
-    Street addStreet(Street street);
+    StreetHandle addStreet(StreetHandle street);
 }

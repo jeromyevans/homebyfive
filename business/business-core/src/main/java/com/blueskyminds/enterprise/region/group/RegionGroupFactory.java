@@ -1,13 +1,10 @@
 package com.blueskyminds.enterprise.region.group;
 
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.state.StateBean;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.country.CountryBean;
-import com.blueskyminds.enterprise.region.RegionBean;
-import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.*;
 import com.blueskyminds.enterprise.region.composite.RegionCompositeFactory;
 import com.blueskyminds.enterprise.region.reference.RegionRefFactory;
 //import com.blueskyminds.landmine.core.property.Premise;

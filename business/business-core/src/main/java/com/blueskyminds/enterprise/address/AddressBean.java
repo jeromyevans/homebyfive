@@ -1,10 +1,9 @@
 package com.blueskyminds.enterprise.address;
 
-import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.SuburbBean;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 
 /**
  * Simple bean for creating an address.  Specializes the MultifieldAddress to include a path and flags to

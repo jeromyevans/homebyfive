@@ -5,6 +5,7 @@ import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 import javax.persistence.*;
 
@@ -139,7 +140,7 @@ public abstract class Address extends AbstractDomainObject {
      * @return street or null if not applicable
      */
     @Transient
-    public abstract Street getStreet();
+    public abstract StreetHandle getStreet();
 
     /**
      * Format the address into a human readable string

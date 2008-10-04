@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
-import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.PostCodeBean;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.google.inject.Inject;
 

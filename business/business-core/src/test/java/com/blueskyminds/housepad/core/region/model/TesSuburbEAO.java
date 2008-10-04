@@ -2,10 +2,10 @@ package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.SuburbEAO;
-import com.blueskyminds.enterprise.region.suburb.SuburbBean;
-import com.blueskyminds.enterprise.region.state.StateBean;
-import com.blueskyminds.enterprise.region.country.CountryBean;
-import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.SuburbBean;
+import com.blueskyminds.enterprise.region.index.StateBean;
+import com.blueskyminds.enterprise.region.index.CountryBean;
+import com.blueskyminds.enterprise.region.index.PostCodeBean;
 
 import java.util.Set;
 

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 import java.io.PrintStream;
 
@@ -24,7 +25,7 @@ import java.io.PrintStream;
 public class StreetAddress extends Address {
 
     private String streetNumber;
-    private Street street;
+    private StreetHandle street;
 
     // ------------------------------------------------------------------------------------------------------
     // ------------------------------------------------------------------------------------------------------
@@ -36,7 +37,7 @@ public class StreetAddress extends Address {
      * @param street
      * @param suburb
      */
-    public StreetAddress(String streetNumber, Street street, SuburbHandle suburb, PostCodeHandle postCode) {
+    public StreetAddress(String streetNumber, StreetHandle street, SuburbHandle suburb, PostCodeHandle postCode) {
         super(suburb, postCode);
 
         this.streetNumber = streetNumber;
@@ -51,7 +52,7 @@ public class StreetAddress extends Address {
      * @param street
      * @param suburb
      */
-    public StreetAddress(Street street, SuburbHandle suburb, PostCodeHandle postCode) {
+    public StreetAddress(StreetHandle street, SuburbHandle suburb, PostCodeHandle postCode) {
         super(suburb, postCode);
 
         this.street = street;
@@ -90,11 +91,11 @@ public class StreetAddress extends Address {
      */
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="StreetId")
-    public Street getStreet() {
+    public StreetHandle getStreet() {
         return street;
     }
 
-    public void setStreet(Street street) {
+    public void setStreet(StreetHandle street) {
         this.street = street;
     }
 

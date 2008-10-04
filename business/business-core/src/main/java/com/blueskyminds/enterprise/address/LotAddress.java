@@ -8,6 +8,7 @@ import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 /**
  * A Lot address is a type of physical address typically used to:
@@ -28,7 +29,7 @@ public class LotAddress extends StreetAddress {
 
     // ------------------------------------------------------------------------------------------------------
 
-    public LotAddress(String lotNumber, String streetNumber, Street street, SuburbHandle suburb, PostCodeHandle postCode) {
+    public LotAddress(String lotNumber, String streetNumber, StreetHandle street, SuburbHandle suburb, PostCodeHandle postCode) {
         super(streetNumber, street, suburb,  postCode);
         this.lotNumber = lotNumber;
     }

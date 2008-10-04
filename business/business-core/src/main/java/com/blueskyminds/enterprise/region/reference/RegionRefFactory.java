@@ -1,17 +1,12 @@
 package com.blueskyminds.enterprise.region.reference;
 
 import com.blueskyminds.enterprise.region.*;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.country.Country;
-import com.blueskyminds.enterprise.region.country.CountryBean;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.state.State;
-import com.blueskyminds.enterprise.region.state.StateBean;
-import com.blueskyminds.enterprise.address.Street;
+import com.blueskyminds.enterprise.region.index.*;
 import com.blueskyminds.enterprise.address.Address;
 //import com.blueskyminds.landmine.core.property.Premise;
 
@@ -177,7 +172,7 @@ public class RegionRefFactory {
      * @param street
      * @return
      */
-    public static RegionRef createRef(Street street, Address address) {
+    public static RegionRef createRef(StreetHandle street, Address address) {
         if (street != null) {
             RegionRef regionRef = new RegionRef(street.getId(), PathHelper.buildPath(address.getSuburb(), street), street.getFullName(), null, RegionRefType.Street);
 
@@ -307,7 +302,7 @@ public class RegionRefFactory {
         }
 
         if (state != null) {
-            regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(((State) state.getRegion()).getAbbreviation()));
+            regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(state.getAbbreviation()));
         }
 
         RegionHandle postCode;
@@ -325,7 +320,7 @@ public class RegionRefFactory {
         if (state != null) {
             country = state.getParent(RegionTypes.Country);
             if (country != null) {
-                regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(((Country) country.getRegion()).getIso2CountryCode()));
+                regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbreviation()));
             }
         }
     }
@@ -346,11 +341,11 @@ public class RegionRefFactory {
             regionRef.setAttribute(RegionRefAttributes.POSTCODE, RegionTools.encode(postCode.getName()));
         }
         if (state != null) {
-            regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(((State) state.getRegion()).getAbbreviation()));
+            regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(state.getAbbreviation()));
 
             RegionHandle country = state.getParent(RegionTypes.Country);
             if (country != null) {
-                regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(((Country) country.getRegion()).getIso2CountryCode()));
+                regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbreviation()));
             }
         }
     }   

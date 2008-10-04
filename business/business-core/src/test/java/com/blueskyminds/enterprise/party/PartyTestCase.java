@@ -12,7 +12,7 @@ import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.tag.service.TagService;
 import com.blueskyminds.enterprise.tag.service.TagServiceImpl;
 import com.blueskyminds.enterprise.tag.Tag;
-import com.blueskyminds.enterprise.region.country.Country;
+import com.blueskyminds.enterprise.region.country.Countries;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -62,7 +62,7 @@ public class PartyTestCase extends JPATestCase {
         individual.addPhoneNumber("0438951541", POCRole.Personal, PhoneNumberTypes.Mobile);
         individual.addPhoneNumber("0299225427", POCRole.Personal, PhoneNumberTypes.Fixed);
         try {
-            Address address = addressService.lookupOrCreateAddress("1/22 Spruson Street Neutral Bay NSW 2089", Country.AUS);
+            Address address = addressService.lookupOrCreateAddress("1/22 Spruson Street Neutral Bay NSW 2089", Countries.AUS);
             individual.addStreetAddress(new ContactAddress(address, POCRole.Personal));
         } catch(AddressProcessingException e) {
             LOG.error(e);

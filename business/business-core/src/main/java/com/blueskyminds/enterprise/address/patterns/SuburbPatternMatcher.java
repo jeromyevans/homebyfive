@@ -7,6 +7,7 @@ import com.blueskyminds.enterprise.address.dao.AddressDAO;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -208,12 +209,12 @@ public class SuburbPatternMatcher extends PatternMatcher<SuburbHandle> {
                         PhraseToBinAllocation streetNameAllocation = allocation.getAllocationForBin(StreetNameBin.class);
                         if (streetNameAllocation != null) {
                             Object metadata = streetNameAllocation.getPattern().getMetadata();
-                            if ((metadata != null) && (metadata instanceof Street)) {
-                                Street street = (Street) metadata;
+                            if ((metadata != null) && (metadata instanceof StreetHandle)) {
+                                StreetHandle street = (StreetHandle) metadata;
                                 if (street.isIdSet()) {
                                     street = em.merge(street);
                                 }
-                                if (!suburb.getSuburb().contains(street)) {
+                                if (!suburb.contains(street)) {
                                     // this is a conflict - the street isn't known to exist in this state
                                     allocationsToRemove.add(allocation);
                                 }

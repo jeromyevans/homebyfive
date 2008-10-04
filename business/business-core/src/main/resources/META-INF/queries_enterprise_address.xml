@@ -43,7 +43,7 @@
         <query>
            select country from CountryHandle country
              left join fetch country.regionAliases
-             where country.iso2CountryCode = :iso2CountryCode and
+             where country.abbreviation = :iso2CountryCode and
                    country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
@@ -58,7 +58,12 @@
      -->
     <named-query name="street.byNameAndSuburb">
         <query>
-            select street from Suburb suburb join suburb.suburbStreetMaps connector join connector.street street where suburb = :suburb and street.name like :name
+            select street from StreetHandle street
+             left join street.parentRegionMaps map
+             left join fetch street.regionAliases alias             
+             where map.parent = :suburb and
+                   street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                  (lower(street.name) = :name or lower(alias.name) = :name)
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -73,7 +78,13 @@
      -->
     <named-query name="street.byNameSectionAndSuburb">
         <query>
-            select street from Suburb suburb join suburb.suburbStreetMaps connector join connector.street street where suburb= :suburb and street.section = :section and street.name like :name
+            select street from StreetHandle street
+             left join street.parentRegionMaps map
+             left join fetch street.regionAliases alias
+             where map.parent = :suburb and
+                   street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                   street.section = :section and
+                  (lower(street.name) = :name or lower(alias.name) = :name)
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -88,7 +99,13 @@
      -->
     <named-query name="street.byNameTypeAndSuburb">
         <query>
-            select street from Suburb suburb join suburb.suburbStreetMaps connector join connector.street street where suburb = :suburb and street.type = :type and street.name like :name
+          select street from StreetHandle street
+             left join street.parentRegionMaps map
+             left join fetch street.regionAliases alias
+             where map.parent = :suburb and
+                   street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                   street.streetType = :type and
+                  (lower(street.name) = :name or lower(alias.name) = :name)
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -104,7 +121,15 @@
      -->
     <named-query name="street.byNameTypeSectionAndSuburb">
         <query>
-            select street  from Suburb suburb join suburb.suburbStreetMaps connector join connector.street street where suburb = :suburb and street.type = :type and street.section = :section and street.name like :name
+          select street from StreetHandle street
+             left join street.parentRegionMaps map
+             left join fetch street.regionAliases alias
+             where map.parent = :suburb and
+                   street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                   street.streetType = :type and
+                   street.section  = :section and
+                  (lower(street.name) = :name or lower(alias.name) = :name)
+
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -392,19 +417,19 @@
   <!--
     Get the list of all streets in a country.
 
-    This query finds suburbs that have a parent state in the specified country and then the streets in each suburb
+    This query finds streets that have a parent suburb that have a parent state in the specified country 
 
     Parameters:
       country: CountryHandle
      -->
     <named-query name="street.listAllByCountry">
         <query>
-          select street from SuburbHandle suburb
+          select street from StreetHandle street
+             left join street.parentRegionMaps parentMap0
+             left join parentMap0.parent suburb
              left join suburb.parentRegionMaps parentMap1
              left join parentMap1.parent state
              left join state.parentRegionMaps parentMap2
-             left join impl.suburbStreetMaps map
-             left join map.street street
              where parentMap2.parent = :country and
                    state.class = com.blueskyminds.enterprise.region.state.StateHandle
         </query>
@@ -421,10 +446,9 @@
      -->
     <named-query name="street.listAllBySuburb">
         <query>
-          select street from SuburbHandle suburb
-             left join impl.suburbStreetMaps map
-             left join map.street street
-             where suburb = :suburb
+          select street from StreetHandle street
+             left join street.parentRegionMaps parentMap0
+             where parentMap0.parent =:suburb
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -439,11 +463,11 @@
      -->
     <named-query name="street.listAllByPostCode">
         <query>
-          select street from SuburbHandle suburb
+          select street from StreetHandle street
+             left join street.parentRegionMaps parentMap0
+             left join parentMap0.parent suburb
              left join suburb.parentRegionMaps parentMap1
              left join parentMap1.parent postCode
-             left join impl.suburbStreetMaps map
-             left join map.street street
              where postCode.class = com.blueskyminds.enterprise.region.postcode.PostCodeHandle
                    and postCode = :postCode
 

@@ -1,18 +1,18 @@
-package com.blueskyminds.enterprise.region.postcode;
+package com.blueskyminds.enterprise.region.index;
 
 import javax.persistence.*;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.enterprise.region.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionBean;
 import com.blueskyminds.enterprise.region.PathHelper;
-import com.blueskyminds.enterprise.region.country.CountryBean;
+import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.reference.CountryRef;
 import com.blueskyminds.enterprise.region.reference.StateRef;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.state.StateBean;
+import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
 /**
@@ -24,20 +24,15 @@ import com.blueskyminds.enterprise.tools.KeyGenerator;
  */
 @Entity
 @Table(name="hpPostCode")
-public class PostCodeBean extends AbstractEntity implements RegionBean, CountryRef, StateRef {
+public class PostCodeBean extends RegionBean implements CountryRef, StateRef {
 
-    private String parentPath;
-    private String path;
     private CountryBean countryBean;
     private String countryName;
     private String countryPath;
     private StateBean stateBean;
     private String stateName;
     private String statePath;
-    private String postCodeId;
-    private String name;
-    private PostCodeHandle postCodeHandle;
-    private DomainObjectStatus status;
+
 
     public PostCodeBean() {
     }
@@ -53,26 +48,6 @@ public class PostCodeBean extends AbstractEntity implements RegionBean, CountryR
         this.countryBean = (CountryBean) stateBean.getParent();
         this.stateBean = stateBean;
         populateAttributes();
-    }
-
-    @Basic
-    @Column(name="ParentPath")
-    public String getParentPath() {
-        return parentPath;
-    }
-
-    protected void setParentPath(String parentPath) {
-        this.parentPath = parentPath;
-    }
-
-    @Basic
-    @Column(name="Path")
-    public String getPath() {
-        return path;
-    }
-
-    protected void setPath(String path) {
-        this.path = path;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -145,39 +120,22 @@ public class PostCodeBean extends AbstractEntity implements RegionBean, CountryR
         this.statePath = statePath;
     }
 
-    @Basic
-    @Column(name="PostCodeId")
+    @Transient
     public String getPostCodeId() {
-        return postCodeId;
+        return key;
     }
 
     protected void setPostCodeId(String postCodeId) {
-        this.postCodeId = postCodeId;
-    }
-
-    @Basic
-    @Column(name="Name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.key = postCodeId;
     }
 
     @Transient
-    public RegionBean getParent() {
-        return stateBean;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="PostCodeHandleId")
     public PostCodeHandle getPostCodeHandle() {
-        return postCodeHandle;
+        return (PostCodeHandle) regionHandle;
     }
 
     public void setPostCodeHandle(PostCodeHandle postCodeHandle) {
-        this.postCodeHandle = postCodeHandle;
+        this.regionHandle = postCodeHandle;
     }
 
     @Enumerated
@@ -198,24 +156,16 @@ public class PostCodeBean extends AbstractEntity implements RegionBean, CountryR
         this.countryName = countryBean.getPath();
         this.statePath = stateBean.getPath();
         this.stateName = stateBean.getName();
-        this.postCodeId = KeyGenerator.generateId(name);
-        this.path = PathHelper.joinPath(parentPath, postCodeId);
+        this.key = KeyGenerator.generateId(name);
+        this.path = PathHelper.joinPath(parentPath, key);
         this.status = DomainObjectStatus.Valid;
+        this.type = RegionTypes.PostCode;
     }
 
     public void mergeWith(RegionBean otherPostCode) {
         if (otherPostCode instanceof PostCodeBean) {
-            postCodeHandle.mergeWith(((PostCodeBean) otherPostCode).getPostCodeHandle());
+            getPostCodeHandle().mergeWith(((PostCodeBean) otherPostCode).getPostCodeHandle());
         }
     }
 
-    @Transient
-    public RegionHandle getRegionHandle() {
-        return postCodeHandle;
-    }
-
-    @Transient
-    public RegionTypes getType() {
-        return RegionTypes.PostCode;
-    }
 }

@@ -5,15 +5,11 @@ import com.blueskyminds.enterprise.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
 import com.wideplay.warp.persist.Transactional;
 import com.blueskyminds.enterprise.address.service.AddressService;
-import com.blueskyminds.enterprise.address.Street;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.country.CountryBean;
+import com.blueskyminds.enterprise.region.index.*;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.state.StateBean;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.suburb.SuburbBean;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
 import com.blueskyminds.enterprise.region.*;
 import com.blueskyminds.enterprise.region.dao.CountryEAO;
 import com.blueskyminds.enterprise.region.dao.PostCodeEAO;
@@ -286,11 +282,7 @@ public class RegionServiceImpl implements RegionService {
 //                break;
         }
         return region;
-    }
-
-    public Street lookupStreet(String path) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+    }  
 
     /**
      * Permanently merge two regions into one.

@@ -1,8 +1,8 @@
-package com.blueskyminds.enterprise.region.country;
+package com.blueskyminds.enterprise.region.index;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.enterprise.region.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionBean;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
@@ -20,15 +20,10 @@ import org.apache.commons.lang.StringUtils;
  */
 @Entity
 @Table(name="hpCountry")
-public class CountryBean extends AbstractEntity implements RegionBean {
+public class CountryBean extends RegionBean {
     
-    private String path;
-    private String countryid;
-    private String name;
     private String abbr;
-    private CountryHandle countryHandle;
-    private DomainObjectStatus status;
-    
+
     public CountryBean() {
     }
 
@@ -37,43 +32,19 @@ public class CountryBean extends AbstractEntity implements RegionBean {
         this.abbr = abbr;
         populateAttributes();
     }
-    /**
-     * The full path (eg. /au
-     *
-     * @return
-     */
-    @Column(name="Path")
-    public String getPath() {
-        return path;
-    }
-
-    protected void setPath(String path) {
-        this.path = path;
-    }
 
     /**
      * eg au
      *
      * @return
      */
-    @Basic
-    @Column(name="CountryId")
+    @Transient
     public String getCountryid() {
-        return countryid;
+        return key;
     }
 
     protected void setCountryid(String countryid) {
-        this.countryid = countryid;
-    }
-
-    @Basic
-    @Column(name="Name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.key = countryid;
     }
 
     @Basic
@@ -86,51 +57,30 @@ public class CountryBean extends AbstractEntity implements RegionBean {
         this.abbr = abbr;
     }
 
-    @Transient
-    public RegionBean getParent() {
-        return null;  
-    }
-
-    @Transient
-    public String getParentPath() {
-        return PathHelper.ROOT;
-    }
-
     /**
      * The handle for the Country implementation
      *
      * @return
      */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="CountryHandleId")
+    @Transient
     public CountryHandle getCountryHandle() {
-        return countryHandle;
+        return (CountryHandle) regionHandle;
     }
 
     public void setCountryHandle(CountryHandle countryHandle) {
-        this.countryHandle = countryHandle;
-    }
-
-
-    @Enumerated
-    @Column(name="Status")
-    public DomainObjectStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(DomainObjectStatus status) {
-        this.status = status;
+        this.regionHandle = countryHandle;
     }
 
     /**
      * Populates the generated/read-only properties
      */
     public void populateAttributes() {
-        this.countryid = KeyGenerator.generateId(abbr);
-        this.path = PathHelper.joinPath(getParentPath(), countryid);
+        this.key = KeyGenerator.generateId(abbr);
+        this.parentPath = PathHelper.ROOT;
+        this.path = PathHelper.joinPath(getParentPath(), key);
         this.status = DomainObjectStatus.Valid;
+        this.type = RegionTypes.Country;
     }
-
 
     @Transient
     public boolean isValid() {
@@ -139,17 +89,8 @@ public class CountryBean extends AbstractEntity implements RegionBean {
 
     public void mergeWith(RegionBean otherCountryBean) {
         if (otherCountryBean instanceof CountryBean) {
-            countryHandle.mergeWith(((CountryBean) otherCountryBean).getCountryHandle());
+            getCountryHandle().mergeWith(((CountryBean) otherCountryBean).getCountryHandle());
         }
     }
 
-    @Transient
-    public RegionHandle getRegionHandle() {
-        return countryHandle;
-    }
-
-    @Transient
-    public RegionTypes getType() {
-        return RegionTypes.Country;
-    }
 }

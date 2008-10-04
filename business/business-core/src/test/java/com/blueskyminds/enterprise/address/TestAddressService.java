@@ -5,6 +5,7 @@ import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.service.RegionGraphServiceImpl;
@@ -175,8 +176,8 @@ public class TestAddressService extends JPATestCase {
     public void testListAddressesByStreet() throws Exception {
         AddressTestTools.initialiseSampleAusAddresses();
 
-        List<Street> streets = addressService.findStreet("lygon", "AUS");
-        for (Street street : streets) {
+        List<StreetHandle> streets = addressService.findStreet("lygon", "AUS");
+        for (StreetHandle street : streets) {
             Set<Address> addresses = addressService.listAddresses(street);
             for (Address adddress : addresses) {
                 adddress.print(System.out);

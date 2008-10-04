@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
-import com.blueskyminds.enterprise.region.country.CountryBean;
+import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.google.inject.Inject;
 

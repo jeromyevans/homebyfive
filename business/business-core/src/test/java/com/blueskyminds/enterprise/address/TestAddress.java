@@ -8,6 +8,7 @@ import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.AddressTestTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -40,11 +41,11 @@ public class TestAddress extends JPATestCase {
         SuburbHandle neutralBay = nsw.addSuburb(new RegionFactory().createSuburb("Neutral Bay", nbPostCode));
         SuburbHandle kirribilli = nsw.addSuburb(new RegionFactory().createSuburb("Kirribilli", kPostCode));
 
-        Street sprusonStreet = neutralBay.addStreet(new Street("Spruson", StreetType.Street));
-        Street philipStreet = neutralBay.addStreet(new Street("Phillip", StreetType.Street));
-        Street militaryRoad = neutralBay.addStreet(new Street("Military", StreetType.Road));
+        StreetHandle sprusonStreet = neutralBay.addStreet(new StreetHandle("Spruson", StreetType.Street));
+        StreetHandle philipStreet = neutralBay.addStreet(new StreetHandle("Phillip", StreetType.Street));
+        StreetHandle militaryRoad = neutralBay.addStreet(new StreetHandle("Military", StreetType.Road));
         mosmon.addStreet(militaryRoad);
-        Street carabellaStreet = kirribilli.addStreet(new Street("Carabella", StreetType.Street));
+        StreetHandle carabellaStreet = kirribilli.addStreet(new StreetHandle("Carabella", StreetType.Street));
 
         Address addressA = new UnitAddress("1", "22", sprusonStreet, neutralBay, nbPostCode);
         Address addressB = new UnitAddress("3", "60", carabellaStreet, kirribilli, kPostCode);

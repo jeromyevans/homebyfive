@@ -4,9 +4,9 @@ import com.blueskyminds.homebyfive.framework.core.patterns.*;
 import com.blueskyminds.homebyfive.framework.core.patterns.bins.RegExSubstitutionBin;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;
-import com.blueskyminds.enterprise.address.Street;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -83,7 +83,7 @@ public class StreetNameBin extends RegExSubstitutionBin {
     protected Set<PatternMatch> wordMatchesKnownStreet(String word) {
         boolean exclusive = true;
         Set<PatternMatch> matches = new HashSet<PatternMatch>();
-        Set<Street> streets;
+        Set<StreetHandle> streets;
                 
         if (country != null) {
             streets = addressDAO.listStreetsInCountry(country);
@@ -92,9 +92,9 @@ public class StreetNameBin extends RegExSubstitutionBin {
         }
 
         if (streets.size() > 0) {
-            List<Street> matchingStreets = LevensteinDistanceTools.matchName(word, streets);
+            List<StreetHandle> matchingStreets = LevensteinDistanceTools.matchName(word, streets);
 
-            for (Street match : matchingStreets) {
+            for (StreetHandle match : matchingStreets) {
                 if (word.equalsIgnoreCase(match.getName())) {
                     matches.add(new PatternMatch(new NamedPatternDecorator(match), exclusive, null, PatternMatchType.Exact));
                 } else {

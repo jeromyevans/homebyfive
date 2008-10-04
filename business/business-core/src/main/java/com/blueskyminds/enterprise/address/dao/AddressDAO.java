@@ -5,6 +5,7 @@ import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
@@ -302,10 +303,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<Street> listStreetsInCountry(CountryHandle countryHandle) {
+    public Set<StreetHandle> listStreetsInCountry(CountryHandle countryHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_STREETS_BY_COUNTRY);
         query.setParameter(PARAM_COUNTRY, countryHandle);
-        return new HashSet<Street>(FilterTools.getNonNull(query.getResultList()));
+        return new HashSet<StreetHandle>(FilterTools.getNonNull(query.getResultList()));
     }
 
      /**
@@ -313,10 +314,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<Street> listStreetsInSuburb(SuburbHandle suburbHandle) {
+    public Set<StreetHandle> listStreetsInSuburb(SuburbHandle suburbHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_STREETS_BY_SUBURB);
         query.setParameter(PARAM_SUBURB, suburbHandle);
-        return new HashSet<Street>(FilterTools.getNonNull(query.getResultList()));
+        return new HashSet<StreetHandle>(FilterTools.getNonNull(query.getResultList()));
     }
 
      /**
@@ -324,10 +325,10 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<Street> listStreetsInPostCode(PostCodeHandle postCodeHandle) {
+    public Set<StreetHandle> listStreetsInPostCode(PostCodeHandle postCodeHandle) {
         Query query = em.createNamedQuery(QUERY_ALL_STREETS_BY_POSTCODE);
         query.setParameter(PARAM_POSTCODE, postCodeHandle);
-        return new HashSet<Street>(FilterTools.getNonNull(query.getResultList()));
+        return new HashSet<StreetHandle>(FilterTools.getNonNull(query.getResultList()));
     }
 
     /**
@@ -357,7 +358,7 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return
      */
-    public Set<Address> listAddressesInStreet(Street street) {
+    public Set<Address> listAddressesInStreet(StreetHandle street) {
         Query query = em.createNamedQuery(QUERY_ALL_ADDRESSES_BY_STREET);
         query.setParameter(PARAM_STREET, street);
         return new HashSet<Address>(FilterTools.getNonNull(query.getResultList()));
@@ -370,8 +371,8 @@ public class AddressDAO extends AbstractDAO {
      *
      * @return Street instance, or null if not found
      */
-    public Street getStreetByName(String streetName, StreetType type, StreetSection section, SuburbHandle suburb) {
-        Street street;
+    public StreetHandle getStreetByName(String streetName, StreetType type, StreetSection section, SuburbHandle suburb) {
+        StreetHandle street;
         Query query;
 
         if (type != null) {
@@ -389,7 +390,7 @@ public class AddressDAO extends AbstractDAO {
         query.setParameter(PARAM_STREET_NAME, streetName);
         query.setParameter(PARAM_STREET_SUBURB, suburb);
 
-        street = (Street) findOne(query);
+        street = (StreetHandle) findOne(query);
 
         return street;
     }
@@ -420,19 +421,19 @@ public class AddressDAO extends AbstractDAO {
             StreetAddress streetAddress = (StreetAddress) address;
 
             if (streetAddress.getStreet() != null) {
-                if (streetAddress.getStreet().isPersistent()) {
+                if (streetAddress.getStreet().isIdSet()) {
                     queryBuilder.addCondition("address.street = :street");
                     queryBuilder.setParameter("street", streetAddress.getStreet());
                 } else {
                     // match street by name
-                    Street street = streetAddress.getStreet();
+                    StreetHandle street = streetAddress.getStreet();
                     if (StringUtils.isNotBlank(street.getName())) {
                         queryBuilder.addCondition("lower(address.street.name) = :streetName");
                         queryBuilder.setParameter("streetName", StringUtils.lowerCase(street.getName()));
                     }
-                    if (street.getType() != null) {
+                    if (street.getStreetType() != null) {
                         queryBuilder.addCondition("address.street.type = :streetType");
-                        queryBuilder.setParameter("streetType", street.getType());
+                        queryBuilder.setParameter("streetType", street.getStreetType());
                     } else {
                         queryBuilder.addCondition("address.street.type is null");
                     }

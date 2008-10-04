@@ -2,6 +2,7 @@ package com.blueskyminds.enterprise.address;
 
 import com.blueskyminds.enterprise.region.RegionHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import org.apache.commons.lang.StringUtils;
@@ -141,7 +142,7 @@ public class MultifieldAddress {
 
             postCode = suburb.getPostCode();
             
-            Street street = new Street(streetName, streetType, streetSection);
+            StreetHandle street = new StreetHandle(streetName, streetType, streetSection);
 
             if (StringUtils.isNotBlank(unitNo)) {
                 address = new UnitAddress(unitNo, streetNo, street, suburb, postCode);

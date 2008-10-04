@@ -1,11 +1,11 @@
-package com.blueskyminds.enterprise.region.suburb;
+package com.blueskyminds.enterprise.region.index;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.enterprise.region.RegionBean;
-import com.blueskyminds.enterprise.region.country.CountryBean;
-import com.blueskyminds.enterprise.region.state.StateBean;
-import com.blueskyminds.enterprise.region.postcode.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.CountryBean;
+import com.blueskyminds.enterprise.region.index.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.reference.PostCodeRef;
 import com.blueskyminds.enterprise.region.reference.StateRef;
@@ -24,10 +24,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="hpSuburb")
-public class SuburbBean extends AbstractEntity implements RegionBean, CountryRef, StateRef, PostCodeRef {
+public class SuburbBean extends RegionBean implements CountryRef, StateRef, PostCodeRef {
 
-    private String parentPath;
-    private String path;
     private CountryBean countryBean;
     private String countryName;
     private String countryPath;
@@ -37,10 +35,6 @@ public class SuburbBean extends AbstractEntity implements RegionBean, CountryRef
     private PostCodeBean postCodeBean;
     private String postCodeName;
     private String postCodePath;
-    private String suburbId;
-    private String name;
-    private SuburbHandle suburbHandle;
-    private DomainObjectStatus status;
 
     public SuburbBean() {
     }
@@ -57,26 +51,6 @@ public class SuburbBean extends AbstractEntity implements RegionBean, CountryRef
         this.postCodeBean = postCodeBean;
         this.name = name;
         populateAttributes();
-    }
-
-    @Basic
-    @Column(name="ParentPath")
-    public String getParentPath() {
-        return parentPath;
-    }
-
-    protected void setParentPath(String parentPath) {
-        this.parentPath = parentPath;
-    }
-
-    @Basic
-    @Column(name="Path")
-    public String getPath() {
-        return path;
-    }
-
-    protected void setPath(String path) {
-        this.path = path;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -192,29 +166,13 @@ public class SuburbBean extends AbstractEntity implements RegionBean, CountryRef
         this.statePath = statePath;
     }
 
-    @Basic
-    @Column(name="SuburbId")
+    @Transient
     public String getSuburbId() {
-        return suburbId;
+        return key;
     }
 
     protected void setSuburbId(String suburbId) {
-        this.suburbId = suburbId;
-    }
-
-    @Basic
-    @Column(name="Name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Transient
-    public RegionBean getParent() {
-        return stateBean;
+        this.key = suburbId;
     }
 
     /**
@@ -222,24 +180,13 @@ public class SuburbBean extends AbstractEntity implements RegionBean, CountryRef
      *
      * @return
      */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="SuburbHandleId")
+    @Transient
     public SuburbHandle getSuburbHandle() {
-        return suburbHandle;
+        return (SuburbHandle) regionHandle;
     }
 
     public void setSuburbHandle(SuburbHandle suburbHandle) {
-        this.suburbHandle = suburbHandle;
-    }
-
-    @Enumerated
-    @Column(name="Status")
-    public DomainObjectStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(DomainObjectStatus status) {
-        this.status = status;
+        this.regionHandle = suburbHandle;
     }
 
     /**
@@ -255,24 +202,16 @@ public class SuburbBean extends AbstractEntity implements RegionBean, CountryRef
             this.postCodeName = postCodeBean.getName();
             this.postCodePath = postCodeBean.getPath();
         }
-        this.suburbId = KeyGenerator.generateId(name);
-        this.path = PathHelper.joinPath(parentPath, suburbId);
+        this.key = KeyGenerator.generateId(name);
+        this.path = PathHelper.joinPath(parentPath, key);
         this.status = DomainObjectStatus.Valid;
+        this.type = RegionTypes.Suburb;
     }
 
     public void mergeWith(RegionBean suburbBean) {
         if (suburbBean instanceof SuburbBean) {
-            suburbHandle.mergeWith(((SuburbBean) suburbBean).getSuburbHandle());
+            getSuburbHandle().mergeWith(((SuburbBean) suburbBean).getSuburbHandle());
         }
     }
 
-    @Transient
-    public RegionHandle getRegionHandle() {
-        return suburbHandle;
-    }
-
-    @Transient
-    public RegionTypes getType() {
-        return RegionTypes.Suburb;
-    }
 }

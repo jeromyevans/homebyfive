@@ -6,12 +6,9 @@ import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import com.blueskyminds.enterprise.AddressTestTools;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
-import com.blueskyminds.enterprise.region.suburb.Suburb;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.state.State;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCode;
-import com.blueskyminds.enterprise.address.Street;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -73,7 +70,7 @@ public class TestAddressDAO extends JPATestCase {
 
         CountryHandle aus = addressDAO.lookupCountry("AUS");
 
-        Set<Street> streets = addressDAO.listStreetsInCountry(aus);
+        Set<StreetHandle> streets = addressDAO.listStreetsInCountry(aus);
         assertNotNull(streets);
         assertTrue(streets.size() > 0);
     }
@@ -84,7 +81,7 @@ public class TestAddressDAO extends JPATestCase {
         CountryHandle aus = addressDAO.lookupCountry("AUS");
         StateHandle state = addressDAO.lookupState("VIC", aus);
         SuburbHandle suburb = addressDAO.lookupSuburb("Carlton", state);
-        Set<Street> streets = addressDAO.listStreetsInSuburb(suburb);
+        Set<StreetHandle> streets = addressDAO.listStreetsInSuburb(suburb);
         assertNotNull(streets);
         assertTrue(streets.size() > 0);
     }
@@ -105,9 +102,9 @@ public class TestAddressDAO extends JPATestCase {
     public void testSuburbs() {
         AddressTestTools.initialiseCountryList();
 
-        TestTools.printAll(em, State.class);
-        TestTools.printAll(em, PostCode.class);
-        TestTools.printAll(em, Suburb.class);
+        TestTools.printAll(em, StateHandle.class);
+        TestTools.printAll(em, PostCodeHandle.class);
+        TestTools.printAll(em, SuburbHandle.class);
     }
 
 }

@@ -8,6 +8,7 @@ import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 
 /**
  * Extension of a StreetAddress to include a unit number
@@ -35,7 +36,7 @@ public class UnitAddress extends StreetAddress {
      * @param streetNumber
      * @param street
      */
-    public UnitAddress(String unitNumber, String streetNumber, Street street, SuburbHandle suburb, PostCodeHandle postCode) {
+    public UnitAddress(String unitNumber, String streetNumber, StreetHandle street, SuburbHandle suburb, PostCodeHandle postCode) {
         super(streetNumber, street, suburb, postCode);
 
         this.unitNumber = unitNumber;

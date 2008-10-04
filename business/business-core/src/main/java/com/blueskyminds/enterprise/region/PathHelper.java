@@ -2,17 +2,13 @@ package com.blueskyminds.enterprise.region;
 
 import org.apache.commons.lang.StringUtils;
 
-import java.net.URLEncoder;
-import java.util.Map;
-
 import com.blueskyminds.enterprise.address.*;
-import com.blueskyminds.enterprise.region.country.Country;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.state.State;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
 
 /**
@@ -65,7 +61,7 @@ public class PathHelper {
         return joinPaths(buildPath(postCodeHandle.getState()), KeyGenerator.generateId(postCodeHandle.getName()));
     }
 
-    public static String buildPath(SuburbHandle suburbHandle, Street street) {
+    public static String buildPath(SuburbHandle suburbHandle, StreetHandle street) {
         return joinPaths(buildPath(suburbHandle.getState()), KeyGenerator.generateId(suburbHandle.getName()), buildStreetNameKey(street));
     }
 
@@ -164,9 +160,9 @@ public class PathHelper {
         }                
     }
 
-    public static String buildStreetNameKey(Street street) {
+    public static String buildStreetNameKey(StreetHandle street) {
         if (street != null) {
-            return buildStreetNameKey(street.getName(), street.getType(), street.getSection());
+            return buildStreetNameKey(street.getName(), street.getStreetType(), street.getSection());
         } else {
             return null;
         }

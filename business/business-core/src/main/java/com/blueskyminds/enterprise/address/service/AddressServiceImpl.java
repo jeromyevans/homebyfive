@@ -4,6 +4,7 @@ import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.address.dao.*;
 import com.blueskyminds.enterprise.address.patterns.*;
 import com.blueskyminds.enterprise.region.RegionHandle;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.country.RegionFactory;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
@@ -276,9 +277,9 @@ public class AddressServiceImpl implements AddressService {
     // ------------------------------------------------------------------------------------------------------
 
     /** Adds a new Street to a Suburb.  The street and the suburb are persisted if necessary  */
-    private Street persistNewStreet(SuburbHandle suburb, Street street) throws PersistenceServiceException {
+    private StreetHandle persistNewStreet(SuburbHandle suburb, StreetHandle street) throws PersistenceServiceException {
         if (street != null) {
-            if (!street.isPersistent()) {
+            if (!street.isIdSet()) {
                 if (suburb != null) {
                     suburb.addStreet(street);
                     em.persist(suburb);
@@ -322,8 +323,8 @@ public class AddressServiceImpl implements AddressService {
                     // persist the new street  
                     StreetAddress streetAddress = (StreetAddress) address;
                     if (streetAddress.getStreet() != null) {
-                        if (!streetAddress.getStreet().isPersistent()) {
-                            Street street = streetAddress.getStreet();
+                        if (!streetAddress.getStreet().isIdSet()) {
+                            StreetHandle street = streetAddress.getStreet();
                             // ensure the name is capitalized before persistence
                             street.setName(StringUtils.capitalize(street.getName()));
 
@@ -710,21 +711,21 @@ public class AddressServiceImpl implements AddressService {
      * <p/>
      * Performs a fuzzy match and returns the matches in order of rank
      */
-    public List<Street> findStreet(String name, String iso3DigitCountryCode) {
+    public List<StreetHandle> findStreet(String name, String iso3DigitCountryCode) {
         AddressDAO addressDAO = new AddressDAO(em);
 
         CountryHandle country = addressDAO.lookupCountry(iso3DigitCountryCode);
-        Set<Street> streets = addressDAO.listStreetsInCountry(country);
+        Set<StreetHandle> streets = addressDAO.listStreetsInCountry(country);
 
         return LevensteinDistanceTools.matchName(name, streets);
     }
 
-    public List<Street> findStreet(String name, final StreetType streetType, final StreetSection streetSection, SuburbHandle suburb) {
+    public List<StreetHandle> findStreet(String name, final StreetType streetType, final StreetSection streetSection, SuburbHandle suburb) {
         AddressDAO addressDAO = new AddressDAO(em);
-        Set<Street> streets = addressDAO.listStreetsInSuburb(suburb);
-        List<Street> filteredStreets = FilterTools.getMatching(streets, new Filter<Street>() {
-            public boolean accept(Street street) {
-                return ((streetType == null || streetType.equals(street.getType())) && (streetSection == null || streetSection == StreetSection.NA || streetSection.equals(street.getSection())));
+        Set<StreetHandle> streets = addressDAO.listStreetsInSuburb(suburb);
+        List<StreetHandle> filteredStreets = FilterTools.getMatching(streets, new Filter<StreetHandle>() {
+            public boolean accept(StreetHandle street) {
+                return ((streetType == null || streetType.equals(street.getStreetType())) && (streetSection == null || streetSection == StreetSection.NA || streetSection.equals(street.getSection())));
             }
         });
         return LevensteinDistanceTools.matchName(name, filteredStreets);        
@@ -760,7 +761,7 @@ public class AddressServiceImpl implements AddressService {
      * @param street
      * @return
      */
-    public Set<Address> listAddresses(Street street) {
+    public Set<Address> listAddresses(StreetHandle street) {
         AddressDAO addressDAO = new AddressDAO(em);
 
         return addressDAO.listAddressesInStreet(street);

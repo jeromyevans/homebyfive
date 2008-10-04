@@ -1,9 +1,7 @@
 package com.blueskyminds.enterprise.region.postcode;
 
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.region.state.StateHandle;
-import com.blueskyminds.enterprise.region.postcode.PostCode;
 import com.blueskyminds.enterprise.region.RegionTypes;
 
 import javax.persistence.*;

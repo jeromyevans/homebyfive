@@ -1,6 +1,6 @@
 package com.blueskyminds.enterprise.region.service;
 
-import com.blueskyminds.enterprise.region.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionBean;
 
 /**
  * Exception indicates that an attempt was made to create a new region when one already has the same path

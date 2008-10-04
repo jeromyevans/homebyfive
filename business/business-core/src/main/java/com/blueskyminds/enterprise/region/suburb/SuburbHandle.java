@@ -1,11 +1,10 @@
 package com.blueskyminds.enterprise.region.suburb;
 
 import com.blueskyminds.enterprise.region.RegionHandle;
-import com.blueskyminds.enterprise.region.Region;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.address.Street;
+import com.blueskyminds.enterprise.region.street.StreetHandle;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
@@ -24,8 +23,6 @@ public class SuburbHandle extends RegionHandle implements SuburbI {
     /** A special case SuburbHandle instance used to indentify an invalid Suburb rather than a null value */
     public static final SuburbHandle INVALID = invalid();
 
-    private Suburb suburb;
-
     public SuburbHandle(String name) {
         super(name, RegionTypes.Suburb);
     }
@@ -33,24 +30,18 @@ public class SuburbHandle extends RegionHandle implements SuburbI {
     protected SuburbHandle() {
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="SuburbId")
-    public Suburb getSuburb() {
-        this.suburb.setRegionHandle(this);
-        return suburb;
-    }
-
-    public void setSuburb(Suburb suburb) {
-        this.suburb = suburb;
-    }
-
     /**
      * Associate the specified street with this suburb
      */
-    public Street addStreet(Street street) {
-        return suburb.addStreet(street);
+    public StreetHandle addStreet(StreetHandle street) {
+        addChildRegion(street);
+        return street;
     }
 
+    /** Determine if this suburb contains the specified street */
+    public boolean contains(StreetHandle street) {        
+        return hasChild(street);
+    }
      /**
      * Gets the parent StateHandle
      * Deproxies the instance if necessary

@@ -210,26 +210,25 @@ To do: many of these properties need to be able to be changed -->
         <class>com.blueskyminds.enterprise.taxpolicy.ScheduleOfTaxes</class>
 
         <!-- add the entire address package -->
-        <class>com.blueskyminds.enterprise.address.Street</class>
+        <class>com.blueskyminds.enterprise.region.StreetHandle</class>
         <class>com.blueskyminds.enterprise.address.Address</class>
         <class>com.blueskyminds.enterprise.address.StreetAddress</class>
         <class>com.blueskyminds.enterprise.address.LotAddress</class>
         <class>com.blueskyminds.enterprise.address.UnitAddress</class>
         <class>com.blueskyminds.enterprise.address.MultilineAddress</class>
         <class>com.blueskyminds.enterprise.address.PlainTextAddress</class>
-        <class>com.blueskyminds.enterprise.address.SuburbStreetMap</class>
+
 
         <class>com.blueskyminds.enterprise.region.RegionHierarchy</class>
         <class>com.blueskyminds.enterprise.region.RegionAlias</class>
         <class>com.blueskyminds.enterprise.region.RegionHandle</class>
         <class>com.blueskyminds.enterprise.region.country.CountryHandle</class>
-        <class>com.blueskyminds.enterprise.region.country.Country</class>
         <class>com.blueskyminds.enterprise.region.state.StateHandle</class>
-        <class>com.blueskyminds.enterprise.region.state.State</class>
+
         <class>com.blueskyminds.enterprise.region.postcode.PostCodeHandle</class>
-        <class>com.blueskyminds.enterprise.region.postcode.PostCode</class>
+
         <class>com.blueskyminds.enterprise.region.suburb.SuburbHandle</class>
-        <class>com.blueskyminds.enterprise.region.suburb.Suburb</class>
+
 
         <!-- end of enterprise -->
     <properties>
@@ -312,24 +311,23 @@ To do: many of these properties need to be able to be changed -->
     <!-- add the entire address package -->
     <class>com.blueskyminds.enterprise.address.Address</class>
     <class>com.blueskyminds.enterprise.address.StreetAddress</class>
-    <class>com.blueskyminds.enterprise.address.Street</class>
+    <class>com.blueskyminds.enterprise.region.StreetHandle</class>
     <class>com.blueskyminds.enterprise.address.LotAddress</class>
     <class>com.blueskyminds.enterprise.address.UnitAddress</class>
     <class>com.blueskyminds.enterprise.address.MultilineAddress</class>
     <class>com.blueskyminds.enterprise.address.PlainTextAddress</class>
-    <class>com.blueskyminds.enterprise.address.SuburbStreetMap</class>
+
 
     <class>com.blueskyminds.enterprise.region.RegionHierarchy</class>
     <class>com.blueskyminds.enterprise.region.RegionAlias</class>
     <class>com.blueskyminds.enterprise.region.RegionHandle</class>
     <class>com.blueskyminds.enterprise.region.country.CountryHandle</class>
-    <class>com.blueskyminds.enterprise.region.country.Country</class>
     <class>com.blueskyminds.enterprise.region.state.StateHandle</class>
-    <class>com.blueskyminds.enterprise.region.state.State</class>
+
     <class>com.blueskyminds.enterprise.region.postcode.PostCodeHandle</class>
-    <class>com.blueskyminds.enterprise.region.postcode.PostCode</class>
+
     <class>com.blueskyminds.enterprise.region.suburb.SuburbHandle</class>
-    <class>com.blueskyminds.enterprise.region.suburb.Suburb</class>
+
 
     <!-- landmine entities -->
     <class>com.blueskyminds.landmine.core.property.Premise</class>
@@ -356,10 +354,10 @@ To do: many of these properties need to be able to be changed -->
     <class>com.blueskyminds.landmine.core.property.assets.PremiseAsset</class>
     <class>com.blueskyminds.landmine.core.property.assets.PremiseAssetMap</class>
 
-    <class>com.blueskyminds.enterprise.region.country.CountryBean</class>
-    <class>com.blueskyminds.enterprise.region.state.StateBean</class>
-    <class>com.blueskyminds.enterprise.region.postcode.PostCodeBean</class>
-    <class>com.blueskyminds.enterprise.region.suburb.SuburbBean</class>
+    <class>com.blueskyminds.enterprise.region.index.CountryBean</class>
+    <class>com.blueskyminds.enterprise.region.index.StateBean</class>
+    <class>com.blueskyminds.enterprise.region.index.PostCodeBean</class>
+    <class>com.blueskyminds.enterprise.region.index.SuburbBean</class>
 
     <class>com.blueskyminds.housepad.core.property.model.PropertyBean</class>
 
