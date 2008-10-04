@@ -40,7 +40,7 @@ import java.util.HashMap;
  * <p/>
  * History:
  * <p/>
- * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
+ * Copyright (c) 2008 Blue Sky Minds Pty Ltd<br/>
  */
 public class TestGenerateSampleSuburbData extends JPATestCase {
 
@@ -50,7 +50,7 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
     private static final String TARGET_PATH = "src/test/resources/";
 
     private static final String[] tablesOfInterest = {
-            "REGIONHANDLE",
+            "REGION",
             "REGIONALIAS",
             "REGIONHIERARCHY",
             "COUNTRY",

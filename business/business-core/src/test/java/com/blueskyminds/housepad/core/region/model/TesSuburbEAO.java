@@ -5,7 +5,7 @@ import com.blueskyminds.enterprise.region.dao.SuburbEAO;
 import com.blueskyminds.enterprise.region.index.SuburbBean;
 import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.region.index.CountryBean;
-import com.blueskyminds.enterprise.region.index.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.PostalCodeBean;
 
 import java.util.Set;
 
@@ -35,7 +35,7 @@ public class TesSuburbEAO extends JPATestCase {
         em.persist(us);
         StateBean nsw = new StateBean(au, "New South Wales", "NSW");
         em.persist(nsw);
-        PostCodeBean postCode2089 = new PostCodeBean(au, nsw, "2089");
+        PostalCodeBean postCode2089 = new PostalCodeBean(au, nsw, "2089");
         em.persist(postCode2089);
         SuburbBean neutralBay = new SuburbBean(au, nsw, postCode2089, "Neutral Bay");
         em.persist(neutralBay);

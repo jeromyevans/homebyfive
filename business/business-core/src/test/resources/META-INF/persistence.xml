@@ -356,7 +356,7 @@ To do: many of these properties need to be able to be changed -->
 
     <class>com.blueskyminds.enterprise.region.index.CountryBean</class>
     <class>com.blueskyminds.enterprise.region.index.StateBean</class>
-    <class>com.blueskyminds.enterprise.region.index.PostCodeBean</class>
+    <class>com.blueskyminds.enterprise.region.index.PostalCodeBean</class>
     <class>com.blueskyminds.enterprise.region.index.SuburbBean</class>
 
     <class>com.blueskyminds.housepad.core.property.model.PropertyBean</class>

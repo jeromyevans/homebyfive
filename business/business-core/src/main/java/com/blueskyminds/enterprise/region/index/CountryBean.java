@@ -19,8 +19,6 @@ import org.apache.commons.lang.StringUtils;
 @Entity
 @DiscriminatorValue("C")
 public class CountryBean extends RegionBean {
-    
-    private String abbr;
 
     public CountryBean() {
     }
@@ -28,6 +26,12 @@ public class CountryBean extends RegionBean {
     public CountryBean(String name, String abbr) {
         this.name = name;
         this.abbr = abbr;
+        populateAttributes();
+    }
+
+    public CountryBean(Country countryHandle) {
+        super(countryHandle);
+        this.abbr = countryHandle.getAbbreviation();
         populateAttributes();
     }
 
@@ -45,16 +49,6 @@ public class CountryBean extends RegionBean {
         this.key = countryid;
     }
 
-    @Basic
-    @Column(name="Abbr")
-    public String getAbbr() {
-        return abbr;
-    }
-
-    public void setAbbr(String abbr) {
-        this.abbr = abbr;
-    }
-
     /**
      * The handle for the Country implementation
      *
@@ -62,11 +56,11 @@ public class CountryBean extends RegionBean {
      */
     @Transient
     public Country getCountryHandle() {
-        return (Country) regionHandle;
+        return (Country) region;
     }
 
     public void setCountryHandle(Country countryHandle) {
-        this.regionHandle = countryHandle;
+        this.region = countryHandle;
     }
 
     /**

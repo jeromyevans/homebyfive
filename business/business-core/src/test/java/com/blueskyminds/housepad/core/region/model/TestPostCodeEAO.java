@@ -2,7 +2,7 @@ package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.PostCodeEAO;
-import com.blueskyminds.enterprise.region.index.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.PostalCodeBean;
 import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.region.index.CountryBean;
 
@@ -32,12 +32,12 @@ public class TestPostCodeEAO extends JPATestCase {
         em.persist(us);
         StateBean nsw = new StateBean(au, "New South Wales", "NSW");
         em.persist(nsw);
-        PostCodeBean postCode2089 = new PostCodeBean(au, nsw, "2089");
+        PostalCodeBean postCode2089 = new PostalCodeBean(au, nsw, "2089");
         em.persist(postCode2089);
     }
 
     public void testLookupSuburb() {
-        PostCodeBean postCodeBean = postCodeEAO.lookupPostCode("/au/nsw/2089");
+        PostalCodeBean postCodeBean = postCodeEAO.lookupPostCode("/au/nsw/2089");
         assertNotNull(postCodeBean);
     }
 }

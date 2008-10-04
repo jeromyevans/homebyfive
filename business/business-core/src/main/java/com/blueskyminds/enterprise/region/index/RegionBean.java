@@ -25,11 +25,21 @@ public abstract class RegionBean extends AbstractEntity {
     protected String path;
     protected String key;
     protected String name;
+    protected String abbr;
     protected RegionTypes type;
     protected DomainObjectStatus status;
 
     protected RegionBean parent;
-    protected Region regionHandle;
+    protected Region region;
+
+    protected RegionBean(Region region) {
+        this.region = region;
+        this.name = region.getName();
+    }
+
+
+    protected RegionBean() {
+    }
 
     /** The unique path of this region's primary parent */
     @Basic
@@ -76,6 +86,16 @@ public abstract class RegionBean extends AbstractEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name="Abbr")
+    public String getAbbr() {
+        return abbr;
+    }
+
+    public void setAbbr(String abbr) {
+        this.abbr = abbr;
+    }
+    
     @Enumerated
     @Column(name="Type")
     public RegionTypes getType() {
@@ -112,13 +132,13 @@ public abstract class RegionBean extends AbstractEntity {
      * @return
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="RegionHandleId")
-    public Region getRegionHandle() {
-        return regionHandle;
+    @JoinColumn(name="RegionId")
+    public Region getRegion() {
+        return region;
     }
 
-    public void setRegionHandle(Region regionHandle) {
-        this.regionHandle = regionHandle;
+    public void setRegion(Region region) {
+        this.region = region;
     }
 
     /**

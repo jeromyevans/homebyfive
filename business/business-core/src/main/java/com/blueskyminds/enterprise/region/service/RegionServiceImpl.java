@@ -197,9 +197,9 @@ public class RegionServiceImpl implements RegionService {
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
      */
     @Transactional(exceptOn = DuplicateRegionException.class) 
-    public PostCodeBean createPostCode(PostCodeBean postCodeBean) throws DuplicateRegionException {
+    public PostalCodeBean createPostCode(PostalCodeBean postCodeBean) throws DuplicateRegionException {
         postCodeBean.populateAttributes();
-        PostCodeBean existing = postCodeEAO.lookupPostCode(postCodeBean.getPath());
+        PostalCodeBean existing = postCodeEAO.lookupPostCode(postCodeBean.getPath());
         if (existing == null) {
             // check if the node exists in the region graph and reference it/create it
             PostalCode postCodeHandle = addressService.lookupPostCode(postCodeBean.getName(), postCodeBean.getStateBean().getStateHandle());
@@ -215,24 +215,24 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Transactional
-    public Set<PostCodeBean> listPostCodes(String country, String state) {
+    public Set<PostalCodeBean> listPostCodes(String country, String state) {
         return postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
     }
 
     @Transactional
     public RegionGroup listPostCodesAsGroup(String country, String state) {
-        Set<PostCodeBean> postCodes = listPostCodes(country, state);
+        Set<PostalCodeBean> postCodes = listPostCodes(country, state);
         return RegionGroupFactory.createPostCodes(postCodes);
     }
 
     @Transactional
     public TableModel listPostCodesAsTable(String country, String state) {
-        Set<PostCodeBean> postCodes = postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
+        Set<PostalCodeBean> postCodes = postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
         return PostCodeTableFactory.createTable(postCodes);
     }
 
     @Transactional
-    public PostCodeBean lookupPostCode(String country, String state, String postCode) {
+    public PostalCodeBean lookupPostCode(String country, String state, String postCode) {
         return postCodeEAO.lookupPostCode(PathHelper.buildPath(country, state, postCode));
     }
 
@@ -314,7 +314,7 @@ public class RegionServiceImpl implements RegionService {
         return stateBean;
     }
 
-    public PostCodeBean persist(PostCodeBean postCodeBean) {
+    public PostalCodeBean persist(PostalCodeBean postCodeBean) {
         em.persist(postCodeBean);
         return postCodeBean;
     }
@@ -358,7 +358,7 @@ public class RegionServiceImpl implements RegionService {
 
     private void deleteRegion(RegionBean regionBean) {
         if (regionBean != null) {
-            Region regionHandle = regionBean.getRegionHandle();
+            Region regionHandle = regionBean.getRegion();
             regionBean.setStatus(DomainObjectStatus.Deleted);
             em.persist(regionBean);
             deleteRegionHandle(regionHandle);
@@ -413,12 +413,12 @@ public class RegionServiceImpl implements RegionService {
      *
      */
     @Transactional
-    public PostCodeBean lookupOrCreatePostCode(PostalCode postCodeHandle) {
-        PostCodeBean existing = postCodeEAO.lookupPostCode(postCodeHandle);
+    public PostalCodeBean lookupOrCreatePostCode(PostalCode postCodeHandle) {
+        PostalCodeBean existing = postCodeEAO.lookupPostCode(postCodeHandle);
         if (existing == null) {
             CountryBean country = lookupOrCreateCountry(postCodeHandle.getState().getCountry());
             StateBean state = lookupOrCreateState(postCodeHandle.getState());
-            PostCodeBean postCodeBean =  new PostCodeBean(country, state, postCodeHandle.getName());
+            PostalCodeBean postCodeBean =  new PostalCodeBean(country, state, postCodeHandle.getName());
             postCodeBean.setPostCodeHandle(postCodeHandle);
             em.persist(postCodeBean);
 
@@ -439,7 +439,7 @@ public class RegionServiceImpl implements RegionService {
             State stateHandle = suburbHandle.getState();
             CountryBean country = lookupOrCreateCountry(stateHandle.getCountry());
             StateBean state = lookupOrCreateState(suburbHandle.getState());
-            PostCodeBean postCode = lookupOrCreatePostCode(suburbHandle.getPostCode());
+            PostalCodeBean postCode = lookupOrCreatePostCode(suburbHandle.getPostCode());
 
             SuburbBean suburb =  new SuburbBean(country, state, postCode,  suburbHandle.getName());
             suburb.setSuburbHandle(suburbHandle);

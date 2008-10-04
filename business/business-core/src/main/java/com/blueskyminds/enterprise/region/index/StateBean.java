@@ -2,9 +2,7 @@ package com.blueskyminds.enterprise.region.index;
 
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.enterprise.region.index.RegionBean;
-import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.PathHelper;
-import com.blueskyminds.enterprise.region.reference.CountryRef;
 import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
@@ -18,62 +16,23 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("S")
-public class StateBean extends RegionBean implements CountryRef {
+public class StateBean extends RegionBean {
 
-    private CountryBean countryBean;
-    private String countryName;
-    private String countryPath;
     private String abbr;
 
     public StateBean() {
     }
 
-    public StateBean(CountryBean countryBean) {
-        this.countryBean = countryBean;
-        populateAttributes();
-    }
-
-    public StateBean(CountryBean countryBean, String name, String abbr) {
-        this.countryBean = countryBean;
+    public StateBean(String name, String abbr) {
         this.name = name;
         this.abbr = abbr;
         populateAttributes();
     }
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="CountryId")
-    public CountryBean getCountryBean() {
-        return countryBean;
-    }
-
-    public void setCountryBean(CountryBean countryBean) {
-        this.countryBean = countryBean;
-    }
-
-    @Transient
-    public Long getCountryId() {
-        return countryBean.getId();
-    }
-
-    @Basic
-    @Column(name="CountryName")
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
-    @Basic
-    @Column(name="CountryPath")
-    public String getCountryPath() {
-        return countryPath;
-    }
-
-    public void setCountryPath(String countryPath) {
-        this.countryPath = countryPath;
+    public StateBean(State state) {
+        super(state);
+        this.abbr = state.getAbbreviation();
+        populateAttributes();
     }
 
     /**
@@ -101,20 +60,18 @@ public class StateBean extends RegionBean implements CountryRef {
 
     @Transient
     public State getStateHandle() {
-        return (State) regionHandle;
+        return (State) region;
     }
 
     public void setStateHandle(State stateHandle) {
-        this.regionHandle = stateHandle;
+        this.region = stateHandle;
     }
 
     /**
      * Populates the generated/read-only properties
      */
     public void populateAttributes() {
-        this.parentPath = countryBean.getPath();
-        this.countryName = countryBean.getName();
-        this.countryPath = countryBean.getPath();
+        this.parentPath = getParent().getPath();
         this.key = KeyGenerator.generateId(abbr);
         this.path = PathHelper.joinPath(parentPath, key);
         this.status = DomainObjectStatus.Valid;

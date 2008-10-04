@@ -179,9 +179,9 @@
      -->
     <named-query name="hp.postCodes.byParentPath">
         <query>
-           select postCode from PostCodeBean postCode
-             where postCode.parentPath = :path and
-                   postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+          select postCode from PostalCodeBean postCode
+          where postCode.parentPath = :path and
+          postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -196,9 +196,9 @@
      -->
     <named-query name="hp.postCode.byPath">
         <query>
-           select postCode from PostCodeBean postCode
-             where postCode.path = :path and
-                   postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+          select postCode from PostalCodeBean postCode
+          where postCode.path = :path and
+          postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -212,9 +212,9 @@
      -->
     <named-query name="hp.postCode.byHandle">
         <query>
-           select postCode from PostCodeBean postCode
-             where postCode.postCodeHandle = :handle and
-                   postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+          select postCode from PostalCodeBean postCode
+          where postCode.postCodeHandle = :handle and
+          postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 

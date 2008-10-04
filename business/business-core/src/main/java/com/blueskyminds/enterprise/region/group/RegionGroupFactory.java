@@ -150,12 +150,12 @@ public class RegionGroupFactory {
         return parent;
     }
 
-    public static RegionGroup createPostCodes(Collection<PostCodeBean> postCodes) {
+    public static RegionGroup createPostCodes(Collection<PostalCodeBean> postCodes) {
         StateBean state = (StateBean) firstParent(postCodes);
         RegionCompositeFactory regionCompositeFactory = new RegionCompositeFactory();
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(state));
-        for (PostCodeBean postCodeBean : postCodes) {
+        for (PostalCodeBean postCodeBean : postCodes) {
             regionGroup.add(regionCompositeFactory.createPostCode(postCodeBean));
         }
         return regionGroup;
@@ -164,8 +164,8 @@ public class RegionGroupFactory {
     /**
      * Create a RegionGroup for a single PostCode
      * */
-    public static RegionGroup createPostCode(PostCodeBean postCodeBean) {
-        ArrayList<PostCodeBean> list = new ArrayList<PostCodeBean>();
+    public static RegionGroup createPostCode(PostalCodeBean postCodeBean) {
+        ArrayList<PostalCodeBean> list = new ArrayList<PostalCodeBean>();
         list.add(postCodeBean);
         return createPostCodes(list);
     }

@@ -18,6 +18,7 @@ import com.blueskyminds.enterprise.taxpolicy.GST;
 import com.blueskyminds.enterprise.taxpolicy.ScheduleOfTaxes;
 import com.blueskyminds.enterprise.taxpolicy.TaxPolicy;
 import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
 import com.blueskyminds.homebyfive.framework.core.journal.Journal;
 import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;

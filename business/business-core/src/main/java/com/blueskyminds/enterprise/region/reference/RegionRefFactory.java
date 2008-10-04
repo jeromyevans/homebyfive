@@ -153,7 +153,7 @@ public class RegionRefFactory {
      * @param postCodeBean
      * @return
      */
-    public static RegionRef createRef(PostCodeBean postCodeBean) {
+    public static RegionRef createRef(PostalCodeBean postCodeBean) {
         if (postCodeBean != null) {
             RegionRef regionRef = new RegionRef(postCodeBean.getId(), postCodeBean.getPath(), postCodeBean.getName(), null, RegionRefType.PostCode);
             populateAttributes(regionRef, postCodeBean);

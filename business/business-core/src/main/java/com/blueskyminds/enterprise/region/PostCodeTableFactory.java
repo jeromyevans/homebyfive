@@ -5,7 +5,7 @@ import com.blueskyminds.homebyfive.framework.core.table.model.TableModelBuilder;
 import com.blueskyminds.homebyfive.framework.core.table.model.ColumnModel;
 import com.blueskyminds.enterprise.region.reference.RegionRefFactory;
 import com.blueskyminds.enterprise.region.reference.RegionRefType;
-import com.blueskyminds.enterprise.region.index.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.PostalCodeBean;
 
 import java.util.Collection;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class PostCodeTableFactory {
      * @param postCodes
      * @return
      */
-    public static TableModel createTable(Collection<PostCodeBean> postCodes) {
+    public static TableModel createTable(Collection<PostalCodeBean> postCodes) {
         String stateName;
         if (postCodes.size() > 0) {
             stateName = postCodes.iterator().next().getStateName();
@@ -45,8 +45,8 @@ public class PostCodeTableFactory {
     }
 
     /** Maps the PostCodes into the table */
-    public static void populate(TableModel tableModel, Collection<PostCodeBean> postCodes) {
-        for (PostCodeBean suburb : postCodes) {
+    public static void populate(TableModel tableModel, Collection<PostalCodeBean> postCodes) {
+        for (PostalCodeBean suburb : postCodes) {
             Map<String, Object> row = new HashMap<String, Object>();
             Iterator<ColumnModel> iterator = tableModel.columnIterator();
             while (iterator.hasNext()) {
@@ -62,7 +62,7 @@ public class PostCodeTableFactory {
      *
      * @return
      */
-    public static Object getProperty(PostCodeBean postCodeBean, int columnIndex) {
+    public static Object getProperty(PostalCodeBean postCodeBean, int columnIndex) {
         Object value = null;
 
         switch (columnIndex) {

@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
-import com.blueskyminds.enterprise.region.index.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.PostalCodeBean;
 import com.blueskyminds.enterprise.region.graph.PostalCode;
 import com.google.inject.Inject;
 
@@ -14,7 +14,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class PostCodeEAO extends AbstractDAO<PostCodeBean> {
+public class PostCodeEAO extends AbstractDAO<PostalCodeBean> {
 
     private static final String QUERY_ALL_POSTCODES_BY_PARENT_PATH = "hp.postCodes.byParentPath";
     private static final String QUERY_POSTCODE_BY_PATH = "hp.postCode.byPath";
@@ -24,7 +24,7 @@ public class PostCodeEAO extends AbstractDAO<PostCodeBean> {
 
     @Inject  
     public PostCodeEAO(EntityManager entityManager) {
-        super(entityManager, PostCodeBean.class);
+        super(entityManager, PostalCodeBean.class);
     }
 
     /**
@@ -32,7 +32,7 @@ public class PostCodeEAO extends AbstractDAO<PostCodeBean> {
      *
      * @return PostCodes, or empty set if not found
      */
-    public Set<PostCodeBean> listPostCodes(String parentPath) {
+    public Set<PostalCodeBean> listPostCodes(String parentPath) {
 
         Query query = em.createNamedQuery(QUERY_ALL_POSTCODES_BY_PARENT_PATH);
         query.setParameter(PARAM_PATH, parentPath);
@@ -45,7 +45,7 @@ public class PostCodeEAO extends AbstractDAO<PostCodeBean> {
      *
      * @return PostCode, or null if not found
      */
-    public PostCodeBean lookupPostCode(String path) {
+    public PostalCodeBean lookupPostCode(String path) {
 
         Query query = em.createNamedQuery(QUERY_POSTCODE_BY_PATH);
         query.setParameter(PARAM_PATH, path);
@@ -58,7 +58,7 @@ public class PostCodeEAO extends AbstractDAO<PostCodeBean> {
      *
      * @return PostCodeBean, or null if not found
      */
-    public PostCodeBean lookupPostCode(PostalCode postCodeHandle) {
+    public PostalCodeBean lookupPostCode(PostalCode postCodeHandle) {
 
         Query query = em.createNamedQuery(QUERY_POSTCODE_BY_HANDLE);
         query.setParameter(PARAM_HANDLE, postCodeHandle);

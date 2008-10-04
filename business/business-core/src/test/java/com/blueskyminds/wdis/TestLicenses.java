@@ -2,6 +2,7 @@ package com.blueskyminds.wdis;
 
 import com.blueskyminds.enterprise.Enterprise;
 import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.enterprise.license.*;
 import com.blueskyminds.enterprise.party.Party;
 import com.blueskyminds.enterprise.party.PartyTypes;

@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.framework.core.alias.Aliased;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.homebyfive.framework.core.tools.NamedTools;
 import com.blueskyminds.enterprise.region.RegionTypes;
+import com.blueskyminds.enterprise.region.index.RegionBean;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -37,6 +38,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
     private Set<RegionAlias> aliases;
     private Set<RegionHierarchy> parentRegions;
     private Set<RegionHierarchy> childRegions;
+    private Set<RegionBean> regionBeans;
     private DomainObjectStatus status;
 
     protected Region(String name, RegionTypes type) {
@@ -63,6 +65,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
         aliases = new HashSet<RegionAlias>();
         parentRegions = new HashSet<RegionHierarchy>();
         childRegions = new HashSet<RegionHierarchy>();
+        regionBeans = new HashSet<RegionBean>();
         status = DomainObjectStatus.Valid;
     }
 
@@ -200,6 +203,19 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
 
     protected void setChildRegionMaps(Set<RegionHierarchy> childRegions) {
         this.childRegions = childRegions;
+    }
+
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    protected Set<RegionBean> getRegionBeans() {
+        return regionBeans;
+    }
+
+    protected void setRegionBeans(Set<RegionBean> regionBeans) {
+        this.regionBeans = regionBeans;
+    }
+
+    public void addRegionBean(RegionBean regionBean) {
+        regionBeans.add(regionBean);
     }
 
     @Enumerated

@@ -4,7 +4,7 @@ import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.address.StreetAddress;
 import com.blueskyminds.enterprise.address.UnitAddress;
 import com.blueskyminds.enterprise.address.LotAddress;
-import com.blueskyminds.enterprise.region.index.PostCodeBean;
+import com.blueskyminds.enterprise.region.index.PostalCodeBean;
 import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.PathHelper;
@@ -148,7 +148,7 @@ public class RegionCompositeFactory {
      * @param postCode
      * @return
      */
-    public static RegionComposite createPostCode(PostCodeBean postCode) {
+    public static RegionComposite createPostCode(PostalCodeBean postCode) {
         RegionComposite regionComposite = new RegionComposite();
 
         regionComposite.add(RegionRefFactory.createRef(postCode));

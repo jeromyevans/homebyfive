@@ -88,7 +88,7 @@ public class AddressBean extends MultifieldAddress {
         Suburb suburb = null;
         if (regionBean != null) {
             if (RegionTypes.Suburb.equals(regionBean.getType())) {
-                suburb = (Suburb) regionBean.getRegionHandle();
+                suburb = (Suburb) regionBean.getRegion();
 
                 address = super.augmentWithKnown(suburb);
             }

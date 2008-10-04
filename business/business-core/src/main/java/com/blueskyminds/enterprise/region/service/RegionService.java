@@ -48,15 +48,15 @@ public interface RegionService {
 
     SuburbBean lookupSuburb(String path);
 
-    PostCodeBean createPostCode(PostCodeBean postCodeBean) throws DuplicateRegionException;
+    PostalCodeBean createPostCode(PostalCodeBean postCodeBean) throws DuplicateRegionException;
 
-    Set<PostCodeBean> listPostCodes(String country, String state);
+    Set<PostalCodeBean> listPostCodes(String country, String state);
 
     RegionGroup listPostCodesAsGroup(String country, String state);
 
     TableModel listPostCodesAsTable(String country, String state); 
 
-    PostCodeBean lookupPostCode(String country, String state, String postCode);
+    PostalCodeBean lookupPostCode(String country, String state, String postCode);
 
     RegionGroup listSuburbs(String country, String state, String postCode);
 
@@ -81,7 +81,7 @@ public interface RegionService {
 
     CountryBean persist(CountryBean countryBean);
     StateBean persist(StateBean stateBean);
-    PostCodeBean persist(PostCodeBean postCodeBean);
+    PostalCodeBean persist(PostalCodeBean postCodeBean);
     SuburbBean persist(SuburbBean suburbBean);
 
     /**
@@ -122,7 +122,7 @@ public interface RegionService {
      * Create/lookup a PostCode from an entry in the RegionGraph
      *
      */
-    PostCodeBean lookupOrCreatePostCode(PostalCode postCodeHandle);
+    PostalCodeBean lookupOrCreatePostCode(PostalCode postCodeHandle);
     /**
      * Create/lookup a new suburb from an entry in the RegionGraph
      *

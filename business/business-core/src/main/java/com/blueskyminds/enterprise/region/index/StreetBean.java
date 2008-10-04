@@ -4,6 +4,7 @@ import com.blueskyminds.enterprise.tools.KeyGenerator;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.graph.Street;
+import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.Entity;
@@ -22,12 +23,18 @@ public class StreetBean extends RegionBean {
     public StreetBean() {
     }
 
+    public StreetBean(Region regionHandle) {
+        super(regionHandle);
+        populateAttributes();
+    }
+
     @Transient
     public Street getStreetHandle() {
-        return (Street) regionHandle;
+        return (Street) region;
     }
 
     public void populateAttributes() {
+        this.parentPath = getParent().getPath();
         this.key = KeyGenerator.generateId(name);
         this.path = PathHelper.joinPath(parentPath, key);
         this.status = DomainObjectStatus.Valid;

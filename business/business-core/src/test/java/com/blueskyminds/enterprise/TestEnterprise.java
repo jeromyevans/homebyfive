@@ -13,6 +13,7 @@ import com.blueskyminds.enterprise.pricing.policy.TransactionFee;
 import com.blueskyminds.enterprise.taxpolicy.GST;
 import com.blueskyminds.enterprise.taxpolicy.GSTFree;
 import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
 import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;
 import com.blueskyminds.homebyfive.framework.core.measurement.QuantityUnits;
