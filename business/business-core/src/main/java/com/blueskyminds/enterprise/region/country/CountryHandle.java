@@ -15,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("C")
-public class CountryHandle extends RegionHandle implements CountryI {
+public class CountryHandle extends RegionHandle {
 
     public static final String AUS = "AUS";
 

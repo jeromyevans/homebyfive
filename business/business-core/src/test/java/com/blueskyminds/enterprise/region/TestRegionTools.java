@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.enterprise.region.Region;
-import com.blueskyminds.enterprise.region.country.RegionFactory;
+import com.blueskyminds.enterprise.region.RegionFactory;
 
 import javax.persistence.EntityManager;
 

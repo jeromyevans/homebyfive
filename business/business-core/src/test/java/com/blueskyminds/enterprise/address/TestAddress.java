@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.address;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.test.TestTools;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
-import com.blueskyminds.enterprise.region.country.RegionFactory;
+import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;
 import com.blueskyminds.enterprise.region.suburb.SuburbHandle;

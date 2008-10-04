@@ -18,7 +18,7 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("B")
-public class SuburbHandle extends RegionHandle implements SuburbI {
+public class SuburbHandle extends RegionHandle {
 
     /** A special case SuburbHandle instance used to indentify an invalid Suburb rather than a null value */
     public static final SuburbHandle INVALID = invalid();

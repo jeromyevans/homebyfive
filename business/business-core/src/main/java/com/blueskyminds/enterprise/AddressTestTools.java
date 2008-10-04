@@ -10,7 +10,7 @@ import com.blueskyminds.enterprise.contact.*;
 import com.blueskyminds.enterprise.address.*;
 import com.blueskyminds.enterprise.pricing.Contract;
 import com.blueskyminds.enterprise.pricing.Product;
-import com.blueskyminds.enterprise.region.country.RegionFactory;
+import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.enterprise.region.country.CountryHandle;
 import com.blueskyminds.enterprise.region.state.StateHandle;
 import com.blueskyminds.enterprise.region.postcode.PostCodeHandle;

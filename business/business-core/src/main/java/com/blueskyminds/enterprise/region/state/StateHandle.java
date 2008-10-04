@@ -17,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("S")
-public class StateHandle extends RegionHandle implements StateI {
+public class StateHandle extends RegionHandle {
 
     /** A special case StateHandle instance used to indentify an invalid State rather than a null value */
     public static final StateHandle INVALID = invalid();
