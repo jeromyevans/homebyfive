@@ -42,11 +42,11 @@ public class PathHelper {
     }
 
     public static String buildPath(Country countryHandle) {
-        return joinPaths(ROOT, KeyGenerator.generateId(countryHandle.getAbbreviation()));
+        return joinPaths(ROOT, KeyGenerator.generateId(countryHandle.getAbbr()));
     }
 
     public static String buildPath(State stateHandle) {
-        return joinPaths(buildPath(stateHandle.getCountry()), KeyGenerator.generateId(stateHandle.getAbbreviation()));
+        return joinPaths(buildPath(stateHandle.getCountry()), KeyGenerator.generateId(stateHandle.getAbbr()));
     }
 
     public static String buildPath(Suburb suburbHandle) {

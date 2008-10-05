@@ -3,7 +3,7 @@ package com.blueskyminds.enterprise.region.index;
 import javax.persistence.*;
 
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionIndex;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.graph.PostalCode;
 import com.blueskyminds.enterprise.region.RegionTypes;
@@ -18,19 +18,19 @@ import com.blueskyminds.enterprise.tools.KeyGenerator;
  */
 @Entity
 @DiscriminatorValue("P")
-public class PostalCodeBean extends RegionBean {
+public class PostalCodeBean extends RegionIndex {
     
     public PostalCodeBean() {
     }
 
     public PostalCodeBean(String name) {
         this.name = name;
-        populateAttributes();
+        populateDenormalizedAttributes();
     }
 
     public PostalCodeBean(PostalCode postCodeHandle) {
         super(postCodeHandle);
-        populateAttributes();
+        populateDenormalizedAttributes();
     }
 
     @Transient
@@ -43,38 +43,51 @@ public class PostalCodeBean extends RegionBean {
     }
 
     @Transient
-    public PostalCode getPostCodeHandle() {
+    public PostalCode getPostalCodeHandle() {
         return (PostalCode) region;
     }
 
-    public void setPostCodeHandle(PostalCode postCodeHandle) {
+    public void setPostalCodeHandle(PostalCode postCodeHandle) {
         this.region = postCodeHandle;
     }
 
-    @Enumerated
-    @Column(name="Status")
-    public DomainObjectStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(DomainObjectStatus status) {
-        this.status = status;
-    }
     /**
      * Populates the generated/read-only properties
      */
-    public void populateAttributes() {
-        this.parentPath = getParent().getPath();
+    public void populateDenormalizedAttributes() {
         this.key = KeyGenerator.generateId(name);
-        this.path = PathHelper.joinPath(parentPath, key);
-        this.status = DomainObjectStatus.Valid;
-        this.type = RegionTypes.PostCode;
+
+        // the state is the parent
+        parent = getPostalCodeHandle().getState().getRegionIndex();
+
+        if (parent != null) {
+            this.parentPath = parent.getPath();
+
+            this.path = PathHelper.joinPath(parentPath, key);
+            this.status = DomainObjectStatus.Valid;
+            this.type = RegionTypes.PostCode;
+
+            this.countryId = parent.getCountryId();
+            this.countryPath = parent.getCountryPath();
+            this.countryName = parent.getCountryName();
+
+            this.stateId = parent.getKey();
+            this.statePath = parent.getPath();
+            this.stateName = parent.getName();
+        }
+        this.postalCodeId = key;
+        this.postalCodePath = path;
+        this.postalCodeName = name;
     }
 
-    public void mergeWith(RegionBean otherPostCode) {
+    public void mergeWith(RegionIndex otherPostCode) {
         if (otherPostCode instanceof PostalCodeBean) {
-            getPostCodeHandle().mergeWith(((PostalCodeBean) otherPostCode).getPostCodeHandle());
+            getPostalCodeHandle().mergeWith(((PostalCodeBean) otherPostCode).getPostalCodeHandle());
         }
     }
 
+    @Transient
+    public StateBean getStateBean() {
+        return (StateBean) getParent();
+    }
 }

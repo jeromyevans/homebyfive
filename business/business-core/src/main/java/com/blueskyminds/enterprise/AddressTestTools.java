@@ -104,17 +104,17 @@ public class AddressTestTools extends TestTools {
     }
 
     public static void initialiseAddresses(EntityManager em) {
-        Country australia = new RegionFactory().createCountry("Australia");
+        Country australia = new RegionFactory().createCountry("Australia", "AU");
 
-        State nsw = australia.addState(new RegionFactory().createState("New South Wales", "NSW"));
+        State nsw = australia.addState(new RegionFactory().createState("New South Wales", "NSW", australia));
 
-        PostalCode nbPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2089"));
-        PostalCode kPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2060"));
-        PostalCode mPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2088"));
+        PostalCode nbPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2089", nsw));
+        PostalCode kPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2060", nsw));
+        PostalCode mPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2088", nsw));
 
-        Suburb mosmon = nsw.addSuburb(new RegionFactory().createSuburb("Mosmon", mPostCode));
-        Suburb neutralBay = nsw.addSuburb(new RegionFactory().createSuburb("Neutral Bay", nbPostCode));
-        Suburb kirribilli = nsw.addSuburb(new RegionFactory().createSuburb("Kirribilli", kPostCode));
+        Suburb mosmon = nsw.addSuburb(new RegionFactory().createSuburb("Mosmon", nsw, mPostCode));
+        Suburb neutralBay = nsw.addSuburb(new RegionFactory().createSuburb("Neutral Bay", nsw, nbPostCode));
+        Suburb kirribilli = nsw.addSuburb(new RegionFactory().createSuburb("Kirribilli", nsw, kPostCode));
 
         Street sprusonStreet = neutralBay.addStreet(new Street("Spruson", StreetType.Street));
         Street philipStreet = neutralBay.addStreet(new Street("Phillip", StreetType.Street));
@@ -232,28 +232,15 @@ public class AddressTestTools extends TestTools {
     // ------------------------------------------------------------------------------------------------------
 
     public static void initialiseRegionIndexes(Connection connection) throws SQLException {
-        PersistenceTools.executeUpdate(connection, "create index RegionHierarchyChildIndex on RegionHierarchy (childId)");
-        PersistenceTools.executeUpdate(connection, "create index RegionHierarchyParentIndex on RegionHierarchy (parentId)");
+        PersistenceTools.executeUpdate(connection, "create index RegionIndex on Region (type, name)");
+        PersistenceTools.executeUpdate(connection, "create index RegionTypeIndex on Region (Impl, name)");
+        PersistenceTools.executeUpdate(connection, "create index RegionAbbrIndex on Region (Impl, abbr)");
 
-        PersistenceTools.executeUpdate(connection, "create index RegionHandleIndex on RegionHandle (type, name)");
-        PersistenceTools.executeUpdate(connection, "create index RegionHandleTypeIndex on RegionHandle (Impl, name)");
-        PersistenceTools.executeUpdate(connection, "create index RegionHandleCountryIndex on RegionHandle (CountryId)");
-        PersistenceTools.executeUpdate(connection, "create index RegionHandleStateIndex on RegionHandle (StateId)");
-        PersistenceTools.executeUpdate(connection, "create index RegionHandlePostCodeIndex on RegionHandle (PostCodeId)");
-        PersistenceTools.executeUpdate(connection, "create index RegionHandleSuburbIndex on RegionHandle (SuburbId)");
-
-        PersistenceTools.executeUpdate(connection, "create index RegionAliasIndex on RegionAlias (RegionHandleId, name)");
-
-        PersistenceTools.executeUpdate(connection, "create index CountryISO3CodeIndex on Country (ISO3DigitCountryCode)");
-        PersistenceTools.executeUpdate(connection, "create index CountryISO2CodeIndex on Country (ISO2DigitCountryCode)");
+        PersistenceTools.executeUpdate(connection, "create index RegionAliasIndex on RegionAlias (RegionId, name)");
 
         PersistenceTools.executeUpdate(connection, "create index SubstitutionGroupNameIndex on Substitution (GroupName)");
 
-        PersistenceTools.executeUpdate(connection, "create index SuburbStreetMapSuburbIndex on SuburbStreetMap (SuburbId)");
-        PersistenceTools.executeUpdate(connection, "create index SuburbStreetMapStreetIndex on SuburbStreetMap (StreetId)");
-
-        PersistenceTools.executeUpdate(connection, "create index StreetSectionIndex on Street (type, section, name)");
-        PersistenceTools.executeUpdate(connection, "create index StreetIndex on Street (type, name)");
+        PersistenceTools.executeUpdate(connection, "create index StreetSectionIndex on Region (streettype, section, name)");
     }
     // ------------------------------------------------------------------------------------------------------
     // ------------------------------------------------------------------------------------------------------

@@ -2,8 +2,11 @@ package com.blueskyminds.enterprise.region.graph;
 
 import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.RegionTypes;
+import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.StreetSection;
+import com.blueskyminds.enterprise.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,6 +29,7 @@ public class Street extends Region {
 
     public Street(String name) {
         super(name, RegionTypes.Street);
+        populateAttributes();
     }
 
     /**
@@ -35,6 +39,7 @@ public class Street extends Region {
         super(name, RegionTypes.Street);
         this.streetType = streetType;
         this.section = section;
+        populateAttributes();
     }
 
     /**
@@ -43,6 +48,7 @@ public class Street extends Region {
     public Street(String name, StreetType streetType) {
         super(name, RegionTypes.Street);
         this.streetType = streetType;
+        populateAttributes();
     }
 
     protected Street() {
@@ -106,4 +112,28 @@ public class Street extends Region {
         return StringUtils.join(parts.iterator(), " ");
     }
 
+    /**
+     * Gets the parent Suburb
+     * Deproxies the instance if necessary
+     *
+     * @return
+     */
+    @Transient
+    public Suburb getSuburb() {
+         Region parent = getParent(RegionTypes.Suburb);
+         if (parent != null) {
+            return (Suburb) parent.unproxy().getModel();
+         } else {
+             return null;
+         }
+    }
+
+    public void populateAttributes() {
+        this.key = KeyGenerator.generateId(name);
+        Suburb suburb = getSuburb();
+        if (suburb != null) {
+            this.parentPath = suburb.getPath();
+            this.path = PathHelper.joinPath(parentPath, key);
+        }
+    }
 }

@@ -14,17 +14,15 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class PostCodeEAO extends AbstractDAO<PostalCodeBean> {
+public class PostCodeEAO extends AbstractDAO<PostalCode> {
 
     private static final String QUERY_ALL_POSTCODES_BY_PARENT_PATH = "hp.postCodes.byParentPath";
     private static final String QUERY_POSTCODE_BY_PATH = "hp.postCode.byPath";
     private static final String PARAM_PATH = "path";
-    private static final String QUERY_POSTCODE_BY_HANDLE = "hp.postCode.byHandle";
-    private static final String PARAM_HANDLE = "handle";
 
     @Inject  
     public PostCodeEAO(EntityManager entityManager) {
-        super(entityManager, PostalCodeBean.class);
+        super(entityManager, PostalCode.class);
     }
 
     /**
@@ -32,7 +30,7 @@ public class PostCodeEAO extends AbstractDAO<PostalCodeBean> {
      *
      * @return PostCodes, or empty set if not found
      */
-    public Set<PostalCodeBean> listPostCodes(String parentPath) {
+    public Set<PostalCode> listPostCodes(String parentPath) {
 
         Query query = em.createNamedQuery(QUERY_ALL_POSTCODES_BY_PARENT_PATH);
         query.setParameter(PARAM_PATH, parentPath);
@@ -45,7 +43,7 @@ public class PostCodeEAO extends AbstractDAO<PostalCodeBean> {
      *
      * @return PostCode, or null if not found
      */
-    public PostalCodeBean lookupPostCode(String path) {
+    public PostalCode lookupPostCode(String path) {
 
         Query query = em.createNamedQuery(QUERY_POSTCODE_BY_PATH);
         query.setParameter(PARAM_PATH, path);
@@ -53,17 +51,5 @@ public class PostCodeEAO extends AbstractDAO<PostalCodeBean> {
         return firstIn(query.getResultList());
     }
 
-      /**
-     * Get the postcode by its handle
-     *
-     * @return PostCodeBean, or null if not found
-     */
-    public PostalCodeBean lookupPostCode(PostalCode postCodeHandle) {
-
-        Query query = em.createNamedQuery(QUERY_POSTCODE_BY_HANDLE);
-        query.setParameter(PARAM_HANDLE, postCodeHandle);
-
-        return firstIn(query.getResultList());
-    }
 
 }

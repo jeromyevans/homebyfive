@@ -26,17 +26,17 @@ public class TestAddress extends JPATestCase {
     }
 
     public void testAddress() {
-        Country australia = new RegionFactory().createCountry("Australia");
+        Country australia = new RegionFactory().createCountry("Australia", "AU");
 
-        State nsw = australia.addState(new RegionFactory().createState("New South Wales", "NSW"));
+        State nsw = australia.addState(new RegionFactory().createState("New South Wales", "NSW", australia));
 
-        PostalCode nbPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2089"));
-        PostalCode kPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2060"));
-        PostalCode mPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2088"));
+        PostalCode nbPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2089", nsw));
+        PostalCode kPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2060", nsw));
+        PostalCode mPostCode = nsw.addPostCode(new RegionFactory().createPostCode("2088", nsw));
 
-        Suburb mosmon = nsw.addSuburb(new RegionFactory().createSuburb("Mosmon", mPostCode));
-        Suburb neutralBay = nsw.addSuburb(new RegionFactory().createSuburb("Neutral Bay", nbPostCode));
-        Suburb kirribilli = nsw.addSuburb(new RegionFactory().createSuburb("Kirribilli", kPostCode));
+        Suburb mosmon = nsw.addSuburb(new RegionFactory().createSuburb("Mosmon", nsw, mPostCode));
+        Suburb neutralBay = nsw.addSuburb(new RegionFactory().createSuburb("Neutral Bay", nsw, nbPostCode));
+        Suburb kirribilli = nsw.addSuburb(new RegionFactory().createSuburb("Kirribilli", nsw, kPostCode));
 
         Street sprusonStreet = neutralBay.addStreet(new Street("Spruson", StreetType.Street));
         Street philipStreet = neutralBay.addStreet(new Street("Phillip", StreetType.Street));

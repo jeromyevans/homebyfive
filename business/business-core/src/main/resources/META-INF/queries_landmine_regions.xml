@@ -11,7 +11,7 @@
     -->
     <named-query name="hp.countries">
         <query>
-           select country from CountryBean country where country.status =
+           select country from Country country where country.status =
           com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
@@ -27,25 +27,8 @@
      -->
     <named-query name="hp.country.byPath">
         <query>
-           select country from CountryBean country
+           select country from Country country
              where country.path = :path and
-                   country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
-        </query>
-    </named-query>
-
-
-   <!--
-    Get a country by its handle
-
-    Parameters:
-      handle:  CountryBean
-
-    Indexes:
-     -->
-    <named-query name="hp.country.byHandle">
-        <query>
-           select country from CountryBean country
-             where country.countryHandle= :handle and
                    country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
@@ -61,7 +44,7 @@
      -->
     <named-query name="hp.states.byParentPath">
         <query>
-           select state from StateBean state
+           select state from State state
              where state.parentPath = :path and
                    state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -78,28 +61,11 @@
      -->
     <named-query name="hp.state.byPath">
         <query>
-           select state from StateBean state
+           select state from State state
              where state.path = :path and
                    state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
-
-   <!--
-    Get a state by its handle
-
-    Parameters:
-      handle:  SuburbBean
-
-    Indexes:
-     -->
-    <named-query name="hp.state.byHandle">
-        <query>
-           select state from StateBean state
-             where state.stateHandle = :handle and
-                   state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
-        </query>
-    </named-query>
-
 
      <!--
     List suburbs by the parent path
@@ -112,7 +78,7 @@
      -->
     <named-query name="hp.suburbs.byParentPath">
         <query>
-           select suburb from SuburbBean suburb
+           select suburb from Suburb suburb
              where suburb.parentPath = :path and
                    suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -126,13 +92,14 @@
 
     Indexes:       
      -->
-    <named-query name="hp.suburbs.byPostCode">
+    <named-query name="hp.suburbs.byPostCode">        
         <query>
-           select suburb from SuburbBean suburb
-             left join suburb.postCodeBean postCodeBean
-             where postCodeBean.path = :postCode and
-                   postCodeBean.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+          select suburb from Suburb suburb
+            left join suburb.parentRegionMaps map
+            where map.parent.path = :postCode and
+                  suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
+
     </named-query>
 
    <!--
@@ -146,24 +113,8 @@
      -->
     <named-query name="hp.suburb.byPath">
         <query>
-           select suburb from SuburbBean suburb
+           select suburb from Suburb suburb
              where suburb.path = :path and
-                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
-        </query>
-    </named-query>
-
-    <!--
-    Get a suburb by its handle
-
-    Parameters:
-      handle:  SuburbHandle
-
-    Indexes:
-     -->
-    <named-query name="hp.suburb.byHandle">
-        <query>
-           select suburb from SuburbBean suburb
-             where suburb.suburbHandle = :handle and
                    suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
@@ -179,7 +130,7 @@
      -->
     <named-query name="hp.postCodes.byParentPath">
         <query>
-          select postCode from PostalCodeBean postCode
+          select postCode from PostalCode postCode
           where postCode.parentPath = :path and
           postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -196,24 +147,8 @@
      -->
     <named-query name="hp.postCode.byPath">
         <query>
-          select postCode from PostalCodeBean postCode
+          select postCode from PostalCode postCode
           where postCode.path = :path and
-          postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
-        </query>
-    </named-query>
-
-     <!--
-    Get a postCode by its handle
-
-    Parameters:
-      handle:  PostCodeHandle
-
-    Indexes:
-     -->
-    <named-query name="hp.postCode.byHandle">
-        <query>
-          select postCode from PostalCodeBean postCode
-          where postCode.postCodeHandle = :handle and
           postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
@@ -227,12 +162,12 @@
     Indexes:
       Rev1: hpPropertyBySuburbPath
      -->
-    <named-query name="hp.properties.bySuburbPath">
-        <query>
-           select property from PropertyBean property
-             where suburbPath = :path
-        </query>
-    </named-query>
+    <!--<named-query name="hp.properties.bySuburbPath">-->
+        <!--<query>-->
+           <!--select property from PropertyBean property-->
+             <!--where suburbPath = :path-->
+        <!--</query>-->
+    <!--</named-query>-->
 
   <!--
     Get a list of properties in a post code
@@ -243,12 +178,12 @@
     Indexes:
       Rev1: hpPropertyByPostCodePath
      -->
-    <named-query name="hp.properties.byPostCodePath">
-        <query>
-           select property from PropertyBean property
-             where postCodePath = :path
-        </query>
-    </named-query>
+    <!--<named-query name="hp.properties.byPostCodePath">-->
+        <!--<query>-->
+           <!--select property from PropertyBean property-->
+             <!--where postCodePath = :path-->
+        <!--</query>-->
+    <!--</named-query>-->
 
     <!--
     Get a lit of properties contained in a path (starting with path)
@@ -259,12 +194,12 @@
     Indexes:
       Rev1: hpPropertyByPath
      -->
-    <named-query name="hp.properties.startingWithPath">
-        <query>
-           select property from PropertyBean property
-             where property.path like :path
-        </query>
-    </named-query>
+    <!--<named-query name="hp.properties.startingWithPath">-->
+        <!--<query>-->
+           <!--select property from PropertyBean property-->
+             <!--where property.path like :path-->
+        <!--</query>-->
+    <!--</named-query>-->
 
       <!--
     Get a property by its exact path
@@ -275,12 +210,12 @@
     Indexes:
       Rev1: hpPropertyByPath
      -->
-    <named-query name="hp.property.byPath">
-        <query>
-           select property from PropertyBean property
-             where property.path = :path
-        </query>
-    </named-query>
+    <!--<named-query name="hp.property.byPath">-->
+        <!--<query>-->
+           <!--select property from PropertyBean property-->
+             <!--where property.path = :path-->
+        <!--</query>-->
+    <!--</named-query>-->
 
 
      <!--
@@ -292,11 +227,11 @@
     Indexes:
 
      -->
-    <named-query name="hp.property.byPremise">
-        <query>
-           select property from PropertyBean property
-             where property.premise = :premise
-        </query>
-    </named-query>
+    <!--<named-query name="hp.property.byPremise">-->
+        <!--<query>-->
+           <!--select property from PropertyBean property-->
+             <!--where property.premise = :premise-->
+        <!--</query>-->
+    <!--</named-query>-->
 
   </entity-mappings>

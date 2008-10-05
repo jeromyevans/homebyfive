@@ -7,6 +7,7 @@ import com.blueskyminds.enterprise.region.reference.RegionRefFactory;
 import com.blueskyminds.enterprise.region.reference.RegionRefType;
 import com.blueskyminds.enterprise.region.index.SuburbBean;
 import com.blueskyminds.enterprise.region.DefaultPerspectives;
+import com.blueskyminds.enterprise.region.graph.Suburb;
 
 import java.util.Collection;
 import java.util.Map;
@@ -23,19 +24,11 @@ public class SuburbTableFactory {
      * @param suburbs
      * @return
      */
-    public static TableModel createTable(Collection<SuburbBean> suburbs) {
-        String stateName;
-        if (suburbs.size() > 0) {
-            stateName = suburbs.iterator().next().getStateName();
-        } else {
-            stateName = "";
-        }
-
-        TableModel tableModel = TableModelBuilder.createModel().withCaption("List of Suburbs in "+stateName);
+    public static TableModel createTable(Collection<Suburb> suburbs) {
+        TableModel tableModel = TableModelBuilder.createModel().withCaption("List of Suburbs");
 
         tableModel.addHiddenColumn("Id", "id");
         tableModel.addSortableColumn("Name", "name").formattedAs("Region");
-        tableModel.addSortableColumn("Post Code", "postCode").formattedAs("Region").withPerspective(DefaultPerspectives.WIDE_FORM);
 
         populate(tableModel, suburbs);
 
@@ -43,8 +36,8 @@ public class SuburbTableFactory {
     }
 
     /** Maps the Suburbs into the table */
-    public static void populate(TableModel tableModel, Collection<SuburbBean> suburbs) {
-        for (SuburbBean suburb : suburbs) {
+    public static void populate(TableModel tableModel, Collection<Suburb> suburbs) {
+        for (Suburb suburb : suburbs) {
             Map<String, Object> row = new HashMap<String, Object>();
             Iterator<ColumnModel> iterator = tableModel.columnIterator();
             while (iterator.hasNext()) {
@@ -60,7 +53,7 @@ public class SuburbTableFactory {
      *
      * @return
      */
-    public static Object getProperty(SuburbBean suburb, int columnIndex) {
+    public static Object getProperty(Suburb suburb, int columnIndex) {
         Object value = null;
 
         switch (columnIndex) {
@@ -69,9 +62,6 @@ public class SuburbTableFactory {
                 break;
             case 1:
                 value = RegionRefFactory.createRef(suburb.getPath(), suburb.getName(), RegionRefType.Suburb);
-                break;
-            case 2:
-                value = RegionRefFactory.createPostCodeRef(suburb);
                 break;
         }
 

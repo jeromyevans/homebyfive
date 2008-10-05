@@ -3,6 +3,9 @@ package com.blueskyminds.enterprise.region.graph;
 import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.RegionTypes;
+import com.blueskyminds.enterprise.region.PathHelper;
+import com.blueskyminds.enterprise.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
 
@@ -19,6 +22,13 @@ public class PostalCode extends Region {
 
     public PostalCode(String name) {
         super(name, RegionTypes.PostCode);
+        populateAttributes();
+    }
+
+    public PostalCode(State state, String name) {
+        super(name, RegionTypes.PostCode);
+        addParentRegion(state);
+        populateAttributes();
     }
 
     protected PostalCode() {
@@ -39,4 +49,17 @@ public class PostalCode extends Region {
             return null;
         }
     }
+
+    /**
+     * Populates the generated/read-only properties
+     */
+    public void populateAttributes() {
+        this.key = KeyGenerator.generateId(name);
+        State state = getState();
+        if (state != null) {
+            this.parentPath = state.getPath();
+            this.path = PathHelper.joinPath(parentPath, key);
+        }
+    }
+
 }

@@ -14,7 +14,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class CountryEAO extends AbstractDAO<CountryBean> {
+public class CountryEAO extends AbstractDAO<Country> {
 
     private static final String QUERY_ALL_COUNTRIES = "hp.countries";
     private static final String QUERY_COUNTRY_BY_PATH = "hp.country.byPath";
@@ -24,14 +24,14 @@ public class CountryEAO extends AbstractDAO<CountryBean> {
 
     @Inject
     public CountryEAO(EntityManager entityManager) {
-        super(entityManager, CountryBean.class);
+        super(entityManager, Country.class);
     }
 
     /**
      * Get a list of all countries
      * @return
      */
-    public Set<CountryBean> listCountries() {
+    public Set<Country> listCountries() {
         Query query = em.createNamedQuery(QUERY_ALL_COUNTRIES);
         return setOf(query.getResultList());
     }
@@ -42,22 +42,10 @@ public class CountryEAO extends AbstractDAO<CountryBean> {
      * @param path
      * @return Country instance, or null if not found
      */
-    public CountryBean lookupCountry(String path) {
+    public Country lookupCountry(String path) {
         Query query = em.createNamedQuery(QUERY_COUNTRY_BY_PATH);
         query.setParameter(PARAM_PATH, path);
         return firstIn(query.getResultList());
     }
-
-       /**
-     * Get the country by its handle
-     *
-     * @return CountryBean, or null if not found
-     */
-    public CountryBean lookupCountry(Country countryHandle) {
-
-        Query query = em.createNamedQuery(QUERY_COUNTRY_BY_HANDLE);
-        query.setParameter(PARAM_HANDLE, countryHandle);
-
-        return firstIn(query.getResultList());
-    }
+    
 }

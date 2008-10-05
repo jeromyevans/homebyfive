@@ -18,10 +18,10 @@ public class RegionFactory {
      * @param name
      * @return
      */
-    public Country createCountry(String name, String iso2CountryCode, String iso3CountryCode, String currencyCode) {
-        Country countryHandle = new Country(name, iso2CountryCode, iso3CountryCode);
+    public Country createCountry(String name, String iso2DigitCode, String iso3CountryCode, String currencyCode) {
+        Country countryHandle = new Country(name, iso2DigitCode, iso3CountryCode);
         CountryBean countryBean = new CountryBean(countryHandle);
-        countryHandle.addRegionBean(countryBean);
+        countryHandle.setRegionIndex(countryBean);
         return countryHandle;
     }
 
@@ -31,40 +31,40 @@ public class RegionFactory {
      * @param name
      * @return
      */
-    public Country createCountry(String name) {
-        Country countryHandle = new Country(name);
-        CountryBean countryBean = new CountryBean(countryHandle.getName(), countryHandle.getAbbreviation());
+    public Country createCountry(String name, String iso2DigitCode) {
+        Country countryHandle = new Country(name, iso2DigitCode);
+        CountryBean countryBean = new CountryBean(countryHandle.getName(), countryHandle.getAbbr());
         countryBean.setCountryHandle(countryHandle);
-        countryHandle.addRegionBean(countryBean);
+        countryHandle.setRegionIndex(countryBean);
         return countryHandle;
     }
 
-    public PostalCode createPostCode(String postCodeValue) {
-        PostalCode postCodeHandle = new PostalCode(postCodeValue);
+    public PostalCode createPostCode(String postCodeValue, State state) {
+        PostalCode postCodeHandle = new PostalCode(state, postCodeValue);
         PostalCodeBean postalCodeBean = new PostalCodeBean(postCodeHandle);
-        postCodeHandle.addRegionBean(postalCodeBean);
+        postCodeHandle.setRegionIndex(postalCodeBean);
         return postCodeHandle;
     }
 
-    public State createState(String fullName, String abbreviation) {
-        State stateHandle = new State(fullName, abbreviation);
+    public State createState(String fullName, String abbreviation, Country country) {
+        State stateHandle = new State(country, fullName, abbreviation);
         StateBean stateBean = new StateBean(stateHandle);
-        stateHandle.addRegionBean(stateBean);
+        stateHandle.setRegionIndex(stateBean);
         return stateHandle;
     }
 
-    public Suburb createSuburb(String name) {
-        Suburb suburbHandle = new Suburb(name);
+    public Suburb createSuburb(String name, State state) {
+        Suburb suburbHandle = new Suburb(state, null, name);
         SuburbBean suburbBean = new SuburbBean(suburbHandle);
-        suburbHandle.addRegionBean(suburbBean);
+        suburbHandle.setRegionIndex(suburbBean);
         return suburbHandle;
     }
 
-    public Suburb createSuburb(String name, PostalCode postCode) {
-        Suburb suburbHandle = createSuburb(name);
+    public Suburb createSuburb(String name, State state, PostalCode postCode) {
+        Suburb suburbHandle = createSuburb(name, state);
         suburbHandle.addParentRegion(postCode);
         SuburbBean suburbBean = new SuburbBean(suburbHandle);
-        suburbHandle.addRegionBean(suburbBean);
+        suburbHandle.setRegionIndex(suburbBean);
         return suburbHandle;
     }
 
@@ -72,7 +72,7 @@ public class RegionFactory {
         Street streetHandle = new Street(name, streetType, section);
         streetHandle.addParentRegion(suburb);
         StreetBean streetBean = new StreetBean(streetHandle);
-        streetHandle.addRegionBean(streetBean);
+        streetHandle.setRegionIndex(streetBean);
         return streetHandle;
     }
 }

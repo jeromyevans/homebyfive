@@ -2,12 +2,9 @@ package com.blueskyminds.enterprise.region.service;
 
 import com.blueskyminds.enterprise.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.framework.core.table.model.TableModel;
-import com.blueskyminds.enterprise.region.graph.Suburb;
-import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.region.index.*;
-import com.blueskyminds.enterprise.region.graph.State;
-import com.blueskyminds.enterprise.region.graph.PostalCode;
-import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.graph.*;
+import com.blueskyminds.enterprise.region.index.RegionIndex;
 
 import java.util.Set;
 
@@ -20,49 +17,47 @@ public interface RegionService {
 
     RegionGroup listCountries();
 
-    CountryBean lookupCountry(String country);
+    Country lookupCountry(String country);
 
-    CountryBean createCountry(CountryBean countryBean) throws DuplicateRegionException, InvalidRegionException;
+    Country createCountry(Country country) throws DuplicateRegionException, InvalidRegionException;
 
     RegionGroup listStatesAsGroup(String country);
 
     TableModel listStatesAsTable(String country);
 
-    Set<StateBean> listStates(String country);
+    Set<State> listStates(String country);
 
-    StateBean createState(StateBean stateBean) throws DuplicateRegionException;
+    State createState(State stateBean) throws DuplicateRegionException;
 
-    StateBean lookupState(String country, String state);
+    State lookupState(String country, String state);
 
     RegionGroup listSuburbsAsGroup(String country, String state);
 
     TableModel listSuburbsAsTable(String country, String state);
 
-    Set<SuburbBean> listSuburbs(String country, String state);
+    Set<Suburb> listSuburbs(String country, String state);
 
-    SuburbBean createSuburb(SuburbBean suburbBean) throws DuplicateRegionException;
+    Suburb createSuburb(Suburb suburb) throws DuplicateRegionException;
 
-    SuburbBean lookupSuburb(String country, String state, String suburb);
+    Suburb lookupSuburb(String country, String state, String suburb);
 
-    SuburbBean lookupSuburb(Suburb suburbHandle);
+    Suburb lookupSuburb(String path);
 
-    SuburbBean lookupSuburb(String path);
+    PostalCode createPostCode(PostalCode postCode) throws DuplicateRegionException;
 
-    PostalCodeBean createPostCode(PostalCodeBean postCodeBean) throws DuplicateRegionException;
-
-    Set<PostalCodeBean> listPostCodes(String country, String state);
+    Set<PostalCode> listPostCodes(String country, String state);
 
     RegionGroup listPostCodesAsGroup(String country, String state);
 
     TableModel listPostCodesAsTable(String country, String state); 
 
-    PostalCodeBean lookupPostCode(String country, String state, String postCode);
+    PostalCode lookupPostCode(String country, String state, String postCode);
 
     RegionGroup listSuburbs(String country, String state, String postCode);
 
     TableModel listSuburbsAsTable(String country, String state, String postCode);
 
-    RegionBean lookupRegion(String path);
+    Region lookupRegion(String path);
 
     /**
      * Permanently merge two regions into one.
@@ -77,7 +72,7 @@ public interface RegionService {
      * @param source
      * @return
      */
-    RegionBean mergeRegions(RegionBean target, RegionBean source);
+    RegionIndex mergeRegions(RegionIndex target, RegionIndex source);
 
     CountryBean persist(CountryBean countryBean);
     StateBean persist(StateBean stateBean);
@@ -105,28 +100,5 @@ public interface RegionService {
      * @param id
      */
     void deleteCountry(Long id);
-
-     /**
-     * Create/lookup a Country from an entry in the RegionGraph
-     *
-     */
-    CountryBean lookupOrCreateCountry(Country countryHandle);
-
-     /**
-     * Create/lookup a State from an entry in the RegionGraph
-     *
-     */
-    StateBean lookupOrCreateState(State stateHandle);
-
-     /**
-     * Create/lookup a PostCode from an entry in the RegionGraph
-     *
-     */
-    PostalCodeBean lookupOrCreatePostCode(PostalCode postCodeHandle);
-    /**
-     * Create/lookup a new suburb from an entry in the RegionGraph
-     *
-     */
-    SuburbBean lookupOrCreateSuburb(Suburb suburbHandle);
 
 }

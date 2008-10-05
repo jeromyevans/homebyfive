@@ -2,6 +2,8 @@ package com.blueskyminds.enterprise.region;
 
 import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.State;
 
 import javax.persistence.EntityManager;
 
@@ -73,29 +75,29 @@ public class TestRegionTools {
 //    }
 
     public static Region initialiseAusRegionsX(EntityManager em) {
-        Region australia = new RegionFactory().createCountry(AUSTRALIA, "AU", "AUS", "AUD'");
+        Country australia = new RegionFactory().createCountry(AUSTRALIA, "AU", "AUS", "AUD'");
 
-        Region wa = new RegionFactory().createState("Western Australia", "WA");
-        Region bullCreek = new RegionFactory().createSuburb(BULL_CREEK);
-        Region leeming = new RegionFactory().createSuburb(LEEMING);
-        Region willetton = new RegionFactory().createSuburb(WILLETTON);
+        State wa = new RegionFactory().createState("Western Australia", "WA", australia);
+        Region bullCreek = new RegionFactory().createSuburb(BULL_CREEK, wa);
+        Region leeming = new RegionFactory().createSuburb(LEEMING, wa);
+        Region willetton = new RegionFactory().createSuburb(WILLETTON, wa);
         wa.addChildRegion(bullCreek);
         wa.addChildRegion(leeming);
         wa.addChildRegion(willetton);
 
-        Region nsw = new RegionFactory().createState("New South Wales", "NSW");
-        Region neutralBay = new RegionFactory().createSuburb(NEUTRAL_BAY);
-        Region kirribilli = new RegionFactory().createSuburb("Kirribilli");
+        State nsw = new RegionFactory().createState("New South Wales", "NSW", australia);
+        Region neutralBay = new RegionFactory().createSuburb(NEUTRAL_BAY, nsw);
+        Region kirribilli = new RegionFactory().createSuburb("Kirribilli", nsw);
         nsw.addChildRegion(neutralBay);
         nsw.addChildRegion(kirribilli);
 
         australia.addChildRegion(wa);
         australia.addChildRegion(nsw);
 
-        Region pc6149 = new RegionFactory().createPostCode(POSTCODE_6149);
-        Region pc6155 = new RegionFactory().createPostCode(POSTCODE_6155);
-        Region pc2089 = new RegionFactory().createPostCode(POSTCODE_2089);
-        Region pc2060 = new RegionFactory().createPostCode("2060");
+        Region pc6149 = new RegionFactory().createPostCode(POSTCODE_6149, wa);
+        Region pc6155 = new RegionFactory().createPostCode(POSTCODE_6155, wa);
+        Region pc2089 = new RegionFactory().createPostCode(POSTCODE_2089, nsw);
+        Region pc2060 = new RegionFactory().createPostCode("2060", nsw);
 
         wa.addChildRegion(pc6149);
         wa.addChildRegion(pc6155);

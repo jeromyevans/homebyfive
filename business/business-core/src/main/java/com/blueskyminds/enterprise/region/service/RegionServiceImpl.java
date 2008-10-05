@@ -12,7 +12,6 @@ import com.blueskyminds.enterprise.region.dao.CountryEAO;
 import com.blueskyminds.enterprise.region.dao.PostCodeEAO;
 import com.blueskyminds.enterprise.region.dao.StateEAO;
 import com.blueskyminds.enterprise.region.dao.SuburbEAO;
-import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;
@@ -52,7 +51,7 @@ public class RegionServiceImpl implements RegionService {
      * @return
      */
     @Transactional
-    public CountryBean lookupCountry(String country) {
+    public Country lookupCountry(String country) {
         return countryEAO.lookupCountry(PathHelper.buildPath(country));
     }
 
@@ -62,49 +61,41 @@ public class RegionServiceImpl implements RegionService {
      *
      * NOTE: Does not rollback the transaction in the cases of an InvalidRegionException or DuplicateRegionException as
      *  no writes occur
+     * @param country
      */
     @Transactional(exceptOn = {InvalidRegionException.class, DuplicateRegionException.class})
-    public CountryBean createCountry(CountryBean countryBean) throws DuplicateRegionException, InvalidRegionException {
-        countryBean.populateAttributes();
-        if (countryBean.isValid()) {
-            CountryBean existing = countryEAO.lookupCountry(countryBean.getPath());
+    public Country createCountry(Country country) throws DuplicateRegionException, InvalidRegionException {
+        country.populateAttributes();
+        if (country.isValid()) {
+            Country existing = countryEAO.lookupCountry(country.getPath());
             if (existing == null) {
-                // check if the node exists in the region graph and reference it/create it
-                Country country = addressService.lookupCountry(countryBean.getAbbr());
-                if (country == null) {
-                    country = addressService.createCountry(countryBean.getName(), countryBean.getAbbr(), null, null);
-                }
-                countryBean.setCountryHandle(country);
-                em.persist(countryBean);
+                country = addressService.createCountry(country.getName(), country.getAbbr(), null, null);
+                em.persist(country);
             } else {
-                throw new DuplicateRegionException(countryBean);
+                throw new DuplicateRegionException(country);
             }
         } else {
-            throw new InvalidRegionException(countryBean);
+            throw new InvalidRegionException(country);
         }
-        return countryBean;
+        return country;
     }
 
-    @Transactional
     public RegionGroup listCountries() {
-        Set<CountryBean> countries = countryEAO.listCountries();
+        Set<Country> countries = countryEAO.listCountries();
         return RegionGroupFactory.createCountries(countries);
     }
 
-    @Transactional
     public RegionGroup listStatesAsGroup(String country) {
-        Set<StateBean> states = listStates(country);
+        Set<State> states = listStates(country);
         return RegionGroupFactory.createStates(states);
     }
 
-    @Transactional
     public TableModel listStatesAsTable(String country) {
-        Set<StateBean> states = listStates(country);
+        Set<State> states = listStates(country);
         return StateTableFactory.createTable(states);
     }
 
-    @Transactional
-    public Set<StateBean> listStates(String country) {
+    public Set<State> listStates(String country) {
         return stateEAO.listStates(PathHelper.buildPath(country));
     }
 
@@ -115,42 +106,33 @@ public class RegionServiceImpl implements RegionService {
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
      */
     @Transactional(exceptOn = {InvalidRegionException.class, DuplicateRegionException.class})
-    public StateBean createState(StateBean stateBean) throws DuplicateRegionException {
-        stateBean.populateAttributes();
-        StateBean existing = stateEAO.lookupState(stateBean.getPath());
+    public State createState(State state) throws DuplicateRegionException {
+        state.populateAttributes();
+        State existing = stateEAO.lookupState(state.getPath());
         if (existing == null) {
-            // check if the node exists in the region graph and reference it/create it
-            State stateHandle = addressService.lookupStateByAbbr(stateBean.getAbbr(), stateBean.getCountryBean().getCountryHandle());
-            if (stateHandle == null) {
-                stateHandle = addressService.createState(stateBean.getName(), stateBean.getAbbr(), stateBean.getCountryBean().getCountryHandle());
-            }
-            stateBean.setStateHandle(stateHandle);
-            em.persist(stateBean);
+            state = addressService.createState(state.getName(), state.getAbbr(), state.getCountry());            
+            em.persist(state);
         } else {
-            throw new DuplicateRegionException(stateBean);
+            throw new DuplicateRegionException(state);
         }
-        return stateBean;
+        return state;
     }
 
-    @Transactional
-    public StateBean lookupState(String country, String state) {
+    public State lookupState(String country, String state) {
         return stateEAO.lookupState(PathHelper.buildPath(country, state));
     }
 
-    @Transactional
     public RegionGroup listSuburbsAsGroup(String country, String state) {
-        Set<SuburbBean> suburbs = listSuburbs(country, state);
+        Set<Suburb> suburbs = listSuburbs(country, state);
         return RegionGroupFactory.createSuburbs(suburbs);
     }
 
-    @Transactional
     public TableModel listSuburbsAsTable(String country, String state) {
-        Set<SuburbBean> suburbs = listSuburbs(country, state);
+        Set<Suburb> suburbs = listSuburbs(country, state);
         return SuburbTableFactory.createTable(suburbs);
     }
 
-    @Transactional
-    public Set<SuburbBean> listSuburbs(String country, String state) {
+    public Set<Suburb> listSuburbs(String country, String state) {
         return suburbEAO.listSuburbs(PathHelper.buildPath(country, state));
     }
 
@@ -159,34 +141,26 @@ public class RegionServiceImpl implements RegionService {
      * Propagates the change into the RegionGraph as well
      *
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
+     * @param suburb
      */
     @Transactional(exceptOn = DuplicateRegionException.class)
-    public SuburbBean createSuburb(SuburbBean suburbBean) throws DuplicateRegionException {
-        suburbBean.populateAttributes();
-        SuburbBean existing = suburbEAO.lookupSuburb(suburbBean.getPath());
+    public Suburb createSuburb(Suburb suburb) throws DuplicateRegionException {
+        suburb.populateAttributes();
+        Suburb existing = suburbEAO.lookupSuburb(suburb.getPath());
         if (existing == null) {
-            // check if the node exists in the region graph and reference it/create it
-            Suburb suburbHandle = addressService.lookupSuburb(suburbBean.getName(), suburbBean.getStateBean().getStateHandle());
-            if (suburbHandle == null) {
-                suburbHandle = addressService.createSuburb(suburbBean.getName(), suburbBean.getStateBean().getStateHandle());
-            }
-            suburbBean.setSuburbHandle(suburbHandle);
-            em.persist(suburbBean);
+            suburb = addressService.createSuburb(suburb.getName(), suburb.getState());
+            em.persist(suburb);
         } else {
-            throw new DuplicateRegionException(suburbBean);
+            throw new DuplicateRegionException(suburb);
         }
-        return suburbBean;
+        return suburb;
     }
 
-    public SuburbBean lookupSuburb(String country, String state, String suburb) {
+    public Suburb lookupSuburb(String country, String state, String suburb) {
         return suburbEAO.lookupSuburb(PathHelper.buildPath(country, state, suburb));
     }
 
-    public SuburbBean lookupSuburb(Suburb suburbHandle) {
-        return suburbEAO.lookupSuburb(suburbHandle);
-    }
-
-    public SuburbBean lookupSuburb(String path) {
+    public Suburb lookupSuburb(String path) {
         return suburbEAO.lookupSuburb(path);
     }
 
@@ -195,56 +169,46 @@ public class RegionServiceImpl implements RegionService {
      * Propagates the change into the RegionGraph as well
      *
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
+     * @param postCode
      */
     @Transactional(exceptOn = DuplicateRegionException.class) 
-    public PostalCodeBean createPostCode(PostalCodeBean postCodeBean) throws DuplicateRegionException {
-        postCodeBean.populateAttributes();
-        PostalCodeBean existing = postCodeEAO.lookupPostCode(postCodeBean.getPath());
+    public PostalCode createPostCode(PostalCode postCode) throws DuplicateRegionException {
+        postCode.populateAttributes();
+        PostalCode existing = postCodeEAO.lookupPostCode(postCode.getPath());
         if (existing == null) {
-            // check if the node exists in the region graph and reference it/create it
-            PostalCode postCodeHandle = addressService.lookupPostCode(postCodeBean.getName(), postCodeBean.getStateBean().getStateHandle());
-            if (postCodeHandle == null) {
-                postCodeHandle = addressService.createPostCode(postCodeBean.getName(), postCodeBean.getStateBean().getStateHandle());
-            }
-            postCodeBean.setPostCodeHandle(postCodeHandle);
-            em.persist(postCodeBean);
+            postCode = addressService.createPostCode(postCode.getName(), postCode.getState());
+            em.persist(postCode);
         } else {
-            throw new DuplicateRegionException(postCodeBean);
+            throw new DuplicateRegionException(postCode);
         }
-        return postCodeBean;
+        return postCode;
     }
 
-    @Transactional
-    public Set<PostalCodeBean> listPostCodes(String country, String state) {
+    public Set<PostalCode> listPostCodes(String country, String state) {
         return postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
     }
 
-    @Transactional
     public RegionGroup listPostCodesAsGroup(String country, String state) {
-        Set<PostalCodeBean> postCodes = listPostCodes(country, state);
+        Set<PostalCode> postCodes = listPostCodes(country, state);
         return RegionGroupFactory.createPostCodes(postCodes);
     }
 
-    @Transactional
     public TableModel listPostCodesAsTable(String country, String state) {
-        Set<PostalCodeBean> postCodes = postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
+        Set<PostalCode> postCodes = postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
         return PostCodeTableFactory.createTable(postCodes);
     }
 
-    @Transactional
-    public PostalCodeBean lookupPostCode(String country, String state, String postCode) {
+    public PostalCode lookupPostCode(String country, String state, String postCode) {
         return postCodeEAO.lookupPostCode(PathHelper.buildPath(country, state, postCode));
     }
 
-    @Transactional
     public RegionGroup listSuburbs(String country, String state, String postCode) {
-        Set<SuburbBean> suburbs = suburbEAO.listSuburbsInPostCode(PathHelper.buildPath(country, state, postCode));
+        Set<Suburb> suburbs = suburbEAO.listSuburbsInPostCode(PathHelper.buildPath(country, state, postCode));
         return RegionGroupFactory.createSuburbs(suburbs);
     }
 
-    @Transactional
     public TableModel listSuburbsAsTable(String country, String state, String postCode) {
-        Set<SuburbBean> suburbs = suburbEAO.listSuburbsInPostCode(PathHelper.buildPath(country, state, postCode));
+        Set<Suburb> suburbs = suburbEAO.listSuburbsInPostCode(PathHelper.buildPath(country, state, postCode));
         return SuburbTableFactory.createTable(suburbs);
     }
 
@@ -255,8 +219,8 @@ public class RegionServiceImpl implements RegionService {
      * @param path
      * @return
      */
-    public RegionBean lookupRegion(String path) {
-        RegionBean region = null;
+    public Region lookupRegion(String path) {
+        Region region = null;
         String components[] = StringUtils.split(path, "/", 5);
         switch (components.length) {
             case 1 :
@@ -295,7 +259,7 @@ public class RegionServiceImpl implements RegionService {
      * @return
      */
     @Transactional
-    public RegionBean mergeRegions(RegionBean target, RegionBean source) {
+    public RegionIndex mergeRegions(RegionIndex target, RegionIndex source) {
 
         target.mergeWith(source);
         em.persist(source);
@@ -356,101 +320,11 @@ public class RegionServiceImpl implements RegionService {
         deleteRegion(countryEAO.findById(id));
     }
 
-    private void deleteRegion(RegionBean regionBean) {
-        if (regionBean != null) {
-            Region regionHandle = regionBean.getRegion();
-            regionBean.setStatus(DomainObjectStatus.Deleted);
-            em.persist(regionBean);
-            deleteRegionHandle(regionHandle);
-        }
-    }
-
-    private void deleteRegionHandle(Region regionHandle) {
+    private void deleteRegion(Region regionHandle) {
         if (regionHandle != null) {
             addressService.deleteRegionById(regionHandle.getId());
         }
     }
-
-    /**
-     * Create/lookup a country from an entry in the RegionGraph
-     *
-     */
-    @Transactional
-    public CountryBean lookupOrCreateCountry(Country countryHandle) {
-        CountryBean existing = countryEAO.lookupCountry(countryHandle);
-        if (existing == null) {
-            CountryBean countryBean =  new CountryBean(countryHandle.getName(), countryHandle.getAbbreviation());
-            countryBean.setCountryHandle(countryHandle);
-            em.persist(countryBean);
-
-            return countryBean;
-        } else {
-            return existing;
-        }
-    }
-
-     /**
-     * Create/lookup a State from an entry in the RegionGraph
-     *
-     */
-    @Transactional
-    public StateBean lookupOrCreateState(State stateHandle) {
-        StateBean existing = stateEAO.lookupState(stateHandle);
-        if (existing == null) {
-            CountryBean country = lookupOrCreateCountry(stateHandle.getCountry());
-            StateBean stateBean =  new StateBean(country, stateHandle.getName(),  stateHandle.getAbbreviation());
-            stateBean.setStateHandle(stateHandle);
-            em.persist(stateBean);
-
-            return stateBean;
-        } else {
-            return existing;
-        }
-    }
-
-     /**
-     * Create/lookup a PostCode from an entry in the RegionGraph
-     *
-     */
-    @Transactional
-    public PostalCodeBean lookupOrCreatePostCode(PostalCode postCodeHandle) {
-        PostalCodeBean existing = postCodeEAO.lookupPostCode(postCodeHandle);
-        if (existing == null) {
-            CountryBean country = lookupOrCreateCountry(postCodeHandle.getState().getCountry());
-            StateBean state = lookupOrCreateState(postCodeHandle.getState());
-            PostalCodeBean postCodeBean =  new PostalCodeBean(country, state, postCodeHandle.getName());
-            postCodeBean.setPostCodeHandle(postCodeHandle);
-            em.persist(postCodeBean);
-
-            return postCodeBean;
-        } else {
-            return existing;
-        }
-    }
-
-    /**
-     * Create a new suburb from an entry in the RegionGraph
-     *
-     */
-    @Transactional()
-    public SuburbBean lookupOrCreateSuburb(Suburb suburbHandle) {
-        SuburbBean existing = suburbEAO.lookupSuburb(suburbHandle);
-        if (existing == null) {
-            State stateHandle = suburbHandle.getState();
-            CountryBean country = lookupOrCreateCountry(stateHandle.getCountry());
-            StateBean state = lookupOrCreateState(suburbHandle.getState());
-            PostalCodeBean postCode = lookupOrCreatePostCode(suburbHandle.getPostCode());
-
-            SuburbBean suburb =  new SuburbBean(country, state, postCode,  suburbHandle.getName());
-            suburb.setSuburbHandle(suburbHandle);
-            em.persist(suburb);
-
-            return suburb;
-        } else {
-            return existing;
-        }
-    }
-
 
     @Inject
     public void setEntityManager(EntityManager em) {

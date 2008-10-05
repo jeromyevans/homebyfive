@@ -4,6 +4,7 @@ import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.CountryEAO;
 import com.blueskyminds.enterprise.region.index.CountryBean;
 import com.blueskyminds.enterprise.region.PathHelper;
+import com.blueskyminds.enterprise.region.graph.Country;
 
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import java.util.Set;
  */
 public class TestCountryEAO extends JPATestCase {
 
-    private static final String PERSISTENCE_UNIT = "TestHousePadCorePersistenceUnit";
+    private static final String PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";
 
     private CountryEAO countryEAO;
     private static final String AU = "au";
@@ -27,19 +28,19 @@ public class TestCountryEAO extends JPATestCase {
         super.setUp();
         countryEAO = new CountryEAO(em);
 
-        CountryBean au = new CountryBean("Australia", "AU");
+        Country au = new Country("Australia", "AU");
         em.persist(au);
-        CountryBean us = new CountryBean("United States of America", "US");
+        Country us = new Country("United States of America", "US");
         em.persist(us);
     }
 
     public void testListCountries() {
-        Set<CountryBean> countries = countryEAO.listCountries();
+        Set<Country> countries = countryEAO.listCountries();
         assertEquals(2, countries.size());
     }
 
     public void testLookupCountry() {
-        CountryBean countryBean = countryEAO.lookupCountry(PathHelper.buildPath(AU));
+        Country countryBean = countryEAO.lookupCountry(PathHelper.buildPath(AU));
         assertNotNull(countryBean);
     }
 }

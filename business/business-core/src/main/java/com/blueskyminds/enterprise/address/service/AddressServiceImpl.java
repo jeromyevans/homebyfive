@@ -461,14 +461,18 @@ public class AddressServiceImpl implements AddressService {
     /** Create and persist a new state */
     public State createState(String name, String abbreviation, Country parent) {
         RegionFactory stateFactory = new RegionFactory();
-        Region handle = stateFactory.createState(name, abbreviation);
-        return (State) createChildRegion(handle, parent);
+        State handle = stateFactory.createState(name, abbreviation, parent);
+        em.persist(handle);
+        em.persist(parent);
+        return handle;
     }
 
     /** Create and persist a new PostCode */
     public PostalCode createPostCode(String name, State parent) {
-        PostalCode handle = new RegionFactory().createPostCode(name);
-        return (PostalCode) createChildRegion(handle, parent);
+        PostalCode handle = new RegionFactory().createPostCode(name, parent);
+        em.persist(handle);
+        em.persist(parent);
+        return handle;
     }
 
     /** Create and persist a new Suburb
@@ -478,7 +482,7 @@ public class AddressServiceImpl implements AddressService {
      *
      *  */
     public Suburb createSuburb(String name, State parent) {
-        Suburb handle = new RegionFactory().createSuburb(name);
+        Suburb handle = new RegionFactory().createSuburb(name, parent);
         return (Suburb) createChildRegion(handle, parent);
     }
 

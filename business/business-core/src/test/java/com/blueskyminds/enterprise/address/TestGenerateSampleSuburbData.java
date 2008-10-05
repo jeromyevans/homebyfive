@@ -53,12 +53,9 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
             "REGION",
             "REGIONALIAS",
             "REGIONHIERARCHY",
-            "COUNTRY",
-            "POSTCODE",
-            "STATE",
-            "SUBURB"
+            "REGIONINDEX"            
     };
-    private static final String AUS = "AUS";
+    private static final String AU = "AU";
 
     public TestGenerateSampleSuburbData() {
         super(TEST_ENTERPRISE_PERSISTENCE_UNIT);
@@ -90,7 +87,7 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
     public static void initialiseAustralianStates(AddressService addressService, EntityManager em) {
         LOG.info("InitialiseAustralianStates: ");
 
-        Country australia = new AddressDAO(em).lookupCountry(AUS);
+        Country australia = new AddressDAO(em).lookupCountry(AU);
 
         addressService.createState("Western Australia", "WA", australia);
         addressService.createState("South Australia", "SA", australia);
@@ -126,7 +123,7 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
 
             //RegionGraphDAO regionDAO = new RegionGraphDAO(em);
             AddressDAO addressDAO = new AddressDAO(em);
-            Country australia = addressDAO.lookupCountry(AUS);
+            Country australia = addressDAO.lookupCountry(AU);
 
             while (csvReader.read()) {
                 if (csvReader.isNonBlank()) {

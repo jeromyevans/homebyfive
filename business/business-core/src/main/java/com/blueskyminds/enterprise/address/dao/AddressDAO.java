@@ -26,7 +26,7 @@ public class AddressDAO extends AbstractDAO {
 
     private static final String QUERY_COUNTRY_BY_NAME = "country.byName";
     private static final String QUERY_COUNTRY_BY_ISO3_CODE = "country.byIso3Code";
-    private static final String QUERY_COUNTRY_BY_ISO2_CODE = "country.byIso2Code";
+    private static final String QUERY_COUNTRY_BY_ABBR = "country.byAbbr";
 
     private static final String QUERY_ALL_STATES_BY_COUNTRY_ID = "state.listAllByCountryId";
     private static final String QUERY_STATE_BY_COUNTRY_ID_AND_NAME = "state.byCountryAndName";
@@ -94,20 +94,11 @@ public class AddressDAO extends AbstractDAO {
     /**
      * Get an instance of a country matching the 3 Digit country code
      *
-     * @param iso3DigitCode (it will be converted to uppercase for the query)
+     * @param abbr (it will be converted to uppercase for the query)
      * @return Country instance, or null if not found
      */
-    public Country lookupCountry(String iso3DigitCode) {
-        List<Country> countries;
-        Query query = em.createNamedQuery(QUERY_COUNTRY_BY_ISO3_CODE);
-        query.setParameter(PARAM_ISO3_CODE, StringUtils.upperCase(iso3DigitCode));
-        countries = new LinkedList<Country>(query.getResultList());
-
-        if (countries.size() > 0) {
-            return (Country) countries.iterator().next();
-        } else {
-            return null;
-        }
+    public Country lookupCountry(String abbr) {
+        return findCountryByISO2DigitCode(abbr);
     }
 
     /**
@@ -118,8 +109,8 @@ public class AddressDAO extends AbstractDAO {
      */
     public Country findCountryByISO2DigitCode(String iso2DigitCode) {
         List<Country> countries;
-        Query query = em.createNamedQuery(QUERY_COUNTRY_BY_ISO2_CODE);
-        query.setParameter(PARAM_ISO2_CODE, StringUtils.upperCase(iso2DigitCode));
+        Query query = em.createNamedQuery(QUERY_COUNTRY_BY_ABBR);
+        query.setParameter(PARAM_ABBR, StringUtils.upperCase(iso2DigitCode));
         countries = new LinkedList<Country>(query.getResultList());
 
         if (countries.size() > 0) {

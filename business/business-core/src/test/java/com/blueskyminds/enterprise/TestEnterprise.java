@@ -13,6 +13,8 @@ import com.blueskyminds.enterprise.pricing.policy.TransactionFee;
 import com.blueskyminds.enterprise.taxpolicy.GST;
 import com.blueskyminds.enterprise.taxpolicy.GSTFree;
 import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.State;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
 import com.blueskyminds.homebyfive.framework.core.measurement.Quantity;
@@ -50,8 +52,9 @@ public class TestEnterprise extends DbTestCase {
         ScheduleOfLicenseAccounts sola = enterprise.getScheduleOfLicenseAccounts();
         LicenseAccount accountAHolder = sola.createLicenseAccount(testParty);
 
-        //RegionType postCode = new RegionType(RegionTypes.PostCode);
-        Region region = new RegionFactory().createPostCode("TestRegion");
+        Country australia = new RegionFactory().createCountry("Australia", "AU");
+        State nsw = new RegionFactory().createState("New South Wales", "NSW", australia);
+        Region region = new RegionFactory().createPostCode("TestRegion", nsw);       
 
         // create a new license in the unallocated account
         License testLicenseA = enterprise.getScheduleOfLicenses().createLicense(new RegionLicense(region, LicenseTypes.Exclusive), sola.getUnallocatedAccount());

@@ -3,8 +3,12 @@ package com.blueskyminds.enterprise.region.graph;
 import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.RegionTypes;
+import com.blueskyminds.enterprise.region.PathHelper;
+import com.blueskyminds.enterprise.tools.KeyGenerator;
 
 import javax.persistence.*;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * A RegionHandle for a Country
@@ -32,16 +36,22 @@ public class Country extends Region {
      *
      * @param name
      */
-    public Country(String name) {
+    public Country(String name, String abbr) {
         super(name, RegionTypes.Country);
+        this.abbr = abbr;
+        addAlias(abbr);
+        populateAttributes();
     }
 
     /**
      * Create a new CountryHandle pointing to the Country implementation
      * Use the factory to create new instances
      */
-    public Country(String name, String... aliases) {
+    public Country(String name, String abbr, String... aliases) {
         super(name, RegionTypes.Country, aliases);
+        this.abbr = abbr;
+        addAlias(abbr);
+        populateAttributes();
     }
 
     protected Country() {
@@ -64,11 +74,11 @@ public class Country extends Region {
      */
     @Transient
     public String getIso2CountryCode() {
-        return getAbbreviation();
+        return getAbbr();
     }
 
     public void setIso2CountryCode(String iso2CountryCode) {
-        setAbbreviation(iso2CountryCode);
+        setAbbr(iso2CountryCode);
     }
 
     @Basic
@@ -90,4 +100,19 @@ public class Country extends Region {
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
     }
+
+    /**
+     * Populates the generated/read-only properties
+     */
+    public void populateAttributes() {
+        this.key = KeyGenerator.generateId(abbr);
+        this.parentPath = PathHelper.ROOT;
+        this.path = PathHelper.joinPath(parentPath, key);
+    }
+
+    @Transient
+    public boolean isValid() {
+        return path != null && path.length() > 1 && StringUtils.isNotBlank(abbr) && (StringUtils.isNotBlank(name));
+    }
+
 }

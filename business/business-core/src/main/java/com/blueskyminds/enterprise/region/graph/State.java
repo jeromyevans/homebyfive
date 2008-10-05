@@ -1,10 +1,12 @@
 package com.blueskyminds.enterprise.region.graph;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
+import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.region.graph.PostalCode;
 import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.tools.KeyGenerator;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
@@ -18,11 +20,22 @@ import javax.persistence.*;
 @DiscriminatorValue("S")
 public class State extends Region {
 
-    /** A special case StateHandle instance used to indentify an invalid State rather than a null value */
+    /** A special case StateHandle instance used to identify an invalid State rather than a null value */
     public static final State INVALID = invalid();
 
     public State(String name, String abbreviation) {
-        super(name, RegionTypes.State, abbreviation);
+        super(name, RegionTypes.State);
+        this.abbr = abbreviation;
+        addAlias(abbreviation);
+        populateAttributes();
+    }
+
+    public State(Country country, String name, String abbreviation) {
+        super(name, RegionTypes.State);
+        this.abbr = abbreviation;
+        addAlias(abbreviation);
+        this.addParentRegion(country); 
+        populateAttributes();
     }
 
     protected State() {
@@ -73,8 +86,22 @@ public class State extends Region {
         return invalid;
     }
 
+    /**
+     * Populates the generated/read-only properties
+     */
+    public void populateAttributes() {
+        this.key = KeyGenerator.generateId(abbr);
+        Country country = getCountry();
+        if (country != null) {
+            this.parentPath = country.getPath();
+            this.path = PathHelper.joinPath(parentPath, key);
+        }
+
+    }
+
     @Transient
     public boolean isInvalid() {
         return this.equals(INVALID);
     }
+
 }

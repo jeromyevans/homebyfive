@@ -14,7 +14,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class StateEAO extends AbstractDAO<StateBean> {
+public class StateEAO extends AbstractDAO<State> {
 
     private static final String QUERY_ALL_STATES_BY_PARENT_PATH = "hp.states.byParentPath";
     private static final String QUERY_STATE_BY_PATH = "hp.state.byPath";
@@ -24,7 +24,7 @@ public class StateEAO extends AbstractDAO<StateBean> {
 
     @Inject   
     public StateEAO(EntityManager entityManager) {
-        super(entityManager, StateBean.class);
+        super(entityManager, State.class);
     }
 
     /**
@@ -32,7 +32,7 @@ public class StateEAO extends AbstractDAO<StateBean> {
      *
      * @return States, or empty set
      */
-    public Set<StateBean> listStates(String parentPath) {
+    public Set<State> listStates(String parentPath) {
 
         Query query = em.createNamedQuery(QUERY_ALL_STATES_BY_PARENT_PATH);
         query.setParameter(PARAM_PATH, parentPath);
@@ -45,24 +45,12 @@ public class StateEAO extends AbstractDAO<StateBean> {
      *
      * @return State, or null if not found
      */
-    public StateBean lookupState(String path) {
+    public State lookupState(String path) {
 
         Query query = em.createNamedQuery(QUERY_STATE_BY_PATH);
         query.setParameter(PARAM_PATH, path);
 
         return firstIn(query.getResultList());
     }
-
-    /**
-     * Get the state by its handle
-     *
-     * @return State, or null if not found
-     */
-    public StateBean lookupState(State stateHandle) {
-
-        Query query = em.createNamedQuery(QUERY_STATE_BY_HANDLE);
-        query.setParameter(PARAM_HANDLE, stateHandle);
-
-        return firstIn(query.getResultList());
-    }
+  
 }

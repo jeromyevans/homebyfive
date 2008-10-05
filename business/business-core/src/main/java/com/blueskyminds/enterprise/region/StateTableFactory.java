@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.framework.core.table.model.ColumnModel;
 import com.blueskyminds.enterprise.region.reference.RegionRefFactory;
 import com.blueskyminds.enterprise.region.reference.RegionRefType;
 import com.blueskyminds.enterprise.region.index.StateBean;
+import com.blueskyminds.enterprise.region.graph.State;
 
 import java.util.Collection;
 import java.util.Map;
@@ -27,14 +28,8 @@ public class StateTableFactory {
      * @param states
      * @return
      */
-    public static TableModel createTable(Collection<StateBean> states) {
-        String countryName;
-        if (states.size() > 0) {
-            countryName = states.iterator().next().getCountryName();
-        } else {
-            countryName = "";
-        }
-        TableModel tableModel = TableModelBuilder.createModel().withCaption("List of States and Territories of "+countryName);
+    public static TableModel createTable(Collection<State> states) {
+        TableModel tableModel = TableModelBuilder.createModel().withCaption("List of States");
 
         tableModel.addHiddenColumn("Id", "id");
         tableModel.addSortableColumn("Name", "name").formattedAs("Region");
@@ -45,13 +40,13 @@ public class StateTableFactory {
     }
 
     /** Maps the PostCodes into the table */
-    public static void populate(TableModel tableModel, Collection<StateBean> states) {
-        for (StateBean suburb : states) {
+    public static void populate(TableModel tableModel, Collection<State> states) {
+        for (State state : states) {
             Map<String, Object> row = new HashMap<String, Object>();
             Iterator<ColumnModel> iterator = tableModel.columnIterator();
             while (iterator.hasNext()) {
                 ColumnModel column = iterator.next();
-                row.put(column.getName(), getProperty(suburb, column.getIndex()));
+                row.put(column.getName(), getProperty(state, column.getIndex()));
             }
             tableModel.addRow(row);
         }
@@ -62,15 +57,15 @@ public class StateTableFactory {
      *
      * @return
      */
-    public static Object getProperty(StateBean stateBean, int columnIndex) {
+    public static Object getProperty(State state, int columnIndex) {
         Object value = null;
 
         switch (columnIndex) {
             case 0:
-                value = stateBean.getId();
+                value = state.getId();
                 break;
             case 1:
-                value = RegionRefFactory.createRef(stateBean.getPath(), stateBean.getName(), RegionRefType.State);
+                value = RegionRefFactory.createRef(state.getPath(), state.getName(), RegionRefType.State);
                 break;
         }
 

@@ -1,6 +1,7 @@
 package com.blueskyminds.enterprise.region.service;
 
-import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionIndex;
+import com.blueskyminds.enterprise.region.graph.Region;
 
 /**
  * Exception indicates that an attempt was made to create a new region with invalid properties
@@ -12,8 +13,12 @@ import com.blueskyminds.enterprise.region.index.RegionBean;
 public class InvalidRegionException extends RegionException {
     private static final long serialVersionUID = 672848634018856753L;
 
-    public InvalidRegionException(RegionBean regionBean) {
+    public InvalidRegionException(RegionIndex regionBean) {
         super(InvalidRegionException.class.getSimpleName()+":"+regionBean.getPath());
+    }
+
+    public InvalidRegionException(Region region) {
+        super(InvalidRegionException.class.getSimpleName()+":"+region.getPath());
     }
 
     public InvalidRegionException(String message) {

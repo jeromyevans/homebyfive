@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.framework.core.table.model.ColumnModel;
 import com.blueskyminds.enterprise.region.reference.RegionRefFactory;
 import com.blueskyminds.enterprise.region.reference.RegionRefType;
 import com.blueskyminds.enterprise.region.index.PostalCodeBean;
+import com.blueskyminds.enterprise.region.graph.PostalCode;
 
 import java.util.Collection;
 import java.util.Map;
@@ -27,14 +28,9 @@ public class PostCodeTableFactory {
      * @param postCodes
      * @return
      */
-    public static TableModel createTable(Collection<PostalCodeBean> postCodes) {
-        String stateName;
-        if (postCodes.size() > 0) {
-            stateName = postCodes.iterator().next().getStateName();
-        } else {
-            stateName = "";
-        }
-        TableModel tableModel = TableModelBuilder.createModel().withCaption("List of Post Codes in "+stateName);
+    public static TableModel createTable(Collection<PostalCode> postCodes) {
+
+        TableModel tableModel = TableModelBuilder.createModel().withCaption("List of Post Codes");
 
         tableModel.addHiddenColumn("Id", "id");
         tableModel.addSortableColumn("Post Code", "postCode").formattedAs("Region");
@@ -45,13 +41,13 @@ public class PostCodeTableFactory {
     }
 
     /** Maps the PostCodes into the table */
-    public static void populate(TableModel tableModel, Collection<PostalCodeBean> postCodes) {
-        for (PostalCodeBean suburb : postCodes) {
+    public static void populate(TableModel tableModel, Collection<PostalCode> postCodes) {
+        for (PostalCode postalCode : postCodes) {
             Map<String, Object> row = new HashMap<String, Object>();
             Iterator<ColumnModel> iterator = tableModel.columnIterator();
             while (iterator.hasNext()) {
                 ColumnModel column = iterator.next();
-                row.put(column.getName(), getProperty(suburb, column.getIndex()));
+                row.put(column.getName(), getProperty(postalCode, column.getIndex()));
             }
             tableModel.addRow(row);
         }
@@ -62,15 +58,15 @@ public class PostCodeTableFactory {
      *
      * @return
      */
-    public static Object getProperty(PostalCodeBean postCodeBean, int columnIndex) {
+    public static Object getProperty(PostalCode postalCode, int columnIndex) {
         Object value = null;
 
         switch (columnIndex) {
             case 0:
-                value = postCodeBean.getId();
+                value = postalCode.getId();
                 break;
             case 1:
-                value = RegionRefFactory.createRef(postCodeBean.getPath(), postCodeBean.getName(), RegionRefType.PostCode);
+                value = RegionRefFactory.createRef(postalCode.getPath(), postalCode.getName(), RegionRefType.PostCode);
                 break;
         }
 

@@ -299,7 +299,7 @@ public class RegionRefFactory {
         }
 
         if (state != null) {
-            regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(state.getAbbreviation()));
+            regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(state.getAbbr()));
         }
 
         Region postCode;
@@ -317,13 +317,13 @@ public class RegionRefFactory {
         if (state != null) {
             country = state.getParent(RegionTypes.Country);
             if (country != null) {
-                regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbreviation()));
+                regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbr()));
             }
         }
     }
 
     /** Applies some useful attributes to a RegionRef */
-    private static void populateAttributes(RegionRef regionRef, RegionBean regionBean) {
+    private static void populateAttributes(RegionRef regionRef, RegionIndex regionBean) {
     }
 
     /** Applies some useful attributes to a RegionRef */  
@@ -338,11 +338,11 @@ public class RegionRefFactory {
             regionRef.setAttribute(RegionRefAttributes.POSTCODE, RegionTools.encode(postCode.getName()));
         }
         if (state != null) {
-            regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(state.getAbbreviation()));
+            regionRef.setAttribute(RegionRefAttributes.STATE, RegionTools.encode(state.getAbbr()));
 
             Region country = state.getParent(RegionTypes.Country);
             if (country != null) {
-                regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbreviation()));
+                regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbr()));
             }
         }
     }   

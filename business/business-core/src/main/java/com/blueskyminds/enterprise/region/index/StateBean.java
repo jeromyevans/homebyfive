@@ -1,7 +1,7 @@
 package com.blueskyminds.enterprise.region.index;
 
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionIndex;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.RegionTypes;
@@ -16,9 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("S")
-public class StateBean extends RegionBean {
-
-    private String abbr;
+public class StateBean extends RegionIndex {
 
     public StateBean() {
     }
@@ -26,13 +24,13 @@ public class StateBean extends RegionBean {
     public StateBean(String name, String abbr) {
         this.name = name;
         this.abbr = abbr;
-        populateAttributes();
+        populateDenormalizedAttributes();
     }
 
     public StateBean(State state) {
         super(state);
-        this.abbr = state.getAbbreviation();
-        populateAttributes();
+        this.abbr = state.getAbbr();
+        populateDenormalizedAttributes();
     }
 
     /**
@@ -44,20 +42,10 @@ public class StateBean extends RegionBean {
         return key;
     }
 
-    protected void setStateId(String stateId) {
+    public void setStateId(String stateId) {
         this.key = stateId;
     }
-
-    @Basic
-    @Column(name="Abbr")
-    public String getAbbr() {
-        return abbr;
-    }
-
-    public void setAbbr(String abbr) {
-        this.abbr = abbr;
-    }
-
+   
     @Transient
     public State getStateHandle() {
         return (State) region;
@@ -70,18 +58,33 @@ public class StateBean extends RegionBean {
     /**
      * Populates the generated/read-only properties
      */
-    public void populateAttributes() {
-        this.parentPath = getParent().getPath();
+    public void populateDenormalizedAttributes() {
         this.key = KeyGenerator.generateId(abbr);
-        this.path = PathHelper.joinPath(parentPath, key);
-        this.status = DomainObjectStatus.Valid;
-        this.type = RegionTypes.State;
+        parent = getStateHandle().getCountry().getRegionIndex();                
+        if (parent != null) {
+            this.parentPath = parent.getPath();
+            this.path = PathHelper.joinPath(parentPath, key);
+            this.status = DomainObjectStatus.Valid;
+            this.type = RegionTypes.State;
+
+            this.countryId = parent.getKey();
+            this.countryPath = parent.getPath();
+            this.countryName = parent.getName();
+        }
+
+        this.stateId = key;
+        this.statePath = path;
+        this.stateName = name;
     }
 
-    public void mergeWith(RegionBean otherState) {
+    public void mergeWith(RegionIndex otherState) {
         if (otherState instanceof StateBean) {
             getStateHandle().mergeWith(((StateBean) otherState).getStateHandle());
         }
     }
 
+    @Transient
+    public CountryBean getCountryBean() {
+        return (CountryBean) parent;
+    }
 }

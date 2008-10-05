@@ -15,11 +15,11 @@ import javax.persistence.*;
 @Entity
 public class RegionAlias extends AbstractEntity implements Named {
 
-    private Region regionHandle;
+    private Region region;
     private String name;
 
-    public RegionAlias(Region regionHandle, String name) {
-        this.regionHandle = regionHandle;
+    public RegionAlias(Region region, String name) {
+        this.region = region;
         this.name = name;
     }
 
@@ -28,13 +28,13 @@ public class RegionAlias extends AbstractEntity implements Named {
     }
 
     @ManyToOne
-    @JoinColumn(name="RegionHandleId")
-    public Region getRegionHandle() {
-        return regionHandle;
+    @JoinColumn(name="RegionId")
+    public Region getRegion() {
+        return region;
     }
 
-    public void setRegionHandle(Region regionHandle) {
-        this.regionHandle = regionHandle;
+    public void setRegion(Region region) {
+        this.region = region;
     }
 
     @Basic

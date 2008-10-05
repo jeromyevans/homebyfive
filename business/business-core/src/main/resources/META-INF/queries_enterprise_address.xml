@@ -34,16 +34,15 @@
     Get a country by its ISO 2-digit Country Code
 
     The aliases of the country are eagerly loaded
-    The country implementation is eagerly loaded
 
     Parameters:
-      iso2CountryCode:  uppercase 2 digit code  eg. AU
+      abbr:  uppercase 2 digit code  eg. AU
      -->
-    <named-query name="country.byIso2Code">
+    <named-query name="country.byAbbr">
         <query>
           select country from Country country
           left join fetch country.regionAliases
-          where country.abbreviation = :iso2CountryCode and
+          where country.abbr = :abbr and
           country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
@@ -191,7 +190,7 @@
       left join fetch state.regionAliases
       where map.parent.id = :countryId and
       state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
-      (state.abbreviation like :abbr)
+      (state.abbr like :abbr)
     </query>
   </named-query>
 
@@ -282,7 +281,6 @@
         select suburb from Suburb suburb
         left join suburb.parentRegionMaps map
         left join fetch suburb.regionAliases alias
-        left join fetch suburb.suburb
         where map.parent.id = :stateId and
         suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
         (lower(suburb.name) = :name or lower(alias.name) = :name)
@@ -306,7 +304,6 @@
         select postCode from PostalCode postCode
         left join postCode.parentRegionMaps map
         left join fetch postCode.regionAliases alias
-        left join fetch postCode.postCode
         where map.parent.id = :stateId and
         postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
         (lower(postCode.name) = :name or lower(alias.name) = :name)

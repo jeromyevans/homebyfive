@@ -18,14 +18,14 @@ import javax.persistence.DiscriminatorValue;
  */
 @Entity
 @DiscriminatorValue("T")
-public class StreetBean extends RegionBean {
+public class StreetBean extends RegionIndex {
 
     public StreetBean() {
     }
 
     public StreetBean(Region regionHandle) {
         super(regionHandle);
-        populateAttributes();
+        populateDenormalizedAttributes();
     }
 
     @Transient
@@ -33,12 +33,29 @@ public class StreetBean extends RegionBean {
         return (Street) region;
     }
 
-    public void populateAttributes() {
-        this.parentPath = getParent().getPath();
+    public void populateDenormalizedAttributes() {
         this.key = KeyGenerator.generateId(name);
-        this.path = PathHelper.joinPath(parentPath, key);
-        this.status = DomainObjectStatus.Valid;
-        this.type = RegionTypes.Suburb;
+
+        // the suburb is the parent
+        parent = getStreetHandle().getSuburb().getRegionIndex();
+
+        if (parent != null) {
+            this.path = PathHelper.joinPath(parentPath, key);
+            this.status = DomainObjectStatus.Valid;
+            this.type = RegionTypes.Street;
+
+            this.countryId = parent.getCountryId();
+            this.countryPath = parent.getCountryPath();
+            this.countryName = parent.getCountryName();
+
+            this.stateId = parent.getStateId();
+            this.statePath = parent.getStatePath();
+            this.stateName = parent.getStateName();
+
+            this.suburbId = parent.getKey();
+            this.suburbPath = parent.getPath();
+            this.suburbName = parent.getName();
+        }
     }
 
     /**
@@ -48,7 +65,7 @@ public class StreetBean extends RegionBean {
      *
      * @param regionBean
      */
-    public void mergeWith(RegionBean regionBean) {
+    public void mergeWith(RegionIndex regionBean) {
         if (regionBean instanceof StreetBean) {
             getStreetHandle().mergeWith(((StreetBean) regionBean).getStreetHandle());
         }

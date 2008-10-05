@@ -14,7 +14,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class SuburbEAO extends AbstractDAO<SuburbBean> {
+public class SuburbEAO extends AbstractDAO<Suburb> {
 
     private static final String QUERY_ALL_SUBURBS_BY_PARENT_PATH = "hp.suburbs.byParentPath";
     private static final String QUERY_ALL_SUBURBS_BY_POSTCODE = "hp.suburbs.byPostCode";
@@ -26,7 +26,7 @@ public class SuburbEAO extends AbstractDAO<SuburbBean> {
 
     @Inject   
     public SuburbEAO(EntityManager entityManager) {
-        super(entityManager, SuburbBean.class);
+        super(entityManager, Suburb.class);
     }
 
      /**
@@ -34,7 +34,7 @@ public class SuburbEAO extends AbstractDAO<SuburbBean> {
      *
      * @return Suburbs, or empty set if not found
      */
-    public Set<SuburbBean> listSuburbs(String parentPath) {
+    public Set<Suburb> listSuburbs(String parentPath) {
 
         Query query = em.createNamedQuery(QUERY_ALL_SUBURBS_BY_PARENT_PATH);
         query.setParameter(PARAM_PATH, parentPath);
@@ -46,7 +46,7 @@ public class SuburbEAO extends AbstractDAO<SuburbBean> {
      *
      * @return Suburbs, or empty set if not found
      */
-    public Set<SuburbBean> listSuburbsInPostCode(String postCodePath) {
+    public Set<Suburb> listSuburbsInPostCode(String postCodePath) {
 
         Query query = em.createNamedQuery(QUERY_ALL_SUBURBS_BY_POSTCODE);
         query.setParameter(PARAM_POSTCODE_PATH, postCodePath);
@@ -58,25 +58,12 @@ public class SuburbEAO extends AbstractDAO<SuburbBean> {
      *
      * @return State, or null if not found
      */
-    public SuburbBean lookupSuburb(String path) {
+    public Suburb lookupSuburb(String path) {
 
         Query query = em.createNamedQuery(QUERY_SUBURB_BY_PATH);
         query.setParameter(PARAM_PATH, path);
 
         return firstIn(query.getResultList());
     }
-
-
-    /**
-     * Get the suburb by its handle
-     *
-     * @return SuburbBean, or null if not found
-     */
-    public SuburbBean lookupSuburb(Suburb suburbHandle) {
-
-        Query query = em.createNamedQuery(QUERY_SUBURB_BY_HANDLE);
-        query.setParameter(PARAM_HANDLE, suburbHandle);
-
-        return firstIn(query.getResultList());
-    }
+   
 }

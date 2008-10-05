@@ -2,7 +2,7 @@ package com.blueskyminds.enterprise.address;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.graph.Suburb;
-import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionIndex;
 import com.blueskyminds.enterprise.region.index.SuburbBean;
 
 /**
@@ -26,7 +26,7 @@ public class AddressBean extends MultifieldAddress {
      * Create an AddressBean pre-populated with the attributes of a RegionBean
      * @param region
      */
-    public AddressBean(RegionBean region) {
+    public AddressBean(RegionIndex region) {
         if (region != null) {
             this.basePath = region.getPath();
             if (RegionTypes.Country.equals(region.getType())) {
@@ -41,7 +41,7 @@ public class AddressBean extends MultifieldAddress {
             }
             if (RegionTypes.Suburb.equals(region.getType())) {
                 this.suburb = region.getName();
-                this.postCode = ((SuburbBean) region).getPostCodeName();
+                this.postCode = ((SuburbBean) region).getPostalCodeName();
                 this.state = ((SuburbBean) region).getStateName();
                 this.country = ((SuburbBean) region).getCountryName();
                 countryConst = true;
@@ -83,7 +83,7 @@ public class AddressBean extends MultifieldAddress {
      * @param regionBean
      * @return
      */
-    public Address toAddress(RegionBean regionBean) {
+    public Address toAddress(RegionIndex regionBean) {
         Address address = null;
         Suburb suburb = null;
         if (regionBean != null) {

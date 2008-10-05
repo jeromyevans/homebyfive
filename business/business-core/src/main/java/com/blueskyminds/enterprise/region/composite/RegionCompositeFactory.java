@@ -131,16 +131,16 @@ public class RegionCompositeFactory {
      * @param suburb
      * @return
      */
-    public static RegionComposite createSuburb(SuburbBean suburb) {
-        RegionComposite regionComposite = new RegionComposite();
-
-        regionComposite.add(RegionRefFactory.createRef(suburb));
-        regionComposite.add(RegionRefFactory.createPostCodeRef(suburb));
-        regionComposite.add(RegionRefFactory.createStateRef(suburb));
-        regionComposite.add(RegionRefFactory.createCountryRef(suburb));
-
-        return regionComposite;
-    }
+//    public static RegionComposite createSuburb(SuburbBean suburb) {
+//        RegionComposite regionComposite = new RegionComposite();
+//
+//        regionComposite.add(RegionRefFactory.createRef(suburb));
+//        regionComposite.add(RegionRefFactory.createPostCodeRef(suburb));
+//        regionComposite.add(RegionRefFactory.createStateRef(suburb));
+//        regionComposite.add(RegionRefFactory.createCountryRef(suburb));
+//
+//        return regionComposite;
+//    }
 
     /**
      * Create a RegionComposite from a postcode (postcode | state | country)
@@ -148,15 +148,15 @@ public class RegionCompositeFactory {
      * @param postCode
      * @return
      */
-    public static RegionComposite createPostCode(PostalCodeBean postCode) {
-        RegionComposite regionComposite = new RegionComposite();
-
-        regionComposite.add(RegionRefFactory.createRef(postCode));
-        regionComposite.add(RegionRefFactory.createStateRef(postCode));
-        regionComposite.add(RegionRefFactory.createCountryRef(postCode));
-
-        return regionComposite;
-    }
+//    public static RegionComposite createPostCode(PostalCodeBean postCode) {
+//        RegionComposite regionComposite = new RegionComposite();
+//
+//        regionComposite.add(RegionRefFactory.createRef(postCode));
+//        regionComposite.add(RegionRefFactory.createStateRef(postCode));
+//        regionComposite.add(RegionRefFactory.createCountryRef(postCode));
+//
+//        return regionComposite;
+//    }
 
     /**
      * Create a RegionComposite from a postcode (postcode | state | country)
@@ -212,14 +212,14 @@ public class RegionCompositeFactory {
      * @param state
      * @return
      */
-    public static RegionComposite createState(StateBean state) {
-        RegionComposite regionComposite = new RegionComposite();
-
-        regionComposite.add(RegionRefFactory.createRef(state));
-        regionComposite.add(RegionRefFactory.createCountryRef(state));
-
-        return regionComposite;
-    }
+//    public static RegionComposite createState(StateBean state) {
+//        RegionComposite regionComposite = new RegionComposite();
+//
+//        regionComposite.add(RegionRefFactory.createRef(state));
+//        regionComposite.add(RegionRefFactory.createCountryRef(state));
+//
+//        return regionComposite;
+//    }
 
     /**
      * Create a RegionComposite from a country

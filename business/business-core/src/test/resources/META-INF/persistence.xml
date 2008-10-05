@@ -86,6 +86,7 @@ To do: many of these properties need to be able to be changed -->
     <mapping-file>META-INF/queries_enterprise_party.xml</mapping-file>    
     <mapping-file>META-INF/queries_enterprise_region.xml</mapping-file>
     <mapping-file>META-INF/queries_enterprise_tag.xml</mapping-file>
+    <mapping-file>META-INF/queries_landmine_regions.xml</mapping-file>
     
     <!-- Persistent classes from the Framework module-->
     <class>com.blueskyminds.homebyfive.framework.core.measurement.Quantity</class>
@@ -210,7 +211,6 @@ To do: many of these properties need to be able to be changed -->
         <class>com.blueskyminds.enterprise.taxpolicy.ScheduleOfTaxes</class>
 
         <!-- add the entire address package -->
-        <class>com.blueskyminds.enterprise.region.StreetHandle</class>
         <class>com.blueskyminds.enterprise.address.Address</class>
         <class>com.blueskyminds.enterprise.address.StreetAddress</class>
         <class>com.blueskyminds.enterprise.address.LotAddress</class>
@@ -224,11 +224,16 @@ To do: many of these properties need to be able to be changed -->
         <class>com.blueskyminds.enterprise.region.graph.Region</class>
         <class>com.blueskyminds.enterprise.region.graph.Country</class>
         <class>com.blueskyminds.enterprise.region.graph.State</class>
-
         <class>com.blueskyminds.enterprise.region.graph.PostalCode</class>
-
         <class>com.blueskyminds.enterprise.region.graph.Suburb</class>
+        <class>com.blueskyminds.enterprise.region.graph.Street</class>
 
+        <class>com.blueskyminds.enterprise.region.index.RegionIndex</class>
+        <class>com.blueskyminds.enterprise.region.index.CountryBean</class>
+        <class>com.blueskyminds.enterprise.region.index.StateBean</class>
+        <class>com.blueskyminds.enterprise.region.index.PostalCodeBean</class>
+        <class>com.blueskyminds.enterprise.region.index.SuburbBean</class>
+        <class>com.blueskyminds.enterprise.region.index.StreetBean</class>
 
         <!-- end of enterprise -->
     <properties>

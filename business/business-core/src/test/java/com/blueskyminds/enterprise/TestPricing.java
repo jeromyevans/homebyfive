@@ -18,6 +18,8 @@ import com.blueskyminds.enterprise.taxpolicy.GST;
 import com.blueskyminds.enterprise.taxpolicy.ScheduleOfTaxes;
 import com.blueskyminds.enterprise.taxpolicy.TaxPolicy;
 import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.State;
+import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.region.RegionFactory;
 import com.blueskyminds.homebyfive.framework.core.datetime.PeriodTypes;
 import com.blueskyminds.homebyfive.framework.core.journal.Journal;
@@ -85,7 +87,9 @@ public class TestPricing extends JPATestCase {
         LicenseAccount accountBHolder = sola.createLicenseAccount(testParty);
 
         //RegionType postCode = new RegionType(RegionTypes.PostCode);
-        Region region = new RegionFactory().createPostCode("TestRegion");
+        Country australia = new RegionFactory().createCountry("Australia", "AU");
+        State nsw = new RegionFactory().createState("New South Wales", "NSW", australia);
+        Region region = new RegionFactory().createPostCode("TestRegion", nsw);
 
         // create a new license in the unallocated account
         License testLicenseA = sol.createLicense(new RegionLicense(region, LicenseTypes.Exclusive), sola.getUnallocatedAccount());

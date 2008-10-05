@@ -6,7 +6,7 @@ import com.blueskyminds.homebyfive.framework.core.alias.Aliased;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.homebyfive.framework.core.tools.NamedTools;
 import com.blueskyminds.enterprise.region.RegionTypes;
-import com.blueskyminds.enterprise.region.index.RegionBean;
+import com.blueskyminds.enterprise.region.index.RegionIndex;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -32,13 +32,16 @@ import java.util.HashSet;
 @DiscriminatorValue("R")
 public abstract class Region extends AbstractEntity implements Named, Aliased {
 
-    private String name;
-    private String abbreviation;    
-    private RegionTypes type;
+    protected String parentPath;
+    protected String path;
+    protected String key;
+    protected String name;
+    protected String abbr;
+    protected RegionTypes type;
     private Set<RegionAlias> aliases;
-    private Set<RegionHierarchy> parentRegions;
+    private Set<RegionHierarchy> parentRegionMaps;
     private Set<RegionHierarchy> childRegions;
-    private Set<RegionBean> regionBeans;
+    private RegionIndex regionIndex;
     private DomainObjectStatus status;
 
     protected Region(String name, RegionTypes type) {
@@ -63,12 +66,44 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
 
     private void init() {
         aliases = new HashSet<RegionAlias>();
-        parentRegions = new HashSet<RegionHierarchy>();
+        parentRegionMaps = new HashSet<RegionHierarchy>();
         childRegions = new HashSet<RegionHierarchy>();
-        regionBeans = new HashSet<RegionBean>();
         status = DomainObjectStatus.Valid;
     }
 
+    /** The unique path of this region's primary parent */
+    @Basic
+    @Column(name="ParentPath")
+    public String getParentPath() {
+        return parentPath;
+    }
+
+    protected void setParentPath(String parentPath) {
+        this.parentPath = parentPath;
+    }
+    
+    /** The unique path of this region */
+    @Basic
+    @Column(name="Path")
+    public String getPath() {
+        return path;
+    }
+
+    protected void setPath(String path) {
+        this.path = path;
+    }
+
+    /** unique key within the parent path */
+    @Basic
+    @Column(name="KeyValue")
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+    
     @Basic
     @Column(name="Name")
     public String getName() {
@@ -81,12 +116,12 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
 
     @Basic
     @Column(name="Abbr")
-    public String getAbbreviation() {
-        return abbreviation;
+    public String getAbbr() {
+        return abbr;
     }
 
-    public void setAbbreviation(String abbreviation) {
-        this.abbreviation = abbreviation;
+    public void setAbbr(String abbr) {
+        this.abbr = abbr;
     }
 
     @Enumerated
@@ -107,7 +142,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
      *
      * @return
      */
-    @OneToMany(mappedBy = "regionHandle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     protected Set<RegionAlias> getRegionAliases() {
         return aliases;
     }
@@ -173,8 +208,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
 //        }
 //        return region;
 //    }
-
-    @Transient
 //    protected abstract Region getRegionTarget();
     
     /**
@@ -183,12 +216,12 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
      * @return
      */
     @OneToMany(mappedBy = "child", fetch = FetchType.LAZY)
-    protected Set<RegionHierarchy> getParentRegionMaps() {
-        return parentRegions;
+    public Set<RegionHierarchy> getParentRegionMaps() {
+        return parentRegionMaps;
     }
 
-    protected void setParentRegionMaps(Set<RegionHierarchy> parentRegions) {
-        this.parentRegions = parentRegions;
+    public void setParentRegionMaps(Set<RegionHierarchy> parentRegions) {
+        this.parentRegionMaps = parentRegions;
     }
 
     /**
@@ -205,18 +238,14 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
         this.childRegions = childRegions;
     }
 
-    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    protected Set<RegionBean> getRegionBeans() {
-        return regionBeans;
+    @OneToOne(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public RegionIndex getRegionIndex() {
+        return regionIndex;
     }
 
-    protected void setRegionBeans(Set<RegionBean> regionBeans) {
-        this.regionBeans = regionBeans;
-    }
-
-    public void addRegionBean(RegionBean regionBean) {
-        regionBeans.add(regionBean);
-    }
+    public void setRegionIndex(RegionIndex regionIndex) {
+        this.regionIndex = regionIndex;
+    }    
 
     @Enumerated
     @Column(name="Status")
@@ -310,7 +339,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
         RegionHierarchy childEntryToRemove = null;
         RegionHierarchy parentEntryToRemove = null;
 
-        for (RegionHierarchy map : parentRegions) {
+        for (RegionHierarchy map : parentRegionMaps) {
             if (map.getParent().equals(parentHandle)) {
                 parentEntryToRemove = map;
                 break;
@@ -318,7 +347,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
         }
 
         if (parentEntryToRemove != null) {
-            removed = parentRegions.remove(parentEntryToRemove);
+            removed = parentRegionMaps.remove(parentEntryToRemove);
         }
 
         for (RegionHierarchy map : parentHandle.getChildRegionMaps()) {
@@ -336,7 +365,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
     }
 
     private boolean doAddParentMap(RegionHierarchy map) {
-        return parentRegions.add(map);
+        return parentRegionMaps.add(map);
     }
 
     private boolean doAddChildMap(RegionHierarchy map) {
@@ -400,7 +429,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
      * @return true if this does
      */
     public boolean hasParent(Region regionHandle) {
-        for (RegionHierarchy map : parentRegions) {
+        for (RegionHierarchy map : parentRegionMaps) {
             if (map.getParent().equals(regionHandle)) {
                 return true;
             }
@@ -415,7 +444,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
      * @return
      */
      public Region getParent(RegionTypes type) {
-        for (RegionHierarchy map : parentRegions) {
+        for (RegionHierarchy map : parentRegionMaps) {
             if (type.equals(map.getParent().getType())) {
                 return map.getParent();
             }
@@ -510,6 +539,12 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
          for (Region child : childrenToUpdate) {
              child.removeParentRegion(anotherRegion);
          }
-     }
+    }
 
+    public abstract void populateAttributes();
+
+    @PrePersist
+    void prePersist() {
+        populateAttributes();
+    }
 }
