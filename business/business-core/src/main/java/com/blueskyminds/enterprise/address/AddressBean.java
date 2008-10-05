@@ -2,6 +2,9 @@ package com.blueskyminds.enterprise.address;
 
 import com.blueskyminds.enterprise.region.RegionTypes;
 import com.blueskyminds.enterprise.region.graph.Suburb;
+import com.blueskyminds.enterprise.region.graph.Region;
+import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.index.RegionIndex;
 import com.blueskyminds.enterprise.region.index.SuburbBean;
 
@@ -26,24 +29,24 @@ public class AddressBean extends MultifieldAddress {
      * Create an AddressBean pre-populated with the attributes of a RegionBean
      * @param region
      */
-    public AddressBean(RegionIndex region) {
+    public AddressBean(Region region) {
         if (region != null) {
             this.basePath = region.getPath();
             if (RegionTypes.Country.equals(region.getType())) {
-                this.country = ((SuburbBean) region).getCountryName();
+                this.country = ((Country) region).getName();
                 countryConst = true;
             }
             if (RegionTypes.State.equals(region.getType())) {
-                this.state = ((SuburbBean) region).getStateName();
-                this.country = ((SuburbBean) region).getCountryName();
+                this.state = ((State) region).getName();
+//                this.country = ((State) region).getCountry().getName();
                 countryConst = true;
                 stateConst = true;
             }
             if (RegionTypes.Suburb.equals(region.getType())) {
                 this.suburb = region.getName();
-                this.postCode = ((SuburbBean) region).getPostalCodeName();
-                this.state = ((SuburbBean) region).getStateName();
-                this.country = ((SuburbBean) region).getCountryName();
+//                this.postCode = ((Suburb) region).getPostCodeName();
+//                this.state = ((Suburb) region).getStateName();
+//                this.country = ((Suburb) region).getCountryName();
                 countryConst = true;
                 stateConst = true;
                 postCodeConst = true;
@@ -51,7 +54,7 @@ public class AddressBean extends MultifieldAddress {
             }
         }
     }
-
+    
     public String getBasePath() {
         return basePath;
     }
@@ -83,12 +86,12 @@ public class AddressBean extends MultifieldAddress {
      * @param regionBean
      * @return
      */
-    public Address toAddress(RegionIndex regionBean) {
+    public Address toAddress(Region regionBean) {
         Address address = null;
         Suburb suburb = null;
         if (regionBean != null) {
             if (RegionTypes.Suburb.equals(regionBean.getType())) {
-                suburb = (Suburb) regionBean.getRegion();
+                suburb = (Suburb) regionBean;
 
                 address = super.augmentWithKnown(suburb);
             }
