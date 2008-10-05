@@ -51,6 +51,13 @@ public class Street extends Region {
         populateAttributes();
     }
 
+   
+    public Street(Suburb suburb) {
+        super("", RegionTypes.Street);
+        addParentRegion(suburb);
+        populateAttributes();
+    }
+    
     protected Street() {
     }
 

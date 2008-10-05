@@ -54,7 +54,7 @@ public class Country extends Region {
         populateAttributes();
     }
 
-    protected Country() {
+    public Country() {
     }
 
     /**

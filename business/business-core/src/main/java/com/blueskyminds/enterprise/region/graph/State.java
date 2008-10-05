@@ -38,6 +38,13 @@ public class State extends Region {
         populateAttributes();
     }
 
+    /** Used for editing a new state */
+    public State(Country country) {
+        super("", RegionTypes.State);
+        this.addParentRegion(country);
+        populateAttributes();
+    }
+
     protected State() {
     }
 

@@ -37,6 +37,13 @@ public class Suburb extends Region {
         populateAttributes();
     }
 
+    /*Use for editing a new suburb */
+    public Suburb(State state) {
+        super("", RegionTypes.Suburb);
+        addParentRegion(state);
+        populateAttributes();
+    }
+    
     protected Suburb() {
     }
 

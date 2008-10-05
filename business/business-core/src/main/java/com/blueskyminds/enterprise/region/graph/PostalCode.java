@@ -31,6 +31,13 @@ public class PostalCode extends Region {
         populateAttributes();
     }
 
+    /** Used to edit a new postalcode */
+    public PostalCode(State state) {
+        super("", RegionTypes.PostCode);
+        addParentRegion(state);
+        populateAttributes();
+    }
+    
     protected PostalCode() {
     }
     
