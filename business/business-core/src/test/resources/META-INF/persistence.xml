@@ -392,15 +392,15 @@ To do: many of these properties need to be able to be changed -->
     <class>com.blueskyminds.struts2.securityplugin.model.UserRole</class>
 
     <!-- Landmine Applications and Users -->
-    <class>com.blueskyminds.housepad.core.user.model.applications.Application</class>
-    <class>com.blueskyminds.housepad.core.user.model.applications.ApplicationSetting</class>
+    <class>com.blueskyminds.enterprise.user.model.applications.Application</class>
+    <class>com.blueskyminds.enterprise.user.model.applications.ApplicationSetting</class>
 
-    <class>com.blueskyminds.housepad.core.user.model.users.UserGroup</class>
-    <class>com.blueskyminds.housepad.core.user.model.users.UserGroupApplicationMap</class>
+    <class>com.blueskyminds.enterprise.user.model.users.UserGroup</class>
+    <class>com.blueskyminds.enterprise.user.model.users.UserGroupApplicationMap</class>
 
-    <class>com.blueskyminds.housepad.core.user.model.users.UserProfile</class>
-    <class>com.blueskyminds.housepad.core.user.model.users.UserApplicationMap</class>
-    <class>com.blueskyminds.housepad.core.user.model.users.UserApplicationSetting</class>
+    <class>com.blueskyminds.enterprise.user.model.users.UserProfile</class>
+    <class>com.blueskyminds.enterprise.user.model.users.UserApplicationMap</class>
+    <class>com.blueskyminds.enterprise.user.model.users.UserApplicationSetting</class>
 
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>

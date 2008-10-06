@@ -5,7 +5,7 @@ import com.blueskyminds.struts2.securityplugin.model.UserAccount;
 import com.blueskyminds.struts2.securityplugin.token.TokenRegistry;
 import com.blueskyminds.homebyfive.framework.core.tools.CryptoTools;
 import com.blueskyminds.homebyfive.framework.core.tools.CryptoException;
-import com.blueskyminds.housepad.core.user.model.token.TokenProvider;
+import com.blueskyminds.enterprise.user.model.token.TokenProvider;
 import com.google.inject.Inject;
 
 /**
