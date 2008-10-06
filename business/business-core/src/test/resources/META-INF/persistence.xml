@@ -235,6 +235,9 @@ To do: many of these properties need to be able to be changed -->
         <class>com.blueskyminds.enterprise.region.index.SuburbBean</class>
         <class>com.blueskyminds.enterprise.region.index.StreetBean</class>
 
+        <class>com.blueskyminds.enterprise.photo.Photo</class>
+        <class>com.blueskyminds.enterprise.photo.PhotoTagMap</class>
+
         <!-- end of enterprise -->
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>

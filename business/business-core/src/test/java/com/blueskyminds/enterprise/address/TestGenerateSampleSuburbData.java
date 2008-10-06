@@ -49,12 +49,6 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
     private static final String TEST_ENTERPRISE_PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";
     private static final String TARGET_PATH = "src/test/resources/";
 
-    private static final String[] tablesOfInterest = {
-            "REGION",
-            "REGIONALIAS",
-            "REGIONHIERARCHY",
-            "REGIONINDEX"            
-    };
     private static final String AU = "AU";
 
     public TestGenerateSampleSuburbData() {
@@ -112,7 +106,7 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
         CsvOptions csvOptions = new CsvOptions();
         csvOptions.setQuoteOutput(false);
         try {
-            CsvTextReader csvReader = new CsvTextReader(ResourceTools.openStream("pc-full_20080303.csv"), csvOptions);
+            CsvTextReader csvReader = new CsvTextReader(ResourceTools.openStream("/src/resources/pc-full_20080303.csv"), csvOptions);
             Map<String, State> stateHash = new HashMap<String, State>();
             Map<String, PostalCode> postCodeHash = new HashMap<String, PostalCode>();
             Map<String, Map<String, Suburb>> suburbHash = new HashMap<String, Map<String, Suburb>>();
@@ -136,52 +130,56 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
                         String category = StringUtils.lowerCase(StringUtils.trim(values[9]));
 
                         if (SUBURB_CATEGORY.equals(category)) {
-                            // lookup the state...
-                            if (stateHash.containsKey(stateValue)) {
-                                state = stateHash.get(stateValue);
-                            } else {
-                                //state = australia.getStateByAbbr(stateValue);
-                                StopWatch stopWatch = new StopWatch();
-                                stopWatch.start();
-                                state = addressDAO.lookupState(stateValue, australia);
-                                stateHash.put(stateValue, state);
-                                // prepare for new suburb hash
-                                suburbHash.put(stateValue, new HashMap<String, Suburb>());
-                                stopWatch.stop();
-                                LOG.info("state query: "+stopWatch);
-                            }
+
+                            // ignore district offices
+                            if (!StringUtils.contains(suburbValue, " DC")) {
+                                // lookup the state...
+                                if (stateHash.containsKey(stateValue)) {
+                                    state = stateHash.get(stateValue);
+                                } else {
+                                    //state = australia.getStateByAbbr(stateValue);
+                                    StopWatch stopWatch = new StopWatch();
+                                    stopWatch.start();
+                                    state = addressDAO.lookupState(stateValue, australia);
+                                    stateHash.put(stateValue, state);
+                                    // prepare for new suburb hash
+                                    suburbHash.put(stateValue, new HashMap<String, Suburb>());
+                                    stopWatch.stop();
+                                    LOG.info("state query: "+stopWatch);
+                                }
 
 
-                            PostalCode postCodeHandle = postCodeHash.get(postCodeValue);
-                            if (postCodeHandle == null) {
-                                // get the post code  - if it doesn't exist already, create a new instance and add it to the
-                                /// state
-                                //postCode = new PostCode(postCodeValue);
-                                postCodeHandle = addressService.createPostCode(postCodeValue, state);
-                                postCodes++;
-                                postCodeHash.put(postCodeValue, postCodeHandle);
-                            }
+                                PostalCode postCodeHandle = postCodeHash.get(postCodeValue);
+                                if (postCodeHandle == null) {
+                                    // get the post code  - if it doesn't exist already, create a new instance and add it to the
+                                    /// state
+                                    //postCode = new PostCode(postCodeValue);
+                                    postCodeHandle = addressService.createPostCode(postCodeValue, state);
+                                    postCodes++;
+                                    postCodeHash.put(postCodeValue, postCodeHandle);
+                                }
 
-                            // check if the suburb already exists
-                            // NOTE: duplicate check is disabled because production data was built without this
-                            // duplicatules will need to be removed via a merge operation
-                            //SuburbHandle suburbHandle = suburbHash.get(stateValue).get(suburbValue);
-                            //if (suburbHandle == null) {
-                                // create a new one
-                                Suburb suburbHandle = addressService.createSuburb(suburbValue, state);
-                                suburbHash.get(stateValue).put(suburbValue, suburbHandle);
-                                suburbs++;
-                            //}
-                            postCodeHandle.addChildRegion(suburbHandle);
+                                // check if the suburb already exists
+                                // NOTE: duplicate check is disabled because production data was built without this
+                                // duplicatules will need to be removed via a merge operation
+                                //SuburbHandle suburbHandle = suburbHash.get(stateValue).get(suburbValue);
+                                //if (suburbHandle == null) {
+                                    // create a new one
+                                    Suburb suburbHandle = addressService.createSuburb(suburbValue, state);
+                                    suburbHash.get(stateValue).put(suburbValue, suburbHandle);
+                                    suburbs++;
+                                //}
+                                postCodeHandle.addChildRegion(suburbHandle);
 
-                            em.persist(postCodeHandle);
-                            em.persist(suburbHandle);
+                                em.persist(postCodeHandle);
+                                em.persist(suburbHandle);
 
-                            if (LOG.isInfoEnabled()) {
-                                if (suburbs % 100 == 0) {
-                                    LOG.info(suburbs+" suburbs "+postCodes+" postcodes");
-                                    DebugTools.printAvailableHeap();
-                                    em.flush();
+                                if (LOG.isInfoEnabled()) {
+                                    if (suburbs % 100 == 0) {
+                                        LOG.info(suburbs+" suburbs "+postCodes+" postcodes");
+                                        DebugTools.printAvailableHeap();
+                                        em.flush();
+                                    }
                                 }
                             }
                         }
@@ -206,7 +204,7 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
         initialiseAustralianStates(addressService, em);
         initialiseAustralianSuburbs(addressService, em);
 
-        for (String table : tablesOfInterest) {
+        for (String table : AddressTestTools.REGION_TABLES) {
             unloadTable(getConnection(), table);
         }
     }

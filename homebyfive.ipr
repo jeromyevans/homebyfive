@@ -346,6 +346,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/business/business.iml" filepath="$PROJECT_DIR$/business/business.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/business-core/business-core.iml" filepath="$PROJECT_DIR$/business/business-core/business-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/business-test/business-test.iml" filepath="$PROJECT_DIR$/business/business-test/business-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-core/framework-core.iml" filepath="$PROJECT_DIR$/framework/framework-core/framework-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" filepath="$PROJECT_DIR$/framework/framework-guice/framework-guice.iml" />

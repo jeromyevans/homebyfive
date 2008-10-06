@@ -1,6 +1,7 @@
 package com.blueskyminds.enterprise.photo;
 
 import com.blueskyminds.enterprise.tag.Tag;
+import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
 @Entity
-public class PhotoTagMap {
+public class PhotoTagMap extends AbstractEntity {
 
     private Photo photo;
 

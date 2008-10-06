@@ -25,7 +25,13 @@
       <artifactId>warp-persist</artifactId>
       <version>1.0</version>
       <scope>compile</scope>
-    </dependency>    
+    </dependency>
+    <dependency>
+      <groupId>com.blueskyminds.homebyfive.business</groupId>
+      <artifactId>business-test</artifactId>
+      <version>${pom.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   
 </project>

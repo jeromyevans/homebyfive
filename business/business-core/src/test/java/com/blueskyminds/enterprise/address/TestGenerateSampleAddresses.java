@@ -56,13 +56,12 @@ public class TestGenerateSampleAddresses extends JPATestCase {
 
     // ------------------------------------------------------------------------------------------------------
 
-    private static final String TARGET_PATH = "src/test/resources/";
+    private static final String ADDRESS_SOURCE = "exampleAddressesSml.csv";
+    private static final String TARGET_PATH = "../business-test/src/test/resources/";
 
     // ------------------------------------------------------------------------------------------------------
 
-    private static final String[] tablesOfInterest = {
-            "STREET",
-            "SUBURBSTREETMAP",
+    public static final String[] ADDRESS_TABLES = {
             "ADDRESS"
     };
 
@@ -73,7 +72,7 @@ public class TestGenerateSampleAddresses extends JPATestCase {
     public void testGenerateAddresses() throws Exception {
         CsvOptions csvOptions = new CsvOptions();
         csvOptions.setQuoteOutput(false);
-        CsvTextReader csvReader = new CsvTextReader(ResourceTools.openStream("exampleAddressesSml.csv"), csvOptions);
+        CsvTextReader csvReader = new CsvTextReader(ResourceTools.openStream(ADDRESS_SOURCE), csvOptions);
         String addressText;
         Address address;
         AddressService addressService = new AddressServiceImpl(em);
@@ -100,7 +99,7 @@ public class TestGenerateSampleAddresses extends JPATestCase {
         }
 
         LOG.info("Created "+count+" addresses.  Unloading tables");
-        for (String table : tablesOfInterest) {
+        for (String table : ADDRESS_TABLES) {
             unloadTable(getConnection(), table, TARGET_PATH);
         }        
     }

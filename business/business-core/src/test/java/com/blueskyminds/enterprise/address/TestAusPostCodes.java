@@ -14,7 +14,7 @@ import java.util.Collection;
 public class TestAusPostCodes extends TestCase {
 
     public void testReadCSV() throws Exception {
-        Collection<AusPostCodes.State> states = AusPostCodes.readCsv(ResourceTools.openStream("/pc-full_20080303.csv"));
+        Collection<AusPostCodes.State> states = AusPostCodes.readCsv(ResourceTools.openStream("/src/resources/pc-full_20080303.csv"));
         assertNotNull(states);
         assertEquals(8, states.size());
     }

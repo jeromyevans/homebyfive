@@ -146,20 +146,14 @@ public class AddressTestTools extends TestTools {
         return new PlainTextAddress("1/22 Spruson Street, Neutral Bay NSW 2089");
     }
 
-    private static final String[] COUNTRY_SQL_FILES = {
-            "COUNTRY",
-            "POSTCODE",
-            "STATE",
-            "SUBURB",
-            "REGIONHANDLE",
+    public static final String[] REGION_TABLES = {
+            "REGION",
             "REGIONALIAS",
-            "REGIONHIERARCHY"
-
+            "REGIONHIERARCHY",
+            "REGIONINDEX"
     };
 
     private static final String[] ADDRESS_SQL_FILES = {
-            "STREET",
-            "SUBURBSTREETMAP",
             "ADDRESS"
     };
 
@@ -183,7 +177,7 @@ public class AddressTestTools extends TestTools {
     /** Initialise all of the reference region data.
      * This method uses a direct JDBC connection */
     public static void initialiseCountryList(Connection connection) {
-         applySQLFiles(connection, COUNTRY_SQL_FILES);
+         applySQLFiles(connection, REGION_TABLES);
     }
 
     /** Initialise a bunch of sample addresses for testing
@@ -210,7 +204,7 @@ public class AddressTestTools extends TestTools {
 
     // ------------------------------------------------------------------------------------------------------
 
-    private static final String ADDRESS_PATTERNS_FILE_NAME = "addressSubstitutions.csv";
+    private static final String ADDRESS_PATTERNS_FILE_NAME = "/src/resources/addressSubstitutions.csv";
 
     /** Loads a CSV file of all the patterns defined for cleansing addresses */
     public static void initialiseAddressSubstitutionPatterns(EntityManager em) {

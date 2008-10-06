@@ -153,7 +153,7 @@ public class TestAddressPatternMatcher extends JPATestCase {
 
         CsvOptions csvOptions = new CsvOptions();
         csvOptions.setQuoteOutput(false);
-        CsvTextReader csvReader = new CsvTextReader(ResourceTools.openStream("/exampleAddressesSml.csv"), csvOptions);
+        CsvTextReader csvReader = new CsvTextReader(ResourceTools.openStream("/src/resources/exampleAddressesSml.csv"), csvOptions);
         String addressText;
         Address streetAddress;
 
