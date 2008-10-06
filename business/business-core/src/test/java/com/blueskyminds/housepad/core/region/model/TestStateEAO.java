@@ -1,9 +1,9 @@
 package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
-import com.blueskyminds.enterprise.region.dao.StateEAO;
-import com.blueskyminds.enterprise.region.graph.State;
-import com.blueskyminds.enterprise.region.graph.Country;
+import com.blueskyminds.business.region.dao.StateEAO;
+import com.blueskyminds.business.region.graph.State;
+import com.blueskyminds.business.region.graph.Country;
 
 /**
  * Date Started: 3/03/2008

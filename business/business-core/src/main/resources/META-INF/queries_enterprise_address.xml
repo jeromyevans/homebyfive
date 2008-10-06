@@ -383,7 +383,7 @@
           left join parentMap1.parent state
           left join state.parentRegionMaps parentMap2
           where parentMap2.parent = :country and
-          state.class = com.blueskyminds.enterprise.region.graph.State and
+          state.class = com.blueskyminds.business.region.graph.State and
           suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
@@ -428,7 +428,7 @@
           left join parentMap1.parent state
           left join state.parentRegionMaps parentMap2
           where parentMap2.parent = :country and
-          state.class = com.blueskyminds.enterprise.region.graph.State
+          state.class = com.blueskyminds.business.region.graph.State
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
@@ -465,7 +465,7 @@
           left join parentMap0.parent suburb
           left join suburb.parentRegionMaps parentMap1
           left join parentMap1.parent postCode
-          where postCode.class = com.blueskyminds.enterprise.region.graph.PostalCode
+          where postCode.class = com.blueskyminds.business.region.graph.PostalCode
           and postCode = :postCode
 
         </query>
@@ -505,7 +505,7 @@
              left join parentMap.parent suburbPostCode
              left join address.postCode postCode
              where (postCode = :postCode) or
-                   (suburbPostCode.class = com.blueskyminds.enterprise.region.graph.PostalCode and suburbPostCode = :postCode)
+                   (suburbPostCode.class = com.blueskyminds.business.region.graph.PostalCode and suburbPostCode = :postCode)
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>

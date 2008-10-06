@@ -120,59 +120,59 @@ To do: many of these properties need to be able to be changed -->
     <!--- end of framework -->
 
      <!-- enterprise persistent entities -->
-        <class>com.blueskyminds.enterprise.Enterprise</class>
-        <class>com.blueskyminds.enterprise.Schedule</class>
+        <class>com.blueskyminds.business.Enterprise</class>
+        <class>com.blueskyminds.business.Schedule</class>
 
-        <class>com.blueskyminds.enterprise.party.Party</class>
-        <class>com.blueskyminds.enterprise.party.Organisation</class>
-        <class>com.blueskyminds.enterprise.party.Company</class>
-        <class>com.blueskyminds.enterprise.party.Individual</class>
-        <class>com.blueskyminds.enterprise.party.SystemParty</class>
-        <class>com.blueskyminds.enterprise.party.IndividualRelationship</class>
-        <class>com.blueskyminds.enterprise.party.IndividualRole</class>
-        <class>com.blueskyminds.enterprise.party.IndividualRoleMap</class>
-        <class>com.blueskyminds.enterprise.party.ScheduleOfParties</class>
-        <class>com.blueskyminds.enterprise.party.PartyTagMap</class>
+        <class>com.blueskyminds.business.party.Party</class>
+        <class>com.blueskyminds.business.party.Organisation</class>
+        <class>com.blueskyminds.business.party.Company</class>
+        <class>com.blueskyminds.business.party.Individual</class>
+        <class>com.blueskyminds.business.party.SystemParty</class>
+        <class>com.blueskyminds.business.party.IndividualRelationship</class>
+        <class>com.blueskyminds.business.party.IndividualRole</class>
+        <class>com.blueskyminds.business.party.IndividualRoleMap</class>
+        <class>com.blueskyminds.business.party.ScheduleOfParties</class>
+        <class>com.blueskyminds.business.party.PartyTagMap</class>
 
-        <class>com.blueskyminds.enterprise.contact.PartyPOC</class>
-        <class>com.blueskyminds.enterprise.contact.PointOfContact</class>
-        <class>com.blueskyminds.enterprise.contact.POCRoleMap</class>
-        <class>com.blueskyminds.enterprise.contact.Website</class>
-        <class>com.blueskyminds.enterprise.contact.ContactAddress</class>
-        <class>com.blueskyminds.enterprise.contact.PhoneNumber</class>
-        <class>com.blueskyminds.enterprise.contact.EmailAddress</class>
-        <class>com.blueskyminds.enterprise.contact.POCTagMap</class>
-        <class>com.blueskyminds.enterprise.contact.interaction.POCInteraction</class>
-        <class>com.blueskyminds.enterprise.contact.interaction.PCIMap</class>
+        <class>com.blueskyminds.business.contact.PartyPOC</class>
+        <class>com.blueskyminds.business.contact.PointOfContact</class>
+        <class>com.blueskyminds.business.contact.POCRoleMap</class>
+        <class>com.blueskyminds.business.contact.Website</class>
+        <class>com.blueskyminds.business.contact.ContactAddress</class>
+        <class>com.blueskyminds.business.contact.PhoneNumber</class>
+        <class>com.blueskyminds.business.contact.EmailAddress</class>
+        <class>com.blueskyminds.business.contact.POCTagMap</class>
+        <class>com.blueskyminds.business.contact.interaction.POCInteraction</class>
+        <class>com.blueskyminds.business.contact.interaction.PCIMap</class>
 
-        <class>com.blueskyminds.enterprise.tag.Tag</class>
+        <class>com.blueskyminds.business.tag.Tag</class>
 
-        <class>com.blueskyminds.enterprise.pricing.Contract</class>
-        <class>com.blueskyminds.enterprise.pricing.ScheduleOfContracts</class>
-        <class>com.blueskyminds.enterprise.pricing.ContractProductPriceMap</class>
-        <class>com.blueskyminds.enterprise.pricing.ContractProductPricePk</class>
-        <class>com.blueskyminds.enterprise.pricing.policy.PricingPolicy</class>
-        <class>com.blueskyminds.enterprise.pricing.policy.FixedPrice</class>
-        <class>com.blueskyminds.enterprise.pricing.policy.RecurringPrice</class>
-        <class>com.blueskyminds.enterprise.pricing.policy.TransactionFee</class>
-        <class>com.blueskyminds.enterprise.pricing.Product</class>
-        <class>com.blueskyminds.enterprise.pricing.Price</class>
-        <class>com.blueskyminds.enterprise.pricing.Money</class>
-        <class>com.blueskyminds.enterprise.pricing.Fee</class>
-        <class>com.blueskyminds.enterprise.pricing.ProductList</class>
-        <class>com.blueskyminds.enterprise.pricing.terms.Terms</class>
-        <class>com.blueskyminds.enterprise.pricing.terms.PrepaidInFull</class>
-        <class>com.blueskyminds.enterprise.pricing.terms.PrepaidRecurring</class>
-        <class>com.blueskyminds.enterprise.pricing.JournalisableDocument</class>
-        <class>com.blueskyminds.enterprise.pricing.CommercialDocument</class>
-        <class>com.blueskyminds.enterprise.pricing.CommercialDocumentItem</class>
-        <class>com.blueskyminds.enterprise.pricing.ScheduleOfOrders</class>
-        <class>com.blueskyminds.enterprise.pricing.Order</class>
-        <class>com.blueskyminds.enterprise.pricing.ScheduleOfInvoices</class>
-        <class>com.blueskyminds.enterprise.pricing.Invoice</class>
-        <class>com.blueskyminds.enterprise.pricing.ScheduleOfReceipts</class>
-        <class>com.blueskyminds.enterprise.pricing.Receipt</class>
-        <class>com.blueskyminds.enterprise.pricing.ReceiptMoneyAllocation</class>
+        <class>com.blueskyminds.business.pricing.Contract</class>
+        <class>com.blueskyminds.business.pricing.ScheduleOfContracts</class>
+        <class>com.blueskyminds.business.pricing.ContractProductPriceMap</class>
+        <class>com.blueskyminds.business.pricing.ContractProductPricePk</class>
+        <class>com.blueskyminds.business.pricing.policy.PricingPolicy</class>
+        <class>com.blueskyminds.business.pricing.policy.FixedPrice</class>
+        <class>com.blueskyminds.business.pricing.policy.RecurringPrice</class>
+        <class>com.blueskyminds.business.pricing.policy.TransactionFee</class>
+        <class>com.blueskyminds.business.pricing.Product</class>
+        <class>com.blueskyminds.business.pricing.Price</class>
+        <class>com.blueskyminds.business.pricing.Money</class>
+        <class>com.blueskyminds.business.pricing.Fee</class>
+        <class>com.blueskyminds.business.pricing.ProductList</class>
+        <class>com.blueskyminds.business.pricing.terms.Terms</class>
+        <class>com.blueskyminds.business.pricing.terms.PrepaidInFull</class>
+        <class>com.blueskyminds.business.pricing.terms.PrepaidRecurring</class>
+        <class>com.blueskyminds.business.pricing.JournalisableDocument</class>
+        <class>com.blueskyminds.business.pricing.CommercialDocument</class>
+        <class>com.blueskyminds.business.pricing.CommercialDocumentItem</class>
+        <class>com.blueskyminds.business.pricing.ScheduleOfOrders</class>
+        <class>com.blueskyminds.business.pricing.Order</class>
+        <class>com.blueskyminds.business.pricing.ScheduleOfInvoices</class>
+        <class>com.blueskyminds.business.pricing.Invoice</class>
+        <class>com.blueskyminds.business.pricing.ScheduleOfReceipts</class>
+        <class>com.blueskyminds.business.pricing.Receipt</class>
+        <class>com.blueskyminds.business.pricing.ReceiptMoneyAllocation</class>
 
         <!--<class>com.blueskyminds.enterprise.license.License</class>-->
         <!--<class>com.blueskyminds.enterprise.license.RegionLicense</class>-->
@@ -180,63 +180,63 @@ To do: many of these properties need to be able to be changed -->
         <!--<class>com.blueskyminds.enterprise.region.RegionScheme</class>-->
 
 
-        <class>com.blueskyminds.enterprise.accounting.ChartOfAccounts</class>
-        <class>com.blueskyminds.enterprise.accounting.FinancialJournal</class>
-        <class>com.blueskyminds.enterprise.accounting.FinancialTransaction</class>
-        <class>com.blueskyminds.enterprise.accounting.Account</class>
-        <class>com.blueskyminds.enterprise.accounting.AccountEntry</class>
-        <class>com.blueskyminds.enterprise.accounting.DetailAccount</class>
-        <class>com.blueskyminds.enterprise.accounting.SummaryAccount</class>
+        <class>com.blueskyminds.business.accounting.ChartOfAccounts</class>
+        <class>com.blueskyminds.business.accounting.FinancialJournal</class>
+        <class>com.blueskyminds.business.accounting.FinancialTransaction</class>
+        <class>com.blueskyminds.business.accounting.Account</class>
+        <class>com.blueskyminds.business.accounting.AccountEntry</class>
+        <class>com.blueskyminds.business.accounting.DetailAccount</class>
+        <class>com.blueskyminds.business.accounting.SummaryAccount</class>
 
-        <class>com.blueskyminds.enterprise.license.ScheduleOfLicenses</class>
-        <class>com.blueskyminds.enterprise.license.License</class>
-        <class>com.blueskyminds.enterprise.license.LicenseEntry</class>
-        <class>com.blueskyminds.enterprise.license.LicenseJournal</class>
-        <class>com.blueskyminds.enterprise.license.LicenseTransaction</class>
-        <class>com.blueskyminds.enterprise.license.ScheduleOfLicenseAccounts</class>
-        <class>com.blueskyminds.enterprise.license.LicenseAccount</class>
-        <class>com.blueskyminds.enterprise.license.UnallocatedAccount</class>
-        <class>com.blueskyminds.enterprise.license.UnavailableAccount</class>
-        <class>com.blueskyminds.enterprise.license.LicenseAllocation</class>
+        <class>com.blueskyminds.business.license.ScheduleOfLicenses</class>
+        <class>com.blueskyminds.business.license.License</class>
+        <class>com.blueskyminds.business.license.LicenseEntry</class>
+        <class>com.blueskyminds.business.license.LicenseJournal</class>
+        <class>com.blueskyminds.business.license.LicenseTransaction</class>
+        <class>com.blueskyminds.business.license.ScheduleOfLicenseAccounts</class>
+        <class>com.blueskyminds.business.license.LicenseAccount</class>
+        <class>com.blueskyminds.business.license.UnallocatedAccount</class>
+        <class>com.blueskyminds.business.license.UnavailableAccount</class>
+        <class>com.blueskyminds.business.license.LicenseAllocation</class>
 
-        <class>com.blueskyminds.enterprise.ProductAccountMap</class>
-        <class>com.blueskyminds.enterprise.ProductAccountMapEntry</class>
-        <class>com.blueskyminds.enterprise.TaxAccountMap</class>
-        <class>com.blueskyminds.enterprise.TaxAccountMapEntry</class>
+        <class>com.blueskyminds.business.ProductAccountMap</class>
+        <class>com.blueskyminds.business.ProductAccountMapEntry</class>
+        <class>com.blueskyminds.business.TaxAccountMap</class>
+        <class>com.blueskyminds.business.TaxAccountMapEntry</class>
 
-        <class>com.blueskyminds.enterprise.taxpolicy.TaxPolicy</class>
-        <class>com.blueskyminds.enterprise.taxpolicy.FixedTax</class>
-        <class>com.blueskyminds.enterprise.taxpolicy.GraduatedTax</class>
-        <class>com.blueskyminds.enterprise.taxpolicy.GraduatedTaxEntry</class>
-        <class>com.blueskyminds.enterprise.taxpolicy.ScheduleOfTaxes</class>
+        <class>com.blueskyminds.business.taxpolicy.TaxPolicy</class>
+        <class>com.blueskyminds.business.taxpolicy.FixedTax</class>
+        <class>com.blueskyminds.business.taxpolicy.GraduatedTax</class>
+        <class>com.blueskyminds.business.taxpolicy.GraduatedTaxEntry</class>
+        <class>com.blueskyminds.business.taxpolicy.ScheduleOfTaxes</class>
 
         <!-- add the entire address package -->
-        <class>com.blueskyminds.enterprise.address.Address</class>
-        <class>com.blueskyminds.enterprise.address.StreetAddress</class>
-        <class>com.blueskyminds.enterprise.address.LotAddress</class>
-        <class>com.blueskyminds.enterprise.address.UnitAddress</class>
-        <class>com.blueskyminds.enterprise.address.MultilineAddress</class>
-        <class>com.blueskyminds.enterprise.address.PlainTextAddress</class>
+        <class>com.blueskyminds.business.address.Address</class>
+        <class>com.blueskyminds.business.address.StreetAddress</class>
+        <class>com.blueskyminds.business.address.LotAddress</class>
+        <class>com.blueskyminds.business.address.UnitAddress</class>
+        <class>com.blueskyminds.business.address.MultilineAddress</class>
+        <class>com.blueskyminds.business.address.PlainTextAddress</class>
 
 
-        <class>com.blueskyminds.enterprise.region.graph.RegionHierarchy</class>
-        <class>com.blueskyminds.enterprise.region.graph.RegionAlias</class>
-        <class>com.blueskyminds.enterprise.region.graph.Region</class>
-        <class>com.blueskyminds.enterprise.region.graph.Country</class>
-        <class>com.blueskyminds.enterprise.region.graph.State</class>
-        <class>com.blueskyminds.enterprise.region.graph.PostalCode</class>
-        <class>com.blueskyminds.enterprise.region.graph.Suburb</class>
-        <class>com.blueskyminds.enterprise.region.graph.Street</class>
+        <class>com.blueskyminds.business.region.graph.RegionHierarchy</class>
+        <class>com.blueskyminds.business.region.graph.RegionAlias</class>
+        <class>com.blueskyminds.business.region.graph.Region</class>
+        <class>com.blueskyminds.business.region.graph.Country</class>
+        <class>com.blueskyminds.business.region.graph.State</class>
+        <class>com.blueskyminds.business.region.graph.PostalCode</class>
+        <class>com.blueskyminds.business.region.graph.Suburb</class>
+        <class>com.blueskyminds.business.region.graph.Street</class>
 
-        <class>com.blueskyminds.enterprise.region.index.RegionIndex</class>
-        <class>com.blueskyminds.enterprise.region.index.CountryBean</class>
-        <class>com.blueskyminds.enterprise.region.index.StateBean</class>
-        <class>com.blueskyminds.enterprise.region.index.PostalCodeBean</class>
-        <class>com.blueskyminds.enterprise.region.index.SuburbBean</class>
-        <class>com.blueskyminds.enterprise.region.index.StreetBean</class>
+        <class>com.blueskyminds.business.region.index.RegionIndex</class>
+        <class>com.blueskyminds.business.region.index.CountryBean</class>
+        <class>com.blueskyminds.business.region.index.StateBean</class>
+        <class>com.blueskyminds.business.region.index.PostalCodeBean</class>
+        <class>com.blueskyminds.business.region.index.SuburbBean</class>
+        <class>com.blueskyminds.business.region.index.StreetBean</class>
 
-        <class>com.blueskyminds.enterprise.photo.Photo</class>
-        <class>com.blueskyminds.enterprise.photo.PhotoTagMap</class>
+        <class>com.blueskyminds.business.photo.Photo</class>
+        <class>com.blueskyminds.business.photo.PhotoTagMap</class>
 
         <!-- end of enterprise -->
     <properties>
@@ -293,48 +293,48 @@ To do: many of these properties need to be able to be changed -->
     <class>com.blueskyminds.homebyfive.framework.core.email.EmailTemplate</class>
 
     <!-- Entities from the Enterprise module-->
-    <class>com.blueskyminds.enterprise.party.Party</class>
-    <class>com.blueskyminds.enterprise.party.Organisation</class>
-    <class>com.blueskyminds.enterprise.party.Company</class>
-    <class>com.blueskyminds.enterprise.party.Individual</class>
-    <class>com.blueskyminds.enterprise.party.SystemParty</class>
-    <class>com.blueskyminds.enterprise.party.IndividualRelationship</class>
-    <class>com.blueskyminds.enterprise.party.IndividualRole</class>
-    <class>com.blueskyminds.enterprise.party.IndividualRoleMap</class>
-    <class>com.blueskyminds.enterprise.party.PartyTagMap</class>
+    <class>com.blueskyminds.business.party.Party</class>
+    <class>com.blueskyminds.business.party.Organisation</class>
+    <class>com.blueskyminds.business.party.Company</class>
+    <class>com.blueskyminds.business.party.Individual</class>
+    <class>com.blueskyminds.business.party.SystemParty</class>
+    <class>com.blueskyminds.business.party.IndividualRelationship</class>
+    <class>com.blueskyminds.business.party.IndividualRole</class>
+    <class>com.blueskyminds.business.party.IndividualRoleMap</class>
+    <class>com.blueskyminds.business.party.PartyTagMap</class>
 
-    <class>com.blueskyminds.enterprise.contact.PartyPOC</class>
-    <class>com.blueskyminds.enterprise.contact.PointOfContact</class>
-    <class>com.blueskyminds.enterprise.contact.POCRoleMap</class>
-    <class>com.blueskyminds.enterprise.contact.Website</class>
-    <class>com.blueskyminds.enterprise.contact.ContactAddress</class>
-    <class>com.blueskyminds.enterprise.contact.PhoneNumber</class>
-    <class>com.blueskyminds.enterprise.contact.EmailAddress</class>
-    <class>com.blueskyminds.enterprise.contact.POCTagMap</class>
-    <class>com.blueskyminds.enterprise.contact.interaction.POCInteraction</class>
-    <class>com.blueskyminds.enterprise.contact.interaction.PCIMap</class>
+    <class>com.blueskyminds.business.contact.PartyPOC</class>
+    <class>com.blueskyminds.business.contact.PointOfContact</class>
+    <class>com.blueskyminds.business.contact.POCRoleMap</class>
+    <class>com.blueskyminds.business.contact.Website</class>
+    <class>com.blueskyminds.business.contact.ContactAddress</class>
+    <class>com.blueskyminds.business.contact.PhoneNumber</class>
+    <class>com.blueskyminds.business.contact.EmailAddress</class>
+    <class>com.blueskyminds.business.contact.POCTagMap</class>
+    <class>com.blueskyminds.business.contact.interaction.POCInteraction</class>
+    <class>com.blueskyminds.business.contact.interaction.PCIMap</class>
 
-    <class>com.blueskyminds.enterprise.tag.Tag</class>
+    <class>com.blueskyminds.business.tag.Tag</class>
 
     <!-- add the entire address package -->
-    <class>com.blueskyminds.enterprise.address.Address</class>
-    <class>com.blueskyminds.enterprise.address.StreetAddress</class>
-    <class>com.blueskyminds.enterprise.region.StreetHandle</class>
-    <class>com.blueskyminds.enterprise.address.LotAddress</class>
-    <class>com.blueskyminds.enterprise.address.UnitAddress</class>
-    <class>com.blueskyminds.enterprise.address.MultilineAddress</class>
-    <class>com.blueskyminds.enterprise.address.PlainTextAddress</class>
+    <class>com.blueskyminds.business.address.Address</class>
+    <class>com.blueskyminds.business.address.StreetAddress</class>
+    <class>com.blueskyminds.business.region.StreetHandle</class>
+    <class>com.blueskyminds.business.address.LotAddress</class>
+    <class>com.blueskyminds.business.address.UnitAddress</class>
+    <class>com.blueskyminds.business.address.MultilineAddress</class>
+    <class>com.blueskyminds.business.address.PlainTextAddress</class>
 
 
-    <class>com.blueskyminds.enterprise.region.graph.RegionHierarchy</class>
-    <class>com.blueskyminds.enterprise.region.graph.RegionAlias</class>
-    <class>com.blueskyminds.enterprise.region.graph.Region</class>
-    <class>com.blueskyminds.enterprise.region.graph.Country</class>
-    <class>com.blueskyminds.enterprise.region.graph.State</class>
+    <class>com.blueskyminds.business.region.graph.RegionHierarchy</class>
+    <class>com.blueskyminds.business.region.graph.RegionAlias</class>
+    <class>com.blueskyminds.business.region.graph.Region</class>
+    <class>com.blueskyminds.business.region.graph.Country</class>
+    <class>com.blueskyminds.business.region.graph.State</class>
 
-    <class>com.blueskyminds.enterprise.region.graph.PostalCode</class>
+    <class>com.blueskyminds.business.region.graph.PostalCode</class>
 
-    <class>com.blueskyminds.enterprise.region.graph.Suburb</class>
+    <class>com.blueskyminds.business.region.graph.Suburb</class>
 
 
     <!-- landmine entities -->
@@ -362,10 +362,10 @@ To do: many of these properties need to be able to be changed -->
     <class>com.blueskyminds.landmine.core.property.assets.PremiseAsset</class>
     <class>com.blueskyminds.landmine.core.property.assets.PremiseAssetMap</class>
 
-    <class>com.blueskyminds.enterprise.region.index.CountryBean</class>
-    <class>com.blueskyminds.enterprise.region.index.StateBean</class>
-    <class>com.blueskyminds.enterprise.region.index.PostalCodeBean</class>
-    <class>com.blueskyminds.enterprise.region.index.SuburbBean</class>
+    <class>com.blueskyminds.business.region.index.CountryBean</class>
+    <class>com.blueskyminds.business.region.index.StateBean</class>
+    <class>com.blueskyminds.business.region.index.PostalCodeBean</class>
+    <class>com.blueskyminds.business.region.index.SuburbBean</class>
 
     <class>com.blueskyminds.housepad.core.property.model.PropertyBean</class>
 
@@ -387,20 +387,20 @@ To do: many of these properties need to be able to be changed -->
     <!--<class>com.blueskyminds.landmine.analysis.model.PremiseRegionMap</class>-->
 
     <!-- Authentication -->
-    <class>com.blueskyminds.enterprise.user.model.UserAccount</class>
-    <class>com.blueskyminds.enterprise.user.model.UserAccountRoleMap</class>
-    <class>com.blueskyminds.enterprise.user.model.UserRole</class>
+    <class>com.blueskyminds.business.user.model.UserAccount</class>
+    <class>com.blueskyminds.business.user.model.UserAccountRoleMap</class>
+    <class>com.blueskyminds.business.user.model.UserRole</class>
 
     <!-- Landmine Applications and Users -->
-    <class>com.blueskyminds.enterprise.user.model.applications.Application</class>
-    <class>com.blueskyminds.enterprise.user.model.applications.ApplicationSetting</class>
+    <class>com.blueskyminds.business.user.model.applications.Application</class>
+    <class>com.blueskyminds.business.user.model.applications.ApplicationSetting</class>
 
-    <class>com.blueskyminds.enterprise.user.model.users.UserGroup</class>
-    <class>com.blueskyminds.enterprise.user.model.users.UserGroupApplicationMap</class>
+    <class>com.blueskyminds.business.user.model.users.UserGroup</class>
+    <class>com.blueskyminds.business.user.model.users.UserGroupApplicationMap</class>
 
-    <class>com.blueskyminds.enterprise.user.model.users.UserProfile</class>
-    <class>com.blueskyminds.enterprise.user.model.users.UserApplicationMap</class>
-    <class>com.blueskyminds.enterprise.user.model.users.UserApplicationSetting</class>
+    <class>com.blueskyminds.business.user.model.users.UserProfile</class>
+    <class>com.blueskyminds.business.user.model.users.UserApplicationMap</class>
+    <class>com.blueskyminds.business.user.model.users.UserApplicationSetting</class>
 
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>

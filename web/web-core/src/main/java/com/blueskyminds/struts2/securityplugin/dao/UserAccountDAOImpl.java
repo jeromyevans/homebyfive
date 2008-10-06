@@ -1,8 +1,8 @@
 package com.blueskyminds.struts2.securityplugin.dao;
 
-import com.blueskyminds.enterprise.user.model.UserAccount;
+import com.blueskyminds.business.user.model.UserAccount;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
-import com.blueskyminds.enterprise.user.dao.UserAccountDAO;
+import com.blueskyminds.business.user.dao.UserAccountDAO;
 import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;

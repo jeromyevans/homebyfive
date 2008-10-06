@@ -1,14 +1,14 @@
 package com.blueskyminds.wdis;
 
-import com.blueskyminds.enterprise.Enterprise;
-import com.blueskyminds.enterprise.region.graph.Region;
-import com.blueskyminds.enterprise.region.graph.Country;
-import com.blueskyminds.enterprise.region.graph.State;
-import com.blueskyminds.enterprise.region.RegionFactory;
-import com.blueskyminds.enterprise.license.*;
-import com.blueskyminds.enterprise.party.Party;
-import com.blueskyminds.enterprise.party.PartyTypes;
-import com.blueskyminds.enterprise.party.ScheduleOfParties;
+import com.blueskyminds.business.Enterprise;
+import com.blueskyminds.business.region.graph.Region;
+import com.blueskyminds.business.region.graph.Country;
+import com.blueskyminds.business.region.graph.State;
+import com.blueskyminds.business.region.RegionFactory;
+import com.blueskyminds.business.license.*;
+import com.blueskyminds.business.party.Party;
+import com.blueskyminds.business.party.PartyTypes;
+import com.blueskyminds.business.party.ScheduleOfParties;
 import com.blueskyminds.homebyfive.framework.core.journal.Journal;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;

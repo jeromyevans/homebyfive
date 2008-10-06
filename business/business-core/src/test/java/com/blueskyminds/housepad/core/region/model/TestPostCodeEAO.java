@@ -1,8 +1,8 @@
 package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
-import com.blueskyminds.enterprise.region.dao.PostCodeEAO;
-import com.blueskyminds.enterprise.region.graph.PostalCode;
+import com.blueskyminds.business.region.dao.PostCodeEAO;
+import com.blueskyminds.business.region.graph.PostalCode;
 
 /**
  * Date Started: 3/03/2008
