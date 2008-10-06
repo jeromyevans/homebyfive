@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.views.annotations.StrutsTagAttribute;
+import org.apache.struts2.views.annotations.StrutsTag;
 
 /**
  * Date Started: 7/06/2008
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
+@StrutsTag(name = "guard", tldTagClass = "ccom.blueskyminds.homebyfive.web.struts2.views.jsp.ui.CommandTag", description = "A command?")
 public class Command extends NakedUIBean {
 
     public static final String TEMPLATE = "command";

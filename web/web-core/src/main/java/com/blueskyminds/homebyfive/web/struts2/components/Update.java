@@ -12,7 +12,7 @@ import org.apache.struts2.views.annotations.StrutsTag;
  * <p/>
  * History:
  */
-@StrutsTag(name = "update", tldTagClass = "com.blueskyminds.housepad.web.plugin.views.jsp.ui.UpdateTag", description = "A form that renders a RESTful update URL for the action")
+@StrutsTag(name = "update", tldTagClass = "com.blueskyminds.homebyfive.web.struts2.views.jsp.ui.UpdateTag", description = "A form that renders a RESTful update URL for the action")
 public class Update extends RESTfulComponent implements ClientHints {
 
     public static final String OPEN_TEMPLATE = "update";

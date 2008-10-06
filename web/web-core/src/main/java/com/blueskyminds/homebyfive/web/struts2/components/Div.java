@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * Date Started: 11 Dec 2007
  */
-@StrutsTag(name = "div", tldTagClass = "com.blueskyminds.housepad.web.plugin.views.jsp.ui.DivTag", description = "Renders a plain old div that's decorated by the current hteme")
+@StrutsTag(name = "div", tldTagClass = "ccom.blueskyminds.homebyfive.web.struts2.views.jsp.ui.DivTag", description = "Renders a plain old div that's decorated by the current hteme")
 public class Div extends NakedClosingUIBean {
 
     public static final String OPEN_TEMPLATE = "div";

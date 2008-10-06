@@ -17,7 +17,7 @@ import java.io.Writer;
  * <p/>
  * History:
  */
-@StrutsTag(name = "msie", tldTagClass = "com.blueskyminds.housepad.web.plugin.views.jsp.ui.MsieTag", description = "Evalutes the body only in msie user agents")
+@StrutsTag(name = "msie", tldTagClass = "com.blueskyminds.homebyfive.web.struts2.views.jsp.ui.MsieTag", description = "Evalutes the body only in msie user agents")
 public class Msie extends Component {
 
     private static final String USER_AGENT_HEADER = "User-Agent";

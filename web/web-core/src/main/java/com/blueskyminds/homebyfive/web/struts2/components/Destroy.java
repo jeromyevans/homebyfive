@@ -12,7 +12,7 @@ import org.apache.struts2.views.annotations.StrutsTag;
  * <p/>
  * History:
  */
-@StrutsTag(name = "destroy", tldTagClass = "com.blueskyminds.housepad.web.plugin.views.jsp.ui.DestroyTag", description = "A form that renders a RESTful destory (delete) URL for the action")
+@StrutsTag(name = "destroy", tldTagClass = "com.blueskyminds.homebyfive.web.struts2.views.jsp.ui.DestroyTag", description = "A form that renders a RESTful destory (delete) URL for the action")
 public class Destroy extends RESTfulComponent implements ClientHints {
 
     public static final String OPEN_TEMPLATE = "destroy";

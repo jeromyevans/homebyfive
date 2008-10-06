@@ -22,10 +22,9 @@
         <artifactId>maven-apt-plugin</artifactId>
         <configuration>
           <A>
-            uri=/housepad-tags,tlibVersion=2.2.3,jspVersion=1.2,shortName=housepad,displayName="HousePad Struts2 Tags",
-            <!--outFile=${basedir}/target/classes/META-INF/housepad-tags.tld,-->
-            outFile=${basedir}/src/main/resources/META-INF/housepad-tags.tld,
-            description="HousePad tags for Struts2.",
+            uri=/homebyfive-tags,tlibVersion=2.2.3,jspVersion=1.2,shortName=homebyfive,displayName="HomeByFive Struts2 Tags",
+            outFile=${basedir}/src/main/resources/META-INF/homebyfive-tags.tld,
+            description="HomeByFive tags for Struts2.",
             outTemplatesDir=${basedir}/src/main/gen
           </A>
           <resourceTargetPath>target</resourceTargetPath>

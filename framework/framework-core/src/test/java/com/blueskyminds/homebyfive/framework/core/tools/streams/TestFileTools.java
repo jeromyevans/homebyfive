@@ -34,4 +34,8 @@ public class TestFileTools extends TestCase {
         assertEquals("", FileTools.containingFolder("blank.txt", false));
         assertEquals("/", FileTools.containingFolder("/blank.txt", false));
     }
+
+    public void testListDirectories() {
+        //FileTools.listDirectories(new URI(""))
+    }
 }

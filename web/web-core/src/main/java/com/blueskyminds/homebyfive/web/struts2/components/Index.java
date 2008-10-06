@@ -12,7 +12,7 @@ import org.apache.struts2.views.annotations.StrutsTag;
  * <p/>
  * History:
  */
-@StrutsTag(name = "index", tldTagClass = "com.blueskyminds.housepad.web.plugin.views.jsp.ui.IndexTag", description = "A form that renders a RESTful index URL for the action")
+@StrutsTag(name = "index", tldTagClass = "com.blueskyminds.homebyfive.web.struts2.views.jsp.ui.IndexTag", description = "A form that renders a RESTful index URL for the action")
 public class Index extends RESTfulComponent implements ClientHints{
 
     public static final String OPEN_TEMPLATE = "index";

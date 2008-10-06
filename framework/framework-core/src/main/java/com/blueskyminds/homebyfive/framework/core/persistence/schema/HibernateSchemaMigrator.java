@@ -86,8 +86,7 @@ public class HibernateSchemaMigrator implements SchemaMigrator {
             LOG.debug("Schema name: "+schemaName);
             for (URI moduleSchemaDir : classpathSchemaDirs) {
 
-                File directory = new File(moduleSchemaDir);
-                String path = directory.getAbsolutePath();
+                String path = moduleSchemaDir.toString();
 
                 LOG.debug("Searching: "+path);
                 if (FileTools.stripTrailingPathSeparator(path).endsWith(schemaName)) {

@@ -213,6 +213,12 @@ public class FileTools {
         return concatenateURI(path1, path2);
     }
 
+    public static String concatenateTrailingSlash(String path, char slash) {
+        // ensure the path doesn't end with any of the permitted file separators
+        String stripped = StringUtils.stripEnd(path, ALL_SEPARATORS);
+        return stripped + slash;
+    }
+
     /**
      * Concatenate path2 onto the uri accounting for the path separator character.
      * There's probably better ways to implement this (eg. accounting for ../ properly)
@@ -227,10 +233,10 @@ public class FileTools {
         String path1 = uri;
 
         // ensure the path1 doesn't end with either possible URL file separator
-        path1 = StringUtils.removeEnd(path1, ALL_SEPARATORS);
+        path1 = StringUtils.stripEnd(path1, ALL_SEPARATORS);
 
         // ensure the path2 doesn't start with either possible file separator
-        path2 = StringUtils.removeStart(path2, ALL_SEPARATORS);
+        path2 = StringUtils.stripStart(path2, ALL_SEPARATORS);
         path2 = StringUtils.replaceChars(path2, WIN_SEPARATOR, STD_SEPARATOR);
 
         result = path1 + STD_SEPARATOR + path2;
@@ -406,13 +412,17 @@ public class FileTools {
         LOG.debug("Visiting files in: "+path);
 
         if (uri.startsWith("jar:")) {
+            // extract the jar and path components
             jarFile = StringUtils.substringAfter(StringUtils.substringBefore(uri, "!"), "file:");
-            File file = new File(StringUtils.substringAfter(uri, "jar!/"));
-            if (file.isDirectory()) {
-                directory = StringUtils.substringAfter(uri, "jar!/");
-            } else {
-                directory = StringUtils.remove(StringUtils.substringAfter(uri, "jar!/"), file.getName());
-            }
+            directory = StringUtils.substringAfter(uri, "jar!/");
+            directory = concatenateTrailingSlash(directory, '/');
+//            File file = new File(StringUtils.substringAfter(uri, "jar!/"));
+//            if (file.isDirectory()) {
+//                directory = StringUtils.substringAfter(uri, "jar!/");
+//            } else {
+//                directory = StringUtils.remove(StringUtils.substringAfter(uri, "jar!/"), file.getName());
+//            }
+
         } else {
             if (uri.startsWith("file:")) {
                 directory = new File(path).getAbsolutePath();
@@ -456,6 +466,8 @@ public class FileTools {
     public static void visitFilesInJar(String jarFileName, String baseDirectory, boolean recursive, FileVisitor visitor) throws IOException {
         JarFile jarFile = new JarFile(jarFileName);
 
+        int prefixLength = baseDirectory.length();
+
         Enumeration entries = jarFile.entries();
         while (entries.hasMoreElements()) {
             ZipEntry entry = (ZipEntry) entries.nextElement();
@@ -470,13 +482,19 @@ public class FileTools {
                     }
                 }
             } else {
-                // ensure it's only at this directory level
-                if (entryName.lastIndexOf('/') == baseDirectory.lastIndexOf('/')) {
-                    LOG.debug("Found a file in a jar: "+entryName);
-                    try {
-                        visitor.visit(new URI("jar:file:/"+jarFileName+"!/"+entryName), entry.isDirectory());
-                    } catch(URISyntaxException e) {
+                if (entryName.startsWith(baseDirectory)) {
+                    // ensure it's only at this directory level by checking that there's no slashes (or only a trailing slash)
+                    String remainder = StringUtils.substringAfter(entryName, baseDirectory);
+                    if (StringUtils.isNotBlank(remainder)) {
+                        int nextSlashPos = StringUtils.indexOf(remainder, "/");
+                        if (nextSlashPos == -1 || nextSlashPos == remainder.length()-1) {
+                            LOG.debug("Found a file in a jar: "+entryName);
+                            try {
+                                visitor.visit(new URI("jar:file:/"+jarFileName+"!/"+entryName), entry.isDirectory());
+                            } catch(URISyntaxException e) {
 
+                            }
+                        }
                     }
                 }
             }
@@ -537,8 +555,15 @@ public class FileTools {
      *
      * @return the filename component, or null if it's not specified */
     public static String extractLastFilenameOrPathname(URI uri) {
-        String path = decodeUrl(uri.getPath());
-        return extractLastFilenameOrPathname(path);
+        //String path = decodeUrl(uri.getPath());
+        String uriValue = uri.toString();
+        String path;
+        if (uriValue.startsWith("jar:")) {
+            path = StringUtils.substringAfter(uriValue, "!");
+        } else {
+            path = uri.getPath();
+        }
+        return extractLastFilenameOrPathname(path);        
     }
 
 

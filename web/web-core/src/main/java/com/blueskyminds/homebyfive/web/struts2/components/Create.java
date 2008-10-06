@@ -12,7 +12,7 @@ import org.apache.struts2.views.annotations.StrutsTag;
  * <p/>
  * History:
  */
-@StrutsTag(name = "create", tldTagClass = "com.blueskyminds.housepad.web.plugin.views.jsp.ui.CreateTag", description = "A form that renders a RESTful create URL for the action")
+@StrutsTag(name = "create", tldTagClass = "com.blueskyminds.homebyfive.web.struts2.views.jsp.ui.CreateTag", description = "A form that renders a RESTful create URL for the action")
 public class Create extends RESTfulComponent implements ClientHints {
 
     public static final String OPEN_TEMPLATE = "create";

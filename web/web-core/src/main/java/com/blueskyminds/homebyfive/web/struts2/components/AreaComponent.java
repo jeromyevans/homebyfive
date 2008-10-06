@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Date Started: 25/04/2008
  */
-@StrutsTag(name = "area", tldTagClass = "com.blueskyminds.housepad.web.plugin.views.jsp.ui.AreaTag", description = "Renders control to edit an Area")
+@StrutsTag(name = "area", tldTagClass = "com.blueskyminds.homebyfive.web.struts2.views.jsp.ui.AreaTag", description = "Renders control to edit an Area")
 public class AreaComponent extends NakedUIBean {
 
     public static final String TEMPLATE = "area";
