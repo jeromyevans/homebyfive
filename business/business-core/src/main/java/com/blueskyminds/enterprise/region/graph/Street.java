@@ -6,7 +6,6 @@ import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.address.StreetType;
 import com.blueskyminds.enterprise.address.StreetSection;
 import com.blueskyminds.enterprise.tools.KeyGenerator;
-import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
 import java.util.List;

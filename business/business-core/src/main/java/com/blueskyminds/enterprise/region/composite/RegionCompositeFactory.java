@@ -4,13 +4,10 @@ import com.blueskyminds.enterprise.address.Address;
 import com.blueskyminds.enterprise.address.StreetAddress;
 import com.blueskyminds.enterprise.address.UnitAddress;
 import com.blueskyminds.enterprise.address.LotAddress;
-import com.blueskyminds.enterprise.region.index.PostalCodeBean;
-import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.PathHelper;
 import com.blueskyminds.enterprise.region.graph.*;
 import com.blueskyminds.enterprise.region.index.CountryBean;
-import com.blueskyminds.enterprise.region.index.SuburbBean;
 import com.blueskyminds.enterprise.region.reference.RegionRefFactory;
 import com.blueskyminds.enterprise.region.reference.RegionRefType;
 

@@ -1,6 +1,5 @@
 package com.blueskyminds.enterprise.guice.providers;
 
-import com.blueskyminds.enterprise.address.patterns.SuburbPatternMatcher;
 import com.blueskyminds.enterprise.address.patterns.SuburbPatternMatcherFactory;
 import com.blueskyminds.enterprise.address.patterns.SuburbPatternMatcherFactoryImpl;
 import com.blueskyminds.enterprise.address.dao.AddressDAO;

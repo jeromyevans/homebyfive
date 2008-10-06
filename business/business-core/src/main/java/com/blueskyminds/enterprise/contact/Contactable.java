@@ -1,6 +1,5 @@
 package com.blueskyminds.enterprise.contact;
 
-import javax.persistence.Transient;
 import java.util.Set;
 
 /**

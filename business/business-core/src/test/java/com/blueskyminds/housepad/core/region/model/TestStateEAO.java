@@ -2,8 +2,6 @@ package com.blueskyminds.housepad.core.region.model;
 
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.enterprise.region.dao.StateEAO;
-import com.blueskyminds.enterprise.region.index.CountryBean;
-import com.blueskyminds.enterprise.region.index.StateBean;
 import com.blueskyminds.enterprise.region.graph.State;
 import com.blueskyminds.enterprise.region.graph.Country;
 

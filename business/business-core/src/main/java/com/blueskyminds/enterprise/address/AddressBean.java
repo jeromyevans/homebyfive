@@ -5,8 +5,6 @@ import com.blueskyminds.enterprise.region.graph.Suburb;
 import com.blueskyminds.enterprise.region.graph.Region;
 import com.blueskyminds.enterprise.region.graph.Country;
 import com.blueskyminds.enterprise.region.graph.State;
-import com.blueskyminds.enterprise.region.index.RegionIndex;
-import com.blueskyminds.enterprise.region.index.SuburbBean;
 
 /**
  * Simple bean for creating an address.  Specializes the MultifieldAddress to include a path and flags to

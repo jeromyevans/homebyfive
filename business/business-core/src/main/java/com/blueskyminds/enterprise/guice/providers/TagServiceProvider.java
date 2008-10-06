@@ -1,7 +1,5 @@
 package com.blueskyminds.enterprise.guice.providers;
 
-import com.blueskyminds.enterprise.party.service.PartyService;
-import com.blueskyminds.enterprise.party.service.PartyServiceImpl;
 import com.blueskyminds.enterprise.tag.service.TagService;
 import com.blueskyminds.enterprise.tag.service.TagServiceImpl;
 import com.google.inject.Provider;

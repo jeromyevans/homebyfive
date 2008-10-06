@@ -1,7 +1,5 @@
 package com.blueskyminds.enterprise.guice.providers;
 
-import com.blueskyminds.enterprise.address.service.AddressService;
-import com.blueskyminds.enterprise.address.service.AddressServiceImpl;
 import com.blueskyminds.enterprise.region.service.RegionGraphServiceImpl;
 import com.blueskyminds.enterprise.region.service.RegionGraphService;
 import com.blueskyminds.enterprise.region.dao.RegionGraphDAO;
