@@ -13,16 +13,16 @@
   <bean type="org.apache.struts2.views.TagLibrary" name="hp" class="com.blueskyminds.homebyfive.web.struts2.views.HomeByFiveTagLibrary" />
 
   <!-- Store authenticated tokens in the Session -->
-   <bean type="com.blueskyminds.struts2.securityplugin.token.TokenRegistry"  class="com.blueskyminds.struts2.securityplugin.token.SessionMapTokenRegistry"/>
+   <bean type="com.blueskyminds.homebyfive.web.struts2.securityplugin.token.TokenRegistry"  class="com.blueskyminds.homebyfive.web.struts2.securityplugin.token.SessionMapTokenRegistry"/>
 
-   <bean name="headerToken" type="com.blueskyminds.struts2.securityplugin.token.TokenInspector"  class="com.blueskyminds.struts2.securityplugin.token.HttpHeaderTokenInspector"/>
-   <bean name="cookieToken" type="com.blueskyminds.struts2.securityplugin.token.TokenInspector" class="com.blueskyminds.struts2.securityplugin.token.CookieTokenInspector"/>
-   <bean name="default" type="com.blueskyminds.struts2.securityplugin.token.TokenInspector" class="com.blueskyminds.struts2.securityplugin.token.CompositeTokenInspector" />
+   <bean name="headerToken" type="com.blueskyminds.homebyfive.web.struts2.securityplugin.token.TokenInspector"  class="com.blueskyminds.homebyfive.web.struts2.securityplugin.token.HttpHeaderTokenInspector"/>
+   <bean name="cookieToken" type="com.blueskyminds.homebyfive.web.struts2.securityplugin.token.TokenInspector" class="com.blueskyminds.homebyfive.web.struts2.securityplugin.token.CookieTokenInspector"/>
+   <bean name="default" type="com.blueskyminds.homebyfive.web.struts2.securityplugin.token.TokenInspector" class="com.blueskyminds.homebyfive.web.struts2.securityplugin.token.CompositeTokenInspector" />
 
    <!-- Define the implementations used to read the token for the Invocation -->
    <constant name="securityplugin.compositeTokenInspector" value="headerToken, cookieToken"/>
 
-   <bean type="com.blueskyminds.struts2.securityplugin.signature.SignatureHandler" class="com.blueskyminds.struts2.securityplugin.signature.SignatureHandlerImpl"/>
+   <bean type="com.blueskyminds.homebyfive.web.struts2.securityplugin.signature.SignatureHandler" class="com.blueskyminds.homebyfive.web.struts2.securityplugin.signature.SignatureHandlerImpl"/>
 
   <!-- Use the customised json processor -->
    <bean name="myJson" type="org.apache.struts2.rest.handler.ContentTypeHandler" class="com.blueskyminds.homebyfive.web.struts2.JsonLibContentTypeHandler" />
@@ -31,9 +31,9 @@
    <package name="auth-default" extends="rest-default">
 
      <interceptors>
-       <interceptor name="tokenAuthorization" class="com.blueskyminds.struts2.securityplugin.interceptors.TokenAuthorizationInterceptor"/>
-       <interceptor name="checkSignature" class="com.blueskyminds.struts2.securityplugin.interceptors.CheckSignatureInterceptor"/>
-       <interceptor name="rolesAllowed" class="com.blueskyminds.struts2.securityplugin.interceptors.RolesAllowedInterceptor"/>
+       <interceptor name="tokenAuthorization" class="com.blueskyminds.homebyfive.web.struts2.securityplugin.interceptors.TokenAuthorizationInterceptor"/>
+       <interceptor name="checkSignature" class="com.blueskyminds.homebyfive.web.struts2.securityplugin.interceptors.CheckSignatureInterceptor"/>
+       <interceptor name="rolesAllowed" class="com.blueskyminds.homebyfive.web.struts2.securityplugin.interceptors.RolesAllowedInterceptor"/>
      </interceptors>
 
      <global-results>
