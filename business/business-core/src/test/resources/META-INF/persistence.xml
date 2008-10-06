@@ -387,9 +387,9 @@ To do: many of these properties need to be able to be changed -->
     <!--<class>com.blueskyminds.landmine.analysis.model.PremiseRegionMap</class>-->
 
     <!-- Authentication -->
-    <class>com.blueskyminds.struts2.securityplugin.model.UserAccount</class>
-    <class>com.blueskyminds.struts2.securityplugin.model.UserAccountRoleMap</class>
-    <class>com.blueskyminds.struts2.securityplugin.model.UserRole</class>
+    <class>com.blueskyminds.enterprise.user.model.UserAccount</class>
+    <class>com.blueskyminds.enterprise.user.model.UserAccountRoleMap</class>
+    <class>com.blueskyminds.enterprise.user.model.UserRole</class>
 
     <!-- Landmine Applications and Users -->
     <class>com.blueskyminds.enterprise.user.model.applications.Application</class>

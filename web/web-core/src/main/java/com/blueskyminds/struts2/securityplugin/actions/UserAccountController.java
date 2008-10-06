@@ -2,15 +2,13 @@ package com.blueskyminds.struts2.securityplugin.actions;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
-import com.blueskyminds.struts2.securityplugin.model.UserAccount;
-import com.blueskyminds.struts2.securityplugin.services.UserAccountService;
-import com.blueskyminds.struts2.securityplugin.services.AuthorizationException;
-import com.blueskyminds.struts2.securityplugin.services.UserAccountServiceException;
+import com.blueskyminds.enterprise.user.model.UserAccount;
+import com.blueskyminds.enterprise.user.services.UserAccountService;
+import com.blueskyminds.enterprise.user.services.UserAccountServiceException;
 import com.google.inject.Inject;
 import org.apache.struts2.rest.HttpHeaders;
 import org.apache.struts2.rest.DefaultHttpHeaders;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.annotation.security.RolesAllowed;
 import javax.annotation.security.DenyAll;
 

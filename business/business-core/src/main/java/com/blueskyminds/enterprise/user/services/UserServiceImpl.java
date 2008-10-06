@@ -7,7 +7,7 @@ import com.blueskyminds.enterprise.user.dao.UserProfileDAO;
 import com.blueskyminds.enterprise.user.dao.UserGroupDAO;
 import com.blueskyminds.homebyfive.framework.core.events.EventRegistry;
 import com.blueskyminds.enterprise.user.services.UserEvents;
-import com.blueskyminds.struts2.securityplugin.services.UserAccountService;
+import com.blueskyminds.enterprise.user.services.UserAccountService;
 import com.google.inject.Inject;
 
 import java.util.Date;

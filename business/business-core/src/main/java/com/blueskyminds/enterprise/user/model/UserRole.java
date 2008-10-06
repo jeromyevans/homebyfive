@@ -1,4 +1,4 @@
-package com.blueskyminds.struts2.securityplugin.model;
+package com.blueskyminds.enterprise.user.model;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;

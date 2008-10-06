@@ -1,8 +1,10 @@
 package com.blueskyminds.struts2.securityplugin.services;
 
-import com.blueskyminds.struts2.securityplugin.model.UserAccount;
-import com.blueskyminds.struts2.securityplugin.model.UserRole;
-import com.blueskyminds.struts2.securityplugin.dao.UserRoleDAO;
+import com.blueskyminds.enterprise.user.model.UserAccount;
+import com.blueskyminds.enterprise.user.model.UserRole;
+import com.blueskyminds.enterprise.user.dao.UserRoleDAO;
+import com.blueskyminds.enterprise.user.services.UserAccountService;
+import com.blueskyminds.enterprise.user.services.UserAccountServiceException;
 import com.blueskyminds.struts2.securityplugin.dao.UserAccountDAOImpl;
 import com.blueskyminds.homebyfive.framework.core.tools.CryptoTools;
 import com.blueskyminds.homebyfive.framework.core.tools.CryptoException;

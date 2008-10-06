@@ -4,7 +4,7 @@ import org.apache.struts2.interceptor.PrincipalProxy;
 
 import java.security.Principal;
 
-import com.blueskyminds.struts2.securityplugin.model.Owned;
+import com.blueskyminds.enterprise.user.model.Owned;
 
 /**
  * Date Started: 19/04/2008

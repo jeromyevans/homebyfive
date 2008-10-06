@@ -1,4 +1,4 @@
-package com.blueskyminds.struts2.securityplugin.model;
+package com.blueskyminds.enterprise.user.model;
 
 import java.security.Principal;
 

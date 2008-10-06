@@ -1,9 +1,5 @@
 package com.blueskyminds.struts2.securityplugin.services;
 
-import com.blueskyminds.struts2.securityplugin.model.UserRole;
-
-import java.util.List;
-
 /**
  * Date Started: 8/05/2008
  */

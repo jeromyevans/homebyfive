@@ -9,7 +9,7 @@ import com.blueskyminds.enterprise.contact.POCRole;
 import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.Filter;
-import com.blueskyminds.struts2.securityplugin.model.UserAccount;
+import com.blueskyminds.enterprise.user.model.UserAccount;
 import com.blueskyminds.enterprise.user.model.applications.Application;
 import com.blueskyminds.enterprise.user.model.applications.ApplicationStatus;
 

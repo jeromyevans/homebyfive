@@ -1,7 +1,7 @@
 package com.blueskyminds.struts2.securityplugin.services;
 
-import com.blueskyminds.struts2.securityplugin.dao.UserAccountDAO;
-import com.blueskyminds.struts2.securityplugin.model.UserAccount;
+import com.blueskyminds.enterprise.user.dao.UserAccountDAO;
+import com.blueskyminds.enterprise.user.model.UserAccount;
 import com.blueskyminds.struts2.securityplugin.token.TokenRegistry;
 import com.blueskyminds.homebyfive.framework.core.tools.CryptoTools;
 import com.blueskyminds.homebyfive.framework.core.tools.CryptoException;

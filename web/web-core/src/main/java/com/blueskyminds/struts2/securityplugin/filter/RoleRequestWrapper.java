@@ -1,6 +1,6 @@
 package com.blueskyminds.struts2.securityplugin.filter;
 
-import com.blueskyminds.struts2.securityplugin.model.UserAccount;
+import com.blueskyminds.enterprise.user.model.UserAccount;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

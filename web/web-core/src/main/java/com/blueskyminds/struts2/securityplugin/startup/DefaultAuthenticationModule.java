@@ -1,16 +1,14 @@
 package com.blueskyminds.struts2.securityplugin.startup;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Scope;
-import com.google.inject.Scopes;
 import com.blueskyminds.struts2.securityplugin.services.AuthenticationService;
 import com.blueskyminds.struts2.securityplugin.services.UserAccountServiceImpl;
-import com.blueskyminds.struts2.securityplugin.services.UserAccountService;
+import com.blueskyminds.enterprise.user.services.UserAccountService;
 import com.blueskyminds.struts2.securityplugin.services.AuthenticationServiceImpl;
 import com.blueskyminds.struts2.securityplugin.dao.UserAccountDAOImpl;
 import com.blueskyminds.struts2.securityplugin.dao.UserRoleDAOImpl;
-import com.blueskyminds.struts2.securityplugin.dao.UserAccountDAO;
-import com.blueskyminds.struts2.securityplugin.dao.UserRoleDAO;
+import com.blueskyminds.enterprise.user.dao.UserAccountDAO;
+import com.blueskyminds.enterprise.user.dao.UserRoleDAO;
 import com.blueskyminds.struts2.securityplugin.session.SessionRegistry;
 import com.blueskyminds.struts2.securityplugin.session.SessionRegistryInitializer;
 import com.blueskyminds.struts2.securityplugin.token.SessionMapTokenRegistry;

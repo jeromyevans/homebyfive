@@ -1,4 +1,4 @@
-package com.blueskyminds.struts2.securityplugin.services;
+package com.blueskyminds.enterprise.user.services;
 
 /**
  * Date Started: 4/06/2008

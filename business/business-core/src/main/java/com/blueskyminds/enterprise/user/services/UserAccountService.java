@@ -1,7 +1,7 @@
-package com.blueskyminds.struts2.securityplugin.services;
+package com.blueskyminds.enterprise.user.services;
 
-import com.blueskyminds.struts2.securityplugin.model.UserAccount;
-import com.blueskyminds.struts2.securityplugin.model.UserRole;
+import com.blueskyminds.enterprise.user.model.UserAccount;
+import com.blueskyminds.enterprise.user.model.UserRole;
 
 import java.util.List;
 

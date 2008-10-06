@@ -10,7 +10,7 @@ import com.blueskyminds.enterprise.user.model.users.UserGroup;
 import com.blueskyminds.enterprise.user.model.applications.Application;
 import com.blueskyminds.enterprise.user.model.beans.UserSettings;
 import com.blueskyminds.enterprise.user.model.token.TokenProvider;
-import com.blueskyminds.struts2.securityplugin.model.UserAccount;
+import com.blueskyminds.enterprise.user.model.UserAccount;
 
 import java.util.Map;
 
