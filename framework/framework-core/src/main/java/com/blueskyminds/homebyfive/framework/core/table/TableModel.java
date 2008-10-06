@@ -1,4 +1,4 @@
-package com.blueskyminds.landmine.core.model;
+package com.blueskyminds.homebyfive.framework.core.table;
 
 import java.util.*;
 import java.io.Serializable;

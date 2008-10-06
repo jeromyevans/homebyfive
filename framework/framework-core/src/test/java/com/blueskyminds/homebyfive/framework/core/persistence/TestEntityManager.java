@@ -1,4 +1,4 @@
-package com.blueskyminds.entitymanager;
+package com.blueskyminds.homebyfive.framework.core.persistence;
 
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;

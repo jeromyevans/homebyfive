@@ -1,9 +1,9 @@
 package com.blueskyminds.homebyfive.business.region.reference;
 
-import com.blueskyminds.landmine.core.model.TableModel;
-import com.blueskyminds.landmine.core.model.TableModelBuilder;
-import com.blueskyminds.landmine.core.model.ColumnModel;
+import com.blueskyminds.homebyfive.framework.core.table.TableModelBuilder;
 import com.blueskyminds.homebyfive.business.region.graph.Region;
+import com.blueskyminds.homebyfive.framework.core.table.ColumnModel;
+import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 
 import java.util.*;
 

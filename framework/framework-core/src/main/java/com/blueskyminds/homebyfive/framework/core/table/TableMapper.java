@@ -1,4 +1,4 @@
-package com.blueskyminds.landmine.core.model;
+package com.blueskyminds.homebyfive.framework.core.table;
 
 /**
  * Used to map data from an Object into a TableModel

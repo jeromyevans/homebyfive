@@ -1,7 +1,7 @@
 package com.blueskyminds.homebyfive.business.region.service;
 
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
-import com.blueskyminds.landmine.core.model.TableModel;
+import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.blueskyminds.homebyfive.business.region.index.*;
 import com.blueskyminds.homebyfive.business.region.graph.*;
 import com.blueskyminds.homebyfive.business.region.index.RegionIndex;

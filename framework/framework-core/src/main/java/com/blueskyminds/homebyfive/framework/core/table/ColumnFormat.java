@@ -1,4 +1,4 @@
-package com.blueskyminds.landmine.core.model;
+package com.blueskyminds.homebyfive.framework.core.table;
 
 /**
  * Date Started: 1/11/2007

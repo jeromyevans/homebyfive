@@ -2,7 +2,7 @@ package com.blueskyminds.homebyfive.business.region.service;
 
 import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
-import com.blueskyminds.landmine.core.model.TableModel;
+import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.wideplay.warp.persist.Transactional;
 import com.blueskyminds.homebyfive.business.address.service.AddressService;
 import com.blueskyminds.homebyfive.business.region.index.*;
