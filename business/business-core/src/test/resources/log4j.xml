@@ -36,7 +36,7 @@
         <priority value="info"/>
     </category>
 
-    <category name="com.blueskyminds.business.address.patterns.TestAddressPatternMatcher">
+    <category name="com.blueskyminds.homebyfive.business.address.patterns.TestAddressPatternMatcher">
         <priority value="debug"/>
     </category>
 

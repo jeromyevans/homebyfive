@@ -1,8 +1,8 @@
 package com.blueskyminds.taxes;
 
-import com.blueskyminds.business.Enterprise;
-import com.blueskyminds.business.pricing.Money;
-import com.blueskyminds.business.taxpolicy.*;
+import com.blueskyminds.homebyfive.business.Enterprise;
+import com.blueskyminds.homebyfive.business.pricing.Money;
+import com.blueskyminds.homebyfive.business.taxpolicy.*;
 import com.blueskyminds.homebyfive.framework.core.measurement.Limits;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;

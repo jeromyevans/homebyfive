@@ -1,7 +1,7 @@
 package com.blueskyminds.housepad.core.region.model;
 
-import com.blueskyminds.business.address.AddressPathComponents;
-import com.blueskyminds.business.address.StreetType;
+import com.blueskyminds.homebyfive.business.address.AddressPathComponents;
+import com.blueskyminds.homebyfive.business.address.StreetType;
 import junit.framework.TestCase;
 
 /**

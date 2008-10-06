@@ -1,8 +1,8 @@
 package com.blueskyminds.housepad.core.region.model;
 
 import junit.framework.TestCase;
-import com.blueskyminds.business.region.PathHelper;
-import com.blueskyminds.business.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
 
 /**
  * Date Started: 7/03/2008

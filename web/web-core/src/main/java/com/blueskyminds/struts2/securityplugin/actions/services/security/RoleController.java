@@ -2,8 +2,8 @@ package com.blueskyminds.struts2.securityplugin.actions.services.security;
 
 import org.apache.struts2.rest.HttpHeaders;
 import org.apache.struts2.rest.DefaultHttpHeaders;
-import com.blueskyminds.business.user.model.UserRole;
-import com.blueskyminds.business.user.services.UserAccountService;
+import com.blueskyminds.homebyfive.business.user.model.UserRole;
+import com.blueskyminds.homebyfive.business.user.services.UserAccountService;
 import com.opensymphony.xwork2.ModelDriven;
 import com.google.inject.Inject;
 

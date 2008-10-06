@@ -4,7 +4,7 @@ import org.apache.struts2.interceptor.PrincipalProxy;
 
 import java.security.Principal;
 
-import com.blueskyminds.business.user.model.Owned;
+import com.blueskyminds.homebyfive.business.user.model.Owned;
 
 /**
  * Date Started: 19/04/2008

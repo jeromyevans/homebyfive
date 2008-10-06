@@ -2,8 +2,8 @@ package com.blueskyminds.struts2.securityplugin.actions.services.security.user;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
-import com.blueskyminds.business.user.services.UserAccountService;
-import com.blueskyminds.business.user.model.UserAccount;
+import com.blueskyminds.homebyfive.business.user.services.UserAccountService;
+import com.blueskyminds.homebyfive.business.user.model.UserAccount;
 import com.google.inject.Inject;
 import com.wideplay.warp.persist.Transactional;
 import org.apache.struts2.config.Namespace;
