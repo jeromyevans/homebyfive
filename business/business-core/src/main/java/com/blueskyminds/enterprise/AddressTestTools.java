@@ -204,7 +204,7 @@ public class AddressTestTools extends TestTools {
 
     // ------------------------------------------------------------------------------------------------------
 
-    private static final String ADDRESS_PATTERNS_FILE_NAME = "/src/resources/addressSubstitutions.csv";
+    private static final String ADDRESS_PATTERNS_FILE_NAME = "addressSubstitutions.csv";
 
     /** Loads a CSV file of all the patterns defined for cleansing addresses */
     public static void initialiseAddressSubstitutionPatterns(EntityManager em) {

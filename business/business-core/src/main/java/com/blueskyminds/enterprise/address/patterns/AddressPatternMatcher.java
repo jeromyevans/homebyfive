@@ -35,7 +35,7 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
 
     private static final Log LOG = LogFactory.getLog(AddressPatternMatcher.class);
     
-    private String iso3CountryCode;
+    private String countryAbbr;
 
     private EntityManager em;
 
@@ -50,18 +50,18 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
      *
      * The AddressPatternMatcher is used to decompose an address into its components
      *
-     * @param iso3CountryCode   3 digit ISO code for the country
+     * @param countryAbbr       2 digit ISO code for the country
      * @param em                the entity manager
      * @throws PatternMatcherInitialisationException
      */
-     public AddressPatternMatcher(String iso3CountryCode, EntityManager em) throws PatternMatcherInitialisationException {
+     public AddressPatternMatcher(String countryAbbr, EntityManager em) throws PatternMatcherInitialisationException {
         super(new AddressScoringStrategy());
 
-        if (iso3CountryCode == null) {
-            throw new PatternMatcherInitialisationException("ISO Country Code cannot be null");
+        if (countryAbbr == null) {
+            throw new PatternMatcherInitialisationException("Country Abbr cannot be null");
         }
         this.em = em;
-        this.iso3CountryCode = iso3CountryCode;
+        this.countryAbbr = countryAbbr;
         init();
     }
 
@@ -98,15 +98,15 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
      *
      * NOTE: the entityManager needs to be injected for initialisation
      *
-     * @param iso3DigitCode
+     * @param countryAbbr
      * @param scoringStrategy
      * @throws PatternMatcherInitialisationException
      */
-    public AddressPatternMatcher(String iso3DigitCode, ScoringStrategy scoringStrategy) throws PatternMatcherInitialisationException {
+    public AddressPatternMatcher(String countryAbbr, ScoringStrategy scoringStrategy) throws PatternMatcherInitialisationException {
         super(scoringStrategy);
-        this.iso3CountryCode = iso3DigitCode;
-        if (iso3CountryCode == null) {
-            throw new PatternMatcherInitialisationException("ISO Country Code cannot be null");
+        this.countryAbbr = countryAbbr;
+        if (this.countryAbbr == null) {
+            throw new PatternMatcherInitialisationException("Country Abbr cannot be null");
         }
     }
 
@@ -129,7 +129,7 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
         if (country == null) {
             if (suburb == null) {
                 if (addressDAO != null) {
-                    country = addressDAO.lookupCountry(iso3CountryCode);
+                    country = addressDAO.lookupCountry(countryAbbr);
                 } else {
                     LOG.error("AddressDAO has not been injected");
                     throw new PatternMatcherInitialisationException("AddressDAO has not been injected");
@@ -144,7 +144,7 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
         }
 
         if ((country == null) && (suburb == null)) {
-            LOG.error("Countries/Suburbs have not been initialized.  Country: "+iso3CountryCode+" suburb: "+suburb);
+            LOG.error("Countries/Suburbs have not been initialized.  Country: "+ countryAbbr +" suburb: "+suburb);
             throw new PatternMatcherInitialisationException("Countries have not been properly initialised.  Could not lookup country/suburb");
         }
 

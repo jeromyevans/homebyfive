@@ -99,21 +99,21 @@ public class AddressServiceImpl implements AddressService {
      * The address returned is not persisted.
      *
      * @param addressString plain text address
-     * @param iso3CountryCode
+     * @param countryAbbr
      * @return an Address derived from the address string.  In the worst case, this will simply be a
      *  PlainTextAddress
      * @throws AddressProcessingException if a critical error occurs trying to process the address.
      */
-    public Address parseAddress(String addressString, String iso3CountryCode) throws AddressProcessingException {       
+    public Address parseAddress(String addressString, String countryAbbr) throws AddressProcessingException {
 
         Address address;
         try {
             if (addressParserFactory == null) {
-                addressParserFactory = new AddressPatternMatcher(iso3CountryCode, em);
+                addressParserFactory = new AddressPatternMatcher(countryAbbr, em);
             }
 
             // reuse matches created in this instance
-            AddressParser matcher = selectMatcher(iso3CountryCode);
+            AddressParser matcher = selectMatcher(countryAbbr);
             address = matcher.parseAddress(addressString);
         } catch (PatternMatcherException e) {
             throw new AddressProcessingException(e);
@@ -354,21 +354,21 @@ public class AddressServiceImpl implements AddressService {
      * @throws com.blueskyminds.enterprise.address.service.AddressProcessingException
      *          if a persistence problem occurs
      */
-    public Address lookupOrCreateAddress(String addressString, String iso3CountryCode) throws AddressProcessingException {
-        Address address = parseAddress(addressString, iso3CountryCode);
+    public Address lookupOrCreateAddress(String addressString, String countryAbbr) throws AddressProcessingException {
+        Address address = parseAddress(addressString, countryAbbr);
         if (address != null) {
             return lookupOrCreateAddress(address);
         } else {
-            throw new AddressProcessingException("Could not create or lookup and address.  Address is invalid/could not be parsed ('"+addressString+"','"+iso3CountryCode+"')");        
+            throw new AddressProcessingException("Could not create or lookup and address.  Address is invalid/could not be parsed ('"+addressString+"','"+countryAbbr+"')");
         }
     }
 
-    public Address lookupOrCreateAddress(String addressString, String suburbString, String stateString, String iso3CountryCode) throws AddressProcessingException {
-        Address address = parseAddress(addressString, suburbString, stateString, iso3CountryCode);
+    public Address lookupOrCreateAddress(String addressString, String suburbString, String stateString, String countryAbbr) throws AddressProcessingException {
+        Address address = parseAddress(addressString, suburbString, stateString, countryAbbr);
         if (address != null) {
             return lookupOrCreateAddress(address);
         } else {
-            throw new AddressProcessingException("Could not create or lookup and address.  Address is invalid/could not be parsed ('"+addressString+"','"+suburbString+"','"+stateString+"','"+iso3CountryCode+"')");
+            throw new AddressProcessingException("Could not create or lookup and address.  Address is invalid/could not be parsed ('"+addressString+"','"+suburbString+"','"+stateString+"','"+countryAbbr+"')");
         }
     }
 

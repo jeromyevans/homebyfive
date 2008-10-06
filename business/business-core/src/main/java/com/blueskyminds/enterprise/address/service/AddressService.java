@@ -53,14 +53,14 @@ public interface AddressService {
      * The addresses returned are not persistent, they're just parsed.
      *
      * @param addressString plain text address
-     * @param iso3CountryCode
+     * @param countryAbbr
      * @param maxMatches            maximum number of results to return
      *
      * @return Addresses derived from the address string.  In the worst case, this will simply be a
      *  PlainTextAddress
      * @throws AddressProcessingException if a critical error occurs trying to process the address.
      */
-    List<Address> parseAddressCandidates(String addressString, String iso3CountryCode, int maxMatches) throws AddressProcessingException;        
+    List<Address> parseAddressCandidates(String addressString, String countryAbbr, int maxMatches) throws AddressProcessingException;
 
     /**
      * Persists an address.  If the address already exists the existing address is returned
@@ -69,7 +69,7 @@ public interface AddressService {
      * @return the new or existing Address
      * @throws AddressProcessingException if a persistence problem occurs
      */
-    Address lookupOrCreateAddress(String addressString, String iso3CountryCode) throws AddressProcessingException;
+    Address lookupOrCreateAddress(String addressString, String countryAbbr) throws AddressProcessingException;
 
     /**
      * Persists an address in a known suburb.  If the address already exists the existing address is returned
@@ -78,7 +78,7 @@ public interface AddressService {
      * @return the new or existing Address
      * @throws AddressProcessingException if a persistence problem occurs
      */
-    Address lookupOrCreateAddress(String addressString, String suburbString, String stateString, String iso3CountryCode) throws AddressProcessingException;
+    Address lookupOrCreateAddress(String addressString, String suburbString, String stateString, String countryAbbr) throws AddressProcessingException;
 
     /**
      * Persists an address.  If the address already exists the existing address is returned

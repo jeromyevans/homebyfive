@@ -36,7 +36,7 @@ public class TestGenerateSampleAddresses extends JPATestCase {
 
     private static final String TEST_ENTERPRISE_PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";
     private static final int MAX_ADDRESSES = 30;
-    private static final String AUS = "AUS";
+    private static final String AU = "AU";
 
     private static void unloadTable(Connection connection, String tableName, String targetPath) throws IOException, SQLException {        
         FileTools.writeTextFile(targetPath+tableName+".sql", PersistenceTools.unload(connection, tableName));
@@ -85,7 +85,7 @@ public class TestGenerateSampleAddresses extends JPATestCase {
                 if (values.length > 0) {
                     addressText = values[0];
                     if ((addressText != null) && (addressText.length() > 0)) {
-                        address = addressService.lookupOrCreateAddress(addressText, AUS);
+                        address = addressService.lookupOrCreateAddress(addressText, AU);
                         //address = addressService.parseAddress(addressText, AUS);
                         if (address != null) {
 //                            addressService.lookupOrCreateAddress(address);
