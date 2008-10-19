@@ -4,6 +4,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 import net.sf.json.JSONObject;
 import net.sf.json.processors.JsDateJsonBeanProcessor;
+import net.sf.json.processors.JsDateJsonValueProcessor;
 
 import java.io.Reader;
 import java.io.IOException;
@@ -48,7 +49,8 @@ public class JsonLibContentTypeHandler implements ContentTypeHandler {
         JsonConfig config = new JsonConfig();
 
         // enable support for java.sql.Date
-        config.registerJsonBeanProcessor(java.sql.Date.class, new JsDateJsonBeanProcessor());
+        config.registerJsonValueProcessor(java.util.Date.class, new JsDateJsonValueProcessor());
+        config.registerJsonValueProcessor(java.sql.Date.class, new JsDateJsonValueProcessor());
         
         return config;
     }

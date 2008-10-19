@@ -79,8 +79,15 @@ public class FileTools {
      * Reads a text file into an array of strings.  Each line is included only if it passes the filter
      */
     public static String[] readTextFile(URI location, StringFilter filter) throws IOException {
+        return readTextFile(ResourceTools.openStream(location), filter);
+    }
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(ResourceTools.openStream(location)));
+    /**
+     * Reads a text file into an array of strings.  Each line is included only if it passes the filter
+     */
+    public static String[] readTextFile(InputStream inputStream, StringFilter filter) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
         List<String> lines = new LinkedList<String>();
         String line;

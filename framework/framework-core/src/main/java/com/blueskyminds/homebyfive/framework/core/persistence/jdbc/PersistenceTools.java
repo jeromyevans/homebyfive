@@ -8,8 +8,13 @@ import java.sql.*;
 import java.util.*;
 import java.io.StringWriter;
 import java.io.PrintWriter;
+import java.io.InputStream;
+import java.io.IOException;
 
 import com.blueskyminds.homebyfive.framework.core.tools.text.StringTools;
+import com.blueskyminds.homebyfive.framework.core.tools.FileTools;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.StringFilter;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.NonBlankFilter;
 
 /**
  * Useful persistence methods that use JDBC
@@ -61,6 +66,19 @@ public class PersistenceTools {
             rowsAffected += statement.executeUpdate(sqlLine);
         }
         return rowsAffected;
+    }
+
+
+    /**
+     * @param connection
+     * @param inputStream         from a text stream of SQL
+     * @return total row count
+     * @throws SQLException
+     */
+    public static int executeUpdate(Connection connection, InputStream inputStream) throws SQLException, IOException {
+        StringFilter filter = new NonBlankFilter();
+        String[] sqlLines =  FileTools.readTextFile(inputStream, filter);
+        return executeUpdate(connection, sqlLines);
     }
 
     /**
