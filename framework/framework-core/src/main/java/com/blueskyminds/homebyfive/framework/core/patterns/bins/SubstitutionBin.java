@@ -33,7 +33,7 @@ public class SubstitutionBin extends Bin {
         List<Substitution> substitutions;
         StringComparator<String> stringComparator = new IgnoreCaseComparator();
 
-        substitutions = substitutionService.getSubstitutionsForGroup(groupName);
+        substitutions = substitutionService.listSubstitutionsForGroup(groupName);
 
         for (Substitution substitution : substitutions) {
             addPattern(substitution.getPattern(), stringComparator, substitution.getSubstitution(), substitution.isExclusive(), substitution.getGroupNo(), substitution.getMetadata());

@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.Su
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * A SubstitutionBin that uses Regular Expression matching instead of exact matching
@@ -22,9 +23,9 @@ public class RegExSubstitutionBin extends Bin {
 
     public RegExSubstitutionBin(String groupName, SubstitutionService substitutionService) throws PatternMatcherInitialisationException {
         this.groupName = groupName;
-        List<Substitution> substitutions;        
+        List<Substitution> substitutions;
 
-        substitutions = substitutionService.getSubstitutionsForGroup(groupName);
+        substitutions = substitutionService.listSubstitutionsForGroup(groupName);
 
         for (Substitution substitution : substitutions) {
             addRegExPattern(substitution.getPattern(), substitution.getSubstitution(), substitution.isExclusive(), substitution.getGroupNo(), substitution.getMetadata());

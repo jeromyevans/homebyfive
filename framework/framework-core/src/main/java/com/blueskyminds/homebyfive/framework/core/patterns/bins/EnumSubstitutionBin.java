@@ -39,7 +39,7 @@ public class EnumSubstitutionBin<E extends Enum> extends Bin {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        substitutions = substitutionService.getSubstitutionsForGroup(groupName);
+        substitutions = substitutionService.listSubstitutionsForGroup(groupName);
 
         stopWatch.split();
 //        LOG.info("   enumSub1: "+stopWatch.toString());

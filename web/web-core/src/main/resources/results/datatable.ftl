@@ -41,7 +41,7 @@ Root Context: tableModel
         <@s.if test="!hidden">
           <td>
             <div class="yui-dt-liner">
-              <@s.property value="formatCell(getFormat(), get(name))" escape="false"/>
+              <@s.property value="get(name)" escape="false"/>
             </div>
           </td>
         </@s.if>

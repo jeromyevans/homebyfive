@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.io.IOException;
 
 /**
  * A simple class for generating test data
@@ -212,15 +213,19 @@ public class AddressTestTools extends TestTools {
         int patterns = 0;
         SubstitutionsFileReader substitutionsFileReader = new SubstitutionsFileReader();
 
-        substitutions = substitutionsFileReader.readCsv(ADDRESS_PATTERNS_FILE_NAME);
+        try {
+            substitutions = substitutionsFileReader.readCsv(ADDRESS_PATTERNS_FILE_NAME);
 
-        for (Substitution substitution : substitutions) {
-            em.persist(substitution);
-            patterns++;
-        }
-        em.flush();
+            for (Substitution substitution : substitutions) {
+                em.persist(substitution);
+                patterns++;
+            }
+            em.flush();
 
-        LOG.info("Initialised "+patterns+" substitution patterns");        
+            LOG.info("Initialised "+patterns+" substitution patterns");
+        } catch (IOException e) {
+            LOG.error(e);
+        }                
     }
 
     // ------------------------------------------------------------------------------------------------------

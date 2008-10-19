@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.framework.core.tools.substitutions.service;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Provides access to text substitutions commonly used in the framework's pattern matching
@@ -19,7 +20,16 @@ public interface SubstitutionService {
      * @param groupName
      * @return
      */
-    List<Substitution> getSubstitutionsForGroup(String groupName);
+    List<Substitution> listSubstitutionsForGroup(String groupName);
+
+    /**
+     * Get all substitutions
+     *
+     * This method is not threadsafe.  Use one SubstitutionService instance per thread.
+     *
+     * @return
+     */
+    List<Substitution> listSubstitutions(); 
 
     /**
      * Persist a new substitution

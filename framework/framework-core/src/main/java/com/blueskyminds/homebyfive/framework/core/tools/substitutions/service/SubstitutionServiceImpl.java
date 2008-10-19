@@ -1,11 +1,10 @@
 package com.blueskyminds.homebyfive.framework.core.tools.substitutions.service;
 
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
+import com.blueskyminds.homebyfive.framework.core.tools.substitutions.SubstitutionComparator;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.dao.SubstitutionDAO;
 
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  *
@@ -36,12 +35,26 @@ public class SubstitutionServiceImpl implements SubstitutionService {
      * @param groupName
      * @return
      */
-    public List<Substitution> getSubstitutionsForGroup(String groupName) {
+    public List<Substitution> listSubstitutionsForGroup(String groupName) {
         List<Substitution> results = cachedSubstitutions.get(groupName); // not threadsafe
         if (results == null) {
-            results = substitutionDAO.getSubstitutionsForGroup(groupName);
+            results = new ArrayList<Substitution>(substitutionDAO.listSubstitutionsForGroup(groupName));
+            Collections.sort(results, new SubstitutionComparator());
             cachedSubstitutions.put(groupName, results);  // not threadsafe
         }
+        return results;
+    }
+
+    /**
+     * Get all substitutions
+     *
+     * This method is not threadsafe.  Use one SubstitutionService instance per thread.
+     *
+     * @return
+     */
+    public List<Substitution> listSubstitutions() {
+        List<Substitution> results = new ArrayList<Substitution>(substitutionDAO.listSubstitutions());
+        Collections.sort(results, new SubstitutionComparator());
         return results;
     }
 

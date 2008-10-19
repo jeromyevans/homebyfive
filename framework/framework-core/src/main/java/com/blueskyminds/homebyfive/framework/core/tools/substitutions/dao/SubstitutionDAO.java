@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDA
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A DAO to access the pattern-matching substitutions
@@ -19,6 +20,7 @@ import java.util.List;
 public class SubstitutionDAO extends AbstractDAO<Substitution> {
 
     private static final String QUERY_BY_GROUPNAME = "substitution.byGroup";
+    private static final String QUERY_ALL  = "substitution.all";
     private static final String GROUP_NAME = "groupName";
 
     public SubstitutionDAO(EntityManager em) {
@@ -26,12 +28,12 @@ public class SubstitutionDAO extends AbstractDAO<Substitution> {
     }
 
     /**
-     * Get an ordered list of all the substitutions defined in the specified groupName
+     * Get the set of substitutions defined in the specified groupName
      *
      * @param groupName
      * @return Country instance, or null if not found
      */
-    public List<Substitution> getSubstitutionsForGroup(String groupName) {
+    public Set<Substitution> listSubstitutionsForGroup(String groupName) {
         List<Substitution> substitutions;
 
         Query query = em.createNamedQuery(QUERY_BY_GROUPNAME);
@@ -39,7 +41,20 @@ public class SubstitutionDAO extends AbstractDAO<Substitution> {
 
         substitutions = (List<Substitution>) query.getResultList();
 
-        return substitutions;
+        return setOf(substitutions);
+    }
+
+    /**
+     * Get all substitutions
+     *
+     */
+    public Set<Substitution> listSubstitutions() {
+        List<Substitution> substitutions;
+
+        Query query = em.createNamedQuery(QUERY_ALL);
+        substitutions = (List<Substitution>) query.getResultList();
+        return setOf(substitutions);
+
     }
 
     // ------------------------------------------------------------------------------------------------------

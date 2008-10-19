@@ -35,6 +35,9 @@ public class Substitution extends AbstractDomainObject {
     /** The metadata can be used to reference another object or provide an additional value depending on the context*/
     private String metadata;
 
+    /** Controls the order of the substitutions relative to each other */
+    private Integer sequenceNo;
+
     // ------------------------------------------------------------------------------------------------------
     
     public Substitution(String groupName, String description, String pattern, String substitution, boolean exclusive, int groupNo, String metadata) {
@@ -146,6 +149,16 @@ public class Substitution extends AbstractDomainObject {
 
     public void setMetadata(String metadata) {
         this.metadata = metadata;
+    }
+
+    @Basic
+    @Column(name="SequenceNo")
+    public Integer getSequenceNo() {
+        return sequenceNo;
+    }
+
+    public void setSequenceNo(Integer sequenceNo) {
+        this.sequenceNo = sequenceNo;
     }
 
     // ------------------------------------------------------------------------------------------------------

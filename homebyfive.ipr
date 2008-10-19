@@ -67,6 +67,9 @@
       <entry name="?*.html" />
       <entry name="?*.dtd" />
       <entry name="?*.tld" />
+      <entry name="?*.ftl" />
+      <entry name="?*.csv" />
+      <entry name="?*.sql" />
     </wildcardResourcePatterns>
   </component>
   <component name="CreatePatchCommitExecutor">

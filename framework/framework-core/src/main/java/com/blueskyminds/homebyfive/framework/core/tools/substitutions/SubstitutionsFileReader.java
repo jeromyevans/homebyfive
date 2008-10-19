@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.LinkedList;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Reads a CSV file defining substitutions
@@ -41,64 +42,66 @@ public class SubstitutionsFileReader {
     // ------------------------------------------------------------------------------------------------------
 
     /** Reads a CSV file of substitutions */
-    public List<Substitution> readCsv(String filename) {
+    public List<Substitution> readCsv(String filename) throws IOException {
+        return readCsv(ResourceTools.openStream(filename));
+    }
+
+    /** Reads a CSV file of substitutions */
+    public List<Substitution> readCsv(InputStream inputStream) throws IOException {
         List<Substitution> substitutions = new LinkedList<Substitution>();
 
         CsvOptions csvOptions = new CsvOptions();
         csvOptions.setQuoteOutput(false);
 
         CsvTextReader csvReader = null;
-        try {
-            csvReader = new CsvTextReader(ResourceTools.openStream(filename), csvOptions);
-            int patterns = 0;
 
-            while (csvReader.read()) {
-                if (csvReader.isNonBlank()) {
-                    String[] values = csvReader.getAsStrings();
+        csvReader = new CsvTextReader(inputStream, csvOptions);
+        int patterns = 0;
 
-                    if (values.length > 0) {
+        while (csvReader.read()) {
+            if (csvReader.isNonBlank()) {
+                String[] values = csvReader.getAsStrings();
 
-                        // convert '\N' to null
-                        for (int index = 0; index < values.length; index++) {
-                            if (NULL_VALUE.equals(values[index])) {
-                                values[index] = null;
-                            }
+                if (values.length > 0) {
+
+                    // convert '\N' to null
+                    for (int index = 0; index < values.length; index++) {
+                        if (NULL_VALUE.equals(values[index])) {
+                            values[index] = null;
+                        }
+                    }
+
+                    try {
+                        boolean exclusive = true;
+                        int groupNo = -1;
+
+                        String groupName = values[0];
+                        String pattern = values[1];
+                        String subst = values[2];
+                        String description = values[3];
+                        String seqNo = values[5];
+                        String exclusiveFlag = values[6];
+                        String groupString = values[7];
+                        String metadata = values[8];
+
+                        if (exclusiveFlag.equals("0")) {
+                            exclusive = false;
                         }
 
                         try {
-                            boolean exclusive = true;
-                            int groupNo = -1;
-
-                            String groupName = values[0];
-                            String pattern = values[1];
-                            String subst = values[2];
-                            String description = values[3];
-                            String seqNo = values[5];
-                            String exclusiveFlag = values[6];
-                            String groupString = values[7];
-                            String metadata = values[8];
-
-                            if (exclusiveFlag.equals("0")) {
-                                exclusive = false;
-                            }
-
-                            try {
-                                groupNo = Integer.parseInt(groupString);
-                            } catch (NumberFormatException e) {
-                                // couldn't get a valid group number
-                            }
-
-                            substitutions.add(new Substitution(groupName, description, pattern, subst, exclusive, groupNo, metadata));
-                            patterns++;
+                            groupNo = Integer.parseInt(groupString);
+                        } catch (NumberFormatException e) {
+                            // couldn't get a valid group number
                         }
-                        catch (ArrayIndexOutOfBoundsException e2) {
-                            LOG.warn("Couldn't parse CSV line in "+filename+" - skipped line = '"+ StringUtils.join(values,",")+"'");
-                        }
+
+                        substitutions.add(new Substitution(groupName, description, pattern, subst, exclusive, groupNo, metadata));
+                        patterns++;
+                    }
+                    catch (ArrayIndexOutOfBoundsException e2) {
+                        LOG.warn("Couldn't parse CSV line - skipped line = '"+ StringUtils.join(values,",")+"'");
                     }
                 }
             }
-        } catch (IOException e) {
-            LOG.error("Could not locate file: "+e);
         }
 
         return substitutions;
@@ -112,7 +115,11 @@ public class SubstitutionsFileReader {
         int patterns = 0;
         SubstitutionsFileReader substitutionsFileReader = new SubstitutionsFileReader();
 
-        substitutions = substitutionsFileReader.readCsv(fileName);
+        try {
+            substitutions = substitutionsFileReader.readCsv(fileName);
+        } catch (IOException e) {
+            throw new PersistenceServiceException(e);
+        }
 
         for (Substitution substitution : substitutions) {
             em.persist(substitution);

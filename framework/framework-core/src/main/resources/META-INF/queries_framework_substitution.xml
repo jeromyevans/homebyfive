@@ -13,9 +13,19 @@
        -->
     <named-query name="substitution.byGroup">
         <query>
-            select sub from Substitution sub where sub.groupName = :groupName
+            select sub from Substitution sub where sub.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and sub.groupName = :groupName
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>      
+    </named-query>
+
+   <!-- Get all the substitutions 
+     @param groupName
+       -->
+    <named-query name="substitution.all">
+        <query>
+            select sub from Substitution sub where sub.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>
 
 </entity-mappings>
