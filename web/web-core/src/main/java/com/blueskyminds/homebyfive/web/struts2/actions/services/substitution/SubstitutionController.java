@@ -28,7 +28,7 @@ import java.util.List;
     @Result(name = "update", value = "")}
 )
 public class SubstitutionController extends ActionSupport implements ModelDriven<Object>, Preparable {
-
+                                                     
     private SubstitutionService substitutionService;
 
     private Substitution substitution;

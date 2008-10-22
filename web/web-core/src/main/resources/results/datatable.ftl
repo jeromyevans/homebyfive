@@ -2,7 +2,6 @@
 Table of regions
 Root Context: tableModel
 -->
-<p>Freemarker Result</p>
 <#-- todo: don't use YUI-'s split table,  use one table with same styles.  spit table column widths can't lineup without javascript -->
 <div class="datatable yui-dt">
 <div class="yui-dt-hd">

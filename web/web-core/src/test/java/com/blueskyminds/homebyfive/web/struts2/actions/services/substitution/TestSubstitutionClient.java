@@ -29,7 +29,6 @@ public class TestSubstitutionClient extends TestCase {
         List<Substitution> substitutions;
         substitutions = substitutionsFileReader.readCsv(ResourceTools.openStream(ADDRESS_PATTERNS_FILE_NAME));
 
-
         SubstitutionClient subsitutionClient = new SubstitutionClient();
         for (Substitution substitution : substitutions) {
             LOG.info(subsitutionClient.serialize(substitution));
