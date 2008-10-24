@@ -11,5 +11,5 @@ package com.blueskyminds.homebyfive.framework.core.tools.filters;
  */
 public interface StringFilter extends Filter<String> {
     
-    boolean accept(String string);
+    boolean accept(String string);    
 }

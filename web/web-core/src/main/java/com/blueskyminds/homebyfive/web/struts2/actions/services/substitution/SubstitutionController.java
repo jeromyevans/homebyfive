@@ -4,7 +4,6 @@ import org.apache.struts2.config.Results;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.rest.HttpHeaders;
 import org.apache.struts2.rest.DefaultHttpHeaders;
-import org.apache.struts2.views.freemarker.FreemarkerResult;
 import org.apache.commons.lang.StringUtils;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -22,7 +21,7 @@ import java.util.List;
  * Date Started: 3/05/2008
  */
 @Results({
-    @Result(name = "index", type = FreemarkerResult.class, value = "/results/datatable.ftl"),
+//    @Result(name = "index", type = FreemarkerResult.class, value = "/results/datatable.ftl"),
     @Result(name = "create", value = ""),
     @Result(name = "delete", value = ""),
     @Result(name = "update", value = "")}
@@ -72,14 +71,12 @@ public class SubstitutionController extends ActionSupport implements ModelDriven
     @Transactional
     public HttpHeaders create() {
         if (StringUtils.isNotBlank(substitution.getPattern())) {
-            substitution.setGroupName(group);
-            substitution.setGroupNo(0);
-            substitution.setExclusive(true);
-            substitution = substitutionService.createSubstitution(substitution);
-        }
-
-        // and return created with location id
-        return new DefaultHttpHeaders("create");
+            substitution = substitutionService.createOrUpdateSubstitution(substitution);
+            // and return created with location id
+            return new DefaultHttpHeaders("create");
+        } else {
+            return new DefaultHttpHeaders("input");
+        }        
     }
 
     @Transactional

@@ -8,10 +8,7 @@ import org.apache.commons.httpclient.HttpConnectionManager;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.SimpleHttpConnectionManager;
 import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
-import org.apache.commons.httpclient.methods.PutMethod;
-import org.apache.commons.httpclient.methods.RequestEntity;
-import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -57,11 +54,11 @@ public class SubstitutionClient {
      * @return
      * @throws com.blueskyminds.homebyfive.business.address.service.AddressProcessingException
      */
-    private Addresses makeRequest(String serviceURI, Substitution substitution, HttpClient client) throws SubstitutionClientException {
+    private void makeRequest(String serviceURI, Substitution substitution, HttpClient client) throws SubstitutionClientException {
         EntityEnclosingMethod method;
-        Addresses results;
+        Substitution results;
 
-        method = new PutMethod(serviceURI);
+        method = new PostMethod(serviceURI);
 
 
         StopWatch stopWatch = new StopWatch();
@@ -69,16 +66,13 @@ public class SubstitutionClient {
         String body = serialize(substitution);
         try {
 //            LOG.info(serviceURI+":\n"+body);
-            RequestEntity entity = new StringRequestEntity(body, "text/xml", "ISO-8859-1");
+            RequestEntity entity = new StringRequestEntity(body, "application/xml", "ISO-8859-1");
             method.setRequestEntity(entity);
 
             int result = client.executeMethod(method);
 
             if (result >= 300) {
                 throw new SubstitutionClientException("Remote server responded with an error status line:"+ method.getStatusLine().toString());
-            } else {
-                // deserialize the body
-                results = deserialize(method.getResponseBodyAsString());
             }
         } catch (HttpException e) {
             throw new SubstitutionClientException(e.getMessage(), e);
@@ -89,7 +83,6 @@ public class SubstitutionClient {
             stopWatch.stop();
         }
         LOG.info("makeRequest "+serviceURI+" took: "+stopWatch.toString());
-        return results;
     }
 
     protected String serialize(Substitution substitution) {
@@ -97,8 +90,8 @@ public class SubstitutionClient {
         return xStream.toXML(substitution);
     }
 
-    protected Addresses deserialize(String response) {
+    protected Substitution deserialize(String response) {
         XStream xStream = setupXStream();
-        return (Addresses) xStream.fromXML(response);
+        return (Substitution) xStream.fromXML(response);
     }
 }

@@ -8,20 +8,33 @@ import com.blueskyminds.homebyfive.web.struts2.actions.Results;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
+import java.net.URI;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.commons.lang.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Date Started: 17/10/2008
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class LoadController extends ActionSupport {
+public class LoadController extends ActionSupport implements ServletRequestAware {
 
     private String hostname;
     private File upload;
     private String uploadContentType;
     private String uploadFilename;
 
+    private HttpServletRequest request;
+
+    private String host(HttpServletRequest request) {
+        return request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+    }
+
     public String index() throws Exception {
+        hostname = host(request) +"/services/substitution/substitution.xml";
         return Results.INDEX;
     }
 
@@ -68,5 +81,9 @@ public class LoadController extends ActionSupport {
 
     public String getUploadContentType() {
         return uploadContentType;
+    }
+
+    public void setServletRequest(HttpServletRequest request) {
+        this.request = request;
     }
 }

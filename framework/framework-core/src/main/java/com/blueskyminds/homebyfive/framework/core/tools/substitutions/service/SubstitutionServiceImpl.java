@@ -67,8 +67,13 @@ public class SubstitutionServiceImpl implements SubstitutionService {
      * @param substitution
      * @return
      */
-    public Substitution createSubstitution(Substitution substitution) {
-        return substitutionDAO.createSubstitution(substitution);
+    public Substitution createOrUpdateSubstitution(Substitution substitution) {
+        Substitution existing = substitutionDAO.lookupSubstitution(substitution.getGroupName(), substitution.getPattern());
+        if (existing != null) {
+            return substitutionDAO.updateSubstitution(existing.getId(), substitution);
+        } else {
+            return substitutionDAO.createSubstitution(substitution);
+        }
     }
 
     /**

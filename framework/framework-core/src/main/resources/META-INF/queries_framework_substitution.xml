@@ -11,7 +11,7 @@
     <!-- Get all the substitutions in a group
      @param groupName
        -->
-    <named-query name="substitution.byGroup">
+    <named-query name="substitutions.byGroup">
         <query>
             select sub from Substitution sub where sub.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and sub.groupName = :groupName
         </query>
@@ -21,9 +21,24 @@
    <!-- Get all the substitutions 
      @param groupName
        -->
-    <named-query name="substitution.all">
+    <named-query name="substitutions.all">
         <query>
             select sub from Substitution sub where sub.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+        </query>
+        <hint name="org.hibernate.cacheable" value="true"/>
+    </named-query>
+
+    <!--
+     Lookup a substitution by its unique groupName and pattern
+
+     @param groupName
+     @param pattern
+       -->
+    <named-query name="substitution.byGroupAndPattern">
+        <query>
+            select sub from Substitution sub where sub.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+              and sub.groupName = :groupName
+              and sub.pattern = :pattern
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>

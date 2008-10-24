@@ -49,6 +49,10 @@
          <param name="error">401</param>
          <param name="errorMessage">Unauthorized request: invalid signature</param>
        </result>
+       <!-- default handling of common results -->
+       <!--<result name="success" type="httpheader">-->
+         <!--<param name="status">200</param>-->
+       <!--</result>-->
      </global-results>
 
       <global-exception-mappings>

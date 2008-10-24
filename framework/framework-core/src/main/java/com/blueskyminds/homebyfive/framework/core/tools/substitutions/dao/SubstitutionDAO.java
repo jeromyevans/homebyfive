@@ -19,9 +19,12 @@ import java.util.Set;
  */
 public class SubstitutionDAO extends AbstractDAO<Substitution> {
 
-    private static final String QUERY_BY_GROUPNAME = "substitution.byGroup";
-    private static final String QUERY_ALL  = "substitution.all";
+    private static final String QUERY_BY_GROUPNAME = "substitutions.byGroup";
+    private static final String QUERY_BY_GROUPNAME_AND_PATTERN = "substitution.byGroupAndPattern";
+    private static final String QUERY_ALL  = "substitutions.all";
+
     private static final String GROUP_NAME = "groupName";
+    private static final String PARAM_PATTERN = "pattern";
 
     public SubstitutionDAO(EntityManager em) {
         super(em, Substitution.class);
@@ -78,5 +81,13 @@ public class SubstitutionDAO extends AbstractDAO<Substitution> {
             em.persist(existing);
         }
         return existing;
+    }
+
+    public Substitution lookupSubstitution(String groupName, String pattern) {
+        Query query = em.createNamedQuery(QUERY_BY_GROUPNAME_AND_PATTERN);
+        query.setParameter(GROUP_NAME, groupName);
+        query.setParameter(PARAM_PATTERN, pattern);
+         
+        return firstIn((List<Substitution>) query.getResultList());        
     }
 }

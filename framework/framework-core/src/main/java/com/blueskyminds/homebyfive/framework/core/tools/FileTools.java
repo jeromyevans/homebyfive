@@ -83,6 +83,13 @@ public class FileTools {
     }
 
     /**
+     * Reads a text file into an array of strings.
+     */
+    public static String[] readTextFile(InputStream inputStream) throws IOException {
+        return readTextFile(inputStream, null);
+    }
+    
+    /**
      * Reads a text file into an array of strings.  Each line is included only if it passes the filter
      */
     public static String[] readTextFile(InputStream inputStream, StringFilter filter) throws IOException {
@@ -93,7 +100,7 @@ public class FileTools {
         String line;
 
         while ((line = reader.readLine()) != null) {
-            if (filter.accept(line)) {
+            if (filter == null || filter.accept(line)) {
                 lines.add(line);
             }
         }

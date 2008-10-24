@@ -37,7 +37,7 @@ public interface SubstitutionService {
      * @param substitution
      * @return the Substitution instance created
      */
-    Substitution createSubstitution(Substitution substitution);
+    Substitution createOrUpdateSubstitution(Substitution substitution);
 
     /**
      * Delete the substitution identified by id
