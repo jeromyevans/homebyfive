@@ -7,18 +7,15 @@ import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.homebyfive.framework.core.tools.NamedTools;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
+import com.blueskyminds.homebyfive.business.user.model.UserAccount;
 
 import javax.persistence.*;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
 /**
- * A RegionHandle contains essential information about a region within a region graph and is a proxy (loosely speaking)
- * to the actual Region entity
- *
- * There's a different RegionHandle for each type of Region implementation.
- *
- * The primary goal of this design is FAST lookup of regions irrespective of type.
+ * A RegionHandle contains essential information about a region within a region graph
  *
  * Date Started: 7/07/2007
  * <p/>
@@ -43,6 +40,9 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
     private Set<RegionHierarchy> childRegions;
     private RegionIndex regionIndex;
     private DomainObjectStatus status;
+
+    private UserAccount createdBy;
+    private UserAccount lastUpdatedBy;      
 
     protected Region(String name, RegionTypes type) {
         this.name = name;
@@ -542,6 +542,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
     }
 
     public abstract void populateAttributes();
+
 
     @PrePersist
     void prePersist() {
