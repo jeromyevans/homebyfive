@@ -1,6 +1,7 @@
 package com.blueskyminds.homebyfive.business.address;
 
 import org.apache.commons.lang.StringUtils;
+import org.jboss.envers.Versioned;
 
 import javax.persistence.*;
 
@@ -21,6 +22,7 @@ import com.blueskyminds.homebyfive.business.region.graph.Street;
  */
 @Entity
 @DiscriminatorValue("Lot")
+@Versioned
 public class LotAddress extends StreetAddress {
 
     private String lotNumber;

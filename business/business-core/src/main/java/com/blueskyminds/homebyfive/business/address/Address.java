@@ -7,6 +7,7 @@ import com.blueskyminds.homebyfive.business.region.graph.*;
 import javax.persistence.*;
 
 import org.apache.commons.lang.StringUtils;
+import org.jboss.envers.Versioned;
 
 /**
  * An Address identifies a physical location
@@ -21,6 +22,7 @@ import org.apache.commons.lang.StringUtils;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="AddressClass", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Abstract")
+@Versioned
 public abstract class Address extends AbstractDomainObject {
 
     /** The suburb the address is in */

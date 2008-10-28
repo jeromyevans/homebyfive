@@ -4,6 +4,8 @@ import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 
 import javax.persistence.*;
 
+import org.jboss.envers.Versioned;
+
 /**
  * A directional map between two regions.
  *
@@ -16,6 +18,7 @@ import javax.persistence.*;
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd<br/>
  *  */
 @Entity
+@Versioned
 public class RegionHierarchy extends AbstractEntity {
 
     protected Region parent;

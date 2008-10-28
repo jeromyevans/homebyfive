@@ -7,6 +7,7 @@ import com.blueskyminds.homebyfive.business.region.graph.Street;
 import javax.persistence.*;
 
 import org.apache.commons.lang.StringUtils;
+import org.jboss.envers.Versioned;
 
 /**
  * Represents a simple multi-line address
@@ -19,6 +20,7 @@ import org.apache.commons.lang.StringUtils;
  */
 @Entity
 @DiscriminatorValue("Multiline")
+@Versioned
 public class MultilineAddress extends Address {
 
     private String addressLine1;

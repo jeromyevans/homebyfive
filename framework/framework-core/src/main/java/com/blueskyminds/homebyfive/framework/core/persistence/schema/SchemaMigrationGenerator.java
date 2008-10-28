@@ -7,6 +7,7 @@ import org.hibernate.dialect.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.DatabaseMetadata;
 import org.hibernate.ejb.Ejb3Configuration;
+import org.jboss.envers.configuration.VersionsConfiguration;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -27,7 +28,7 @@ import javax.sql.DataSource;
  *   applies the existing migration scripts to it
  *   calculates the difference
  *   writes the difference to the target directory in each dialect
- *
+ *   writes envers tables for @Versionable entities
  */
 public class SchemaMigrationGenerator {
 
@@ -42,6 +43,8 @@ public class SchemaMigrationGenerator {
     private String schemaName;
     private String persistenceUnitName;
     private String targetPath;
+
+    private boolean dryRun = false;
 
     public SchemaMigrationGenerator(String persistenceUnitName, String schemaName, String targetPath) {
         this.persistenceUnitName = persistenceUnitName;
@@ -86,6 +89,7 @@ public class SchemaMigrationGenerator {
             System.out.println("Initialising PersistenceUnit...");
             Ejb3Configuration cfg = new Ejb3Configuration().configure(persistenceUnitName, new Properties());
             Configuration config = cfg.getHibernateConfiguration();
+            VersionsConfiguration versionedCfg = VersionsConfiguration.getFor(config);
 
             for (Map.Entry<String, Dialect> dialect : dialects.entrySet()) {
                 System.out.println("Generating migration scripts for "+dialect.getKey()+":");
@@ -103,6 +107,17 @@ public class SchemaMigrationGenerator {
         }
     }
 
+    private void writeTextFile(String filename, String[] lines) throws IOException {
+        if (!dryRun) {
+            FileTools.writeTextFile(filename, lines);
+        } else {
+            System.out.println("DryRun only: "+filename);
+            for (String line : lines) {
+                System.out.println(line);
+            }
+        }
+    }
+
     private void writeDeltaScript(int nextRevision, String name, String[] script, String[] createScript) throws IOException {
 
         name = StringUtils.lowerCase(name);
@@ -117,14 +132,14 @@ public class SchemaMigrationGenerator {
 
         // write the file, even if its empty, so old versions are replaced
         FileTools.createDirectory(path);
-        FileTools.writeTextFile(FileTools.concatenatePaths(path, DELTA_SQL_FILENAME), script);
+        writeTextFile(FileTools.concatenatePaths(path, DELTA_SQL_FILENAME), script);
 
         if (!FileTools.fileExists(FileTools.concatenatePaths(path, ORDER_FILENAME))) {
             // create a ready-to-use order file
             String[] orderLines = new String[1];
             orderLines[0] = DELTA_SQL_FILENAME;
 
-            FileTools.writeTextFile(FileTools.concatenatePaths(path, ORDER_FILENAME), orderLines);
+            writeTextFile(FileTools.concatenatePaths(path, ORDER_FILENAME), orderLines);
         }
 
         String updateScript;
@@ -135,7 +150,7 @@ public class SchemaMigrationGenerator {
                 updateLines[0] = "-- This table is required by the SchemaMigrator.  It will be created automatically if the SchemaMigrator is used.  " +
                         "If you create the tables manually and want the SchemaMigrator to resume from that point must run this script";
                 updateLines[1] = SchemaRevision.CREATE_SCHEMA_REVISION_TABLE+";";
-                FileTools.writeTextFile(FileTools.concatenatePaths(path, CREATE_SCHEMA_REVISION_TABLE_FILENAME), updateLines);
+                writeTextFile(FileTools.concatenatePaths(path, CREATE_SCHEMA_REVISION_TABLE_FILENAME), updateLines);
             }
 
             updateScript = "insert into SchemaRevision (revNo, schemaName) values (0, '"+schemaName+"');";
@@ -148,12 +163,19 @@ public class SchemaMigrationGenerator {
             String[] updateLines = new String[2];
             updateLines[0] = "-- If you apply the migration manually, use this script to update the SchemaRevision table to allow the SchemaMigrator to resume from this revision";
             updateLines[1] = updateScript;
-            FileTools.writeTextFile(FileTools.concatenatePaths(path, UPDATE_SCHEMA_REVISION_TABLE_FILENAME), updateLines);
+            writeTextFile(FileTools.concatenatePaths(path, UPDATE_SCHEMA_REVISION_TABLE_FILENAME), updateLines);
         }
 
         // create the baseline script
-        FileTools.writeTextFile(FileTools.concatenatePaths(path, BASELINE_SCHEMA_FILENAME), createScript);
+        writeTextFile(FileTools.concatenatePaths(path, BASELINE_SCHEMA_FILENAME), createScript);
+    }
 
+    /**
+     * No files will be written if set
+     * @param dryRun
+     */
+    public void setDryRun(boolean dryRun) {
+        this.dryRun = dryRun;
     }
 
     // ------------------------------------------------------------------------------------------------------

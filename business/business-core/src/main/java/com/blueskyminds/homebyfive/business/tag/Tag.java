@@ -8,6 +8,8 @@ import javax.persistence.Basic;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 
+import org.jboss.envers.Versioned;
+
 /**
  * A tag is used for classification and grouping
  *
@@ -17,6 +19,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @Table(name="Tag")
+@Versioned
 public class Tag extends AbstractEntity implements Comparable<Tag> {
 
     private String name;

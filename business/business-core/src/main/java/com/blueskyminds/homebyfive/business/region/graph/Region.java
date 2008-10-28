@@ -6,13 +6,17 @@ import com.blueskyminds.homebyfive.framework.core.alias.Aliased;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.homebyfive.framework.core.tools.NamedTools;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
+import com.blueskyminds.homebyfive.business.region.tag.RegionTagMap;
 import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
-import com.blueskyminds.homebyfive.business.user.model.UserAccount;
+import com.blueskyminds.homebyfive.business.tag.Taggable;
+import com.blueskyminds.homebyfive.business.tag.Tag;
+import com.blueskyminds.homebyfive.business.tag.TagTools;
 
 import javax.persistence.*;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.List;
+
+import org.jboss.envers.Versioned;
 
 /**
  * A RegionHandle contains essential information about a region within a region graph
@@ -27,7 +31,8 @@ import java.util.List;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Impl", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("R")
-public abstract class Region extends AbstractEntity implements Named, Aliased {
+@Versioned
+public abstract class Region extends AbstractEntity implements Named, Aliased, Taggable {
 
     protected String parentPath;
     protected String path;
@@ -37,13 +42,15 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
     protected RegionTypes type;
     private Set<RegionAlias> aliases;
     private Set<RegionHierarchy> parentRegionMaps;
-    private Set<RegionHierarchy> childRegions;
+    private Set<RegionHierarchy> childRegionMaps;
     private RegionIndex regionIndex;
     private DomainObjectStatus status;
 
-    private UserAccount createdBy;
-    private UserAccount lastUpdatedBy;      
-
+    /**
+      * Tags assigned to this Region
+      */
+    private Set<RegionTagMap> tagMaps;
+    
     protected Region(String name, RegionTypes type) {
         this.name = name;
         this.type = type;
@@ -67,8 +74,9 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
     private void init() {
         aliases = new HashSet<RegionAlias>();
         parentRegionMaps = new HashSet<RegionHierarchy>();
-        childRegions = new HashSet<RegionHierarchy>();
+        childRegionMaps = new HashSet<RegionHierarchy>();
         status = DomainObjectStatus.Valid;
+        tagMaps = new HashSet<RegionTagMap>();
     }
 
     /** The unique path of this region's primary parent */
@@ -231,11 +239,11 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
      */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     protected Set<RegionHierarchy> getChildRegionMaps() {
-        return childRegions;
+        return childRegionMaps;
     }
 
     protected void setChildRegionMaps(Set<RegionHierarchy> childRegions) {
-        this.childRegions = childRegions;
+        this.childRegionMaps = childRegions;
     }
 
     @OneToOne(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -298,7 +306,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
         RegionHierarchy childEntryToRemove = null;
         RegionHierarchy parentEntryToRemove = null;
 
-        for (RegionHierarchy map : childRegions) {
+        for (RegionHierarchy map : childRegionMaps) {
             if (map.getChild().equals(childHandle)) {
                 childEntryToRemove = map;
                 break;
@@ -306,7 +314,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
         }
 
         if (childEntryToRemove != null) {
-            removed = childRegions.remove(childEntryToRemove);
+            removed = childRegionMaps.remove(childEntryToRemove);
         }
 
         for (RegionHierarchy map : childHandle.getParentRegionMaps()) {
@@ -369,7 +377,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
     }
 
     private boolean doAddChildMap(RegionHierarchy map) {
-        return childRegions.add(map);
+        return childRegionMaps.add(map);
     }
 
     /**
@@ -414,7 +422,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
      * @return true if this does
      */
     public boolean hasChild(Region regionHandle) {
-        for (RegionHierarchy map : childRegions) {
+        for (RegionHierarchy map : childRegionMaps) {
             if (map.getChild().equals(regionHandle)) {
                 return true;
             }
@@ -460,7 +468,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
      */
      public Set<Region> getChildren(RegionTypes type) {
         Set<Region> matchedChildren = new HashSet<Region>();
-        for (RegionHierarchy map : childRegions) {
+        for (RegionHierarchy map : childRegionMaps) {
             if (type.equals(map.getChild().getType())) {
                 matchedChildren.add(map.getChild());
             }
@@ -539,10 +547,59 @@ public abstract class Region extends AbstractEntity implements Named, Aliased {
          for (Region child : childrenToUpdate) {
              child.removeParentRegion(anotherRegion);
          }
+
+         mergeTags(((Region) anotherRegion).tagMaps);
     }
 
-    public abstract void populateAttributes();
+    public abstract void populateAttributes();    
 
+    /**
+     * The tags that have been assigned to this Region
+     **/
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    public Set<RegionTagMap> getTagMaps() {
+        return tagMaps;
+    }
+
+    public void setTagMaps(Set<RegionTagMap> tagMaps) {
+        this.tagMaps = tagMaps;
+    }
+
+    @Transient
+    public Set<Tag> getTags() {
+        return TagTools.extractTags(tagMaps);
+    }
+
+    public void addTag(Tag tag) {
+        if (!TagTools.contains(tagMaps, tag)) {
+            tagMaps.add(new RegionTagMap(this, tag));
+        }
+    }
+
+    public boolean hasTag(Tag tag) {
+        for (RegionTagMap tagMap : tagMaps) {
+            if (tagMap.getTag().equals(tag)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Merge the tags from the other region into this region
+     *
+     * @param otherTags
+     */
+    private void mergeTags(Set<RegionTagMap> otherTags) {
+         if (otherTags != null) {
+            for (RegionTagMap RegionTagMap : otherTags) {
+                if (!hasTag(RegionTagMap.getTag())) {
+                    // merge
+                    addTag(RegionTagMap.getTag());
+                }
+            }
+        }
+    }
 
     @PrePersist
     void prePersist() {

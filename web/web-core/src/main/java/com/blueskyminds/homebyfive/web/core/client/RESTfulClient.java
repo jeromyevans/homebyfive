@@ -32,12 +32,12 @@ public class RESTfulClient<T> {
         return xStream;
     }
 
-     protected String serialize(T model) {
+    public String serialize(T model) {
         XStream xStream = setupXStream();
         return xStream.toXML(model);
     }
 
-    protected T deserialize(String response) {
+    public T deserialize(String response) {
         XStream xStream = setupXStream();
         return (T) xStream.fromXML(response);
     }

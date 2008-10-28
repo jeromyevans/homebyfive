@@ -1,6 +1,7 @@
 package com.blueskyminds.homebyfive.business.address;
 
 import org.apache.commons.lang.StringUtils;
+import org.jboss.envers.Versioned;
 
 import javax.persistence.*;
 
@@ -22,6 +23,7 @@ import java.io.PrintStream;
  */
 @Entity
 @DiscriminatorValue("Street")
+@Versioned
 public class StreetAddress extends Address {
 
     private String streetNumber;

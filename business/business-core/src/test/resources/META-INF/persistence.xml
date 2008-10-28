@@ -228,6 +228,8 @@ To do: many of these properties need to be able to be changed -->
         <class>com.blueskyminds.homebyfive.business.region.graph.Suburb</class>
         <class>com.blueskyminds.homebyfive.business.region.graph.Street</class>
 
+        <class>com.blueskyminds.homebyfive.business.region.tag.RegionTagMap</class>
+
         <class>com.blueskyminds.homebyfive.business.region.index.RegionIndex</class>
         <class>com.blueskyminds.homebyfive.business.region.index.CountryBean</class>
         <class>com.blueskyminds.homebyfive.business.region.index.StateBean</class>

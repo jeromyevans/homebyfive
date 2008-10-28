@@ -9,6 +9,7 @@ import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
 import javax.persistence.*;
 
 import org.apache.commons.lang.StringUtils;
+import org.jboss.envers.Versioned;
 
 /**
  * A RegionHandle for a Country
@@ -19,6 +20,7 @@ import org.apache.commons.lang.StringUtils;
  */
 @Entity
 @DiscriminatorValue("C")
+@Versioned
 public class Country extends Region {
 
     public static final String AUS = "AUS";

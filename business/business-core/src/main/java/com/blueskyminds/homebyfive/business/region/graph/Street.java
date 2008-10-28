@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.io.PrintStream;
 
 import org.apache.commons.lang.StringUtils;
+import org.jboss.envers.Versioned;
 
 /**
  * Date Started: 4/10/2008
@@ -21,6 +22,7 @@ import org.apache.commons.lang.StringUtils;
  */
 @Entity
 @DiscriminatorValue("T")
+@Versioned
 public class Street extends Region {
 
     private StreetType streetType;

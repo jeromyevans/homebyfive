@@ -11,6 +11,8 @@ import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
 
+import org.jboss.envers.Versioned;
+
 /**
  * A SuburbHandle for a Suburb
  *
@@ -20,6 +22,7 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("B")
+@Versioned
 public class Suburb extends Region {
 
     /** A special case SuburbHandle instance used to identify an invalid Suburb rather than a null value */

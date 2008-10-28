@@ -5,6 +5,8 @@ import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 
 import javax.persistence.*;
 
+import org.jboss.envers.Versioned;
+
 /**
  * An alias for a region (an alternative name)
  *
@@ -13,6 +15,7 @@ import javax.persistence.*;
  * History:
  */
 @Entity
+@Versioned
 public class RegionAlias extends AbstractEntity implements Named {
 
     private Region region;

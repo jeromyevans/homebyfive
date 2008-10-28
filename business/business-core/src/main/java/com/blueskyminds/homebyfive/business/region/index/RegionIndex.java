@@ -7,6 +7,7 @@ import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 
 import javax.persistence.*;
 
+
 /**
  * Denormalized view of an entry in the Region Graph
  *

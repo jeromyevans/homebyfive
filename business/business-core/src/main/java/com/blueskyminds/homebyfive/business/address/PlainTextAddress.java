@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.PrintStream;
 
 import org.apache.commons.lang.StringUtils;
+import org.jboss.envers.Versioned;
 
 /**
  * An address that is in the full-text form - unvalidated and not separated into fields
@@ -20,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
  */
 @Entity
 @DiscriminatorValue("PlainText")
+//@Versioned
 public class PlainTextAddress extends Address {
 
     private String value;

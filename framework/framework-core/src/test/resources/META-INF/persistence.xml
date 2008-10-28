@@ -5,16 +5,8 @@ To do: many of these properties need to be able to be changed -->
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
      version="1.0">
-     <!--<persistence-unit name="TestDb" transaction-type="RESOURCE_LOCAL">
-         <jta-data-source>java:/DefaultDS</jta-data-source>
-         <properties>
-             <property name="hibernate.show_sql" value="true"/>
-             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-             <property name="jboss.entity.manager.jndi.name" value="java:/EntityManagers/TestDb"/>
-         </properties>
-    </persistence-unit>-->
 
-     <persistence-unit name="DefaultEntityManager" transaction-type="RESOURCE_LOCAL">
+     <persistence-unit name="TestFrameworkPersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
         <!--<mapping-file>META-INF/mapping-overrides.xml</mapping-file>-->
@@ -49,7 +41,6 @@ To do: many of these properties need to be able to be changed -->
         <class>com.blueskyminds.homebyfive.framework.core.tasks.TaskGroup</class>
 
         <class>com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution</class>
-        <class>com.blueskyminds.ellamaine.extractor.model.ExtractorLog</class>
 
          <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
@@ -77,6 +68,20 @@ To do: many of these properties need to be able to be changed -->
 
             <property name="hibernate.transaction.auto_close_session" value="false"/>
 
+            <!-- configure entity listeners for envers -->
+            <property name="hibernate.ejb.event.post-insert"
+                      value="org.jboss.envers.event.VersionsEventListener"/>
+            <property name="hibernate.ejb.event.post-update"
+                      value="org.jboss.envers.event.VersionsEventListener"/>
+            <property name="hibernate.ejb.event.post-delete"
+                      value="org.jboss.envers.event.VersionsEventListener"/>
+            <property name="hibernate.ejb.event.pre-collection-update"
+                      value="org.jboss.envers.event.VersionsEventListener"/>
+            <property name="hibernate.ejb.event.pre-collection-remove"
+                      value="org.jboss.envers.event.VersionsEventListener"/>
+            <property name="hibernate.ejb.event.post-collection-recreate"
+                      value="org.jboss.envers.event.VersionsEventListener"/>
+           
          </properties>
       </persistence-unit>
 </persistence>

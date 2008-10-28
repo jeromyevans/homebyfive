@@ -6,6 +6,8 @@ import com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException;
 
 import javax.persistence.*;
 
+import org.jboss.envers.Versioned;
+
 /**
  * A class used to store a set of patterns and substitutions
  *
@@ -16,6 +18,7 @@ import javax.persistence.*;
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
 @Entity
+@Versioned
 public class Substitution extends AbstractDomainObject {
 
     private String groupName;

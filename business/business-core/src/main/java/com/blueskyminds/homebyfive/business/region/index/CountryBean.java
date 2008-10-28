@@ -1,7 +1,6 @@
 package com.blueskyminds.homebyfive.business.region.index;
 
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
@@ -18,6 +17,7 @@ import org.apache.commons.lang.StringUtils;
  */
 @Entity
 @DiscriminatorValue("C")
+//@Versioned
 public class CountryBean extends RegionIndex {
 
     public CountryBean() {

@@ -8,6 +8,8 @@ import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
 
 import javax.persistence.*;
 
+import org.jboss.envers.Versioned;
+
 /**
  * RegionHandle for a postcode
  *
@@ -17,6 +19,7 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("P")
+@Versioned
 public class PostalCode extends Region {
 
     public PostalCode(String name) {

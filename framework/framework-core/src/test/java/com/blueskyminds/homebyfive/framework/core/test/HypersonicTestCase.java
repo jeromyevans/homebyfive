@@ -34,6 +34,10 @@ public class HypersonicTestCase extends BaseTestCase {
         init();
     }
 
+    public HypersonicTestCase() {
+        init();
+    }
+
     // ------------------------------------------------------------------------------------------------------
 
     /**

@@ -11,6 +11,8 @@ import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
 
+import org.jboss.envers.Versioned;
+
 /**
  * Date Started: 7/07/2007
  * <p/>
@@ -18,6 +20,7 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("S")
+@Versioned
 public class State extends Region {
 
     /** A special case StateHandle instance used to identify an invalid State rather than a null value */

@@ -8,6 +8,7 @@ import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
+import org.jboss.envers.Versioned;
 
 /**
  * Denormalized postcode bean for fast lookup by path

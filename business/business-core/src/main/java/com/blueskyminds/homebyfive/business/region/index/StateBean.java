@@ -1,13 +1,14 @@
 package com.blueskyminds.homebyfive.business.region.index;
 
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
-import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
 
 import javax.persistence.*;
+
+import org.jboss.envers.Versioned;
 
 /**
  * Date Started: 3/03/2008

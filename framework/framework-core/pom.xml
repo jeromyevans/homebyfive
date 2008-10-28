@@ -46,6 +46,13 @@
        <version>3.3.2.GA</version>
      </dependency>
 
+    <!-- envers provides version control of entities -->
+    <dependency>
+       <groupId>org.jboss.envers</groupId>
+       <artifactId>jboss-envers</artifactId>
+       <version>1.1.0.ga</version> <!-- hibernate core 3.2.x only -->
+    </dependency>
+                       
     <!-- Used by the schema migrator application -->
      <dependency>
        <groupId>hsqldb</groupId>

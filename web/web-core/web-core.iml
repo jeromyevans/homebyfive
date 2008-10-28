@@ -316,6 +316,19 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
+      <library name="org.jboss.envers:jboss-envers:1.1.0.ga">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jboss/envers/jboss-envers/1.1.0.ga/jboss-envers-1.1.0.ga.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jboss/envers/jboss-envers/1.1.0.ga/jboss-envers-1.1.0.ga-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jboss/envers/jboss-envers/1.1.0.ga/jboss-envers-1.1.0.ga-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
       <library name="hsqldb:hsqldb:1.8.0.7">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7.jar!/" />
