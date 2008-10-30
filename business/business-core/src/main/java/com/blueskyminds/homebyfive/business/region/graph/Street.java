@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.business.region.graph;
 import com.blueskyminds.homebyfive.business.region.graph.Region;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.blueskyminds.homebyfive.business.region.index.StreetBean;
 import com.blueskyminds.homebyfive.business.address.StreetType;
 import com.blueskyminds.homebyfive.business.address.StreetSection;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
@@ -142,6 +143,20 @@ public class Street extends Region {
         if (suburb != null) {
             this.parentPath = suburb.getPath();
             this.path = PathHelper.joinPath(parentPath, key);
+        }
+    }
+
+    /**
+     * Create or update the denormalized index entity
+     */
+    @PrePersist
+    protected void prePersist() {
+        super.prePersist();
+        if (regionIndex == null) {
+             regionIndex = new StreetBean(this);
+        } else {
+            // update the attribute of the index
+            regionIndex.populateDenormalizedAttributes();
         }
     }
 }

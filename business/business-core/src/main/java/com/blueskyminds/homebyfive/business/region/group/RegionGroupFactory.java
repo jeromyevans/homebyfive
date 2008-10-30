@@ -117,7 +117,7 @@ public class RegionGroupFactory {
      * Each state is represented as a composite
      * */
     public static RegionGroup createStates(Collection<State> states) {
-        Country country = (Country) firstParent(states, RegionTypes.Country);
+        Region country = (Region) firstParent(states, RegionTypes.Country);
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(country));
         for (State state : states) {

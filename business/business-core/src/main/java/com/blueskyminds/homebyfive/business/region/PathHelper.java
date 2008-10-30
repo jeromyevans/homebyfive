@@ -46,19 +46,19 @@ public class PathHelper {
     }
 
     public static String buildPath(State stateHandle) {
-        return joinPaths(buildPath(stateHandle.getCountry()), KeyGenerator.generateId(stateHandle.getAbbr()));
+        return joinPaths(stateHandle.getParentPath(), KeyGenerator.generateId(stateHandle.getAbbr()));
     }
 
     public static String buildPath(Suburb suburbHandle) {
-        return joinPaths(buildPath(suburbHandle.getState()), KeyGenerator.generateId(suburbHandle.getName()));
+        return joinPaths(suburbHandle.getParentPath(), KeyGenerator.generateId(suburbHandle.getName()));
     }
 
     public static String buildPath(PostalCode postCodeHandle) {
-        return joinPaths(buildPath(postCodeHandle.getState()), KeyGenerator.generateId(postCodeHandle.getName()));
+        return joinPaths(postCodeHandle.getParentPath(), KeyGenerator.generateId(postCodeHandle.getName()));
     }
 
     public static String buildPath(Suburb suburbHandle, Street street) {
-        return joinPaths(buildPath(suburbHandle.getState()), KeyGenerator.generateId(suburbHandle.getName()), buildStreetNameKey(street));
+        return joinPaths(suburbHandle.getParentPath(), KeyGenerator.generateId(suburbHandle.getName()), buildStreetNameKey(street));
     }
 
     public static String buildPath(Region regionHandle) {

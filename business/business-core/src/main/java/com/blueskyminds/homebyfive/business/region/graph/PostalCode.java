@@ -4,6 +4,7 @@ import com.blueskyminds.homebyfive.business.region.graph.Region;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.blueskyminds.homebyfive.business.region.index.PostalCodeBean;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
 
 import javax.persistence.*;
@@ -71,4 +72,17 @@ public class PostalCode extends Region {
         }
     }
 
+     /**
+     * Create or update the denormalized index entity
+     */
+    @PrePersist
+    protected void prePersist() {
+        super.prePersist();
+        if (regionIndex == null) {
+             regionIndex = new PostalCodeBean(this);
+        } else {
+            // update the attribute of the index
+            regionIndex.populateDenormalizedAttributes();
+        }
+    }
 }

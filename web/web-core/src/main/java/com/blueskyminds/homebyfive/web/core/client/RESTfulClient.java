@@ -1,12 +1,11 @@
 package com.blueskyminds.homebyfive.web.core.client;
 
-import com.thoughtworks.xstream.XStream;
+import com.blueskyminds.homebyfive.business.tools.XMLSerializer;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.RequestEntity;
-import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.httpclient.HttpConnectionManager;
+import org.apache.commons.httpclient.SimpleHttpConnectionManager;
+import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,23 +22,13 @@ import java.io.IOException;
 public class RESTfulClient<T> {
 
     private static final Log LOG = LogFactory.getLog(RESTfulClient.class);
-    
-    /** Initialize the XStream instance for serialization/deserialization */
-    public static XStream setupXStream() {
-        XStream xStream = new XStream();
-//        xStream.setMode(XStream.NO_REFERENCES);
-//        xStream.addImplicitCollection(Addresses.class, "list");
-        return xStream;
-    }
-
-    public String serialize(T model) {
-        XStream xStream = setupXStream();
-        return xStream.toXML(model);
-    }
-
-    public T deserialize(String response) {
-        XStream xStream = setupXStream();
-        return (T) xStream.fromXML(response);
+       
+    protected HttpClient setupClient() {
+        HttpConnectionManager connectionManager = new SimpleHttpConnectionManager();
+        HttpClient client = new HttpClient(connectionManager);
+        client.getParams().setParameter("http.socket.timeout", 0);
+        client.getParams().setParameter("http.connection.timeout", new Integer(500));
+        return client;
     }
 
      /**
@@ -47,16 +36,17 @@ public class RESTfulClient<T> {
      * @param
      * @return
      */
-    protected void doPost(String serviceURI, T model, HttpClient client) throws RemoteClientException {
+    protected void doPost(String serviceURI, T model) throws RemoteClientException {
         EntityEnclosingMethod method;
 
+        HttpClient client = setupClient();
         method = new PostMethod(serviceURI);
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        String body = serialize(model);
+        String body = new XMLSerializer<T>().serialize(model);
         try {
-//            LOG.info(serviceURI+":\n"+body);
+            LOG.info(serviceURI+":\n"+body);
             RequestEntity entity = new StringRequestEntity(body, "application/xml", "ISO-8859-1");
             method.setRequestEntity(entity);
 
@@ -73,6 +63,41 @@ public class RESTfulClient<T> {
             method.releaseConnection();
             stopWatch.stop();
         }
-        LOG.info("makeRequest "+serviceURI+" took: "+stopWatch.toString());
+        LOG.info("doPost "+serviceURI+" took: "+stopWatch.toString());
+    }
+
+    /**
+     * Serialize the bean and issue the request to the remote service
+     * @param
+     * @return
+     */
+    protected void doPut(String serviceURI, T model) throws RemoteClientException {
+        EntityEnclosingMethod method;
+
+        HttpClient client = setupClient();
+        method = new PutMethod(serviceURI);
+
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        String body = new XMLSerializer<T>().serialize(model);
+        try {
+            LOG.info(serviceURI+":\n"+body);
+            RequestEntity entity = new StringRequestEntity(body, "application/xml", "ISO-8859-1");
+            method.setRequestEntity(entity);
+
+            int result = client.executeMethod(method);
+
+            if (result >= 300) {
+                throw new RemoteClientException("Remote server responded with an error status line:"+ method.getStatusLine().toString());
+            }
+        } catch (HttpException e) {
+            throw new RemoteClientException(e.getMessage(), e);
+        } catch (IOException e) {
+            throw new RemoteClientException(e.getMessage(), e);
+        } finally {
+            method.releaseConnection();
+            stopWatch.stop();
+        }
+        LOG.info("doPut "+serviceURI+" took: "+stopWatch.toString());
     }
 }

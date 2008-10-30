@@ -4,6 +4,7 @@ import com.blueskyminds.homebyfive.business.region.graph.Region;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.blueskyminds.homebyfive.business.region.index.CountryBean;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
 
 import javax.persistence.*;
@@ -112,9 +113,34 @@ public class Country extends Region {
         this.path = PathHelper.joinPath(parentPath, key);
     }
 
+    public void mergeWith(Region anotherRegion) {
+        super.mergeWith(anotherRegion);
+
+        Country otherCountry = (Country) anotherRegion;
+        if (otherCountry.iso3CountryCode != null) {
+            this.iso3CountryCode = otherCountry.getIso3CountryCode();
+        }
+        if (otherCountry.currencyCode != null) {
+            this.currencyCode= otherCountry.getCurrencyCode();
+        }
+    }
+
     @Transient
     public boolean isValid() {
         return path != null && path.length() > 1 && StringUtils.isNotBlank(abbr) && (StringUtils.isNotBlank(name));
     }
 
+    /**
+     * Create or update the denormalized index entity
+     */
+     @PrePersist
+    protected void prePersist() {
+        super.prePersist();
+        if (regionIndex == null) {
+             regionIndex = new CountryBean(this);            
+        } else {
+            // update the attribute of the index
+            regionIndex.populateDenormalizedAttributes();
+        }
+    }
 }

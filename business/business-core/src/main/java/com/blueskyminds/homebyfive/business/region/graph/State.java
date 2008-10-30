@@ -2,6 +2,7 @@ package com.blueskyminds.homebyfive.business.region.graph;
 
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.blueskyminds.homebyfive.business.region.index.StateBean;
 import com.blueskyminds.homebyfive.business.region.graph.Region;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
@@ -26,9 +27,12 @@ public class State extends Region {
     /** A special case StateHandle instance used to identify an invalid State rather than a null value */
     public static final State INVALID = invalid();
 
+    private StateType stateType;
+    
     public State(String name, String abbreviation) {
         super(name, RegionTypes.State);
         this.abbr = abbreviation;
+        this.stateType = StateType.State;
         addAlias(abbreviation);
         populateAttributes();
     }
@@ -36,19 +40,39 @@ public class State extends Region {
     public State(Country country, String name, String abbreviation) {
         super(name, RegionTypes.State);
         this.abbr = abbreviation;
+        this.stateType = StateType.State;
         addAlias(abbreviation);
-        this.addParentRegion(country); 
+        this.addParentRegion(country);                
         populateAttributes();
     }
+
+     public State(Country country, String name, String abbreviation, StateType stateType) {
+        super(name, RegionTypes.State);
+        this.abbr = abbreviation;
+        this.stateType = stateType;
+        addAlias(abbreviation);
+        this.addParentRegion(country);
+        populateAttributes();
+    }
+
+    public State(String countryPath, String name, String abbreviation, StateType stateType) {
+       super(name, RegionTypes.State);
+       this.abbr = abbreviation;
+       this.stateType = stateType;
+       addAlias(abbreviation);
+       this.parentPath = countryPath;
+       populateAttributes();
+   }
 
     /** Used for editing a new state */
     public State(Country country) {
         super("", RegionTypes.State);
         this.addParentRegion(country);
+        this.stateType = StateType.State;
         populateAttributes();
     }
 
-    protected State() {
+    public State() {
     }
 
     /**
@@ -87,7 +111,26 @@ public class State extends Region {
         } else {
             return null;
         }
-    }   
+    }
+
+    /**
+     * Set the country for this state. If a country is already set, the current country is removed
+     * @param country
+     */
+    public void setCountry(Country country) {
+        Country existing = getCountry();
+        boolean add = true;
+
+        if (existing == null) {
+            addParentRegion(country);
+        } else {
+            if (existing != country) {
+                // remove old, add new
+                removeParentRegion(existing);
+                addParentRegion(country);
+            }
+        }                
+    }
 
      private static State invalid() {
         State invalid = new State();
@@ -104,9 +147,8 @@ public class State extends Region {
         Country country = getCountry();
         if (country != null) {
             this.parentPath = country.getPath();
-            this.path = PathHelper.joinPath(parentPath, key);
         }
-
+        this.path = PathHelper.joinPath(parentPath, key);
     }
 
     @Transient
@@ -114,4 +156,27 @@ public class State extends Region {
         return this.equals(INVALID);
     }
 
+    @Enumerated
+    @Column(name="StateType")
+    public StateType getStateType() {
+        return stateType;
+    }
+
+    public void setStateType(StateType stateType) {
+        this.stateType = stateType;
+    }
+
+    /**
+     * Create or update the denormalized index entity
+     */
+    @PrePersist
+    protected void prePersist() {
+        super.prePersist();
+        if (regionIndex == null) {
+             regionIndex = new StateBean(this);
+        } else {
+            // update the attribute of the index
+            regionIndex.populateDenormalizedAttributes();
+        }
+    }
 }

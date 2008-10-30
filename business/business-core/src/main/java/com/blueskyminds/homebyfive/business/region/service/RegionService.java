@@ -5,6 +5,7 @@ import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.blueskyminds.homebyfive.business.region.index.*;
 import com.blueskyminds.homebyfive.business.region.graph.*;
 import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
+import com.wideplay.warp.persist.Transactional;
 
 import java.util.Set;
 
@@ -21,6 +22,13 @@ public interface RegionService {
 
     Country createCountry(Country country) throws DuplicateRegionException, InvalidRegionException;
 
+    /**
+     * Update an existing country
+     * Propagates the change into the RegionGraph as well
+     * @param country
+     */
+    Country updateCountry(Country country) throws InvalidRegionException;
+
     RegionGroup listStatesAsGroup(String country);
 
     TableModel listStatesAsTable(String country);
@@ -28,6 +36,12 @@ public interface RegionService {
     Set<State> listStates(String country);
 
     State createState(State stateBean) throws DuplicateRegionException;
+
+    /**
+     * Update an existing state
+     * Propagates the change into the RegionGraph as well
+     */
+    State updateState(State state) throws InvalidRegionException;
 
     State lookupState(String country, String state);
 

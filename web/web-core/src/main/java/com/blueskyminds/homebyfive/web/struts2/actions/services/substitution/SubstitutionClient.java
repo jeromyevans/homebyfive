@@ -25,15 +25,7 @@ public class SubstitutionClient extends RESTfulClient<Substitution> {
      * @return the Substitution instance created
      */
     public void createSubstitution(String hostname, Substitution substitution) throws RemoteClientException {
-
-        HttpConnectionManager connectionManager = new SimpleHttpConnectionManager();
-        HttpClient client = new HttpClient(connectionManager);
-        client.getParams().setParameter("http.socket.timeout", 0);
-        client.getParams().setParameter("http.connection.timeout", new Integer(500));
-
-        doPost(hostname, substitution, client);
-    }
-
-   
+        doPost(hostname, substitution);
+    }   
 
 }

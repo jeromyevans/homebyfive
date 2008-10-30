@@ -50,7 +50,6 @@ public class RegionServiceImpl implements RegionService {
      * @param country  ISO 2 digit country code
      * @return
      */
-    @Transactional
     public Country lookupCountry(String country) {
         return countryEAO.lookupCountry(PathHelper.buildPath(country));
     }
@@ -69,10 +68,37 @@ public class RegionServiceImpl implements RegionService {
         if (country.isValid()) {
             Country existing = countryEAO.lookupCountry(country.getPath());
             if (existing == null) {
-                country = addressService.createCountry(country.getName(), country.getAbbr(), null, null);
+//                RegionFactory regionFactory = new RegionFactory();
+//                country = regionFactory.createCountry(country.getName(), country.getAbbr(), null, null);
+//                //country = addressService.createCountry(country.getName(), country.getAbbr(), null, null);
                 em.persist(country);
             } else {
                 throw new DuplicateRegionException(country);
+            }
+        } else {
+            throw new InvalidRegionException(country);
+        }
+        return country;
+    }
+
+    /**
+     * Update an existing country
+     * Propagates the change into the RegionGraph as well
+     *
+     * NOTE: Does not rollback the transaction in the cases of an InvalidRegionException or DuplicateRegionException as
+     *  no writes occur
+     * @param country
+     */
+    @Transactional(exceptOn = {InvalidRegionException.class})
+    public Country updateCountry(Country country) throws InvalidRegionException {
+        country.populateAttributes();
+        if (country.isValid()) {
+            Country existing = countryEAO.lookupCountry(country.getPath());
+            if (existing != null) {
+                existing.mergeWith(country);
+                em.persist(country);
+            } else {
+                throw new InvalidRegionException(country);
             }
         } else {
             throw new InvalidRegionException(country);
@@ -100,8 +126,10 @@ public class RegionServiceImpl implements RegionService {
     }
 
     /**
-     * Create a new Status
+     * Create a new State
      * Propagates the change into the RegionGraph as well
+     *
+     * If the state is not bound to a country, the parentPath will be used to lookup the country
      *
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
      */
@@ -110,10 +138,41 @@ public class RegionServiceImpl implements RegionService {
         state.populateAttributes();
         State existing = stateEAO.lookupState(state.getPath());
         if (existing == null) {
-            state = addressService.createState(state.getName(), state.getAbbr(), state.getCountry());            
+            Country country = state.getCountry();
+            if (country == null) {
+                // see if the parent path references a country
+                if (StringUtils.isNotBlank(state.getParentPath())) {
+                    country = lookupCountry(state.getParentPath());
+                    if (country != null) {
+                        state.setCountry(country);
+                    }
+                }
+            } 
+            
+//            state = addressService.createState(state.getName(), state.getAbbr(), state.getCountry());
             em.persist(state);
+            em.persist(country);            
         } else {
             throw new DuplicateRegionException(state);
+        }
+        return state;
+    }
+
+    /**
+     * Update an existing state
+     * Propagates the change into the RegionGraph as well
+     *
+     * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
+     */
+    @Transactional(exceptOn = {InvalidRegionException.class})
+    public State updateState(State state) throws InvalidRegionException {
+        state.populateAttributes();
+        State existing = stateEAO.lookupState(state.getPath());
+        if (existing != null) {
+            existing.mergeWith(state);
+            em.persist(state);
+        } else {
+            throw new InvalidRegionException(state);
         }
         return state;
     }

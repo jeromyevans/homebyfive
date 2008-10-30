@@ -5,6 +5,7 @@ import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.blueskyminds.homebyfive.business.region.index.SuburbBean;
 import com.blueskyminds.homebyfive.business.region.graph.Street;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
@@ -116,6 +117,20 @@ public class Suburb extends Region {
         if (state != null) {
             this.parentPath = state.getPath();
             this.path = PathHelper.joinPath(parentPath, key);
+        }
+    }
+
+    /**
+     * Create or update the denormalized index entity
+     */
+    @PrePersist
+    protected void prePersist() {
+        super.prePersist();
+        if (regionIndex == null) {
+             regionIndex = new SuburbBean(this);
+        } else {
+            // update the attribute of the index
+            regionIndex.populateDenormalizedAttributes();
         }
     }
    

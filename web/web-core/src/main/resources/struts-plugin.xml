@@ -26,7 +26,9 @@
 
   <!-- Use the customised json processor -->
    <bean name="myJson" type="org.apache.struts2.rest.handler.ContentTypeHandler" class="com.blueskyminds.homebyfive.web.struts2.JsonLibContentTypeHandler" />
+   <bean name="myXML" type="org.apache.struts2.rest.handler.ContentTypeHandler" class="com.blueskyminds.homebyfive.web.struts2.XStreamContentTypeHandler" />
    <constant name="struts.rest.handlerOverride.json" value="myJson"/>
+   <constant name="struts.rest.handlerOverride.xml" value="myXML"/>
   
    <package name="auth-default" extends="rest-default">
 

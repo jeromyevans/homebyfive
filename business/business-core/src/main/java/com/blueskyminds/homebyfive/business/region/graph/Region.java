@@ -11,6 +11,7 @@ import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
 import com.blueskyminds.homebyfive.business.tag.Taggable;
 import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.business.tag.TagTools;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -41,9 +42,9 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     protected String abbr;
     protected RegionTypes type;
     private Set<RegionAlias> aliases;
-    private Set<RegionHierarchy> parentRegionMaps;
-    private Set<RegionHierarchy> childRegionMaps;
-    private RegionIndex regionIndex;
+    @XStreamOmitField private Set<RegionHierarchy> parentRegionMaps;
+    @XStreamOmitField private Set<RegionHierarchy> childRegionMaps;
+    protected RegionIndex regionIndex;
     private DomainObjectStatus status;
 
     /**
@@ -63,7 +64,9 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
         this.type = type;
         init();
         for (String alias : aliases) {
-            this.aliases.add(new RegionAlias(this, alias));
+            if (alias != null) {
+                this.aliases.add(new RegionAlias(this, alias));
+            }
         }
     }
 
@@ -501,6 +504,10 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
          Set<Region> parentsToUpdate = new HashSet<Region>();
          Set<Region> childrenToUpdate = new HashSet<Region>();
 
+         this.name = anotherRegion.getName();
+         this.abbr = anotherRegion.getAbbr();
+         this.key = anotherRegion.getKey();
+
          // determine which parents need to be added
          for (RegionHierarchy regionHierarchy : otherParents) {
              if (!hasParent(regionHierarchy.getParent())) {
@@ -602,7 +609,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     }
 
     @PrePersist
-    void prePersist() {
+    protected void prePersist() {
         populateAttributes();
     }
 }

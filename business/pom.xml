@@ -29,6 +29,14 @@
       <artifactId>framework-core</artifactId>
       <version>${pom.version}</version>
     </dependency>
+
+    <!-- CSV reader -->
+    <dependency>
+      <groupId>ostermillerutils</groupId>
+      <artifactId>ostermillerutils</artifactId>
+      <version>1.06</version>
+    </dependency>
+
   </dependencies>
 
 </project>

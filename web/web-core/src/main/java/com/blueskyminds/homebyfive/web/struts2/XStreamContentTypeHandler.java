@@ -10,6 +10,7 @@ import java.io.Reader;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.BaseException;
+import com.blueskyminds.homebyfive.business.tools.XMLSerializer;
 
 /**
  * Date Started: 24/10/2008
@@ -22,16 +23,16 @@ public class XStreamContentTypeHandler implements ContentTypeHandler {
 
     public String fromObject(Object obj, String resultCode, Writer out) throws IOException {
         if (obj != null) {
-            XStream xstream = createXStream();
-            xstream.toXML(obj, out);
+            XMLSerializer xmlSerializer = new XMLSerializer();
+            xmlSerializer.serialize(obj, out);
         }
         return null;
     }
 
     public void toObject(Reader in, Object target) {
-        XStream xstream = createXStream();
+        XMLSerializer xmlSerializer = new XMLSerializer();
         try {
-            xstream.fromXML(in, target);
+            xmlSerializer.deserialize(in, target);
         } catch (BaseException e) {
             LOG.error(e);
         }
