@@ -21,6 +21,10 @@ public class InvalidRegionException extends RegionException {
         super(InvalidRegionException.class.getSimpleName()+":"+region.getPath());
     }
 
+    public InvalidRegionException(String message, Region region) {
+        super(InvalidRegionException.class.getSimpleName()+":"+region.getPath()+" - "+message);
+    }
+
     public InvalidRegionException(String message) {
         super(message);
     }

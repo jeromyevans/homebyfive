@@ -99,6 +99,23 @@ public class AusPostCodes {
         }
     }
 
+    static boolean endsWith(String str, String[] values) {
+        boolean found = false;
+        String stru = str.toUpperCase();
+        String strl = str.toLowerCase();
+        for (String value : values) {
+            if (strl.endsWith(value.toLowerCase())) {
+                found = true;
+                break;
+            }
+            if (stru.endsWith(value.toUpperCase())) {
+                found = true;
+                break;
+            }
+        }
+        return found;
+    }
+
     /**
      * Loads a CSV file of all the suburbs defined in Australia
      **/
@@ -125,38 +142,47 @@ public class AusPostCodes {
                     String category = StringUtils.lowerCase(StringUtils.trim(values[9]));
 
                     if (SUBURB_CATEGORY.equals(category)) {
-                        // lookup the state...
-                        if (stateHash.containsKey(stateValue)) {
-                            state = stateHash.get(stateValue);
-                        } else {
-                            //state = australia.getStateByAbbr(stateValue);
-                            StopWatch stopWatch = new StopWatch();
-                            stopWatch.start();
-                            state = new State(stateValue);
-                            stateHash.put(stateValue, state);
-                            stopWatch.stop();
-                        }
+                        // ignore district offices
+                        if (!endsWith(suburbValue, new String[]{" DC", " MC", " AIRPORT", " PO"})) {
+                            // lookup the state...
+                            if (stateHash.containsKey(stateValue)) {
+                                state = stateHash.get(stateValue);
+                            } else {
+                                //state = australia.getStateByAbbr(stateValue);
+                                StopWatch stopWatch = new StopWatch();
+                                stopWatch.start();
+                                state = new State(stateValue);
+                                stateHash.put(stateValue, state);
+                                stopWatch.stop();
+                            }
 
 
-                        PostCode postCode = postCodeHash.get(postCodeValue);
-                        if (postCode == null) {
-                            // create a new postcode and add it to the state
-                            postCode = new PostCode(postCodeValue);
-                            postCodeHash.put(postCodeValue, postCode);
-                            state.addPostCode(postCode);
-                            postCodes++;
-                        }
+                            boolean okay = false;
+                            PostCode postCode = postCodeHash.get(postCodeValue);
+                            if (postCode == null) {
+                                // create a new postcode and add it to the state
+                                postCode = new PostCode(postCodeValue);
+                                postCodeHash.put(postCodeValue, postCode);
+                                state.addPostCode(postCode);
+                                postCodes++;
+                                okay = true;
+                            } else {
+                                okay = state.getPostCodes().contains(postCode);
+                            }
 
-                        // create the suburb
-                        Suburb suburb = new Suburb(suburbValue, postCode);
-                        postCode.addSuburb(suburb);
-                        state.addSuburb(suburb);
+                            if (okay) {
+                                // create the suburb
+                                Suburb suburb = new Suburb(suburbValue, postCode);
+                                postCode.addSuburb(suburb);
+                                state.addSuburb(suburb);
 
-                        suburbs++;
-                        if (LOG.isInfoEnabled()) {
-                            if (suburbs % 100 == 0) {
-                                LOG.info(suburbs+" suburbs "+postCodes+" postcodes");
-                                DebugTools.printAvailableHeap();
+                                suburbs++;
+                                if (LOG.isInfoEnabled()) {
+                                    if (suburbs % 100 == 0) {
+                                        LOG.info(suburbs+" suburbs "+postCodes+" postcodes");
+                                        DebugTools.printAvailableHeap();
+                                    }
+                                }
                             }
                         }
                     }

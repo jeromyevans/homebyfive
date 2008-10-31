@@ -44,7 +44,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     private Set<RegionAlias> aliases;
     @XStreamOmitField private Set<RegionHierarchy> parentRegionMaps;
     @XStreamOmitField private Set<RegionHierarchy> childRegionMaps;
-    protected RegionIndex regionIndex;
+    @XStreamOmitField protected RegionIndex regionIndex;
     private DomainObjectStatus status;
 
     /**

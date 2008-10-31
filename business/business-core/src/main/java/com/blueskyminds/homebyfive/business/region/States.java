@@ -8,6 +8,8 @@ import com.Ostermiller.util.CSVParser;
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
 import java.io.InputStream;
 import java.io.IOException;
 
@@ -51,5 +53,21 @@ public class States {
         }
 
         return states;
+    }
+
+    public static Map<String, State> mapByName(List<State> states) {
+        Map<String, State> map = new HashMap<String, State>();
+        for (State state : states) {
+            map.put(state.getName(), state);
+        }
+        return map;
+    }
+
+    public static Map<String, State> mapByAbbr(List<State> states) {
+        Map<String, State> map = new HashMap<String, State>();
+        for (State state : states) {
+            map.put(state.getAbbr(), state);
+        }
+        return map;
     }
 }

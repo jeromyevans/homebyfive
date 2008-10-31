@@ -2,9 +2,7 @@ package com.blueskyminds.homebyfive.web.struts2.actions.services.region;
 
 import com.blueskyminds.homebyfive.web.core.client.RESTfulClient;
 import com.blueskyminds.homebyfive.web.core.client.RemoteClientException;
-import com.blueskyminds.homebyfive.business.region.graph.Region;
-import com.blueskyminds.homebyfive.business.region.graph.Country;
-import com.blueskyminds.homebyfive.business.region.graph.State;
+import com.blueskyminds.homebyfive.business.region.graph.*;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -45,5 +43,21 @@ public class RegionClient extends RESTfulClient<Region> {
 
     public void updateState(String hostname, State state) throws RemoteClientException {
         doPut(hostname+PathHelper.buildPath(state)+".xml", state);
+    }
+
+    public void createSuburb(String hostname, Suburb suburb) throws RemoteClientException {
+        doPost(hostname+suburb.getParentPath()+SUBURB_SERVICE+".xml", suburb);
+    }
+
+    public void updateSuburb(String hostname, Suburb suburb) throws RemoteClientException {
+        doPut(hostname+PathHelper.buildPath(suburb)+".xml", suburb);
+    }
+
+    public void createPostalCode(String hostname, PostalCode postalCode) throws RemoteClientException {
+        doPost(hostname+postalCode.getParentPath()+POSTCODE_SERVICE+".xml", postalCode);
+    }
+
+    public void updatePostalCode(String hostname, PostalCode postalCode) throws RemoteClientException {
+        doPut(hostname+PathHelper.buildPath(postalCode)+".xml", postalCode);
     }
 }

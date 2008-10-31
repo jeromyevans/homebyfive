@@ -40,8 +40,14 @@ public class PostalCode extends Region {
         addParentRegion(state);
         populateAttributes();
     }
-    
-    protected PostalCode() {
+
+     public PostalCode(String statePath, String name) {
+        super(name, RegionTypes.PostCode);
+        this.parentPath = statePath;
+        populateAttributes();
+    }
+
+    public PostalCode() {
     }
     
     /**
@@ -61,6 +67,24 @@ public class PostalCode extends Region {
     }
 
     /**
+     * Set the state for this postalcode. If a state is already set, the current state is removed
+     * @param state
+     */
+    public void setState(State state) {
+        State existing = getState();
+
+        if (existing == null) {
+            addParentRegion(state);
+        } else {
+            if (existing != state) {
+                // remove old, add new
+                removeParentRegion(existing);
+                addParentRegion(state);
+            }
+        }
+    }
+
+    /**
      * Populates the generated/read-only properties
      */
     public void populateAttributes() {
@@ -68,8 +92,8 @@ public class PostalCode extends Region {
         State state = getState();
         if (state != null) {
             this.parentPath = state.getPath();
-            this.path = PathHelper.joinPath(parentPath, key);
         }
+        this.path = PathHelper.joinPath(parentPath, key);
     }
 
      /**

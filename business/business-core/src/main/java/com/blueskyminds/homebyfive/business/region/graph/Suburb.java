@@ -29,6 +29,8 @@ public class Suburb extends Region {
     /** A special case SuburbHandle instance used to identify an invalid Suburb rather than a null value */
     public static final Suburb INVALID = invalid();
 
+    private String postalCodePath;
+
     public Suburb(String name) {
         super(name, RegionTypes.Suburb);
         populateAttributes();
@@ -41,6 +43,13 @@ public class Suburb extends Region {
         populateAttributes();
     }
 
+    public Suburb(String statePath, String postCodePath, String name) {
+        super(name, RegionTypes.Suburb);
+        this.parentPath = statePath;
+        this.postalCodePath = postCodePath;
+        populateAttributes();
+    }
+
     /*Use for editing a new suburb */
     public Suburb(State state) {
         super("", RegionTypes.Suburb);
@@ -48,7 +57,7 @@ public class Suburb extends Region {
         populateAttributes();
     }
     
-    protected Suburb() {
+    public Suburb() {
     }
 
     
@@ -80,6 +89,24 @@ public class Suburb extends Region {
         }
     }
 
+    /**
+     * Set the state for this postalcode. If a state is already set, the current state is removed
+     * @param state
+     */
+    public void setState(State state) {
+        State existing = getState();
+
+        if (existing == null) {
+            addParentRegion(state);
+        } else {
+            if (existing != state) {
+                // remove old, add new
+                removeParentRegion(existing);
+                addParentRegion(state);
+            }
+        }
+    }
+
      /**
      * Gets the parent PostCodeHandle
      * Deproxies the instance if necessary
@@ -108,6 +135,16 @@ public class Suburb extends Region {
         return this.equals(INVALID);
     }
 
+    @Basic
+    @Column(name="PostalCodePath")
+    public String getPostalCodePath() {
+        return postalCodePath;
+    }
+
+    public void setPostalCodePath(String postalCodePath) {
+        this.postalCodePath = postalCodePath;
+    }
+
     /**
      * Populates the generated/read-only properties
      */
@@ -116,7 +153,11 @@ public class Suburb extends Region {
         State state = getState();
         if (state != null) {
             this.parentPath = state.getPath();
-            this.path = PathHelper.joinPath(parentPath, key);
+        }
+        this.path = PathHelper.joinPath(parentPath, key);
+        PostalCode postalCode = getPostCode();
+        if (postalCode != null) {
+            this.postalCodePath = postalCode.getPath();
         }
     }
 

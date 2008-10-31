@@ -21,19 +21,7 @@ import java.util.List;
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class LoadCountriesController extends ActionSupport implements ServletRequestAware {
-
-    private String hostname;
-    private File upload;
-    private String uploadContentType;
-    private String uploadFilename;
-    private Boolean updateOnly;
-
-    private HttpServletRequest request;
-
-    private String host(HttpServletRequest request) {
-        return request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
-    }
+public class LoadCountriesController extends LoadSupport {
 
     public String index() throws Exception {
         hostname = host(request);
@@ -56,45 +44,5 @@ public class LoadCountriesController extends ActionSupport implements ServletReq
             return SUCCESS;
         }
         return INPUT;
-    }
-
-    public String getHostname() {
-        return hostname;
-    }
-
-    public void setHostname(String hostname) {
-        this.hostname = hostname;
-    }
-
-     public void setUpload(File upload) {
-        this.upload = upload;
-    }
-
-    public void setUploadContentType(String uploadContentType) {
-        this.uploadContentType = uploadContentType;
-    }
-
-    public void setUploadFileName(String uploadFileName) {
-        this.uploadFilename = uploadFileName;
-    }
-
-    public String getUploadFileName() {
-        return uploadFilename;
-    }
-
-    public String getUploadContentType() {
-        return uploadContentType;
-    }
-
-    public void setServletRequest(HttpServletRequest request) {
-        this.request = request;
-    }
-
-    public void setUpdateOnly(Boolean updateOnly) {
-        this.updateOnly = updateOnly;
-    }
-
-    public Boolean getUpdateOnly() {
-        return updateOnly;
     }
 }

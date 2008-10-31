@@ -35,7 +35,7 @@ public interface RegionService {
 
     Set<State> listStates(String country);
 
-    State createState(State stateBean) throws DuplicateRegionException;
+    State createState(State stateBean) throws DuplicateRegionException, InvalidRegionException;
 
     /**
      * Update an existing state
@@ -51,14 +51,16 @@ public interface RegionService {
 
     Set<Suburb> listSuburbs(String country, String state);
 
-    Suburb createSuburb(Suburb suburb) throws DuplicateRegionException;
+    Suburb createSuburb(Suburb suburb) throws DuplicateRegionException, InvalidRegionException;
+    Suburb updateSuburb(Suburb suburb) throws InvalidRegionException;
 
     Suburb lookupSuburb(String country, String state, String suburb);
 
     Suburb lookupSuburb(String path);
 
-    PostalCode createPostCode(PostalCode postCode) throws DuplicateRegionException;
-
+    PostalCode createPostCode(PostalCode postCode) throws DuplicateRegionException, InvalidRegionException;
+    PostalCode updatePostCode(PostalCode postalCode) throws InvalidRegionException;
+    
     Set<PostalCode> listPostCodes(String country, String state);
 
     RegionGroup listPostCodesAsGroup(String country, String state);

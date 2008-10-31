@@ -53,7 +53,7 @@ public class RESTfulClient<T> {
             int result = client.executeMethod(method);
 
             if (result >= 300) {
-                throw new RemoteClientException("Remote server responded with an error status line:"+ method.getStatusLine().toString());
+                throw new RemoteClientException("Remote server responded with an error status:"+ method.getStatusLine().toString(), method.getStatusCode(), method.getStatusText());
             }
         } catch (HttpException e) {
             throw new RemoteClientException(e.getMessage(), e);
@@ -88,7 +88,7 @@ public class RESTfulClient<T> {
             int result = client.executeMethod(method);
 
             if (result >= 300) {
-                throw new RemoteClientException("Remote server responded with an error status line:"+ method.getStatusLine().toString());
+                throw new RemoteClientException("Remote server responded with an error status: "+ method.getStatusLine().toString(), method.getStatusCode(), method.getStatusText());
             }
         } catch (HttpException e) {
             throw new RemoteClientException(e.getMessage(), e);

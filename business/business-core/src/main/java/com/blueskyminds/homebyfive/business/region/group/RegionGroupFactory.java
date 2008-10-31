@@ -82,7 +82,7 @@ public class RegionGroupFactory {
      * Each suburb is represented as a composite
      * */
     public static RegionGroup createSuburbs(Collection<Suburb> suburbs) {
-        State state = (State) firstParent(suburbs, RegionTypes.State);
+        Region state = firstParent(suburbs, RegionTypes.State);
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(state));
         for (Suburb suburb : suburbs) {
@@ -117,7 +117,7 @@ public class RegionGroupFactory {
      * Each state is represented as a composite
      * */
     public static RegionGroup createStates(Collection<State> states) {
-        Region country = (Region) firstParent(states, RegionTypes.Country);
+        Region country = firstParent(states, RegionTypes.Country);
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(country));
         for (State state : states) {
@@ -152,7 +152,7 @@ public class RegionGroupFactory {
     }
 
     public static RegionGroup createPostCodes(Collection<PostalCode> postCodes) {
-        State state = (State) firstParent(postCodes, RegionTypes.PostCode);
+        Region state = firstParent(postCodes, RegionTypes.PostCode);
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(state));
         for (PostalCode postCodeBean : postCodes) {

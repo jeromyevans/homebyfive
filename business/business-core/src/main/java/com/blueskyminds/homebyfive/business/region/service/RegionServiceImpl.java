@@ -134,7 +134,7 @@ public class RegionServiceImpl implements RegionService {
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
      */
     @Transactional(exceptOn = {InvalidRegionException.class, DuplicateRegionException.class})
-    public State createState(State state) throws DuplicateRegionException {
+    public State createState(State state) throws DuplicateRegionException, InvalidRegionException {
         state.populateAttributes();
         State existing = stateEAO.lookupState(state.getPath());
         if (existing == null) {
@@ -150,8 +150,12 @@ public class RegionServiceImpl implements RegionService {
             } 
             
 //            state = addressService.createState(state.getName(), state.getAbbr(), state.getCountry());
-            em.persist(state);
-            em.persist(country);            
+            if (country != null) {
+                em.persist(state);
+                em.persist(country);
+            } else {
+                throw new InvalidRegionException("Invalid parent region (country)", state);
+            }
         } else {
             throw new DuplicateRegionException(state);
         }
@@ -178,7 +182,11 @@ public class RegionServiceImpl implements RegionService {
     }
 
     public State lookupState(String country, String state) {
-        return stateEAO.lookupState(PathHelper.buildPath(country, state));
+        return lookupState(PathHelper.buildPath(country, state));
+    }
+
+    public State lookupState(String statePath) {
+        return stateEAO.lookupState(statePath);
     }
 
     public RegionGroup listSuburbsAsGroup(String country, String state) {
@@ -203,17 +211,55 @@ public class RegionServiceImpl implements RegionService {
      * @param suburb
      */
     @Transactional(exceptOn = DuplicateRegionException.class)
-    public Suburb createSuburb(Suburb suburb) throws DuplicateRegionException {
+    public Suburb createSuburb(Suburb suburb) throws DuplicateRegionException, InvalidRegionException {
         suburb.populateAttributes();
         Suburb existing = suburbEAO.lookupSuburb(suburb.getPath());
         if (existing == null) {
-            suburb = addressService.createSuburb(suburb.getName(), suburb.getState());
-            em.persist(suburb);
+
+            State state = suburb.getState();
+            if (state == null) {
+                // see if the parent path references a state
+                if (StringUtils.isNotBlank(suburb.getParentPath())) {
+                    state = lookupState(suburb.getParentPath());
+                    if (state != null) {
+                        suburb.setState(state);
+                    }
+                }
+            }
+
+            if (state != null) {
+                em.persist(state);
+                em.persist(suburb);
+            } else {
+                throw new InvalidRegionException("Invalid parent region (state)", suburb);
+            }
+
+//            suburb = addressService.createSuburb(suburb.getName(), suburb.getState());
         } else {
             throw new DuplicateRegionException(suburb);
         }
         return suburb;
     }
+
+    /**
+     * Update an existing suburb
+     * Propagates the change into the RegionGraph as well
+     *
+     * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
+     */
+    @Transactional(exceptOn = {InvalidRegionException.class})
+    public Suburb updateSuburb(Suburb suburb) throws InvalidRegionException {
+        suburb.populateAttributes();
+        Suburb existing = suburbEAO.lookupSuburb(suburb.getPath());
+        if (existing != null) {
+            existing.mergeWith(suburb);
+            em.persist(suburb);
+        } else {
+            throw new InvalidRegionException(suburb);
+        }
+        return suburb;
+    }
+
 
     public Suburb lookupSuburb(String country, String state, String suburb) {
         return suburbEAO.lookupSuburb(PathHelper.buildPath(country, state, suburb));
@@ -224,24 +270,60 @@ public class RegionServiceImpl implements RegionService {
     }
 
     /**
-     * Create a new suburb
+     * Create a new PostalCode
      * Propagates the change into the RegionGraph as well
      *
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
-     * @param postCode
+     * @param postalCode
      */
     @Transactional(exceptOn = DuplicateRegionException.class) 
-    public PostalCode createPostCode(PostalCode postCode) throws DuplicateRegionException {
-        postCode.populateAttributes();
-        PostalCode existing = postCodeEAO.lookupPostCode(postCode.getPath());
+    public PostalCode createPostCode(PostalCode postalCode) throws DuplicateRegionException, InvalidRegionException {
+        postalCode.populateAttributes();
+        PostalCode existing = postCodeEAO.lookupPostCode(postalCode.getPath());
         if (existing == null) {
-            postCode = addressService.createPostCode(postCode.getName(), postCode.getState());
-            em.persist(postCode);
+
+            State state = postalCode.getState();
+            if (state == null) {
+                // see if the parent path references a country
+                if (StringUtils.isNotBlank(postalCode.getParentPath())) {
+                    state = lookupState(postalCode.getParentPath());
+                    if (state != null) {
+                        postalCode.setState(state);
+                    }
+                }
+            }
+//            postalCode = addressService.createPostCode(postalCode.getName(), postalCode.getState());
+            if (state != null) {
+                em.persist(state);
+                em.persist(postalCode);
+            } else {
+                throw new InvalidRegionException("Invalid parent", postalCode);
+            }
         } else {
-            throw new DuplicateRegionException(postCode);
+            throw new DuplicateRegionException(postalCode);
         }
-        return postCode;
+        return postalCode;
     }
+
+    /**
+    * Update an existing postalcode
+    * Propagates the change into the RegionGraph as well
+    *
+    * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
+    */
+   @Transactional(exceptOn = {InvalidRegionException.class})
+   public PostalCode updatePostCode(PostalCode postalCode) throws InvalidRegionException {
+       postalCode.populateAttributes();
+       PostalCode existing = postCodeEAO.lookupPostCode(postalCode.getPath());
+       if (existing != null) {
+           existing.mergeWith(postalCode);
+           em.persist(postalCode);
+       } else {
+           throw new InvalidRegionException(postalCode);
+       }
+       return postalCode;
+   }
+
 
     public Set<PostalCode> listPostCodes(String country, String state) {
         return postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
