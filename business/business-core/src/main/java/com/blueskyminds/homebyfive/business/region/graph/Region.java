@@ -46,6 +46,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     @XStreamOmitField private Set<RegionHierarchy> childRegionMaps;
     @XStreamOmitField protected RegionIndex regionIndex;
     private DomainObjectStatus status;
+    private String description;
 
     /**
       * Tags assigned to this Region
@@ -606,6 +607,15 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
                 }
             }
         }
+    }
+
+    @Column(name="Description", length = 32768)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @PrePersist

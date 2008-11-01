@@ -1,8 +1,11 @@
 package com.blueskyminds.homebyfive.business.address;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.ArrayUtils;
 
 import java.util.*;
+
+import com.blueskyminds.homebyfive.framework.core.tools.ArrayTools;
 
 /**
  * Parses an AddressPath back into its components
@@ -30,6 +33,14 @@ public class AddressPathParser {
     private static final String[][] PATH_TYPES = {
             { COUNTRY, STATE, SUBURB, STREET, STREETNO, UNITNO },
             { COUNTRY, STATE, POSTCODE }
+    };
+
+    private static final String[] METHOD_PATTERNS = { "new", "edit" };
+    private static final String[] METHOD_NAMES = { "editNew", "edit" };
+
+    private static final String[][] ACTIONS = {
+            {"country", "state", "suburb", "street", "property", "property" },
+            {"country", "state", "postcode", "property"}
     };
 
     /** Track information about each word in the path so they can be used to locate an action reference and
@@ -65,29 +76,76 @@ public class AddressPathParser {
         }
     }
 
+    private static boolean equalsAny(String str, String[] values) {
+        for (String value : values) {
+            if (str.equals(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean equalsAny(String str, Collection<String> values) {
+        if (values != null) {
+            for (String value : values) {
+                if (str.equals(value)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /** Composite of the current state so it can be passed between methods together */
     private static final class MatcherState {
 
         private String path;
+        private Collection<String> actions;
 
         private Map<String, String> params;
         private int pathType;
         private int sectionNo;
+        private int lastSectionUsed;
 
         private StringBuilder namespace;
+        private StringBuilder action;
         private Stack<Word> wordStack;
 
         private StringBuilder current;
 
-        private MatcherState(String path) {
+        private boolean leftOfAction;
+
+        private MatcherState(String path, Collection<String> actions) {
             this.path = path;
+            this.actions = actions;
             params = new HashMap<String, String>();
             pathType = 0;
             sectionNo = 0;
+            lastSectionUsed = -1;
 
             namespace = new StringBuilder("");
             wordStack = new Stack<Word>();
             current = new StringBuilder();
+
+            leftOfAction = true;
+        }
+
+        private boolean isMethod(String str) {
+            return (equalsAny(str, METHOD_PATTERNS));
+        }
+
+        /** Map the method pattern to a name */
+        private String getMethodName(String methodPattern) {
+            int index = ArrayUtils.indexOf(METHOD_PATTERNS, methodPattern);
+            if (index >= 0) {
+                return METHOD_NAMES[index];
+            } else {
+                return null;
+            }
+        }
+
+        private boolean isAction(String str) {
+            return (equalsAny(str, actions));
         }
 
         /** Complete the current word in the path */
@@ -96,15 +154,31 @@ public class AddressPathParser {
                 Word word = new Word(current.toString(), namespace.length());
                 wordStack.push(word);
 
-                if (sectionNo < PATH_TYPES[pathType].length) {
-                    // this is likely to be part of the path
-                    // set the param name and value
-                    params.put(PATH_TYPES[pathType][sectionNo], word.getValue());
-                    namespace.append("/{"+PATH_TYPES[pathType][sectionNo]+"}");
-                    word.setParamName(PATH_TYPES[pathType][sectionNo]);
+                if (isMethod(current.toString())) {
+                    // this is a method name
+                    params.put("method", getMethodName(current.toString()));
                 } else {
-                    // this is after the path.  Include it in the namespace
-                    namespace.append("/"+word.getValue());
+                    if (isAction(current.toString())) {
+                        action = new StringBuilder(current.toString());
+                        leftOfAction = false;
+                    } else {
+                        if (leftOfAction && sectionNo < PATH_TYPES[pathType].length) {
+                            // this is likely to be part of the path
+                            // set the param name and value
+                            params.put(PATH_TYPES[pathType][sectionNo], word.getValue());
+                            namespace.append("/{"+PATH_TYPES[pathType][sectionNo]+"}");
+                            word.setParamName(PATH_TYPES[pathType][sectionNo]);
+                            lastSectionUsed = sectionNo;
+                        } else {
+                            if (leftOfAction) {
+                                // this is part of the namespace
+                                namespace.append("/"+word.getValue());
+                            } else {
+                                // this is part of the action name
+                                action.append("/"+word.getValue());
+                            }
+                        }
+                    }
                 }
 
                 sectionNo++;
@@ -164,7 +238,7 @@ public class AddressPathParser {
             boolean actionFound = false;
 
             List<Word> actionWords = new ArrayList<Word>(3);
-
+            /*
             if (actions != null && !wordStack.isEmpty()) {
 
                 int wordNo = 0;
@@ -195,12 +269,19 @@ public class AddressPathParser {
                     }
                     wordNo++;
                 }
-            }
+            }   */
 
-            if (!actionFound) {
-                params.put("action", "overview");
+//            if (!actionFound) {
+                if (action != null) {
+                    params.put("action", action.toString());
+                } else {
+                    // use the action from the path type
+                    if (lastSectionUsed >= 0) {
+                        params.put("action", ACTIONS[pathType][lastSectionUsed]);
+                    }
+                }
                 params.put("namespace", namespace.toString());
-            }
+//            }
 
             // use the path before the extension (and query string if present)
             String pathOnly = StringUtils.substringBeforeLast(path, "?");
@@ -258,7 +339,7 @@ public class AddressPathParser {
 
         boolean firstChar = true;
         boolean abort = false;
-        MatcherState state = new MatcherState(path);
+        MatcherState state = new MatcherState(path, actions);
 
         for (char ch : charArray) {
             if (ch == PATH_SEPARATOR) {

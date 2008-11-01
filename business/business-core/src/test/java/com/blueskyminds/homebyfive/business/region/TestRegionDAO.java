@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.business.region;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.business.region.dao.RegionGraphDAO;
 import com.blueskyminds.homebyfive.business.region.graph.Region;
+import com.blueskyminds.homebyfive.business.region.graph.Country;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -41,7 +42,10 @@ public class TestRegionDAO extends JPATestCase {
     public void testDescendants() throws Exception {
         RegionGraphDAO regionGraphDAO = new RegionGraphDAO(em);
 
-        Region aus = regionGraphDAO.findRegionByName(TestRegionTools.AUSTRALIA).iterator().next();
+        Region aus = new Country("Australia", "au");
+        em.persist(aus);
+
+        Region aus2 = regionGraphDAO.findRegionByName(TestRegionTools.AUSTRALIA).iterator().next();
         Region neutralBay = regionGraphDAO.findRegionByName(TestRegionTools.NEUTRAL_BAY).iterator().next();
 
         // find all descendants of AUS

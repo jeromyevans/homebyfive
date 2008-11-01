@@ -133,8 +133,9 @@ public class TestTools {
     protected static void applySQLFiles(Connection connection, String[] sqlFiles) {
         StringFilter filter = new NonBlankFilter();
         String[] sqlLines;
-        try {
-            for (String file : sqlFiles) {
+
+        for (String file : sqlFiles) {
+            try {
                 URI location = ResourceTools.locateResource(file+".sql");
                 if (location != null) {
                     sqlLines = FileTools.readTextFile(location, filter);
@@ -142,12 +143,13 @@ public class TestTools {
                 } else {
                     LOG.error("Could not find resource: "+file+".sql");
                 }
+            } catch(SQLException e) {
+                LOG.error("SQL error in "+file, e);
+            } catch (IOException e) {
+                LOG.error("Failed to read data in "+file, e);
             }
-        } catch(SQLException e) {
-            LOG.error("SQL error", e);
-        } catch (IOException e) {
-            LOG.error("Failed to read data", e);
         }
+
     }
 
     // ------------------------------------------------------------------------------------------------------

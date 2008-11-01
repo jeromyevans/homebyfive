@@ -320,4 +320,7 @@ public class RegionGraphDAO extends AbstractDAO<Region> {
 //            recurseDescendants(children, descendants);
 //        }
 //    }
+
+    public void persist() {
+    }
 }
