@@ -274,7 +274,7 @@ public class TestAddressPathParser extends TestCase {
         assertEquals("/{country}/{state}/{suburb}/{street}/{streetNo}/{unitNo}/info", params.get("namespace"));
     }
 
-     public void testPath10() {
+    public void testPath10() {
         Map<String, String> params = AddressPathParser.process("/au", null);
         assertEquals("au", params.get("country"));
         assertEquals(null, params.get("state"));

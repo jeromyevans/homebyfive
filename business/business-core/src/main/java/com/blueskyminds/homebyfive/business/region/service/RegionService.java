@@ -25,9 +25,10 @@ public interface RegionService {
     /**
      * Update an existing country
      * Propagates the change into the RegionGraph as well
+     * @param path
      * @param country
      */
-    Country updateCountry(Country country) throws InvalidRegionException;
+    Country updateCountry(String path, Country country) throws InvalidRegionException;
 
     RegionGroup listStatesAsGroup(String country);
 
@@ -41,7 +42,7 @@ public interface RegionService {
      * Update an existing state
      * Propagates the change into the RegionGraph as well
      */
-    State updateState(State state) throws InvalidRegionException;
+    State updateState(String path, State state) throws InvalidRegionException;
 
     State lookupState(String country, String state);
 
@@ -52,14 +53,14 @@ public interface RegionService {
     Set<Suburb> listSuburbs(String country, String state);
 
     Suburb createSuburb(Suburb suburb) throws DuplicateRegionException, InvalidRegionException;
-    Suburb updateSuburb(Suburb suburb) throws InvalidRegionException;
+    Suburb updateSuburb(String path, Suburb suburb) throws InvalidRegionException;
 
     Suburb lookupSuburb(String country, String state, String suburb);
 
     Suburb lookupSuburb(String path);
 
     PostalCode createPostCode(PostalCode postCode) throws DuplicateRegionException, InvalidRegionException;
-    PostalCode updatePostCode(PostalCode postalCode) throws InvalidRegionException;
+    PostalCode updatePostCode(String path, PostalCode postalCode) throws InvalidRegionException;
     
     Set<PostalCode> listPostCodes(String country, String state);
 

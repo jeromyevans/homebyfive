@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.util.AnnotationUtils;
 import com.blueskyminds.homebyfive.web.core.annotations.*;
+import com.blueskyminds.homebyfive.web.core.ajax.AJAXTools;
 import org.apache.struts2.StrutsStatics;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +25,6 @@ import java.util.Collection;
  */
 public class XMLHttpRequestInterceptor implements Interceptor {
 
-    private static final String PATTERN = "XMLHttpRequest";
-    private static final String HEADER = "X-Requested-With";
 
     public void destroy() {
     }
@@ -46,12 +45,9 @@ public class XMLHttpRequestInterceptor implements Interceptor {
         String methodName = invocation.getProxy().getMethod();
 
         Boolean allow = null;
-        boolean xmlHttpRequest = false;
-
         // check the request header
-        HttpServletRequest request = (HttpServletRequest) invocation.getInvocationContext().get(StrutsStatics.HTTP_REQUEST);
-        String xRequestedWith = request.getHeader(HEADER);
-        xmlHttpRequest = PATTERN.equals(xRequestedWith);
+        boolean xmlHttpRequest = AJAXTools.isAJAXRequest((HttpServletRequest) invocation.getInvocationContext().get(StrutsStatics.HTTP_REQUEST));        
+
 
         // set the property of the action is interested
         if (action instanceof XMLHttpRequestAware) {

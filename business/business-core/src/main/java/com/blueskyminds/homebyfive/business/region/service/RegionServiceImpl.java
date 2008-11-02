@@ -87,23 +87,24 @@ public class RegionServiceImpl implements RegionService {
      *
      * NOTE: Does not rollback the transaction in the cases of an InvalidRegionException or DuplicateRegionException as
      *  no writes occur
+     * @param path       existing path (may be changed))
      * @param country
      */
     @Transactional(exceptOn = {InvalidRegionException.class})
-    public Country updateCountry(Country country) throws InvalidRegionException {
+    public Country updateCountry(String path, Country country) throws InvalidRegionException {
         country.populateAttributes();
         if (country.isValid()) {
-            Country existing = countryEAO.lookupCountry(country.getPath());
+            Country existing = countryEAO.lookupCountry(path);
             if (existing != null) {
                 existing.mergeWith(country);
-                em.persist(country);
+                em.persist(existing);
+                return existing;
             } else {
                 throw new InvalidRegionException(country);
             }
         } else {
             throw new InvalidRegionException(country);
         }
-        return country;
     }
 
     public RegionGroup listCountries() {
@@ -169,12 +170,13 @@ public class RegionServiceImpl implements RegionService {
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
      */
     @Transactional(exceptOn = {InvalidRegionException.class})
-    public State updateState(State state) throws InvalidRegionException {
+    public State updateState(String path, State state) throws InvalidRegionException {
         state.populateAttributes();
-        State existing = stateEAO.lookupState(state.getPath());
+        
+        State existing = stateEAO.lookupState(path);
         if (existing != null) {
             existing.mergeWith(state);
-            em.persist(state);
+            em.persist(existing);
         } else {
             throw new InvalidRegionException(state);
         }
@@ -248,16 +250,16 @@ public class RegionServiceImpl implements RegionService {
      * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
      */
     @Transactional(exceptOn = {InvalidRegionException.class})
-    public Suburb updateSuburb(Suburb suburb) throws InvalidRegionException {
+    public Suburb updateSuburb(String path, Suburb suburb) throws InvalidRegionException {
         suburb.populateAttributes();
-        Suburb existing = suburbEAO.lookupSuburb(suburb.getPath());
+        Suburb existing = suburbEAO.lookupSuburb(path);
         if (existing != null) {
             existing.mergeWith(suburb);
-            em.persist(suburb);
+            em.persist(existing);
+            return existing;
         } else {
             throw new InvalidRegionException(suburb);
         }
-        return suburb;
     }
 
 
@@ -312,16 +314,16 @@ public class RegionServiceImpl implements RegionService {
     * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
     */
    @Transactional(exceptOn = {InvalidRegionException.class})
-   public PostalCode updatePostCode(PostalCode postalCode) throws InvalidRegionException {
+   public PostalCode updatePostCode(String path, PostalCode postalCode) throws InvalidRegionException {
        postalCode.populateAttributes();
-       PostalCode existing = postCodeEAO.lookupPostCode(postalCode.getPath());
+       PostalCode existing = postCodeEAO.lookupPostCode(path);
        if (existing != null) {
            existing.mergeWith(postalCode);
-           em.persist(postalCode);
+           em.persist(existing);
+           return existing;
        } else {
            throw new InvalidRegionException(postalCode);
        }
-       return postalCode;
    }
 
 
