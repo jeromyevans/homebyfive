@@ -68,6 +68,27 @@ public class PersistenceTools {
         return rowsAffected;
     }
 
+    /**
+     * @param connection
+     * @param sql
+     * @return total row count
+     * @throws SQLException
+     */
+    public static int executeUpdate(Connection connection, List<String> sql) throws SQLException {
+
+        int rowsAffected = 0;
+        LOG.info("Executing "+sql.size()+ " updates...");
+        for (String sqlLine : sql) {
+            try {
+                Statement statement = connection.createStatement();
+                rowsAffected += statement.executeUpdate(sqlLine);
+            } catch (SQLException e) {
+                LOG.error(sqlLine);
+                throw e;
+            }
+        }
+        return rowsAffected;
+    }
 
     /**
      * @param connection

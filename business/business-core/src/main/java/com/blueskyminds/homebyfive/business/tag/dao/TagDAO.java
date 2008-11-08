@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * Date Started: 6/08/2007
  * <p/>
@@ -16,6 +18,7 @@ public class TagDAO extends AbstractDAO<Tag> {
 
     private static final String QUERY_TAG_BY_NAME = "tag.byName";
     private static final String QUERY_TAG_BY_KEY = "tag.byKey";
+    private static final String QUERY_TAG_BY_KEY_AUTOCOMPLETE = "tag.autocomplete";
     private static final String PARAM_NAME = "name";
     private static final String PARAM_KEY = "keyValue";
 
@@ -51,5 +54,15 @@ public class TagDAO extends AbstractDAO<Tag> {
 
         return firstIn(query.getResultList());
     }
-   
+
+    public Tag persist(Tag tag) {
+        em.persist(tag);
+        return tag;
+    }
+
+    public List<Tag> autocomplete(String key) {
+        Query query = em.createNamedQuery(QUERY_TAG_BY_KEY_AUTOCOMPLETE);
+        query.setParameter(PARAM_KEY, StringUtils.lowerCase(key)+"%");
+        return query.getResultList();
+    }
 }

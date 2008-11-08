@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.SubstitutionsFileReader;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
+import com.blueskyminds.homebyfive.business.tools.XMLSerializer;
 import com.thoughtworks.xstream.XStream;
 
 import java.util.List;
@@ -30,9 +31,9 @@ public class TestSubstitutionClient extends TestCase {
         List<Substitution> substitutions;
         substitutions = substitutionsFileReader.readCsv(ResourceTools.openStream(ADDRESS_PATTERNS_FILE_NAME));
 
-        SubstitutionClient subsitutionClient = new SubstitutionClient();
+        XMLSerializer<Substitution> serializer = new XMLSerializer<Substitution>();        
         for (Substitution substitution : substitutions) {
-            LOG.info(subsitutionClient.serialize(substitution));
+            LOG.info(serializer.serialize(substitution));
         }
     }
 
@@ -42,10 +43,10 @@ public class TestSubstitutionClient extends TestCase {
         List<Substitution> substitutions;
         substitutions = substitutionsFileReader.readCsv(ResourceTools.openStream(ADDRESS_PATTERNS_FILE_NAME));
 
-        SubstitutionClient subsitutionClient = new SubstitutionClient();
+        XMLSerializer<Substitution> serializer = new XMLSerializer<Substitution>();
         for (Substitution substitution : substitutions) {
-            String serialized = (subsitutionClient.serialize(substitution));
-            Substitution deserialized = subsitutionClient.deserialize(serialized);
+            String serialized = (serializer.serialize(substitution));
+            Substitution deserialized = serializer.deserialize(serialized);
             assertNotNull(deserialized);
         }
    }

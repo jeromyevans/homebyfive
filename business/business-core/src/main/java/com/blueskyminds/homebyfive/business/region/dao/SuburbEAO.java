@@ -13,7 +13,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class SuburbEAO extends AbstractDAO<Suburb> {
+public class SuburbEAO extends AbstractRegionDAO<Suburb> {
 
     private static final String QUERY_ALL_SUBURBS_BY_PARENT_PATH = "hp.suburbs.byParentPath";
     private static final String QUERY_ALL_SUBURBS_BY_POSTCODE = "hp.suburbs.byPostCode";

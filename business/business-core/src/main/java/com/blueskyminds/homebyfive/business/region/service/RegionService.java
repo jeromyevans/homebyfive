@@ -5,6 +5,9 @@ import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.blueskyminds.homebyfive.business.region.index.*;
 import com.blueskyminds.homebyfive.business.region.graph.*;
 import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
+import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.blueskyminds.homebyfive.business.tag.Tag;
+import com.blueskyminds.homebyfive.business.tag.TagsTableFactory;
 import com.wideplay.warp.persist.Transactional;
 
 import java.util.Set;
@@ -15,64 +18,6 @@ import java.util.Set;
  * History:
  */
 public interface RegionService {
-
-    RegionGroup listCountries();
-
-    Country lookupCountry(String country);
-
-    Country createCountry(Country country) throws DuplicateRegionException, InvalidRegionException;
-
-    /**
-     * Update an existing country
-     * Propagates the change into the RegionGraph as well
-     * @param path
-     * @param country
-     */
-    Country updateCountry(String path, Country country) throws InvalidRegionException;
-
-    RegionGroup listStatesAsGroup(String country);
-
-    TableModel listStatesAsTable(String country);
-
-    Set<State> listStates(String country);
-
-    State createState(State stateBean) throws DuplicateRegionException, InvalidRegionException;
-
-    /**
-     * Update an existing state
-     * Propagates the change into the RegionGraph as well
-     */
-    State updateState(String path, State state) throws InvalidRegionException;
-
-    State lookupState(String country, String state);
-
-    RegionGroup listSuburbsAsGroup(String country, String state);
-
-    TableModel listSuburbsAsTable(String country, String state);
-
-    Set<Suburb> listSuburbs(String country, String state);
-
-    Suburb createSuburb(Suburb suburb) throws DuplicateRegionException, InvalidRegionException;
-    Suburb updateSuburb(String path, Suburb suburb) throws InvalidRegionException;
-
-    Suburb lookupSuburb(String country, String state, String suburb);
-
-    Suburb lookupSuburb(String path);
-
-    PostalCode createPostCode(PostalCode postCode) throws DuplicateRegionException, InvalidRegionException;
-    PostalCode updatePostCode(String path, PostalCode postalCode) throws InvalidRegionException;
-    
-    Set<PostalCode> listPostCodes(String country, String state);
-
-    RegionGroup listPostCodesAsGroup(String country, String state);
-
-    TableModel listPostCodesAsTable(String country, String state); 
-
-    PostalCode lookupPostCode(String country, String state, String postCode);
-
-    RegionGroup listSuburbs(String country, String state, String postCode);
-
-    TableModel listSuburbsAsTable(String country, String state, String postCode);
 
     Region lookupRegion(String path);
 
@@ -90,32 +35,5 @@ public interface RegionService {
      * @return
      */
     RegionIndex mergeRegions(RegionIndex target, RegionIndex source);
-
-    CountryBean persist(CountryBean countryBean);
-    StateBean persist(StateBean stateBean);
-    PostalCodeBean persist(PostalCodeBean postCodeBean);
-    SuburbBean persist(SuburbBean suburbBean);
-
-    /**
-     * Delete the suburb specified by its ID
-     * @param id
-     */
-    public void deleteSuburb(Long id);
-
-    /**
-     * Delete the state specified by its ID
-     * @param id
-     */
-    public void deleteState(Long id);
-    /**
-     * Delete the postcode specified by its ID
-     * @param id
-     */
-    public void deletePostCode(Long id);
-    /**
-     * Delete the country specified by its ID
-     * @param id
-     */
-    void deleteCountry(Long id);
-
+  
 }

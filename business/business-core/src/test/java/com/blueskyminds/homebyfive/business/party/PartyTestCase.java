@@ -12,6 +12,7 @@ import com.blueskyminds.homebyfive.business.address.Address;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.business.tag.service.TagServiceImpl;
 import com.blueskyminds.homebyfive.business.tag.Tag;
+import com.blueskyminds.homebyfive.business.tag.dao.TagDAO;
 import com.blueskyminds.homebyfive.business.region.Countries;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,7 +34,7 @@ public class PartyTestCase extends JPATestCase {
 
     protected AddressService addressService;
     protected TagService tagService;
-
+    protected TagDAO tagDAO;
 
     public PartyTestCase() {
         super(PARTY_PERSISIENCE_UNIT);
@@ -46,7 +47,8 @@ public class PartyTestCase extends JPATestCase {
     protected void setUp() throws Exception {
         super.setUp();
         addressService = new AddressServiceImpl(em);
-        tagService = new TagServiceImpl(em);
+        tagDAO = new TagDAO(em);
+        tagService = new TagServiceImpl(tagDAO);
     }
 
 

@@ -22,6 +22,7 @@ import java.util.*;
  */
 public class AbstractDAO<T> implements QueryPager, CommonDAO<T> {
 
+    
     protected EntityManager em;
     protected Class<T> defaultClass;
 
@@ -213,7 +214,14 @@ public class AbstractDAO<T> implements QueryPager, CommonDAO<T> {
         }
        return new HashSet<T>();
     }
-    
+
+    protected <X> Set<X> setOfX(Collection<X> collection) {
+        if (collection != null) {
+            return new HashSet<X>(collection);
+        }
+       return new HashSet<X>();
+    }
+
     /**
      * Returns the first item in a collection
      * Handles null case.  First item in a set will be the first returned by an iterator. 

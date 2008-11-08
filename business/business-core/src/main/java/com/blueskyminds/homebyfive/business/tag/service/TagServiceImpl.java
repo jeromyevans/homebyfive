@@ -2,10 +2,12 @@ package com.blueskyminds.homebyfive.business.tag.service;
 
 import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.business.tag.dao.TagDAO;
+import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Date Started: 6/08/2007
@@ -15,10 +17,11 @@ import java.util.HashSet;
 public class TagServiceImpl implements TagService {
 
     private EntityManager em;
+    private TagDAO tagDAO;
 
-
-    public TagServiceImpl(EntityManager em) {
-        this.em = em;
+    @Inject
+    public TagServiceImpl(TagDAO tagDAO) {
+        this.tagDAO = tagDAO;
     }
 
     public TagServiceImpl() {
@@ -30,24 +33,25 @@ public class TagServiceImpl implements TagService {
      * @return
      */
     public Tag lookupOrCreateTag(String exactName) {
-        Tag tag = new TagDAO(em).lookupTagByName(exactName);
+        Tag tag = tagDAO.lookupTagByName(exactName);
         if (tag == null) {
             // create it
             tag = new Tag(exactName);
-            em.persist(tag);
+            tagDAO.persist(tag);
         }
         return tag;
     }
 
     public Tag lookupTag(String key) {
-        return new TagDAO(em).lookupTag(key);
+        return tagDAO.lookupTag(key);
+    }
+
+    public List<Tag> autocomplete(String key) {
+        return tagDAO.autocomplete(key);
     }
 
     public Set<Tag> listTags() {
-        return new HashSet<Tag>(new TagDAO(em).findAll());
-    }
+        return new HashSet<Tag>(tagDAO.findAll());
+    }    
 
-    public void setEntityManager(EntityManager em) {
-        this.em = em;
-    }
 }

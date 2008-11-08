@@ -30,4 +30,16 @@
     </query>
   </named-query>
 
+  <!--
+ Autocomplete a tag name
+
+ Parameters:
+   keyValue:  lowercase key with trailing wildcard
+  -->
+  <named-query name="tag.autocomplete">
+    <query>
+      select tag from Tag tag where lower(tag.key) like :keyValue
+    </query>
+  </named-query>
+
 </entity-mappings>

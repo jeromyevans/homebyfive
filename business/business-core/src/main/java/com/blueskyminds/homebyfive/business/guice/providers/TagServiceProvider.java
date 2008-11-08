@@ -2,6 +2,7 @@ package com.blueskyminds.homebyfive.business.guice.providers;
 
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.business.tag.service.TagServiceImpl;
+import com.blueskyminds.homebyfive.business.tag.dao.TagDAO;
 import com.google.inject.Provider;
 import com.google.inject.Inject;
 
@@ -16,14 +17,14 @@ import javax.persistence.EntityManager;
  */
 public class TagServiceProvider implements Provider<TagService> {
 
-    private Provider<EntityManager> em;
+    private Provider<TagDAO> tagDAO;
 
     @Inject
-    public TagServiceProvider(Provider<EntityManager> em) {
-        this.em = em;
+    public TagServiceProvider(Provider<TagDAO> tagDAO) {
+        this.tagDAO = tagDAO;
     }
 
     public TagService get() {
-        return new TagServiceImpl(em.get());
+        return new TagServiceImpl(tagDAO.get());
     }
 }

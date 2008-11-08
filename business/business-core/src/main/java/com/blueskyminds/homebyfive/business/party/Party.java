@@ -1,11 +1,9 @@
 package com.blueskyminds.homebyfive.business.party;
 
 import com.blueskyminds.homebyfive.business.contact.*;
-import com.blueskyminds.homebyfive.business.tag.Tag;
-import com.blueskyminds.homebyfive.business.tag.TagTools;
-import com.blueskyminds.homebyfive.business.tag.Taggable;
-import com.blueskyminds.homebyfive.business.tag.TagConstants;
+import com.blueskyminds.homebyfive.business.tag.*;
 import com.blueskyminds.homebyfive.business.address.Address;
+import com.blueskyminds.homebyfive.business.region.tag.RegionTagMap;
 import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 import com.blueskyminds.homebyfive.framework.core.DomainObject;
 import com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException;
@@ -19,6 +17,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * A party is a generalisation of a person or organisation
@@ -455,6 +455,7 @@ public class Party extends AbstractDomainObject implements Taggable, Contactable
      * The tags that have been assigned to this Party
      **/
     @OneToMany(mappedBy = "party", cascade = CascadeType.ALL)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public Set<PartyTagMap> getTagMaps() {
         return tagMaps;
     }
@@ -471,6 +472,18 @@ public class Party extends AbstractDomainObject implements Taggable, Contactable
     public void addTag(Tag tag) {
         if (!TagTools.contains(tagMaps, tag)) {
             tagMaps.add(new PartyTagMap(this, tag));
+        }
+    }
+
+    public void removeTag(String tagName) {
+        PartyTagMap toRemove = null;
+        for (PartyTagMap map : tagMaps) {
+            if (map.getTag().getName().equals(tagName)) {
+                toRemove = map;
+            }
+        }
+        if (toRemove != null) {
+            tagMaps.remove(toRemove);
         }
     }
 

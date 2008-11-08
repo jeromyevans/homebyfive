@@ -63,6 +63,7 @@ public class JPATestCase extends TestCase {
 
     protected void newTransaction() {
         env.newTransaction();
+        this.em = env.em;
     }
 
 

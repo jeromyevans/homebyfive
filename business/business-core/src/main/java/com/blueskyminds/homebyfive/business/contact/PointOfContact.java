@@ -4,10 +4,13 @@ import com.blueskyminds.homebyfive.framework.core.AbstractDomainObject;
 import com.blueskyminds.homebyfive.business.tag.Taggable;
 import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.business.tag.TagTools;
+import com.blueskyminds.homebyfive.business.region.tag.RegionTagMap;
 
 import javax.persistence.*;
 import java.util.Set;
 import java.util.HashSet;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * A point of contact is an abstract way to communicate with or address a party
@@ -115,6 +118,7 @@ public abstract class PointOfContact extends AbstractDomainObject implements Tag
     // ------------------------------------------------------------------------------------------------------
 
     @OneToMany(mappedBy = "pointOfContact", cascade = CascadeType.ALL)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)   
     public Set<POCTagMap> getTagMaps() {
         return tagMaps;
     }
@@ -131,6 +135,18 @@ public abstract class PointOfContact extends AbstractDomainObject implements Tag
     public void addTag(Tag tag) {        
         if (!TagTools.contains(tagMaps, tag)) {
             tagMaps.add(new POCTagMap(this, tag));
+        }
+    }
+
+     public void removeTag(String tagName) {
+        POCTagMap toRemove = null;
+        for (POCTagMap map : tagMaps) {
+            if (map.getTag().getName().equals(tagName)) {
+                toRemove = map;
+            }
+        }
+        if (toRemove != null) {
+            tagMaps.remove(toRemove);
         }
     }
 

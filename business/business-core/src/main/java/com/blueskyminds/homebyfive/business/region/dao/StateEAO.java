@@ -13,7 +13,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class StateEAO extends AbstractDAO<State> {
+public class StateEAO extends AbstractRegionDAO<State> {
 
     private static final String QUERY_ALL_STATES_BY_PARENT_PATH = "hp.states.byParentPath";
     private static final String QUERY_STATE_BY_PATH = "hp.state.byPath";

@@ -5,6 +5,9 @@ import com.blueskyminds.homebyfive.framework.core.transformer.Transformer;
 
 import java.util.*;
 
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.collections.iterators.ArrayIterator;
+
 /**
  * Tools for filtering collections
  *
@@ -151,9 +154,27 @@ public class FilterTools {
      * @return
      */
     public static <T,O> List<T> getMatchingTransformed(Collection<O> collection, Filter<O> filter, Transformer<O, T> transformer) {
-        List<T> transformedMatches = new LinkedList<T>(); 
         if (collection != null) {
-            for (O object : collection) {
+            return getMatchingTransformed(collection.iterator(), filter, transformer);
+        } else {
+            return new LinkedList<T>();
+        }
+    }
+
+    /**
+     * Get the list of transformed objects in a collection that are accepted by the filter
+     *
+     * Transformation is performed after the match
+     *
+     * @param iterator
+     * @param filter
+     * @return
+     */
+    public static <T,O> List<T> getMatchingTransformed(Iterator<O> iterator, Filter<O> filter, Transformer<O, T> transformer) {
+        List<T> transformedMatches = new LinkedList<T>();
+        if (iterator != null) {
+            while (iterator.hasNext()) {
+                O object = iterator.next();
                 if (filter.accept(object)) {
                     transformedMatches.add(transformer.transform(object));
                 }
@@ -173,6 +194,20 @@ public class FilterTools {
      */
     public static <T,O> List<T> getTransformed(Collection<O> collection, Transformer<O, T> transformer) {
         return getMatchingTransformed(collection, new AllPassFilter<O>(), transformer);
+    }
+
+    /**
+     * Get the list of transformed objects in an array
+     *
+     * Transformation is performed on all items
+     *
+     * @param array    Collection of items
+     * @param transformer   Transforms the items in the collection
+     * @return a list of the transformed items
+     */
+    @SuppressWarnings({"unchecked"})
+    public static <T,O> List<T> getTransformed(O[] array, Transformer<O, T> transformer) {
+        return getMatchingTransformed(Arrays.asList(array), new AllPassFilter<O>(), transformer);
     }
 
     /**

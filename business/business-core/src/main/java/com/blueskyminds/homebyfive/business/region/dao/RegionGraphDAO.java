@@ -21,7 +21,7 @@ import java.util.List;
  * <p/>
  * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
  */
-public class RegionGraphDAO extends AbstractDAO<Region> {
+public class RegionGraphDAO extends AbstractRegionDAO<Region> {
 
     public static final Log LOG = LogFactory.getLog(RegionGraphDAO.class);
 

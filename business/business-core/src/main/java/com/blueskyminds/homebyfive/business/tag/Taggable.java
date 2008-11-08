@@ -20,4 +20,7 @@ public interface Taggable {
      * @param tag
      */
     void addTag(Tag tag);
+
+    /** Remove the tag with the specific name from this entity */
+    void removeTag(String tagName);
 }

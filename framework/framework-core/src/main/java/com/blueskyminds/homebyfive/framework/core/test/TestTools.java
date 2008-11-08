@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.framework.core.test;
 import com.blueskyminds.homebyfive.framework.core.DomainObject;
 import com.blueskyminds.homebyfive.framework.core.HasIdentity;
 import com.blueskyminds.homebyfive.framework.core.Printable;
+import com.blueskyminds.homebyfive.framework.core.transformer.Transformer;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceSession;
@@ -12,8 +13,10 @@ import com.blueskyminds.homebyfive.framework.core.tools.FileTools;
 import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.NonBlankFilter;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.StringFilter;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.io.IOException;
@@ -130,8 +133,17 @@ public class TestTools {
         printAll(em, clazz);
     }
 
+    private static class HSQLFilter implements Transformer<String, String> {
+
+        public String transform(String fromObject) {
+            // use the single quote quoting expected by hsql
+            return StringUtils.replace(fromObject, "\\'", "''");
+        }
+    }
+
     protected static void applySQLFiles(Connection connection, String[] sqlFiles) {
         StringFilter filter = new NonBlankFilter();
+        HSQLFilter hsqlFilter = new HSQLFilter();
         String[] sqlLines;
 
         for (String file : sqlFiles) {
@@ -139,7 +151,7 @@ public class TestTools {
                 URI location = ResourceTools.locateResource(file+".sql");
                 if (location != null) {
                     sqlLines = FileTools.readTextFile(location, filter);
-                    PersistenceTools.executeUpdate(connection, sqlLines);
+                    PersistenceTools.executeUpdate(connection, FilterTools.getTransformed(sqlLines, hsqlFilter));
                 } else {
                     LOG.error("Could not find resource: "+file+".sql");
                 }

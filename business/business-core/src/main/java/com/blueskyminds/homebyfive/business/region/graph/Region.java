@@ -11,6 +11,7 @@ import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
 import com.blueskyminds.homebyfive.business.tag.Taggable;
 import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.business.tag.TagTools;
+import com.blueskyminds.homebyfive.business.tag.TagMap;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 import org.jboss.envers.Versioned;
+import org.hibernate.annotations.Cascade;
 
 /**
  * A RegionHandle contains essential information about a region within a region graph
@@ -565,6 +567,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
      * The tags that have been assigned to this Region
      **/
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public Set<RegionTagMap> getTagMaps() {
         return tagMaps;
     }
@@ -581,6 +584,19 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     public void addTag(Tag tag) {
         if (!TagTools.contains(tagMaps, tag)) {
             tagMaps.add(new RegionTagMap(this, tag));
+        }
+    }
+
+    public void removeTag(String tagName) {
+        RegionTagMap toRemove = null;
+        for (RegionTagMap map : tagMaps) {
+            if (map.getTag().getName().equals(tagName)) {
+                toRemove = map;
+                break;
+            }
+        }
+        if (toRemove != null) {
+            tagMaps.remove(toRemove);
         }
     }
 

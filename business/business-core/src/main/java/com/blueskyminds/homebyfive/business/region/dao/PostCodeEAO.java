@@ -13,7 +13,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class PostCodeEAO extends AbstractDAO<PostalCode> {
+public class PostCodeEAO extends AbstractRegionDAO<PostalCode> {
 
     private static final String QUERY_ALL_POSTCODES_BY_PARENT_PATH = "hp.postCodes.byParentPath";
     private static final String QUERY_POSTCODE_BY_PATH = "hp.postCode.byPath";

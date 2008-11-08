@@ -11,8 +11,9 @@
     -->
     <named-query name="hp.countries">
         <query>
-           select country from Country country where country.status =
-          com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+           select country from Country country
+            left join fetch country.regionIndex
+            where country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -28,10 +29,14 @@
     <named-query name="hp.country.byPath">
         <query>
            select country from Country country
+            left join fetch country.regionIndex
              where country.path = :path and
                    country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
+
+
+
 
   <!--
     List states in a country
@@ -45,6 +50,7 @@
     <named-query name="hp.states.byParentPath">
         <query>
            select state from State state
+             left join fetch state.regionIndex
              where state.parentPath = :path and
                    state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -62,6 +68,7 @@
     <named-query name="hp.state.byPath">
         <query>
            select state from State state
+             left join fetch state.regionIndex
              where state.path = :path and
                    state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -79,6 +86,7 @@
     <named-query name="hp.suburbs.byParentPath">
         <query>
            select suburb from Suburb suburb
+             left join fetch suburb.regionIndex
              where suburb.parentPath = :path and
                    suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -95,6 +103,7 @@
     <named-query name="hp.suburbs.byPostCode">        
         <query>
           select suburb from Suburb suburb
+            left join fetch suburb.regionIndex
             left join suburb.parentRegionMaps map
             where map.parent.path = :postCode and
                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -114,6 +123,7 @@
     <named-query name="hp.suburb.byPath">
         <query>
            select suburb from Suburb suburb
+             left join fetch suburb.regionIndex
              where suburb.path = :path and
                    suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -131,8 +141,9 @@
     <named-query name="hp.postCodes.byParentPath">
         <query>
           select postCode from PostalCode postCode
-          where postCode.parentPath = :path and
-          postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+            left join fetch postCode.regionIndex
+            where postCode.parentPath = :path and
+            postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 
@@ -148,10 +159,59 @@
     <named-query name="hp.postCode.byPath">
         <query>
           select postCode from PostalCode postCode
-          where postCode.path = :path and
-          postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+            left join fetch postCode.regionIndex
+            where postCode.path = :path and
+            postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
+
+    <!--
+      Get tags for a region
+
+      Parameters:
+        path:  lowercase path to the region eg. /au
+
+      Indexes:
+       -->
+      <named-query name="region.tags.byPath">
+          <query>
+             select tag from Region region 
+              inner join region.tagMaps map
+              inner join map.tag tag
+              where region.path = :path
+          </query>
+      </named-query>
+
+   <!--
+      Get regions by a tag
+
+      Parameters:
+        tagName:  exact tag name
+
+      Indexes:
+       -->
+      <named-query name="region.byTag">
+          <query>
+             select region from Region region
+              inner join region.tagMaps map
+              inner join map.tag tag
+              where tag.name = :tagName
+          </query>
+      </named-query>
+
+   <!--
+      Delete a region
+
+      Parameters:
+        path:  path to the region eg. /au
+
+      Indexes:
+       -->
+      <named-query name="region.deleteByPath">
+          <query>
+             delete Region region where region.path = :path
+          </query>
+      </named-query>
 
   <!--
     Get a list of properties in a suburb

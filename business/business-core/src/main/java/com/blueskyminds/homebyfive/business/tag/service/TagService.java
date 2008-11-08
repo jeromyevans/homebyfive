@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.business.tag.service;
 import com.blueskyminds.homebyfive.business.tag.Tag;
 
 import java.util.Set;
+import java.util.List;
 
 /**
  * The Tag Service is used to access tags
@@ -27,6 +28,13 @@ public interface TagService {
      * @return
      */
     Tag lookupTag(String key);
+
+    /**
+     * Lookup the tags with the specified key
+     * @param key
+     * @return
+     */
+    List<Tag> autocomplete(String key);
 
     /** List the full set of tags */
     Set<Tag> listTags();

@@ -2,6 +2,7 @@ package com.blueskyminds.homebyfive.business.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.google.inject.Inject;
 
 import javax.persistence.Query;
@@ -13,7 +14,7 @@ import java.util.Set;
  * <p/>
  * History:
  */
-public class CountryEAO extends AbstractDAO<Country> {
+public class CountryEAO extends AbstractRegionDAO<Country> {
 
     private static final String QUERY_ALL_COUNTRIES = "hp.countries";
     private static final String QUERY_COUNTRY_BY_PATH = "hp.country.byPath";
@@ -46,5 +47,6 @@ public class CountryEAO extends AbstractDAO<Country> {
         query.setParameter(PARAM_PATH, path);
         return firstIn(query.getResultList());
     }
-    
+
+
 }
