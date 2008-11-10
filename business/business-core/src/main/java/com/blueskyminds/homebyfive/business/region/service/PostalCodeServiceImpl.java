@@ -3,17 +3,12 @@ package com.blueskyminds.homebyfive.business.region.service;
 import com.wideplay.warp.persist.Transactional;
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.graph.State;
-import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.PostCodeTableFactory;
-import com.blueskyminds.homebyfive.business.region.SuburbTableFactory;
 import com.blueskyminds.homebyfive.business.region.dao.SuburbEAO;
 import com.blueskyminds.homebyfive.business.region.dao.PostCodeEAO;
-import com.blueskyminds.homebyfive.business.region.dao.AbstractRegionDAO;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
-import com.blueskyminds.homebyfive.business.tag.Tag;
-import com.blueskyminds.homebyfive.business.tag.TagsTableFactory;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.google.inject.Inject;
@@ -30,14 +25,10 @@ import java.util.Set;
 public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> implements PostalCodeService {
 
     private StateService stateService;
-    private PostCodeEAO postCodeEAO;
-    private SuburbEAO suburbEAO;
 
-    public PostalCodeServiceImpl(EntityManager em, TagService tagService, StateService stateService, PostCodeEAO postCodeEAO, SuburbEAO suburbEAO) {
-        super(em, postCodeEAO, tagService);
+    public PostalCodeServiceImpl(EntityManager em, TagService tagService, StateService stateService, PostCodeEAO regionDAO) {
+        super(em, regionDAO, tagService);
         this.stateService = stateService;
-        this.postCodeEAO = postCodeEAO;
-        this.suburbEAO = suburbEAO;
     }
 
     public PostalCodeServiceImpl() {
@@ -54,7 +45,7 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
     @Transactional(exceptOn = DuplicateRegionException.class)
     public PostalCode create(PostalCode postalCode) throws DuplicateRegionException, InvalidRegionException {
         postalCode.populateAttributes();
-        PostalCode existing = postCodeEAO.lookupPostCode(postalCode.getPath());
+        PostalCode existing = regionDAO.lookup(postalCode.getPath());
         if (existing == null) {
 
             State state = postalCode.getState();
@@ -89,7 +80,7 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
     @Transactional(exceptOn = {InvalidRegionException.class})
     public PostalCode update(String path, PostalCode postalCode) throws InvalidRegionException {
         postalCode.populateAttributes();
-        PostalCode existing = postCodeEAO.lookupPostCode(path);
+        PostalCode existing = regionDAO.lookup(path);
         if (existing != null) {
             existing.mergeWith(postalCode);
             em.persist(existing);
@@ -101,27 +92,32 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
 
 
     public RegionGroup list(String parentPath) {
-        Set<PostalCode> postCodes = postCodeEAO.listPostCodes(parentPath);
+        Set<PostalCode> postCodes = regionDAO.list(parentPath);
         return RegionGroupFactory.createPostCodes(postCodes);
     }
 
-   
+
+
+    public RegionGroup listPostCodesAsGroup(String country, String state) {
+       Set<PostalCode> postCodes = listPostCodes(country, state);
+       return RegionGroupFactory.createPostCodes(postCodes);
+    }
+
+    public Set<PostalCode> listPostCodes(String country, String state) {
+       return regionDAO.list(PathHelper.buildPath(country, state));
+    }
+
+    public TableModel listPostCodesAsTable(String country, String state) {
+       Set<PostalCode> postCodes = regionDAO.list(PathHelper.buildPath(country, state));
+       return PostCodeTableFactory.createTable(postCodes);
+   }
+    
     public PostalCode lookup(String country, String state, String postCode) {
-        return postCodeEAO.lookupPostCode(PathHelper.buildPath(country, state, postCode));
+        return regionDAO.lookup(PathHelper.buildPath(country, state, postCode));
     }
 
     public PostalCode lookup(String path) {
-        return postCodeEAO.lookupPostCode(path);
-    }
-
-    public RegionGroup listSuburbs(String country, String state, String postCode) {
-        Set<Suburb> suburbs = suburbEAO.listSuburbsInPostCode(PathHelper.buildPath(country, state, postCode));
-        return RegionGroupFactory.createSuburbs(suburbs);
-    }
-
-    public TableModel listSuburbsAsTable(String country, String state, String postCode) {
-        Set<Suburb> suburbs = suburbEAO.listSuburbsInPostCode(PathHelper.buildPath(country, state, postCode));
-        return SuburbTableFactory.createTable(suburbs);
+        return regionDAO.lookup(path);
     }
 
     @Inject
@@ -130,12 +126,8 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
     }
 
     @Inject
-    public void setPostCodeEAO(PostCodeEAO postCodeEAO) {
-        this.postCodeEAO = postCodeEAO;
+    public void setRegionDAO(PostCodeEAO regionDAO) {
+        this.regionDAO = regionDAO;
     }
 
-    @Inject
-    public void setSuburbEAO(SuburbEAO suburbEAO) {
-        this.suburbEAO = suburbEAO;
-    }    
 }

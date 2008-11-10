@@ -34,12 +34,12 @@ public class TestCountryEAO extends JPATestCase {
     }
 
     public void testListCountries() {
-        Set<Country> countries = countryEAO.listCountries();
+        Set<Country> countries = countryEAO.list("/");
         assertEquals(2, countries.size());
     }
 
     public void testLookupCountry() {
-        Country countryBean = countryEAO.lookupCountry(PathHelper.buildPath(AU));
+        Country countryBean = countryEAO.lookup(PathHelper.buildPath(AU));
         assertNotNull(countryBean);
     }
 }

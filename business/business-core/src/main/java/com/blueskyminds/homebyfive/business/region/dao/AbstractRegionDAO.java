@@ -15,7 +15,7 @@ import org.apache.commons.logging.LogFactory;
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class AbstractRegionDAO<T> extends AbstractDAO<T> {
+public abstract class AbstractRegionDAO<T> extends AbstractDAO<T> {
 
     private static final Log LOG = LogFactory.getLog(AbstractRegionDAO.class);
 
@@ -41,19 +41,13 @@ public class AbstractRegionDAO<T> extends AbstractDAO<T> {
         query.executeUpdate();
     }
 
-    public void assignTag(String path, String tag) {
-        //To change body of created methods use File | Settings | File Templates.
-        LOG.error("TODO");
-    }
-
-    public void removeTag(String path, String tag) {
-        //To change body of created methods use File | Settings | File Templates.
-        LOG.error("TODO");
-    }
-
     public Set<T> listByTag(String tagName) {
         Query query = em.createNamedQuery(QUERY_BY_TAG);
         query.setParameter(PARAM_TAG_NAME, tagName);
         return setOf(query.getResultList());
     }
+
+    public abstract T lookup(String path);
+
+    public abstract Set<T> list(String parentPath);
 }

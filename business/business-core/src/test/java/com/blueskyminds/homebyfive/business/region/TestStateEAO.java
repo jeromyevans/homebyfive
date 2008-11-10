@@ -34,7 +34,7 @@ public class TestStateEAO extends JPATestCase {
     }
 
     public void testLookupState() {
-        State stateBean = stateEAO.lookupState("/au/nsw");
+        State stateBean = stateEAO.lookup("/au/nsw");
         assertNotNull(stateBean);
     }
 }

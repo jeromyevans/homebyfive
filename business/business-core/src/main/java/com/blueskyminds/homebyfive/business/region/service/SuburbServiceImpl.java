@@ -8,9 +8,6 @@ import com.blueskyminds.homebyfive.business.region.SuburbTableFactory;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
 import com.blueskyminds.homebyfive.business.region.dao.SuburbEAO;
-import com.blueskyminds.homebyfive.business.region.dao.AbstractRegionDAO;
-import com.blueskyminds.homebyfive.business.tag.Tag;
-import com.blueskyminds.homebyfive.business.tag.TagsTableFactory;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.google.inject.Inject;
@@ -27,29 +24,46 @@ import java.util.Set;
 public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements SuburbService {
 
     private StateService stateService;
-    private SuburbEAO suburbEAO;
 
-    public SuburbServiceImpl(EntityManager em, TagService tagService, StateService stateService, SuburbEAO suburbEAO) {
-        super(em, suburbEAO, tagService);
+    public SuburbServiceImpl(EntityManager em, TagService tagService, StateService stateService, SuburbEAO regionDAO) {
+        super(em, regionDAO, tagService);
         this.stateService = stateService;
-        this.suburbEAO = suburbEAO;
     }
 
     public SuburbServiceImpl() {
     }
 
     public RegionGroup list(String parentPath) {
-        Set<Suburb> suburbs = suburbEAO.listSuburbs(parentPath);
+        Set<Suburb> suburbs = regionDAO.list(parentPath);
         return RegionGroupFactory.createSuburbs(suburbs);
     }
 
     public RegionGroup list(String country, String state) {
-        Set<Suburb> suburbs = suburbEAO.listSuburbs(PathHelper.buildPath(country, state));
+        Set<Suburb> suburbs = regionDAO.list(PathHelper.buildPath(country, state));
         return RegionGroupFactory.createSuburbs(suburbs);
     }
 
     public TableModel listSuburbsAsTable(String country, String state) {
-        Set<Suburb> suburbs = suburbEAO.listSuburbs(PathHelper.buildPath(country, state));
+        Set<Suburb> suburbs = regionDAO.list(PathHelper.buildPath(country, state));
+        return SuburbTableFactory.createTable(suburbs);
+    }
+
+    public RegionGroup listSuburbsAsGroup(String country, String state) {
+        Set<Suburb> suburbs = listSuburbs(country, state);
+        return RegionGroupFactory.createSuburbs(suburbs);
+    }
+     
+    public Set<Suburb> listSuburbs(String country, String state) {
+        return regionDAO.list(PathHelper.buildPath(country, state));
+    }
+    
+    public RegionGroup listSuburbs(String country, String state, String postCode) {
+        Set<Suburb> suburbs = ((SuburbEAO) regionDAO).listSuburbsInPostCode(PathHelper.buildPath(country, state, postCode));
+        return RegionGroupFactory.createSuburbs(suburbs);
+    }
+
+    public TableModel listSuburbsAsTable(String country, String state, String postCode) {
+        Set<Suburb> suburbs = ((SuburbEAO) regionDAO).listSuburbsInPostCode(PathHelper.buildPath(country, state, postCode));
         return SuburbTableFactory.createTable(suburbs);
     }
 
@@ -63,7 +77,7 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
     @Transactional(exceptOn = DuplicateRegionException.class)
     public Suburb create(Suburb suburb) throws DuplicateRegionException, InvalidRegionException {
         suburb.populateAttributes();
-        Suburb existing = suburbEAO.lookupSuburb(suburb.getPath());
+        Suburb existing = regionDAO.lookup(suburb.getPath());
         if (existing == null) {
 
             State state = suburb.getState();
@@ -100,7 +114,7 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
     @Transactional(exceptOn = {InvalidRegionException.class})
     public Suburb update(String path, Suburb suburb) throws InvalidRegionException {
         suburb.populateAttributes();
-        Suburb existing = suburbEAO.lookupSuburb(path);
+        Suburb existing = regionDAO.lookup(path);
         if (existing != null) {
             existing.mergeWith(suburb);
             em.persist(existing);
@@ -112,11 +126,11 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
 
 
     public Suburb lookup(String country, String state, String suburb) {
-        return suburbEAO.lookupSuburb(PathHelper.buildPath(country, state, suburb));
+        return regionDAO.lookup(PathHelper.buildPath(country, state, suburb));
     }
 
     public Suburb lookup(String path) {
-        return suburbEAO.lookupSuburb(path);
+        return regionDAO.lookup(path);
     }
 
     @Inject
@@ -125,7 +139,7 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
     }
 
     @Inject
-    public void setSuburbEAO(SuburbEAO suburbEAO) {
-        this.suburbEAO = suburbEAO;
+    public void setRegionDAO(SuburbEAO regionDAO) {
+        this.regionDAO = regionDAO;
     }  
 }

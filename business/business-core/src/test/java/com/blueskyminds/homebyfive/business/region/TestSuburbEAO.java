@@ -42,7 +42,7 @@ public class TestSuburbEAO extends JPATestCase {
     }
 
     public void testLookupSuburb() {
-        Suburb suburbBean = suburbEAO.lookupSuburb("/au/nsw/neutral+bay");
+        Suburb suburbBean = suburbEAO.lookup("/au/nsw/neutral+bay");
         assertNotNull(suburbBean);
     }
 

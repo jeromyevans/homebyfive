@@ -31,7 +31,7 @@ public class StateEAO extends AbstractRegionDAO<State> {
      *
      * @return States, or empty set
      */
-    public Set<State> listStates(String parentPath) {
+    public Set<State> list(String parentPath) {
 
         Query query = em.createNamedQuery(QUERY_ALL_STATES_BY_PARENT_PATH);
         query.setParameter(PARAM_PATH, parentPath);
@@ -44,7 +44,7 @@ public class StateEAO extends AbstractRegionDAO<State> {
      *
      * @return State, or null if not found
      */
-    public State lookupState(String path) {
+    public State lookup(String path) {
 
         Query query = em.createNamedQuery(QUERY_STATE_BY_PATH);
         query.setParameter(PARAM_PATH, path);

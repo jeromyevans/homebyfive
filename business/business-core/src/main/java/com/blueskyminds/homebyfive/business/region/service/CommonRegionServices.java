@@ -24,7 +24,7 @@ import java.util.Set;
 public abstract class CommonRegionServices<R extends Region> implements RegionServiceI<R> {
 
     protected EntityManager em;
-    private AbstractRegionDAO regionDAO;
+    protected AbstractRegionDAO<R> regionDAO;
     protected TagService tagService;
 
     public CommonRegionServices(EntityManager em, AbstractRegionDAO regionDAO, TagService tagService) {

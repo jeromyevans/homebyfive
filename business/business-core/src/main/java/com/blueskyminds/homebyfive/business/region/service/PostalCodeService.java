@@ -13,9 +13,10 @@ import java.util.Set;
  */
 public interface PostalCodeService extends RegionServiceI<PostalCode> {
 
-
     PostalCode lookup(String country, String state, String postCode);
-        
-    RegionGroup listSuburbs(String country, String state, String postCode);
-    TableModel listSuburbsAsTable(String country, String state, String postCode);
+    
+    RegionGroup listPostCodesAsGroup(String country, String state);
+    TableModel listPostCodesAsTable(String country, String state);
+    Set<PostalCode> listPostCodes(String country, String state);
+
 }

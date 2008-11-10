@@ -30,8 +30,9 @@ public class CountryEAO extends AbstractRegionDAO<Country> {
     /**
      * Get a list of all countries
      * @return
+     * @param parentPath
      */
-    public Set<Country> listCountries() {
+    public Set<Country> list(String parentPath) {
         Query query = em.createNamedQuery(QUERY_ALL_COUNTRIES);
         return setOf(query.getResultList());
     }
@@ -42,7 +43,7 @@ public class CountryEAO extends AbstractRegionDAO<Country> {
      * @param path
      * @return Country instance, or null if not found
      */
-    public Country lookupCountry(String path) {
+    public Country lookup(String path) {
         Query query = em.createNamedQuery(QUERY_COUNTRY_BY_PATH);
         query.setParameter(PARAM_PATH, path);
         return firstIn(query.getResultList());

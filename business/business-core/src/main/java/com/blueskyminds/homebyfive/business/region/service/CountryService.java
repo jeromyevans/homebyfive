@@ -16,8 +16,6 @@ public interface CountryService extends RegionServiceI<Country> {
     
     RegionGroup list();
 
-    RegionGroup listStatesAsGroup(String country);
-    TableModel listStatesAsTable(String country);
-    Set<State> listStates(String country);
+  
 
 }

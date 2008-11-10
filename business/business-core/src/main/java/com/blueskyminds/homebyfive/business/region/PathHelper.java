@@ -21,6 +21,14 @@ public class PathHelper {
         return joinPaths(ROOT, country);
     }
 
+    public static String buildPath(String[] components) {
+        return joinPaths(ROOT, components, null);
+    }
+
+    public static String buildPath(String[] components, String suffix) {
+        return joinPaths(ROOT, components, suffix);
+    }
+
     public static String buildPath(String country, String state) {
         return joinPaths(ROOT, country, state);
     }
@@ -120,6 +128,13 @@ public class PathHelper {
              return null;
          }
     }
+
+      /** Concatenates multiple id's into a path */
+    public static String joinPaths(String prefix, String[] parts, String suffix) {
+          String result = joinPaths(parts);          
+          result = joinPath(prefix, result);
+          return joinPaths(result, suffix);           
+      }
 
     public static String joinPath(String parentPath, String id) {
          return joinPaths(parentPath, id);

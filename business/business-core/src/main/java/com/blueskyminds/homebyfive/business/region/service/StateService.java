@@ -18,12 +18,7 @@ public interface StateService extends RegionServiceI<State> {
 
     State lookup(String country, String state);
 
-    RegionGroup listSuburbsAsGroup(String country, String state);
-    TableModel listSuburbsAsTable(String country, String state);
-    Set<Suburb> listSuburbs(String country, String state);
-
-    RegionGroup listPostCodesAsGroup(String country, String state);
-    TableModel listPostCodesAsTable(String country, String state);
-    Set<PostalCode> listPostCodes(String country, String state);
-
+    RegionGroup listStatesAsGroup(String country);
+    TableModel listStatesAsTable(String country);
+    Set<State> listStates(String country);
 }

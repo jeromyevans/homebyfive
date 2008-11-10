@@ -35,7 +35,7 @@ public class TestPostCodeEAO extends JPATestCase {
     }
 
     public void testLookupPostalCode() {
-        PostalCode postCodeBean = postCodeEAO.lookupPostCode("/au/nsw/2089");
+        PostalCode postCodeBean = postCodeEAO.lookup("/au/nsw/2089");
         assertNotNull(postCodeBean);
     }
 }

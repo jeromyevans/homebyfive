@@ -3,19 +3,11 @@ package com.blueskyminds.homebyfive.business.region.service;
 import com.wideplay.warp.persist.Transactional;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
-import com.blueskyminds.homebyfive.business.region.graph.Suburb;
-import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
-import com.blueskyminds.homebyfive.business.region.SuburbTableFactory;
-import com.blueskyminds.homebyfive.business.region.PostCodeTableFactory;
+import com.blueskyminds.homebyfive.business.region.StateTableFactory;
 import com.blueskyminds.homebyfive.business.region.dao.StateEAO;
-import com.blueskyminds.homebyfive.business.region.dao.SuburbEAO;
-import com.blueskyminds.homebyfive.business.region.dao.PostCodeEAO;
-import com.blueskyminds.homebyfive.business.region.dao.AbstractRegionDAO;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
-import com.blueskyminds.homebyfive.business.tag.Tag;
-import com.blueskyminds.homebyfive.business.tag.TagsTableFactory;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.google.inject.Inject;
@@ -32,16 +24,10 @@ import java.util.Set;
 public class StateServiceImpl extends CommonRegionServices<State> implements StateService {
 
     private CountryService countryService;
-    private StateEAO stateEAO;
-    private SuburbEAO suburbEAO;
-    private PostCodeEAO postCodeEAO;
 
-    public StateServiceImpl(EntityManager em, TagService tagService, CountryService countryService, StateEAO stateEAO, SuburbEAO suburbEAO, PostCodeEAO postCodeEAO) {
-        super(em, stateEAO, tagService);
+    public StateServiceImpl(EntityManager em, TagService tagService, CountryService countryService, StateEAO regionEAO) {
+        super(em, regionEAO, tagService);
         this.countryService = countryService;
-        this.stateEAO = stateEAO;
-        this.suburbEAO = suburbEAO;
-        this.postCodeEAO = postCodeEAO;
     }
 
     public StateServiceImpl() {
@@ -58,7 +44,7 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
     @Transactional(exceptOn = {InvalidRegionException.class, DuplicateRegionException.class})
     public State create(State state) throws DuplicateRegionException, InvalidRegionException {
         state.populateAttributes();
-        State existing = stateEAO.lookupState(state.getPath());
+        State existing = regionDAO.lookup(state.getPath());
         if (existing == null) {
             Country country = state.getCountry();
             if (country == null) {
@@ -94,7 +80,7 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
     public State update(String path, State state) throws InvalidRegionException {
         state.populateAttributes();
 
-        State existing = stateEAO.lookupState(path);
+        State existing = regionDAO.lookup(path);
         if (existing != null) {
             existing.mergeWith(state);
             em.persist(existing);
@@ -109,60 +95,36 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
     }
 
     public State lookup(String statePath) {
-        return stateEAO.lookupState(statePath);
-    }
-
-    public RegionGroup listSuburbsAsGroup(String country, String state) {
-        Set<Suburb> suburbs = listSuburbs(country, state);
-        return RegionGroupFactory.createSuburbs(suburbs);
+        return regionDAO.lookup(statePath);
     }
 
     public RegionGroup list(String parentPath) {
-        Set<Suburb> suburbs = suburbEAO.listSuburbs(parentPath);
-        return RegionGroupFactory.createSuburbs(suburbs);
+        Set<State> states = regionDAO.list(parentPath);
+        return RegionGroupFactory.createStates(states);
+    }     
+
+    public RegionGroup listStatesAsGroup(String country) {
+        Set<State> states = listStates(country);
+        return RegionGroupFactory.createStates(states);
     }
 
-    public TableModel listSuburbsAsTable(String country, String state) {
-        Set<Suburb> suburbs = listSuburbs(country, state);
-        return SuburbTableFactory.createTable(suburbs);
+    public TableModel listStatesAsTable(String country) {
+        Set<State> states = listStates(country);
+        return StateTableFactory.createTable(states);
     }
 
-    public Set<Suburb> listSuburbs(String country, String state) {
-        return suburbEAO.listSuburbs(PathHelper.buildPath(country, state));
+    public Set<State> listStates(String country) {
+        return regionDAO.list(PathHelper.buildPath(country));
     }
-
-    public RegionGroup listPostCodesAsGroup(String country, String state) {
-       Set<PostalCode> postCodes = listPostCodes(country, state);
-       return RegionGroupFactory.createPostCodes(postCodes);
-    }
-
-   public Set<PostalCode> listPostCodes(String country, String state) {
-       return postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
-   }
-
-   public TableModel listPostCodesAsTable(String country, String state) {
-       Set<PostalCode> postCodes = postCodeEAO.listPostCodes(PathHelper.buildPath(country, state));
-       return PostCodeTableFactory.createTable(postCodes);
-   }
-
+    
     @Inject
     public void setCountryService(CountryService countryService) {
         this.countryService = countryService;
     }
 
     @Inject
-    public void setStateEAO(StateEAO stateEAO) {
-        this.stateEAO = stateEAO;
-    }
-
-    @Inject
-    public void setSuburbEAO(SuburbEAO suburbEAO) {
-        this.suburbEAO = suburbEAO;
-    }
-
-    @Inject
-    public void setPostCodeEAO(PostCodeEAO postCodeEAO) {
-        this.postCodeEAO = postCodeEAO;
+    public void setRegionEAO(StateEAO regionEAO) {
+        this.regionDAO = regionEAO;
     }
 
 }

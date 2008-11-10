@@ -56,10 +56,10 @@ public class RegionTestCase extends JPATestCase {
         tagDAO = new TagDAO(em);
         tagService = new TagServiceImpl(tagDAO);
         
-        countryService = new CountryServiceImpl(em, tagService, countryEAO, stateEAO);
-        stateService = new StateServiceImpl(em, tagService, countryService, stateEAO, suburbEAO, postCodeEAO);
+        countryService = new CountryServiceImpl(em, tagService, countryEAO);
+        stateService = new StateServiceImpl(em, tagService, countryService, stateEAO);
         suburbService = new SuburbServiceImpl(em, tagService, stateService, suburbEAO);
-        postalCodeService = new PostalCodeServiceImpl(em, tagService, stateService, postCodeEAO, suburbEAO);
+        postalCodeService = new PostalCodeServiceImpl(em, tagService, stateService, postCodeEAO);
 
         regionService = new RegionServiceImpl();
 

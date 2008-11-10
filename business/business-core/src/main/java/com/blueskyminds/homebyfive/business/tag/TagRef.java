@@ -1,5 +1,7 @@
 package com.blueskyminds.homebyfive.business.tag;
 
+import com.blueskyminds.homebyfive.business.region.PathHelper;
+
 /**
  * Reference to a Tag by its path
  *
@@ -14,7 +16,7 @@ public class TagRef {
     private String name;
 
     public TagRef(String basePath, Tag tag) {
-        this(tag.getId(), basePath+tag.getName(), tag.getName());
+        this(tag.getId(), PathHelper.joinPaths(basePath, "tags", tag.getName()), tag.getName());
     }
 
     public TagRef(Long id, String path, String name) {

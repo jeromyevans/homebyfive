@@ -2,6 +2,7 @@ package com.blueskyminds.homebyfive.business.tag.dao;
 
 import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
+import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -22,6 +23,7 @@ public class TagDAO extends AbstractDAO<Tag> {
     private static final String PARAM_NAME = "name";
     private static final String PARAM_KEY = "keyValue";
 
+    @Inject
     public TagDAO(EntityManager em) {
         super(em, Tag.class);
     }

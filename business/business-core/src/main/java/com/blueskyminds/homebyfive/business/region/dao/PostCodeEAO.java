@@ -29,7 +29,7 @@ public class PostCodeEAO extends AbstractRegionDAO<PostalCode> {
      *
      * @return PostCodes, or empty set if not found
      */
-    public Set<PostalCode> listPostCodes(String parentPath) {
+    public Set<PostalCode> list(String parentPath) {
 
         Query query = em.createNamedQuery(QUERY_ALL_POSTCODES_BY_PARENT_PATH);
         query.setParameter(PARAM_PATH, parentPath);
@@ -42,7 +42,7 @@ public class PostCodeEAO extends AbstractRegionDAO<PostalCode> {
      *
      * @return PostCode, or null if not found
      */
-    public PostalCode lookupPostCode(String path) {
+    public PostalCode lookup(String path) {
 
         Query query = em.createNamedQuery(QUERY_POSTCODE_BY_PATH);
         query.setParameter(PARAM_PATH, path);

@@ -33,7 +33,7 @@ public class SuburbEAO extends AbstractRegionDAO<Suburb> {
      *
      * @return Suburbs, or empty set if not found
      */
-    public Set<Suburb> listSuburbs(String parentPath) {
+    public Set<Suburb> list(String parentPath) {
 
         Query query = em.createNamedQuery(QUERY_ALL_SUBURBS_BY_PARENT_PATH);
         query.setParameter(PARAM_PATH, parentPath);
@@ -57,7 +57,7 @@ public class SuburbEAO extends AbstractRegionDAO<Suburb> {
      *
      * @return State, or null if not found
      */
-    public Suburb lookupSuburb(String path) {
+    public Suburb lookup(String path) {
 
         Query query = em.createNamedQuery(QUERY_SUBURB_BY_PATH);
         query.setParameter(PARAM_PATH, path);

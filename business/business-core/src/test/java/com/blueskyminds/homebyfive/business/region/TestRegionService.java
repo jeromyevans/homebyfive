@@ -22,13 +22,13 @@ import com.blueskyminds.homebyfive.business.address.service.AddressServiceImpl;
 public class TestRegionService extends RegionTestCase {
 
     public void testListStatesInCountry() {
-        TableModel statesTable = countryService.listStatesAsTable("au");
+        TableModel statesTable = stateService.listStatesAsTable("au");
         assertNotNull(statesTable);
 
-        TableModel suburbsTable = stateService.listSuburbsAsTable("au", "nsw");
+        TableModel suburbsTable = suburbService.listSuburbsAsTable("au", "nsw");
         assertNotNull(suburbsTable);
 
-        TableModel postCodesTable = stateService.listPostCodesAsTable("au", "nsw");
+        TableModel postCodesTable = postalCodeService.listPostCodesAsTable("au", "nsw");
         assertNotNull(postCodesTable);
 
     }

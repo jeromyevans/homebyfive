@@ -6,4 +6,4 @@
  data-handler="${parameters.handler?html}" <#rt>
 </#if> <#t>
 <#t>
- action="${parameters.resourceURI?html}#" method="POST">
+ action="${parameters.resourceURI?html}" method="POST">
