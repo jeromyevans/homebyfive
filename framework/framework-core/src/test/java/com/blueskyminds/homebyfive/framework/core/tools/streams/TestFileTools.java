@@ -35,6 +35,10 @@ public class TestFileTools extends TestCase {
         assertEquals("/", FileTools.containingFolder("/blank.txt", false));
     }
 
+    public void testParentFolderForURL() {
+        assertEquals("http://www.testurl.com/root/parent?this=that", FileTools.containingFolder("http://www.testurl.com/root/parent/folder?this=that", false));
+    }
+
     public void testListDirectories() {
         //FileTools.listDirectories(new URI(""))
     }

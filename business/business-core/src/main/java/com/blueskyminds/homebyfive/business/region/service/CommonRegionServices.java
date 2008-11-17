@@ -55,6 +55,7 @@ public abstract class CommonRegionServices<R extends Region> implements RegionSe
         }
     }
 
+    @Transactional(exceptOn = {InvalidRegionException.class})
     public void removeTag(String path, String tagName) throws InvalidRegionException {
         R region = lookup(path);
         if (region != null) {

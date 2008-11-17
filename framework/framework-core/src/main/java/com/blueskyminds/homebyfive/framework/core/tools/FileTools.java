@@ -374,13 +374,22 @@ public class FileTools {
      */
     public static String containingFolder(String path, boolean trailingSlash) {
         if (path != null) {
+            String container;
+            String tail = null;
+            // if this path contains trailing info, save it for later
+            int indexOfQ = path.indexOf('?');
+            if (indexOfQ > 0) {
+                tail = path.substring(indexOfQ);
+                path = path.substring(0, indexOfQ);
+            }
+
             path = StringUtils.stripEnd(path, ALL_SEPARATORS);
             int lastWin = path.lastIndexOf(WIN_SEPARATOR);
             int lastStd = path.lastIndexOf(STD_SEPARATOR);
 
             int last = Math.max(lastWin, lastStd);
             if (last >= 0) {
-                String container = path.substring(0, last);
+                container = path.substring(0, last);
 
                 if (lastWin > 0) {
                     container = container+WIN_SEPARATOR;
@@ -390,19 +399,22 @@ public class FileTools {
 
                 if (!trailingSlash) {
                     if (((container.length() == 3) && (container.charAt(1) == ':'))) {
-                        return container;
+                        // return container;
                     } else {
                         if (container.length() == 1) {
-                            return container;
+                            // return container;
                         } else {
-                            return StringUtils.stripEnd(container,  ALL_SEPARATORS);
+                            container = StringUtils.stripEnd(container,  ALL_SEPARATORS);
                         }
                     }
-                } else {
-                    return container;
                 }
             } else {
-                return "";
+                container = "";
+            }
+            if (tail != null) {
+                return container+tail;
+            } else {
+                return container;
             }
         } else {
             return null;
