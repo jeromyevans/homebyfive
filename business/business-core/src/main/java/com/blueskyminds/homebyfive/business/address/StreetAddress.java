@@ -46,6 +46,20 @@ public class StreetAddress extends Address {
         this.street = street;
     }
 
+    /**
+     * Create a new instance of a street address for a property with a street number
+     *
+     * @param streetNumber
+     * @param street
+     * @param suburb
+     */
+    public StreetAddress(String streetNumber, Street street, Suburb suburb) {
+        super(suburb);
+
+        this.streetNumber = streetNumber;
+        this.street = street;
+    }
+
     // ------------------------------------------------------------------------------------------------------
 
     /**
@@ -59,6 +73,7 @@ public class StreetAddress extends Address {
 
         this.street = street;
     }
+
 
     /** Default constructor for ORM */
     protected StreetAddress() {

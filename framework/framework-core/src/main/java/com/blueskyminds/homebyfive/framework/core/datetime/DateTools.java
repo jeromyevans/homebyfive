@@ -1,5 +1,7 @@
 package com.blueskyminds.homebyfive.framework.core.datetime;
 
+import org.apache.commons.lang.time.DateUtils;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -175,5 +177,22 @@ public class DateTools {
 
     public static long toSeconds(int hours, int minutes, int seconds) {
         return (hours * 3600) + (minutes * 60) + seconds;
+    }
+
+    /**
+     * Gets the last second of the month specified by date
+     *
+     * Adds one month, truncates it to the first second, then subtracts one second
+     *
+     * @param date
+     * @return
+     */
+    public static Date lastSecondOfMonth(Date date) {
+        Calendar cal = GregorianCalendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MONTH, 1);
+        DateUtils.truncate(cal, Calendar.MONTH);
+        cal.add(Calendar.SECOND, -1);
+        return cal.getTime();
     }
 }

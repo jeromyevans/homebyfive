@@ -43,6 +43,12 @@ public class Suburb extends Region {
         populateAttributes();
     }
 
+    public Suburb(State state, String name) {
+        super(name, RegionTypes.Suburb);
+        addParentRegion(state);
+        populateAttributes();
+    }
+
     public Suburb(String statePath, String postCodePath, String name) {
         super(name, RegionTypes.Suburb);
         this.parentPath = statePath;
@@ -174,5 +180,6 @@ public class Suburb extends Region {
             regionIndex.populateDenormalizedAttributes();
         }
     }
+
    
 }

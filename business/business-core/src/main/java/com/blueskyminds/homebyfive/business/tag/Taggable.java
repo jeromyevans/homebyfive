@@ -23,4 +23,17 @@ public interface Taggable {
 
     /** Remove the tag with the specific name from this entity */
     void removeTag(String tagName);
+
+
+    /**
+     * @param tagName
+     * @return true if the entity has the specified tag
+     */
+    boolean hasTag(String tagName);
+
+    /**
+     * @param tag
+     * @return true if the entity has the specified tag
+     */
+    boolean hasTag(Tag tag);
 }

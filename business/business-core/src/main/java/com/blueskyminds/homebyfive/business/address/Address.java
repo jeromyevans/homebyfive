@@ -45,6 +45,16 @@ public abstract class Address extends AbstractDomainObject {
         this.postCode = postCode;
     }
 
+
+    /**
+     * Create a new address of the specified type in the suburb identified
+     *
+     * @param suburb        Suburb of this address (inferring the state and country)
+     */
+    public Address(Suburb suburb) {
+        this.suburb = suburb;
+    }
+
     /** Default constructor for ORM */
     protected Address() {
     }

@@ -42,6 +42,19 @@ public class UnitAddress extends StreetAddress {
         this.unitNumber = unitNumber;
     }
 
+    /**
+     * Create a new instance of a unit address for a property with a unit number and street number
+     *
+     * @param unitNumber
+     * @param streetNumber
+     * @param street
+     */
+    public UnitAddress(String unitNumber, String streetNumber, Street street, Suburb suburb) {
+        super(streetNumber, street, suburb);
+
+        this.unitNumber = unitNumber;
+    }
+
     // ------------------------------------------------------------------------------------------------------
     // ------------------------------------------------------------------------------------------------------
 

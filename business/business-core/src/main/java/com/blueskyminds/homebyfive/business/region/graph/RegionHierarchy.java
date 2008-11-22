@@ -43,7 +43,7 @@ public class RegionHierarchy extends AbstractEntity {
         this.parent = parent;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "childId")
     public Region getChild() {
         return child;

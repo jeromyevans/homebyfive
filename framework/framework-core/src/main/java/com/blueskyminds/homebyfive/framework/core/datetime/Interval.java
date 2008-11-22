@@ -1,5 +1,7 @@
 package com.blueskyminds.homebyfive.framework.core.datetime;
 
+import org.apache.commons.lang.time.DateUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -7,7 +9,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * A timespan is a relative duration of time - it has duration, but no start and end time
+ * A Interval is a relative duration of time - it has duration, but no start and end time
  *
  * Interval is accurate to the nearest second.
  *
@@ -15,7 +17,7 @@ import java.util.GregorianCalendar;
  *
  * History:
  *
- * ---[ Blue Sky Minds Pty Ltd ]------------------------------------------------------------------------------
+ * Copyright(c) 2008 Blue Sky Minds
  */
 @Embeddable
 public class Interval implements Serializable {
@@ -277,4 +279,79 @@ public class Interval implements Serializable {
         return months;
     }
 
+    public static Interval sixMonths() {
+        return new Interval(6, PeriodTypes.Month);
+    }
+
+    public static Interval threeMonths() {
+        return new Interval(3, PeriodTypes.Month);
+    }
+
+    public static Interval oneMonths() {
+        return new Interval(1, PeriodTypes.Month);
+    }
+
+    /**
+     * Adds one interval to the start date
+     *
+     * eg. If the interval is three months then the returned date will be
+     * three months after the start date
+     *
+     * @param startDate
+     * @return
+     */
+    public Date addTo(Date startDate) {
+        return addTo(startDate, 1);
+    }
+
+    /**
+     * Adds one interval to the START of the month
+     *
+     * eg. If the interval is three months then the returned date will be
+     * the first second of the month three months after the start date
+     *
+     * eg. MonthOfYear = 1 Nov 2008
+     *     Internal = 3 months
+     *     result = 1 February 2009
+     * @param month
+     * @return
+     */
+    public Date addToStart(MonthOfYear month) {
+        return addTo(month.getStartDate(), 1);
+    }
+
+    /**
+     * Adds one interval to the END of the month.  The result will be the last second of the month.
+     *
+     * eg. If the interval is three months then the returned date will be
+     * the last second of the month 3 months after the start
+     *
+     * eg. MonthOfYear = 1 Nov 2008
+     *     Internal = 3 months
+     *     result = 28 February 2009
+     *
+     * @param month
+     * @return
+     */
+    public Date addToEnd(MonthOfYear month) {
+         return addTo(month.getEndDate(), 1);
+    }
+
+
+    /**
+     * Adds the specified number of occurrences to the starting date
+     *
+     * eg. If the interval is three months, and the occurrences is one, then the returned date will be
+     * three months after the start date
+     *
+     * @param startDate
+     * @param occurrences
+     * @return
+     */
+    public Date addTo(Date startDate, int occurrences) {
+        Calendar cal = GregorianCalendar.getInstance();
+        cal.setTime(startDate);
+        adjustCalendar(cal, occurrences*periods);
+        return cal.getTime();
+    }
 }

@@ -2,9 +2,11 @@ package com.blueskyminds.homebyfive.business.region.graph;
 
 import com.blueskyminds.homebyfive.framework.core.AbstractEntity;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
+import com.blueskyminds.homebyfive.framework.core.transformer.Transformer;
 import com.blueskyminds.homebyfive.framework.core.alias.Aliased;
 import com.blueskyminds.homebyfive.framework.core.tools.Named;
 import com.blueskyminds.homebyfive.framework.core.tools.NamedTools;
+import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.tag.RegionTagMap;
 import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
@@ -12,6 +14,7 @@ import com.blueskyminds.homebyfive.business.tag.Taggable;
 import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.business.tag.TagTools;
 import com.blueskyminds.homebyfive.business.tag.TagMap;
+import com.blueskyminds.homebyfive.business.party.PartyTagMap;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import javax.persistence.*;
@@ -152,11 +155,12 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
      * Aliases for this region.
      *
      * Note: the aliases are specified as lazy-loaded here, but most queries fetch them eagerly as an optimisation
-     * Specifing eager here is not an optimisation at it would result in a second select
+     * Specifying eager here is not an optimisation at it would result in a second select
      *
      * @return
      */
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     protected Set<RegionAlias> getRegionAliases() {
         return aliases;
     }
@@ -227,6 +231,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     /**
      * Get the parent regions.
      * A Region is a parent of this region if a Map exists where this is the Child
+     * Parent mappings do not cascade.  Child mappings do cascade persist.
      * @return
      */
     @OneToMany(mappedBy = "child", fetch = FetchType.LAZY)
@@ -241,9 +246,11 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     /**
      * Get the children regions.
      * A Region is a child of this region if a Map exists where this is the Parent
+     * Child mappings cascade all operations to to the mapping class, and cascade persist to the child.
      * @return
      */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     protected Set<RegionHierarchy> getChildRegionMaps() {
         return childRegionMaps;
     }
@@ -253,6 +260,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     }
 
     @OneToOne(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public RegionIndex getRegionIndex() {
         return regionIndex;
     }
@@ -600,6 +608,15 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
         }
     }
 
+    public boolean hasTag(String tagName) {
+        for (RegionTagMap tagMap : tagMaps) {
+            if (tagMap.getTag().getName().equals(tagName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean hasTag(Tag tag) {
         for (RegionTagMap tagMap : tagMaps) {
             if (tagMap.getTag().equals(tag)) {
@@ -637,5 +654,41 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     @PrePersist
     protected void prePersist() {
         populateAttributes();
+    }
+
+    @Transient
+    public Set<Region> getParents() {
+        return new HashSet<Region>(FilterTools.getTransformed(parentRegionMaps, new Transformer<RegionHierarchy,  Region>() {
+            public Region transform(RegionHierarchy fromObject) {
+                return fromObject.getParent();
+            }
+        }));
+    }
+
+     /**
+     * Gets the set of regions that are ancestors for the current region
+     *
+     * This method walks the graph so it can be quite slow as ancestors are lazily loaded.
+      *
+     * Note there is no getDescendants method because that will certainly be too slow.  See the optimized queries
+     * in the service interface
+     *
+     * @return
+     */
+    @Transient
+    public Set<Region> getAncestors() {
+        Set<Region> ancestors = new HashSet<Region>();
+        visitAncestors(ancestors);
+        return ancestors;
+    }
+
+    /** Recursive method to visit all the ancestors of a region once */
+    private void visitAncestors(Set<Region> ancestors) {
+        for (Region parent : getParents()) {
+            if (!ancestors.contains(parent)) {
+                ancestors.add(parent);
+                parent.visitAncestors(ancestors);
+            }
+        }
     }
 }

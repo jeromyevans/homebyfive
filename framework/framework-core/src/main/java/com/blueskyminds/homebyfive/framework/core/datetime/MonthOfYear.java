@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.framework.core.datetime;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -77,6 +78,18 @@ public class MonthOfYear implements Serializable, Comparable {
      * @return the returned value is equal to the LAST second of the time period
      */
     public Date toDate() {
+        return lastSecond();
+    }
+
+    /** get the first second of the month as a Date */
+    @Transient
+    public Date getStartDate() {
+        return firstSecond();
+    }
+
+    /** Get the last second of the month as a Date */
+    @Transient
+    public Date getEndDate() {
         return lastSecond();
     }
 
@@ -168,5 +181,52 @@ public class MonthOfYear implements Serializable, Comparable {
     public MonthOfYear subtract(Interval interval) {
          return subtract(interval.approximateMonths());
     }
-      
+
+    public static MonthOfYear january(int year) {
+        return new MonthOfYear(Calendar.JANUARY, year);
+    }
+
+    public static MonthOfYear february(int year) {
+        return new MonthOfYear(Calendar.FEBRUARY, year);
+    }
+
+    public static MonthOfYear march(int year) {
+        return new MonthOfYear(Calendar.MARCH, year);
+    }
+
+    public static MonthOfYear april(int year) {
+        return new MonthOfYear(Calendar.APRIL, year);
+    }
+
+    public static MonthOfYear may(int year) {
+        return new MonthOfYear(Calendar.MAY, year);
+    }
+
+    public static MonthOfYear june(int year) {
+        return new MonthOfYear(Calendar.JUNE, year);
+    }
+
+    public static MonthOfYear july(int year) {
+        return new MonthOfYear(Calendar.JULY, year);
+    }
+
+    public static MonthOfYear august(int year) {
+        return new MonthOfYear(Calendar.AUGUST, year);
+    }
+
+    public static MonthOfYear september(int year) {
+        return new MonthOfYear(Calendar.SEPTEMBER, year);
+    }
+
+    public static MonthOfYear october(int year) {
+        return new MonthOfYear(Calendar.OCTOBER, year);
+    }
+
+    public static MonthOfYear november(int year) {
+        return new MonthOfYear(Calendar.NOVEMBER, year);
+    }
+
+    public static MonthOfYear december(int year) {
+        return new MonthOfYear(Calendar.DECEMBER, year);
+    }
 }

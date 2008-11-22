@@ -487,6 +487,15 @@ public class Party extends AbstractDomainObject implements Taggable, Contactable
         }
     }
 
+    public boolean hasTag(String tagName) {
+        for (PartyTagMap tagMap : tagMaps) {
+            if (tagMap.getTag().getName().equals(tagName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean hasTag(Tag tag) {
         for (PartyTagMap tagMap : tagMaps) {
             if (tagMap.getTag().equals(tag)) {

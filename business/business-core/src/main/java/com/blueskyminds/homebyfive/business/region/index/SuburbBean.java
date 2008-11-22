@@ -4,6 +4,7 @@ import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
+import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
 
@@ -52,25 +53,28 @@ public class SuburbBean extends RegionIndex {
         this.key = KeyGenerator.generateId(name);
 
         // the state is the parent
-        parent = getSuburbHandle().getState().getRegionIndex();
+        State state = getSuburbHandle().getState();
+        if (state != null) {
+            parent = state.getRegionIndex();
 
-        if (parent != null) {
-            this.parentPath = parent.getPath();
-            this.path = PathHelper.joinPath(parentPath, key);
-            this.status = DomainObjectStatus.Valid;
-            this.type = RegionTypes.Suburb;
+            if (parent != null) {
+                this.parentPath = parent.getPath();
+                this.path = PathHelper.joinPath(parentPath, key);
+                this.status = DomainObjectStatus.Valid;
+                this.type = RegionTypes.Suburb;
 
-            this.countryId = parent.getCountryId();
-            this.countryPath = parent.getCountryPath();
-            this.countryName = parent.getCountryName();
+                this.countryId = parent.getCountryId();
+                this.countryPath = parent.getCountryPath();
+                this.countryName = parent.getCountryName();
 
-            this.stateId = parent.getKey();
-            this.statePath = parent.getPath();
-            this.stateName = parent.getName();
+                this.stateId = parent.getKey();
+                this.statePath = parent.getPath();
+                this.stateName = parent.getName();
 
-//            this.postalCodeId = key;
-//            this.postalCodePath = path;
-//            this.postalCodeName = name;
+    //            this.postalCodeId = key;
+    //            this.postalCodePath = path;
+    //            this.postalCodeName = name;
+            }
         }
 
         this.suburbId = key;
