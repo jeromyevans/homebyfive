@@ -123,6 +123,28 @@ public class RegionCompositeFactory {
     }
 
     /**
+     * Create a RegionComposite from a street (suburb | postcode | state | country)
+     *
+     * @param street
+     * @return
+     */
+    public static RegionComposite createStreet(Street street) {
+        RegionComposite regionComposite = new RegionComposite();
+
+        regionComposite.add(RegionRefFactory.createRef(street));
+        Suburb suburb = street.getSuburb();
+        regionComposite.add(RegionRefFactory.createRef(suburb));
+        State state = suburb.getState();
+        regionComposite.add(RegionRefFactory.createRef(state));
+        if (state != null) {
+            regionComposite.add(RegionRefFactory.createRef(state.getCountry()));
+        }
+
+        return regionComposite;
+    }
+
+
+    /**
      * Create a RegionComposite from a suburb (suburb | postcode | state | country)
      * Uses the literal values out of the bean so it can be used outside an EntityManager
      * @param suburb

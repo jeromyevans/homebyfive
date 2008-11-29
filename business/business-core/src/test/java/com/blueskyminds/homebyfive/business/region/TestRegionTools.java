@@ -75,7 +75,7 @@ public class TestRegionTools {
 //    }
 
     public static Region initialiseAusRegionsX(EntityManager em) {
-        Country australia = new RegionFactory().createCountry(AUSTRALIA, "AU", "AUS", "AUD'");
+        Country australia = new RegionFactory().createCountry(AUSTRALIA, "AU", Countries.AU, "AUD'");
 
         State wa = new RegionFactory().createState("Western Australia", "WA", australia);
         Region bullCreek = new RegionFactory().createSuburb(BULL_CREEK, wa);

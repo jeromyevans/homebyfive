@@ -1,4 +1,4 @@
-package com.blueskyminds.homebyfive.web.core.tasks.tasks;
+package com.blueskyminds.homebyfive.web.struts2.actions.tasks;
 
 import com.blueskyminds.homebyfive.framework.core.tasks.service.TaskingException;
 import com.blueskyminds.homebyfive.framework.core.tasks.service.TaskingService;

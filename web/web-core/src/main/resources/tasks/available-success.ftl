@@ -18,7 +18,8 @@
       </@s.iterator>
     </td>
     <td>
-      <form action="/tasks/controlPanel/<@s.property value="key"/>" method="POST">
+      <@s.url id="url" value="/tasks/controlPanel/%{key}"/>
+      <form action="<@s.property value="#url"/>" method="POST">      
         <@s.hidden name="_method" value="PUT"/>
         <@s.iterator value="availableParams">
           <@s.textfield name="params['%{key}']" label="%{key}" value="%{value}"/>

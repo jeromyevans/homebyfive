@@ -270,7 +270,6 @@
     This is a specialisation of regionx.findChildrenOfType
 
     The aliases of the suburbs are eagerly loaded
-    The implementation of the Suburb is eagerly loaded
 
     Parameters:
       stateId:  id of the state

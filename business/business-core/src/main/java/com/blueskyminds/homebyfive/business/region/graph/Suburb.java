@@ -96,7 +96,7 @@ public class Suburb extends Region {
     }
 
     /**
-     * Set the state for this postalcode. If a state is already set, the current state is removed
+     * Set the state for this suburb. If a state is already set, the current state is removed
      * @param state
      */
     public void setState(State state) {

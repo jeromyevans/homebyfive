@@ -31,7 +31,7 @@ public class AddressPath extends AbstractEntity implements SimpleAddress {
     private String suburb;
     private String state;
     private String postCode;
-    private String countryISO3Code; 
+    private String countryAbbr; 
 
     public AddressPath(String addressString, String path, RegionRefType type) {
         this.addressString = StringUtils.lowerCase(addressString);
@@ -40,13 +40,13 @@ public class AddressPath extends AbstractEntity implements SimpleAddress {
         this.dateCreated = new Date();
     }
 
-    public AddressPath(String address1, String address2, String suburb, String state, String postCode, String countryISO3Code, String addressString) {
+    public AddressPath(String address1, String address2, String suburb, String state, String postCode, String countryAbbr, String addressString) {
         this.address1 = address1;
         this.address2 = address2;
         this.suburb = suburb;
         this.state = state;
         this.postCode = postCode;
-        this.countryISO3Code = countryISO3Code;
+        this.countryAbbr = countryAbbr;
         this.addressString = addressString;
     }
 
@@ -159,12 +159,12 @@ public class AddressPath extends AbstractEntity implements SimpleAddress {
 
     @Basic
     @Column(name="ISO3DigitCountryCode")
-    public String getCountryISO3Code() {
-        return countryISO3Code;
+    public String getCountryAbbr() {
+        return countryAbbr;
     }
 
-    public void setCountryISO3Code(String countryISO3Code) {
-        this.countryISO3Code = countryISO3Code;
+    public void setCountryAbbr(String countryAbbr) {
+        this.countryAbbr = countryAbbr;
     }
 
      /** Return the address1 and address2 as a concatenation

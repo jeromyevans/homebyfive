@@ -37,18 +37,17 @@ public class AddressPatternMatcherFactoryImpl implements AddressParserFactory {
     /**
      * Create a broad matcher for the specified country
      *
-     * @param iso3Code
+     * @param countryAbbr
      * @return
      * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      *
      */
-    public AddressParser create(String iso3Code) {
-        LOG.info("Creating a new AddressPatternMatcher for " + iso3Code);
+    public AddressParser create(String countryAbbr) {
+        LOG.info("Creating a new AddressPatternMatcher for " + countryAbbr);
         try {
-            AddressPatternMatcher matcher = new AddressPatternMatcher(iso3Code, addressScoringStrategy);
+            AddressPatternMatcher matcher = new AddressPatternMatcher(countryAbbr, addressScoringStrategy);
 
             matcher.setEntityManager(em);
-            matcher.setAddressDAO(addressDAO);
             matcher.setSubstitutionService(substitutionService);
             matcher.setupBins();
 
@@ -73,7 +72,6 @@ public class AddressPatternMatcherFactoryImpl implements AddressParserFactory {
             AddressPatternMatcher matcher = new AddressPatternMatcher(suburb, addressScoringStrategy);
 
             matcher.setEntityManager(em);
-            matcher.setAddressDAO(addressDAO);
             matcher.setSubstitutionService(substitutionService);
             matcher.setupBins();
             return matcher;

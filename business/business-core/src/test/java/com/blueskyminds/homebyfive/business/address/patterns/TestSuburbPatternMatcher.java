@@ -1,7 +1,9 @@
 package com.blueskyminds.homebyfive.business.address.patterns;
 
 import com.blueskyminds.homebyfive.business.AddressTestTools;
+import com.blueskyminds.homebyfive.business.address.AddressTestCase;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
+import com.blueskyminds.homebyfive.business.region.Countries;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -16,24 +18,15 @@ import org.apache.commons.logging.LogFactory;
  *
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class TestSuburbPatternMatcher extends JPATestCase {
+public class TestSuburbPatternMatcher extends AddressTestCase {
 
     private static final Log LOG = LogFactory.getLog(TestSuburbPatternMatcher.class);
 
-    private static final String TEST_ENTERPRISE_PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";
-
     private SuburbPatternMatcher matcher;
-
-    public TestSuburbPatternMatcher() {
-        super(TEST_ENTERPRISE_PERSISTENCE_UNIT);
-    }
 
     protected void setUp() throws Exception {
         super.setUp();
-        AddressTestTools.initialiseCountryList();
-        AddressTestTools.initialiseAddressSubstitutionPatterns(em);
-        em.flush();
-        matcher = new SuburbPatternMatcher("AUS", em);
+        matcher = new SuburbPatternMatcher(Countries.AU, em, countryService, stateService, postalCodeService, suburbService);
     }
 
      public void testSuburbCleansing1() throws Exception {

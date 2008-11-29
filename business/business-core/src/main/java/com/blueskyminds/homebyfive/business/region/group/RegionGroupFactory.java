@@ -91,6 +91,21 @@ public class RegionGroupFactory {
         return regionGroup;
     }
 
+     /**
+     * Create a RegionGroup for a collection of streets.
+     * Each street is represented as a composite
+     * */
+    public static RegionGroup createStreets(Collection<Street> streets) {
+        Region suburb = firstParent(streets, RegionTypes.Suburb);
+
+        RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(suburb));
+        for (Street street : streets) {
+            regionGroup.add(RegionCompositeFactory.createStreet(street));
+        }
+        return regionGroup;
+    }
+
+
     /**
      * Create a RegionGroup for a single suburb
      * */
@@ -98,6 +113,15 @@ public class RegionGroupFactory {
         ArrayList<Suburb> list = new ArrayList<Suburb>();
         list.add(state);
         return createSuburbs(list);
+    }
+
+    /**
+     * Create a RegionGroup for a single street
+     * */
+    public static RegionGroup createStreet(Street street) {
+        ArrayList<Street> list = new ArrayList<Street>();
+        list.add(street);
+        return createStreets(list);
     }
 
     /**

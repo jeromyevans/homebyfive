@@ -18,7 +18,8 @@
     <td><@s.property value="status"/></td>
     <td><@s.property value="toXML(model)"/></td>
     <td>
-      <form action="/tasks/controlPanel/<@s.property value="key"/>" method="POST">
+      <@s.url id="url" value="/tasks/controlPanel/%{key}"/>
+      <form action="<@s.property value="#url"/>" method="POST">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" name="_stop" value="Stop">
       </form>

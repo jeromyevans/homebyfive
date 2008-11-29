@@ -10,25 +10,31 @@ import com.blueskyminds.homebyfive.framework.core.tools.FileTools;
 import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
 import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvOptions;
-import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvTextReader;
 import com.blueskyminds.homebyfive.framework.core.persistence.jdbc.PersistenceTools;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
-import com.blueskyminds.homebyfive.business.AddressTestTools;
+import com.blueskyminds.homebyfive.business.region.Countries;
+import com.blueskyminds.homebyfive.business.region.dao.CountryEAO;
+import com.blueskyminds.homebyfive.business.region.dao.StateEAO;
+import com.blueskyminds.homebyfive.business.region.dao.PostCodeEAO;
+import com.blueskyminds.homebyfive.business.region.dao.SuburbEAO;
+import com.blueskyminds.homebyfive.business.region.service.*;
 import com.blueskyminds.homebyfive.business.address.service.AddressService;
 import com.blueskyminds.homebyfive.business.address.service.AddressServiceImpl;
 import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
+import com.blueskyminds.homebyfive.business.address.tools.AusPostCodes;
+import com.blueskyminds.homebyfive.business.AddressTestTools;
+import com.blueskyminds.homebyfive.business.tag.service.TagService;
+import com.blueskyminds.homebyfive.business.tag.service.TagServiceImpl;
+import com.blueskyminds.homebyfive.business.tag.dao.TagDAO;
 
 import javax.persistence.EntityManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.io.IOException;
-import java.util.Locale;
-import java.util.Currency;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * An application that generates the Australian suburb data for insertion into a database.  Runs in several steps:
@@ -47,9 +53,12 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
     private static final Log LOG = LogFactory.getLog(TestGenerateSampleSuburbData.class);
 
     private static final String TEST_ENTERPRISE_PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";
-    private static final String TARGET_PATH = "src/test/resources/";
+    private static final String TARGET_PATH = "business-test/src/main/resources/";
 
-    private static final String AU = "AU";
+    private CountryService countryService;
+    private StateService stateService;
+    private SuburbService suburbService;
+    private PostalCodeService postalCodeService;
 
     public TestGenerateSampleSuburbData() {
         super(TEST_ENTERPRISE_PERSISTENCE_UNIT);
@@ -59,7 +68,7 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
         FileTools.writeTextFile(TARGET_PATH+tableName+".sql", PersistenceTools.unload(connection, tableName));
     }
 
-    public static void initialiseCountryList(AddressService addressService) {
+    public void initialiseCountryList() {
         LOG.info("InitialiseCountryList: ");
 
         int countries = 0;
@@ -67,32 +76,43 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
         Locale[] locales = Locale.getAvailableLocales();
         for (Locale locale : locales) {
             try {
-                Country thisCountry = addressService.createCountry(locale.getDisplayCountry(), locale.getCountry(), locale.getISO3Country(), Currency.getInstance(locale).getCurrencyCode());
+                Country country = new Country(locale.getDisplayCountry(), locale.getCountry(), locale.getISO3Country());
+                Country thisCountry = countryService.create(country);
                 LOG.debug("Created country: "+thisCountry.getName());
                 countries++;
             } catch (IllegalArgumentException e) {
                 // thrown then not all of the fields are available for the locale
+            } catch (InvalidRegionException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            } catch (DuplicateRegionException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
         }
 
         LOG.info("Created "+countries+" countries");
     }
 
-    public static void initialiseAustralianStates(AddressService addressService, EntityManager em) {
+    public void initialiseAustralianStates() {
         LOG.info("InitialiseAustralianStates: ");
 
-        Country australia = new AddressDAO(em).lookupCountry(AU);
+        Country australia = countryService.lookupCountry(Countries.AU);
 
-        addressService.createState("Western Australia", "WA", australia);
-        addressService.createState("South Australia", "SA", australia);
-        addressService.createState("Victoria", "VIC", australia);
-        addressService.createState("Tasmania", "TAS", australia);
-        addressService.createState("New South Wales", "NSW", australia);
-        addressService.createState("Australian Capital Territory", "ACT", australia);
-        addressService.createState("Queensland", "QLD", australia);
-        addressService.createState("Northern Territory", "NT", australia);
+        try {
+            stateService.create(new State(australia, "Western Australia", "WA"));
+            stateService.create(new State(australia, "South Australia", "SA"));
+            stateService.create(new State(australia, "Victoria", "VIC"));
+            stateService.create(new State(australia, "Tasmania", "TAS"));
+            stateService.create(new State(australia, "New South Wales", "NSW"));
+            stateService.create(new State(australia, "Australian Capital Territory", "ACT"));
+            stateService.create(new State(australia, "Queensland", "QLD"));
+            stateService.create(new State(australia, "Northern Territory", "NT"));
+            LOG.info("Created 9 states/territories in AUS");
+        } catch (DuplicateRegionException e) {
+            e.printStackTrace();
+        } catch (InvalidRegionException e) {
+            e.printStackTrace();
+        }
 
-        LOG.info("Created 9 states/territories in AUS");
     }
 
     // ------------------------------------------------------------------------------------------------------
@@ -101,108 +121,87 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
     private static final String PO_BOX_CATEGORY = "post office boxes";
 
     /** Loads a CSV file of all the suburbs defined in Australia and commits these to the database */
-    public static void initialiseAustralianSuburbs(AddressService addressService, EntityManager em) {
+    public void initialiseAustralianSuburbs() throws Exception {
         LOG.info("InitialiseAustralianSuburbs: ");
         CsvOptions csvOptions = new CsvOptions();
         csvOptions.setQuoteOutput(false);
-        try {
-            CsvTextReader csvReader = new CsvTextReader(ResourceTools.openStream("/src/resources/pc-full_20080303.csv"), csvOptions);
-            Map<String, State> stateHash = new HashMap<String, State>();
-            Map<String, PostalCode> postCodeHash = new HashMap<String, PostalCode>();
-            Map<String, Map<String, Suburb>> suburbHash = new HashMap<String, Map<String, Suburb>>();
-            State state;
 
-            int suburbs = 0;
-            int postCodes = 0;
+        Collection<AusPostCodes.State> states = AusPostCodes.readCsv(ResourceTools.openStream("pc-full_20080303.csv"));
 
-            //RegionGraphDAO regionDAO = new RegionGraphDAO(em);
-            AddressDAO addressDAO = new AddressDAO(em);
-            Country australia = addressDAO.lookupCountry(AU);
+        Map<String, State> stateHash = new HashMap<String, State>();
+        Map<String, PostalCode> postCodeHash = new HashMap<String, PostalCode>();
+        Map<String, Map<String, Suburb>> suburbHash = new HashMap<String, Map<String, Suburb>>();
 
-            while (csvReader.read()) {
-                if (csvReader.isNonBlank()) {
-                    String[] values = csvReader.getAsStrings();
-                    String postCodeValue = StringUtils.upperCase(values[0]);
-                    // assert that the postcode is a numeric value
-                    if (StringUtils.isNumeric(postCodeValue)) {
-                        String suburbValue = WordUtils.capitalize(StringUtils.lowerCase(values[1]));
-                        String stateValue = StringUtils.upperCase(values[2]);
-                        String category = StringUtils.lowerCase(StringUtils.trim(values[9]));
+        int suburbCount = 0;
+        int postCodeCount = 0;
 
-                        if (SUBURB_CATEGORY.equals(category)) {
+        Country australia = countryService.lookupCountry(Countries.AU);
 
-                            // ignore district offices
-                            if (!StringUtils.contains(suburbValue, " DC")) {
-                                // lookup the state...
-                                if (stateHash.containsKey(stateValue)) {
-                                    state = stateHash.get(stateValue);
-                                } else {
-                                    //state = australia.getStateByAbbr(stateValue);
-                                    StopWatch stopWatch = new StopWatch();
-                                    stopWatch.start();
-                                    state = addressDAO.lookupState(stateValue, australia);
-                                    stateHash.put(stateValue, state);
-                                    // prepare for new suburb hash
-                                    suburbHash.put(stateValue, new HashMap<String, Suburb>());
-                                    stopWatch.stop();
-                                    LOG.info("state query: "+stopWatch);
-                                }
+        for (AusPostCodes.State thisState: states) {
+
+            State state = stateService.lookup(australia, thisState.getName());
+            Map<String, Suburb> suburbs = suburbHash.get(thisState.getName());
+            if (suburbs == null) {
+                suburbs = new HashMap<String, Suburb>();
+                suburbHash.put(thisState.getName(), suburbs);
+            }
+
+            for (AusPostCodes.Suburb thisSuburb : thisState.getSuburbs()) {
 
 
-                                PostalCode postCodeHandle = postCodeHash.get(postCodeValue);
-                                if (postCodeHandle == null) {
-                                    // get the post code  - if it doesn't exist already, create a new instance and add it to the
-                                    /// state
-                                    //postCode = new PostCode(postCodeValue);
-                                    postCodeHandle = addressService.createPostCode(postCodeValue, state);
-                                    postCodes++;
-                                    postCodeHash.put(postCodeValue, postCodeHandle);
-                                }
+                String postCodeName = thisSuburb.getPostCode().getName();
+                PostalCode postalCode = postCodeHash.get(postCodeName);
+                if (postalCode == null) {
+                    postalCode = postalCodeService.create(new PostalCode(state, postCodeName));
+                    postCodeHash.put(postCodeName, postalCode);
+                    postCodeCount++;
+                }
 
-                                // check if the suburb already exists
-                                // NOTE: duplicate check is disabled because production data was built without this
-                                // duplicatules will need to be removed via a merge operation
-                                //SuburbHandle suburbHandle = suburbHash.get(stateValue).get(suburbValue);
-                                //if (suburbHandle == null) {
-                                    // create a new one
-                                    Suburb suburbHandle = addressService.createSuburb(suburbValue, state);
-                                    suburbHash.get(stateValue).put(suburbValue, suburbHandle);
-                                    suburbs++;
-                                //}
-                                postCodeHandle.addChildRegion(suburbHandle);
+                Suburb suburb = suburbs.get(thisState.getName());
+                if (suburb == null) {
+                    suburb = suburbService.create(new Suburb(state, thisSuburb.getName()));
+                    suburbs.put(thisSuburb.getName(), suburb);
+                    suburbCount++;
+                }
 
-                                em.persist(postCodeHandle);
-                                em.persist(suburbHandle);
+                postalCode.addChildRegion(suburb);
 
-                                if (LOG.isInfoEnabled()) {
-                                    if (suburbs % 100 == 0) {
-                                        LOG.info(suburbs+" suburbs "+postCodes+" postcodes");
-                                        DebugTools.printAvailableHeap();
-                                        em.flush();
-                                    }
-                                }
-                            }
-                        }
+                em.persist(postalCode);
+                em.persist(suburb);
+               
+
+                if (LOG.isInfoEnabled()) {
+                    if (suburbCount % 100 == 0) {
+                        LOG.info(suburbs+" suburbs "+postCodeCount+" postcodes");
+                        DebugTools.printAvailableHeap();
+                        em.flush();
                     }
                 }
             }
-
-            em.persist(australia);
-            em.flush();
-            LOG.info("Created "+suburbs+" suburbs and "+postCodes+" postcodes");
-        } catch(IOException e) {
-            e.printStackTrace();
         }
+
+        em.persist(australia);
+        em.flush();
+        LOG.info("Created "+suburbCount+" suburbs and "+postCodeCount+" postcodes");
     }
 
     public void testGenerateSampleData() throws Exception {
         AddressService addressService = new AddressServiceImpl(em);
+        TagDAO tagDAO = new TagDAO(em);
+        TagService tagService = new TagServiceImpl(tagDAO);
+        CountryEAO countryEAO = new CountryEAO(em);
+        countryService = new CountryServiceImpl(em, tagService, countryEAO);
+        StateEAO stateEAO = new StateEAO(em);
+        stateService = new StateServiceImpl(em, tagService,  countryService, stateEAO);
+        SuburbEAO suburbEAO = new SuburbEAO(em);
+        suburbService = new SuburbServiceImpl(em, tagService, stateService, suburbEAO);
+        PostCodeEAO postalCodeEAO = new PostCodeEAO(em);
+        postalCodeService = new PostalCodeServiceImpl(em, tagService, stateService, postalCodeEAO);
+        AddressTestTools.initialiseRegionIndexes(getConnection());
 
-        AddressTestTools.initialiseRegionIndexes(getConnection());        
-
-        initialiseCountryList(addressService);
-        initialiseAustralianStates(addressService, em);
-        initialiseAustralianSuburbs(addressService, em);
+        initialiseCountryList();
+        initialiseAustralianStates();
+        initialiseAustralianSuburbs();
 
         for (String table : AddressTestTools.REGION_TABLES) {
             unloadTable(getConnection(), table);

@@ -9,6 +9,7 @@ import com.blueskyminds.homebyfive.business.address.*;
 import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 import com.blueskyminds.homebyfive.business.region.graph.*;
+import com.blueskyminds.homebyfive.business.region.service.*;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -39,10 +40,15 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
 
     private EntityManager em;
 
-    private AddressDAO addressDAO;
     private SubstitutionService substitutionService;
     private Country country;
     private Suburb suburb;
+    private CountryService countryService;
+    private StateService stateService;
+    private PostalCodeService postalCodeService;
+    private SuburbService suburbService;
+    private StreetService streetService;
+
 
     /**
      * Create an AddressPatternMatcher for the specified country with default settings.  Sets up all the bins for
@@ -52,9 +58,13 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
      *
      * @param countryAbbr       2 digit ISO code for the country
      * @param em                the entity manager
-     * @throws PatternMatcherInitialisationException
+     * @param countryService
+     *@param stateService
+     * @param postalCodeService
+     * @param suburbService
+     * @param streetService @throws PatternMatcherInitialisationException
      */
-     public AddressPatternMatcher(String countryAbbr, EntityManager em) throws PatternMatcherInitialisationException {
+     public AddressPatternMatcher(String countryAbbr, EntityManager em, CountryService countryService, StateService stateService, PostalCodeService postalCodeService, SuburbService suburbService, StreetService streetService) throws PatternMatcherInitialisationException {
         super(new AddressScoringStrategy());
 
         if (countryAbbr == null) {
@@ -62,6 +72,11 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
         }
         this.em = em;
         this.countryAbbr = countryAbbr;
+        this.countryService = countryService;
+        this.stateService = stateService;
+        this.postalCodeService = postalCodeService;
+        this.suburbService = suburbService;
+        this.streetService = streetService;
         init();
     }
 
@@ -70,12 +85,15 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
      *
      * @param suburbHandle
      * @param em
-     * @throws PatternMatcherInitialisationException
+     * @param suburbService
+     *@param streetService @throws PatternMatcherInitialisationException
      */
-    public AddressPatternMatcher(Suburb suburbHandle, EntityManager em) throws PatternMatcherInitialisationException {
+    public AddressPatternMatcher(Suburb suburbHandle, EntityManager em, SuburbService suburbService, StreetService streetService) throws PatternMatcherInitialisationException {
         super(new AddressScoringStrategy());
         this.suburb = suburbHandle;
-        this.em = em;
+        this.em = em;        
+        this.suburbService = suburbService;
+        this.streetService = streetService;
         init();
     }
 
@@ -118,7 +136,6 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
      *
      */
     private void init() throws PatternMatcherInitialisationException {
-        addressDAO = new AddressDAO(em);
         substitutionService = new SubstitutionServiceImpl(new SubstitutionDAO(em));
         setupBins();
     }
@@ -128,12 +145,7 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
         reset();
         if (country == null) {
             if (suburb == null) {
-                if (addressDAO != null) {
-                    country = addressDAO.lookupCountry(countryAbbr);
-                } else {
-                    LOG.error("AddressDAO has not been injected");
-                    throw new PatternMatcherInitialisationException("AddressDAO has not been injected");
-                }
+                country = countryService.lookupCountry(countryAbbr);
             } else {
                 // use a suburb
                 suburb = em.merge(suburb);
@@ -157,21 +169,21 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
             stopWatch.split();
             LOG.info("   split1: "+stopWatch.toString());
             stopWatch.unsplit();
-            StateBin stateBin = new StateBin(country, addressDAO);
+            StateBin stateBin = new StateBin(country, stateService);
             stopWatch.split();
             LOG.info("   split2: "+stopWatch.toString());
             stopWatch.unsplit();
-            PostCodeBin postCodeBin = new PostCodeBin(country, addressDAO);
+            PostCodeBin postCodeBin = new PostCodeBin(country, postalCodeService);
             stopWatch.split();
             LOG.info("   split3: "+stopWatch.toString());
             stopWatch.unsplit();
-            SuburbNameBin suburbBin = new SuburbNameBin(country, addressDAO);
+            SuburbNameBin suburbBin = new SuburbNameBin(country, suburbService);
             stopWatch.split();
             LOG.info("   split4: "+stopWatch.toString());
             stopWatch.unsplit();
 
             // broad matching streetname bin
-            StreetNameBin streetNameBin = new StreetNameBin(country, addressDAO, substitutionService);
+            StreetNameBin streetNameBin = new StreetNameBin(country, streetService, substitutionService);
             stopWatch.split();
             LOG.info("   split5: "+stopWatch.toString());
             stopWatch.unsplit();
@@ -182,7 +194,7 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
             addBin(streetNameBin);
         } else {
             // suburb-specific street matching bin
-            StreetNameBin streetNameBin = new StreetNameBin(suburb, addressDAO, substitutionService);
+            StreetNameBin streetNameBin = new StreetNameBin(suburb, streetService, substitutionService);
             addBin(streetNameBin);
             stopWatch.split();
             LOG.info("   split6: "+stopWatch.toString());
@@ -473,10 +485,6 @@ public class AddressPatternMatcher extends PatternMatcher<Address> implements Ad
 
     public void setSubstitutionService(SubstitutionService substitutionService) {
         this.substitutionService = substitutionService;
-    }
-
-    public void setAddressDAO(AddressDAO addressDAO) {
-        this.addressDAO = addressDAO;
     }
 
     /**

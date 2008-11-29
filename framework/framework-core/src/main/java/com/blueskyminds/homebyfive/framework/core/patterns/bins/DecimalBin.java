@@ -14,7 +14,8 @@ import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitial
  */
 public class DecimalBin extends Bin {
 
-    private static final String DECIMAL_PATTERN = "^\\-?\\d+(\\.?\\d+)?$";  // note doesn't allow leading or trailing chars
+    /** decimal pattern: optional minus sign, optional single decimal point, optional commas */
+    public static final String DECIMAL_PATTERN = "^(\\d|-)?(\\d|,)*\\.?\\d*$";
 
     public DecimalBin() throws PatternMatcherInitialisationException {
         addRegExPattern(DECIMAL_PATTERN, true, -1, null);

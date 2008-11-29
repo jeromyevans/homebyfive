@@ -7,6 +7,7 @@ import com.blueskyminds.homebyfive.business.address.StreetType;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
+import com.blueskyminds.homebyfive.business.region.service.SuburbService;
 
 import java.util.List;
 import java.util.LinkedList;
@@ -46,27 +47,27 @@ public class SuburbNameBin extends NamedBin {
      * Limit the suburbs to a specific state
      *
      * @param state
-     * @param addressDAO
+     * @param suburbService
      * @throws PatternMatcherInitialisationException
      */
-    public SuburbNameBin(State state, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
+    public SuburbNameBin(State state, SuburbService suburbService) throws PatternMatcherInitialisationException {
         this.state = state;
 
         // add all the street types as exclusions
         addExclusion(StreetType.asList(), new IgnoreCaseComparator());
-        addNamedGroupByMetaphone(addressDAO.listSuburbsInState(state));
+        addNamedGroupByMetaphone(suburbService.listSuburbs(state));
     }
 
     /**
      * All suburbs in a country
      *
-     * @param addressDAO
+     * @param suburbService
      * @throws PatternMatcherInitialisationException
      */
-    public SuburbNameBin(Country country, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
+    public SuburbNameBin(Country country, SuburbService suburbService) throws PatternMatcherInitialisationException {
         // add all the street types as exclusions
         addExclusion(StreetType.asList(), new IgnoreCaseComparator());
-        addNamedGroupByMetaphone(addressDAO.listSuburbsInCountry(country));
+        addNamedGroupByMetaphone(suburbService.listSuburbs(country));
     }
 
 

@@ -183,7 +183,8 @@ public class AddressDAO extends AbstractDAO {
         Query query = em.createNamedQuery(QUERY_SUBURB_BY_STATE_ID_AND_NAME);
         query.setParameter(PARAM_STATE_ID, state.getId());
         query.setParameter(PARAM_NAME, StringUtils.lowerCase(name));
-        regions = new HashSet<Suburb>(query.getResultList());
+        List c = query.getResultList();
+        regions = new HashSet<Suburb>(c);
         if (regions.size() > 0) {
             return regions.iterator().next();
         } else {

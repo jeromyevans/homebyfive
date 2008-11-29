@@ -357,6 +357,7 @@
       <module fileurl="file://$PROJECT_DIR$/web/security-annotations/security-annotations.iml" filepath="$PROJECT_DIR$/web/security-annotations/security-annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web-core/web-core.iml" filepath="$PROJECT_DIR$/web/web-core/web-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web-test/web-test.iml" filepath="$PROJECT_DIR$/web/web-test/web-test.iml" />
     </modules>
   </component>
   <component name="ProjectReloadState">

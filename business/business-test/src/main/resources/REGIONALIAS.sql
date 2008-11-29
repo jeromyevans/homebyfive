@@ -1,912 +1,200 @@
--- MySQL dump 10.11
---
--- Host: localhost    Database: landmine
--- ------------------------------------------------------
--- Server version	5.0.45-Debian_1ubuntu3.3-log
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO,ANSI' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Dumping data for table "regionalias"
---
-
-/*!40000 ALTER TABLE regionalias DISABLE KEYS */;
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (2,'af',2);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (496,'AF',2);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (504,'?land Islands',4);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (4,'ax',4);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (506,'AX',4);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (6,'al',6);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (502,'AL',6);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (8,'dz',8);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (514,'DZ',8);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (10,'as',10);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (512,'AS',10);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (12,'ad',12);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (522,'AD',12);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (14,'ao',14);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (520,'AO',14);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (16,'ai',16);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (536,'AI',16);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (18,'aq',18);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (528,'AQ',18);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (20,'ag',20);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (538,'AG',20);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (22,'ar',22);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (534,'AR',22);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (24,'am',24);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (542,'AM',24);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (26,'aw',26);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (546,'AW',26);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (28,'au',28);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (550,'AU',28);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (30,'at',30);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (554,'AT',30);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (32,'az',32);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (558,'AZ',32);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (34,'bs',34);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (564,'BS',34);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (36,'bh',36);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (566,'BH',36);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (38,'bd',38);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (570,'BD',38);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (40,'bb',40);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (574,'BB',40);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (42,'by',42);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (590,'BY',42);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (44,'be',44);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (580,'BE',44);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (46,'bz',46);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (584,'BZ',46);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (48,'bj',48);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (588,'BJ',48);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (50,'bm',50);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (606,'BM',50);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (52,'bt',52);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (596,'BT',52);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (54,'bo',54);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (600,'BO',54);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (56,'ba',56);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (604,'BA',56);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (58,'bw',58);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (622,'BW',58);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (60,'bv',60);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (612,'BV',60);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (62,'br',62);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (616,'BR',62);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (64,'io',64);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (620,'IO',64);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (66,'bn',66);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (626,'BN',66);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (68,'bg',68);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (630,'BG',68);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (70,'bf',70);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (646,'BF',70);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (72,'bi',72);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (636,'BI',72);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (74,'kh',74);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (644,'KH',74);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (76,'cm',76);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (642,'CM',76);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (78,'ca',78);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (652,'CA',78);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (80,'cv',80);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (656,'CV',80);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (82,'ky',82);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (658,'KY',82);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (84,'cf',84);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (662,'CF',84);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (86,'td',86);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (666,'TD',86);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (88,'cl',88);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (670,'CL',88);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (90,'cn',90);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (674,'CN',90);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (92,'cx',92);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (678,'CX',92);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (94,'cc',94);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (682,'CC',94);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (96,'co',96);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (686,'CO',96);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (98,'km',98);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (690,'KM',98);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (100,'cg',100);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (694,'CG',100);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (102,'cd',102);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (698,'CD',102);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (104,'ck',104);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (702,'CK',104);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (106,'cr',106);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (706,'CR',106);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (712,'C?te D\'ivoire',108);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (108,'ci',108);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (710,'CI',108);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (110,'hr',110);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (716,'HR',110);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (112,'cu',112);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (720,'CU',112);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (114,'cy',114);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (724,'CY',114);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (116,'cz',116);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (728,'CZ',116);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (118,'dk',118);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (732,'DK',118);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (120,'dj',120);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (736,'DJ',120);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (122,'dm',122);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (740,'DM',122);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (124,'do',124);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (744,'DO',124);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (126,'ec',126);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (748,'EC',126);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (128,'eg',128);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (752,'EG',128);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (130,'sv',130);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (756,'SV',130);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (132,'gq',132);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (760,'GQ',132);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (134,'er',134);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (764,'ER',134);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (136,'ee',136);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (768,'EE',136);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (138,'et',138);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (772,'ET',138);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (140,'fk',140);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (776,'FK',140);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (142,'fo',142);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (780,'FO',142);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (144,'fj',144);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (784,'FJ',144);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (146,'fi',146);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (788,'FI',146);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (148,'fr',148);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (792,'FR',148);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (150,'gf',150);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (796,'GF',150);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (152,'pf',152);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (800,'PF',152);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (154,'tf',154);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (804,'TF',154);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (156,'ga',156);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (808,'GA',156);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (158,'gm',158);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (812,'GM',158);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (160,'ge',160);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (816,'GE',160);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (162,'de',162);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (820,'DE',162);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (164,'gh',164);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (824,'GH',164);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (166,'gi',166);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (828,'GI',166);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (168,'gr',168);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (832,'GR',168);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (170,'gl',170);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (836,'GL',170);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (172,'gd',172);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (840,'GD',172);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (174,'gp',174);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (844,'GP',174);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (176,'gu',176);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1022,'GU',176);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (178,'gt',178);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1026,'GT',178);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (180,'gg',180);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1034,'GG',180);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (182,'gn',182);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1032,'GN',182);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (184,'gw',184);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1038,'GW',184);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (186,'gy',186);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1042,'GY',186);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (188,'ht',188);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1046,'HT',188);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (190,'hm',190);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1050,'HM',190);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (192,'va',192);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1054,'VA',192);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (194,'hn',194);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1058,'HN',194);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (196,'hk',196);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1062,'HK',196);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (198,'hu',198);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1066,'HU',198);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (200,'is',200);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1070,'IS',200);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (202,'in',202);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1074,'IN',202);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (204,'id',204);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1078,'ID',204);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (206,'ir',206);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1082,'IR',206);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (208,'iq',208);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1086,'IQ',208);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (210,'ie',210);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1090,'IE',210);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (212,'im',212);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1094,'IM',212);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (214,'il',214);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1098,'IL',214);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (216,'it',216);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1102,'IT',216);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (218,'jm',218);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1106,'JM',218);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (220,'jp',220);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1110,'JP',220);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (222,'je',222);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1114,'JE',222);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (224,'jo',224);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1118,'JO',224);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (226,'kz',226);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1122,'KZ',226);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (228,'ke',228);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1126,'KE',228);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (230,'ki',230);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1130,'KI',230);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (232,'kp',232);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1134,'KP',232);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (234,'kr',234);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1138,'KR',234);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (236,'kw',236);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1142,'KW',236);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (238,'kg',238);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1146,'KG',238);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (240,'la',240);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1150,'LA',240);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (242,'lv',242);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1154,'LV',242);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (244,'lb',244);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1158,'LB',244);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (246,'ls',246);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1162,'LS',246);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (248,'lr',248);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1166,'LR',248);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (250,'ly',250);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1170,'LY',250);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (252,'li',252);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1174,'LI',252);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (254,'lt',254);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1178,'LT',254);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (256,'lu',256);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1182,'LU',256);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (258,'mo',258);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1186,'MO',258);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (260,'mk',260);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1190,'MK',260);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (262,'mg',262);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1194,'MG',262);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (264,'mw',264);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1198,'MW',264);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (266,'my',266);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1202,'MY',266);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (268,'mv',268);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1206,'MV',268);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (270,'ml',270);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1210,'ML',270);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (272,'mt',272);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1214,'MT',272);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (274,'mh',274);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1218,'MH',274);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (276,'mq',276);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1222,'MQ',276);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (278,'mr',278);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1226,'MR',278);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (280,'mu',280);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1230,'MU',280);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (282,'yt',282);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1234,'YT',282);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (284,'mx',284);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1238,'MX',284);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (286,'fm',286);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1242,'FM',286);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (288,'md',288);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1246,'MD',288);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (290,'mc',290);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1250,'MC',290);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (292,'mn',292);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1254,'MN',292);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (294,'me',294);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1258,'ME',294);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (296,'ms',296);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1262,'MS',296);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (298,'ma',298);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1266,'MA',298);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (300,'mz',300);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1270,'MZ',300);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (302,'mm',302);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1274,'MM',302);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (304,'na',304);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1278,'NA',304);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (306,'nr',306);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1282,'NR',306);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (308,'np',308);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1286,'NP',308);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (310,'nl',310);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1290,'NL',310);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (312,'an',312);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1294,'AN',312);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (314,'nc',314);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1298,'NC',314);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (316,'nz',316);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1302,'NZ',316);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (318,'ni',318);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1306,'NI',318);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (320,'ne',320);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1310,'NE',320);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (322,'ng',322);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1314,'NG',322);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (324,'nu',324);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1318,'NU',324);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (326,'nf',326);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1322,'NF',326);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (328,'mp',328);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1326,'MP',328);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (330,'no',330);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1330,'NO',330);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (332,'om',332);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1334,'OM',332);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (334,'pk',334);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1338,'PK',334);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (336,'pw',336);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1342,'PW',336);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (338,'ps',338);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1346,'PS',338);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (340,'pa',340);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1350,'PA',340);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (342,'pg',342);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1354,'PG',342);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (344,'py',344);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1358,'PY',344);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (346,'pe',346);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1362,'PE',346);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (348,'ph',348);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1366,'PH',348);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (350,'pn',350);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1370,'PN',350);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (352,'pl',352);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1374,'PL',352);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (354,'pt',354);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1378,'PT',354);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (356,'pr',356);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1382,'PR',356);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (358,'qa',358);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1386,'QA',358);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (360,'re',360);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1390,'RE',360);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (362,'ro',362);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1394,'RO',362);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (364,'ru',364);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1398,'RU',364);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (366,'rw',366);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1402,'RW',366);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (368,'bl',368);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1406,'BL',368);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (370,'sh',370);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1410,'SH',370);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (372,'kn',372);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1414,'KN',372);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (374,'lc',374);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1418,'LC',374);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (376,'mf',376);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1422,'MF',376);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (378,'pm',378);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1426,'PM',378);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (380,'vc',380);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1430,'VC',380);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (382,'ws',382);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1434,'WS',382);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (384,'sm',384);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1438,'SM',384);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (386,'st',386);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1442,'ST',386);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (388,'sa',388);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1446,'SA',388);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (390,'sn',390);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1450,'SN',390);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (392,'rs',392);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1454,'RS',392);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (394,'sc',394);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1458,'SC',394);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (396,'sl',396);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1462,'SL',396);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (398,'sg',398);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1466,'SG',398);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (400,'sk',400);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1470,'SK',400);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (402,'si',402);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1474,'SI',402);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (404,'sb',404);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1478,'SB',404);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (406,'so',406);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1482,'SO',406);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (408,'za',408);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1486,'ZA',408);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (410,'gs',410);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1490,'GS',410);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (412,'es',412);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1494,'ES',412);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (414,'lk',414);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1498,'LK',414);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (416,'sd',416);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1502,'SD',416);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (418,'sr',418);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1506,'SR',418);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (420,'sj',420);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1510,'SJ',420);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (422,'sz',422);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1514,'SZ',422);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (424,'se',424);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1518,'SE',424);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (426,'ch',426);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1522,'CH',426);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (428,'sy',428);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1526,'SY',428);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (430,'tw',430);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1530,'TW',430);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (432,'tj',432);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1534,'TJ',432);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (434,'tz',434);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1538,'TZ',434);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (436,'th',436);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1542,'TH',436);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (438,'tl',438);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1546,'TL',438);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (440,'tg',440);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1550,'TG',440);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (442,'tk',442);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1554,'TK',442);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (444,'to',444);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1558,'TO',444);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (446,'tt',446);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1562,'TT',446);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (448,'tn',448);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1566,'TN',448);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (450,'tr',450);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1570,'TR',450);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (452,'tm',452);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1574,'TM',452);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (454,'tc',454);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1578,'TC',454);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (456,'tv',456);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1582,'TV',456);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (458,'ug',458);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1586,'UG',458);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (460,'ua',460);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1590,'UA',460);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (462,'ae',462);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1594,'AE',462);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (464,'gb',464);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1598,'GB',464);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (466,'us',466);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1602,'US',466);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (468,'um',468);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1606,'UM',468);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (470,'uy',470);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1610,'UY',470);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (472,'uz',472);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1614,'UZ',472);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (474,'vu',474);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1618,'VU',474);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (476,'ve',476);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1654,'VE',476);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (478,'vn',478);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1624,'VN',478);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (480,'vg',480);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1628,'VG',480);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (482,'vi',482);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1632,'VI',482);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (484,'wf',484);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1636,'WF',484);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (486,'eh',486);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1640,'EH',486);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (488,'ye',488);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1644,'YE',488);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (490,'zm',490);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1648,'ZM',490);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (492,'zw',492);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1652,'ZW',492);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (494,'AF',494);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (498,'AX',496);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (500,'AL',498);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (508,'DZ',500);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (510,'AS',502);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (516,'AD',504);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (518,'AO',506);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (524,'AI',508);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (526,'AQ',510);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (530,'AG',512);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (532,'AR',514);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (540,'AM',516);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (544,'AW',518);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (548,'AU',520);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (552,'AT',522);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (556,'AZ',524);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (560,'BS',526);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (562,'BH',528);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (568,'BD',530);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (572,'BB',532);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (576,'BY',534);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (578,'BE',536);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (582,'BZ',538);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (586,'BJ',540);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (592,'BM',542);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (594,'BT',544);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (598,'BO',546);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (602,'BA',548);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (608,'BW',550);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (610,'BV',552);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (614,'BR',554);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (618,'IO',556);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (624,'BN',558);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (628,'BG',560);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (632,'BF',562);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (634,'BI',564);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (638,'KH',566);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (640,'CM',568);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (648,'CA',570);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (650,'CV',572);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (654,'KY',574);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (660,'CF',576);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (664,'TD',578);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (668,'CL',580);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (672,'CN',582);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (676,'CX',584);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (680,'CC',586);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (684,'CO',588);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (688,'KM',590);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (692,'CG',592);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (696,'CD',594);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (700,'CK',596);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (704,'CR',598);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (708,'CI',600);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (714,'HR',602);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (718,'CU',604);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (722,'CY',606);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (726,'CZ',608);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (730,'DK',610);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (734,'DJ',612);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (738,'DM',614);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (742,'DO',616);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (746,'EC',618);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (750,'EG',620);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (754,'SV',622);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (758,'GQ',624);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (762,'ER',626);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (766,'EE',628);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (770,'ET',630);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (774,'FK',632);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (778,'FO',634);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (782,'FJ',636);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (786,'FI',638);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (790,'FR',640);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (794,'GF',642);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (798,'PF',644);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (802,'TF',646);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (806,'GA',648);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (810,'GM',650);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (814,'GE',652);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (818,'DE',654);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (822,'GH',656);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (826,'GI',658);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (830,'GR',660);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (834,'GL',662);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (838,'GD',664);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (842,'GP',666);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (846,'AF',668);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (848,'AX',670);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (850,'AL',672);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (852,'DZ',674);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (854,'AS',676);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (856,'AD',678);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (858,'AO',680);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (860,'AI',682);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (862,'AQ',684);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (864,'AG',686);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (866,'AR',688);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (868,'AM',690);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (870,'AW',692);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (872,'AU',694);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (874,'AT',696);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (876,'AZ',698);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (878,'BS',700);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (880,'BH',702);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (882,'BD',704);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (884,'BB',706);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (886,'BY',708);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (888,'BE',710);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (890,'BZ',712);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (892,'BJ',714);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (894,'BM',716);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (896,'BT',718);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (898,'BO',720);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (900,'BA',722);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (902,'BW',724);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (904,'BV',726);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (906,'BR',728);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (908,'IO',730);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (910,'BN',732);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (912,'BG',734);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (914,'BF',736);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (916,'BI',738);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (918,'KH',740);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (920,'CM',742);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (922,'CA',744);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (924,'CV',746);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (926,'KY',748);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (928,'CF',750);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (930,'TD',752);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (932,'CL',754);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (934,'CN',756);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (936,'CX',758);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (938,'CC',760);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (940,'CO',762);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (942,'KM',764);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (944,'CG',766);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (946,'CD',768);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (948,'CK',770);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (950,'CR',772);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (952,'CI',774);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (954,'HR',776);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (956,'CU',778);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (958,'CY',780);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (960,'CZ',782);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (962,'DK',784);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (964,'DJ',786);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (966,'DM',788);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (968,'DO',790);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (970,'EC',792);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (972,'EG',794);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (974,'SV',796);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (976,'GQ',798);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (978,'ER',800);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (980,'EE',802);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (982,'ET',804);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (984,'FK',806);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (986,'FO',808);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (988,'FJ',810);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (990,'FI',812);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (992,'FR',814);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (994,'GF',816);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (996,'PF',818);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (998,'TF',820);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1000,'GA',822);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1002,'GM',824);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1004,'GE',826);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1006,'DE',828);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1008,'GH',830);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1010,'GI',832);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1012,'GR',834);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1014,'GL',836);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1016,'GD',838);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1018,'GP',840);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1020,'GU',842);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1024,'GT',844);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1028,'GG',846);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1030,'GN',848);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1036,'GW',850);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1040,'GY',852);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1044,'HT',854);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1048,'HM',856);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1052,'VA',858);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1056,'HN',860);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1060,'HK',862);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1064,'HU',864);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1068,'IS',866);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1072,'IN',868);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1076,'ID',870);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1080,'IR',872);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1084,'IQ',874);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1088,'IE',876);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1092,'IM',878);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1096,'IL',880);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1100,'IT',882);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1104,'JM',884);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1108,'JP',886);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1112,'JE',888);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1116,'JO',890);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1120,'KZ',892);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1124,'KE',894);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1128,'KI',896);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1132,'KP',898);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1136,'KR',900);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1140,'KW',902);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1144,'KG',904);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1148,'LA',906);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1152,'LV',908);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1156,'LB',910);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1160,'LS',912);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1164,'LR',914);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1168,'LY',916);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1172,'LI',918);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1176,'LT',920);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1180,'LU',922);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1184,'MO',924);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1188,'MK',926);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1192,'MG',928);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1196,'MW',930);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1200,'MY',932);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1204,'MV',934);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1208,'ML',936);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1212,'MT',938);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1216,'MH',940);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1220,'MQ',942);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1224,'MR',944);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1228,'MU',946);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1232,'YT',948);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1236,'MX',950);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1240,'FM',952);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1244,'MD',954);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1248,'MC',956);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1252,'MN',958);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1256,'ME',960);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1260,'MS',962);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1264,'MA',964);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1268,'MZ',966);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1272,'MM',968);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1276,'NA',970);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1280,'NR',972);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1284,'NP',974);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1288,'NL',976);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1292,'AN',978);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1296,'NC',980);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1300,'NZ',982);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1304,'NI',984);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1308,'NE',986);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1312,'NG',988);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1316,'NU',990);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1320,'NF',992);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1324,'MP',994);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1328,'NO',996);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1332,'OM',998);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1336,'PK',1000);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1340,'PW',1002);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1344,'PS',1004);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1348,'PA',1006);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1352,'PG',1008);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1356,'PY',1010);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1360,'PE',1012);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1364,'PH',1014);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1368,'PN',1016);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1372,'PL',1018);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1376,'PT',1020);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1380,'PR',1022);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1384,'QA',1024);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1388,'RE',1026);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1392,'RO',1028);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1396,'RU',1030);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1400,'RW',1032);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1404,'BL',1034);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1408,'SH',1036);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1412,'KN',1038);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1416,'LC',1040);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1420,'MF',1042);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1424,'PM',1044);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1428,'VC',1046);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1432,'WS',1048);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1436,'SM',1050);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1440,'ST',1052);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1444,'SA',1054);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1448,'SN',1056);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1452,'RS',1058);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1456,'SC',1060);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1460,'SL',1062);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1464,'SG',1064);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1468,'SK',1066);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1472,'SI',1068);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1476,'SB',1070);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1480,'SO',1072);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1484,'ZA',1074);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1488,'GS',1076);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1492,'ES',1078);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1496,'LK',1080);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1500,'SD',1082);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1504,'SR',1084);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1508,'SJ',1086);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1512,'SZ',1088);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1516,'SE',1090);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1520,'CH',1092);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1524,'SY',1094);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1528,'TW',1096);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1532,'TJ',1098);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1536,'TZ',1100);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1540,'TH',1102);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1544,'TL',1104);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1548,'TG',1106);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1552,'TK',1108);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1556,'TO',1110);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1560,'TT',1112);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1564,'TN',1114);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1568,'TR',1116);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1572,'TM',1118);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1576,'TC',1120);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1580,'TV',1122);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1584,'UG',1124);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1588,'UA',1126);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1592,'AE',1128);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1596,'GB',1130);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1600,'US',1132);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1604,'UM',1134);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1608,'UY',1136);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1612,'UZ',1138);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1616,'VU',1140);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1620,'VE',1142);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1622,'VN',1144);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1626,'VG',1146);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1630,'VI',1148);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1634,'WF',1150);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1638,'EH',1152);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1642,'YE',1154);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1646,'ZM',1156);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1650,'ZW',1158);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1656,'WA',1160);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1658,'SA',1162);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1660,'VIC',1164);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1662,'TAS',1166);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1664,'NSW',1168);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1666,'ACT',1170);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1668,'QLD',1172);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1670,'NT',1174);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1672,'AL',1176);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1674,'AK',1178);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1676,'AZ',1180);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1678,'AR',1182);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1680,'CA',1184);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1682,'CO',1186);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1684,'CT',1188);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1686,'DC',1190);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1688,'DE',1192);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1690,'FL',1194);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1692,'GA',1196);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1694,'HI',1198);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1696,'ID',1200);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1698,'IL',1202);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1700,'IN',1204);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1702,'IA',1206);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1704,'KS',1208);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1706,'KY',1210);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1708,'LA',1212);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1710,'ME',1214);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1712,'MD',1216);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1714,'MA',1218);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1716,'MI',1220);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1718,'MN',1222);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1720,'MS',1224);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1722,'MO',1226);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1724,'MT',1228);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1726,'NE',1230);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1728,'NV',1232);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1730,'NH',1234);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1732,'NJ',1236);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1734,'NM',1238);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1736,'NY',1240);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1738,'NC',1242);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1740,'ND',1244);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1742,'OH',1246);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1744,'OK',1248);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1746,'OR',1250);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1748,'PA',1252);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1750,'RI',1254);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1752,'SC',1256);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1754,'SD',1258);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1756,'TN',1260);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1758,'TX',1262);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1760,'UT',1264);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1762,'VR',1266);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1764,'VA',1268);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1766,'WA',1270);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1768,'WV',1272);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1770,'WI',1274);
-INSERT INTO regionalias (Id, Name, RegionId) VALUES (1772,'WY',1276);
-/*!40000 ALTER TABLE regionalias ENABLE KEYS */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2008-11-06 21:57:48
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('1', 'AE', '1')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('2', 'ARE', '1')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('3', 'BH', '2')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('4', 'BHR', '2')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('5', 'DZ', '3')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('6', 'DZA', '3')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('7', 'EG', '4')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('8', 'EGY', '4')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('9', 'IQ', '5')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('10', 'IRQ', '5')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('11', 'JO', '6')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('12', 'JOR', '6')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('13', 'KW', '7')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('14', 'KWT', '7')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('15', 'LB', '8')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('16', 'LBN', '8')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('17', 'LY', '9')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('18', 'LBY', '9')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('19', 'MA', '10')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('20', 'MAR', '10')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('21', 'OM', '11')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('22', 'OMN', '11')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('23', 'QA', '12')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('24', 'QAT', '12')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('25', 'SA', '13')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('26', 'SAU', '13')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('27', 'SD', '14')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('28', 'SDN', '14')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('29', 'SY', '15')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('30', 'SYR', '15')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('31', 'TN', '16')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('32', 'TUN', '16')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('33', 'YE', '17')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('34', 'YEM', '17')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('35', 'IN', '18')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('36', 'IND', '18')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('37', 'IL', '19')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('38', 'ISR', '19')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('39', 'JP', '20')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('40', 'JPN', '20')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('41', 'KR', '21')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('42', 'KOR', '21')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('43', 'TH', '22')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('44', 'THA', '22')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('45', 'TH', '23')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('46', 'THA', '23')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('47', 'VN', '24')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('48', 'VNM', '24')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('49', 'CN', '25')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('50', 'CHN', '25')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('51', 'HK', '26')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('52', 'HKG', '26')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('53', 'TW', '27')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('54', 'TWN', '27')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('55', 'BY', '28')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('56', 'BLR', '28')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('57', 'BG', '29')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('58', 'BGR', '29')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('59', 'ES', '30')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('60', 'ESP', '30')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('61', 'CZ', '31')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('62', 'CZE', '31')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('63', 'DK', '32')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('64', 'DNK', '32')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('65', 'AT', '33')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('66', 'AUT', '33')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('67', 'CH', '34')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('68', 'CHE', '34')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('69', 'DE', '35')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('70', 'DEU', '35')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('71', 'LU', '36')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('72', 'LUX', '36')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('73', 'GR', '37')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('74', 'GRC', '37')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('75', 'AU', '38')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('76', 'AUS', '38')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('77', 'CA', '39')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('78', 'CAN', '39')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('79', 'GB', '40')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('80', 'GBR', '40')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('81', 'IE', '41')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('82', 'IRL', '41')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('83', 'IN', '42')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('84', 'IND', '42')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('85', 'NZ', '43')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('86', 'NZL', '43')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('87', 'ZA', '44')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('88', 'ZAF', '44')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('89', 'AR', '45')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('90', 'ARG', '45')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('91', 'BO', '46')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('92', 'BOL', '46')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('93', 'CL', '47')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('94', 'CHL', '47')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('95', 'CO', '48')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('96', 'COL', '48')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('97', 'CR', '49')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('98', 'CRI', '49')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('99', 'DO', '50')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('100', 'DOM', '50')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('101', 'EC', '51')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('102', 'ECU', '51')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('103', 'ES', '52')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('104', 'ESP', '52')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('105', 'GT', '53')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('106', 'GTM', '53')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('107', 'HN', '54')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('108', 'HND', '54')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('109', 'MX', '55')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('110', 'MEX', '55')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('111', 'NI', '56')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('112', 'NIC', '56')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('113', 'PA', '57')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('114', 'PAN', '57')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('115', 'PE', '58')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('116', 'PER', '58')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('117', 'PR', '59')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('118', 'PRI', '59')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('119', 'PY', '60')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('120', 'PRY', '60')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('121', 'SV', '61')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('122', 'SLV', '61')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('123', 'UY', '62')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('124', 'URY', '62')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('125', 'VE', '63')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('126', 'VEN', '63')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('127', 'EE', '64')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('128', 'EST', '64')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('129', 'FI', '65')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('130', 'FIN', '65')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('131', 'BE', '66')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('132', 'BEL', '66')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('133', 'CA', '67')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('134', 'CAN', '67')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('135', 'CH', '68')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('136', 'CHE', '68')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('137', 'FR', '69')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('138', 'FRA', '69')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('139', 'LU', '70')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('140', 'LUX', '70')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('141', 'HR', '71')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('142', 'HRV', '71')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('143', 'HU', '72')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('144', 'HUN', '72')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('145', 'IS', '73')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('146', 'ISL', '73')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('147', 'CH', '74')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('148', 'CHE', '74')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('149', 'IT', '75')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('150', 'ITA', '75')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('151', 'LT', '76')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('152', 'LTU', '76')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('153', 'LV', '77')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('154', 'LVA', '77')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('155', 'MK', '78')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('156', 'MKD', '78')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('157', 'BE', '79')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('158', 'BEL', '79')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('159', 'NL', '80')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('160', 'NLD', '80')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('161', 'NO', '81')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('162', 'NOR', '81')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('163', 'NO', '82')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('164', 'NOR', '82')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('165', 'PL', '83')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('166', 'POL', '83')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('167', 'BR', '84')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('168', 'BRA', '84')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('169', 'PT', '85')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('170', 'PRT', '85')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('171', 'RO', '86')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('172', 'ROU', '86')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('173', 'RU', '87')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('174', 'RUS', '87')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('175', 'SK', '88')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('176', 'SVK', '88')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('177', 'SI', '89')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('178', 'SVN', '89')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('179', 'AL', '90')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('180', 'ALB', '90')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('181', 'BA', '91')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('182', 'BIH', '91')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('183', 'CS', '92')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('184', 'SCG', '92')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('185', 'SE', '93')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('186', 'SWE', '93')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('187', 'TR', '94')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('188', 'TUR', '94')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('189', 'UA', '95')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('190', 'UKR', '95')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('191', 'US', '96')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('192', 'USA', '96')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('193', 'WA', '97')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('194', 'SA', '98')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('195', 'VIC', '99')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('196', 'TAS', '100')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('197', 'NSW', '101')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('198', 'ACT', '102')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('199', 'QLD', '103')
+insert into REGIONALIAS (ID, NAME, REGIONID) values ('200', 'NT', '104')

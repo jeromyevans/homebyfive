@@ -21,7 +21,7 @@ import org.apache.commons.lang.StringUtils;
 public class GeneratePostCodesFile extends TestCase {
 
     public void testGeneratePostCodesFile() throws Exception {
-        Collection<AusPostCodes.State> states = AusPostCodes.readCsv(ResourceTools.openStream("pc-full_20050708.csv"));
+        Collection<AusPostCodes.State> states = AusPostCodes.readCsv(ResourceTools.openStream("pc-full_20080303.csv"));
 
         Map<String, State> ausStates = States.mapByAbbr(States.readCSV(ResourceTools.openStream("states_au.csv")));
 
@@ -35,7 +35,7 @@ public class GeneratePostCodesFile extends TestCase {
 
 
     public void testGenerateSuburbsFile() throws Exception {
-        Collection<AusPostCodes.State> states = AusPostCodes.readCsv(ResourceTools.openStream("pc-full_20050708.csv"));
+        Collection<AusPostCodes.State> states = AusPostCodes.readCsv(ResourceTools.openStream("pc-full_20080303.csv"));
 
         Map<String, State> ausStates = States.mapByAbbr(States.readCSV(ResourceTools.openStream("states_au.csv")));
         Map<String, PostalCode> ausPostCodes = PostalCodes.mapByName(PostalCodes.readCSV(ResourceTools.openStream("postcodes_au.csv")));

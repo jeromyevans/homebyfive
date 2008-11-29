@@ -31,10 +31,10 @@ public interface AddressParserFactory {
      /**
      * Create a parser for the specified country
      *
-     * @param iso3DigitCode
+     * @param countryAbbr
      * @return
      */
-    AddressParser create(String iso3DigitCode);
+    AddressParser create(String countryAbbr);
 
     /**
      * Create a parser constrainted to the specified suburb.

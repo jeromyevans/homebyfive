@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target/apidocs" />
       <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -733,6 +734,72 @@
     </orderEntry>
     <orderEntry type="module" module-name="security-annotations" />
     <orderEntry type="module" module-name="business-test" />
+    <orderEntry type="module" module-name="web-test" />
+    <orderEntry type="module-library">
+      <library name="org.easymock:easymock:2.0">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymock/2.0/easymock-2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymock/2.0/easymock-2.0-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymock/2.0/easymock-2.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mockobjects:mockobjects-core:0.09">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/mockobjects/mockobjects-core/0.09/mockobjects-core-0.09.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/mockobjects/mockobjects-core/0.09/mockobjects-core-0.09-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/mockobjects/mockobjects-core/0.09/mockobjects-core-0.09-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mockobjects:mockobjects-jdk1.3-j2ee1.3:0.09">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/mockobjects/mockobjects-jdk1.3-j2ee1.3/0.09/mockobjects-jdk1.3-j2ee1.3-0.09.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/mockobjects/mockobjects-jdk1.3-j2ee1.3/0.09/mockobjects-jdk1.3-j2ee1.3-0.09-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/mockobjects/mockobjects-jdk1.3-j2ee1.3/0.09/mockobjects-jdk1.3-j2ee1.3-0.09-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jmock:jmock:1.0.1">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/jmock/jmock/1.0.1/jmock-1.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/jmock/jmock/1.0.1/jmock-1.0.1-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/jmock/jmock/1.0.1/jmock-1.0.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework:spring:2.0.8">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring/2.0.8/spring-2.0.8.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring/2.0.8/spring-2.0.8-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring/2.0.8/spring-2.0.8-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntryProperties />
   </component>
 </module>

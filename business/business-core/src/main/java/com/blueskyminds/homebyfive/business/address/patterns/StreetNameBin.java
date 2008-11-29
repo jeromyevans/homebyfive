@@ -7,6 +7,7 @@ import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.Street;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
+import com.blueskyminds.homebyfive.business.region.service.StreetService;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -29,20 +30,18 @@ public class StreetNameBin extends RegExSubstitutionBin {
     private static final String GROUP_NAME = "StreetName";
     private Country country;
     private Suburb suburb;
-    private AddressDAO addressDAO;
+    private StreetService streetService;
 
-    public StreetNameBin(Country country, AddressDAO addressDAO, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
+    public StreetNameBin(Country country, StreetService streetService, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
         super(GROUP_NAME, substitutionDAO);
-        //streets = addressDAO.listStreetsInCountry(country);
+        this.streetService = streetService;
         this.country = country;
-        this.addressDAO = addressDAO;
     }
 
-    public StreetNameBin(Suburb suburb, AddressDAO addressDAO, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
+    public StreetNameBin(Suburb suburb, StreetService streetService, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
         super(GROUP_NAME, substitutionDAO);
-        //streets = addressDAO.listStreetsInSuburb(suburb);
+        this.streetService = streetService;
         this.suburb = suburb;
-        this.addressDAO = addressDAO;
     }
 
     /**
@@ -86,9 +85,9 @@ public class StreetNameBin extends RegExSubstitutionBin {
         Set<Street> streets;
                 
         if (country != null) {
-            streets = addressDAO.listStreetsInCountry(country);
+            streets = streetService.listStreets(country);
         } else {
-            streets = addressDAO.listStreetsInSuburb(suburb);
+            streets = streetService.listStreets(suburb);
         }
 
         if (streets.size() > 0) {

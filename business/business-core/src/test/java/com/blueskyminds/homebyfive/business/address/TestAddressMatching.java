@@ -43,7 +43,7 @@ public class TestAddressMatching extends JPATestCase {
 
         AddressService addressService = new AddressServiceImpl(em);
 
-        Address neutralBay = addressService.parseAddress("Neutral Bay", "AUS");
+        Address neutralBay = addressService.parseAddress("Neutral Bay", "AU");
 
         assertNotNull(neutralBay);
     }
@@ -53,7 +53,7 @@ public class TestAddressMatching extends JPATestCase {
 
         AddressService addressService = new AddressServiceImpl(em);
 
-        Address phillipIsland = addressService.parseAddress("Phillip Island", "AUS");
+        Address phillipIsland = addressService.parseAddress("Phillip Island", "AU");
 
         assertNotNull(phillipIsland);
         LOG.info(phillipIsland);
@@ -64,7 +64,7 @@ public class TestAddressMatching extends JPATestCase {
 
         AddressService addressService = new AddressServiceImpl(em);
 
-        Address blackheath = addressService.parseAddress("BLACKHEATH Expressions of interest over NSW", "AUS");
+        Address blackheath = addressService.parseAddress("BLACKHEATH Expressions of interest over NSW", "AU");
 
         assertNotNull(blackheath);
     }

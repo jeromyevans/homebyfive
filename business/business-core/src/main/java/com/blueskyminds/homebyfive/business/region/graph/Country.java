@@ -22,9 +22,7 @@ import org.jboss.envers.Versioned;
 @Entity
 @DiscriminatorValue("C")
 @Versioned
-public class Country extends Region {
-
-    public static final String AUS = "AUS";
+public class Country extends Region {    
 
     /** The ISO-3166-1 Alpha 3-digit code */
     private String iso3CountryCode;

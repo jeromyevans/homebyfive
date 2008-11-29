@@ -159,4 +159,12 @@ public class Street extends Region {
             regionIndex.populateDenormalizedAttributes();
         }
     }
+
+     /**
+     * Set a suburb for this street. Multiple suburbs are permitted
+     * @param suburb
+     */
+    public void setSuburb(Suburb suburb) {
+        addParentRegion(suburb);        
+    }
 }

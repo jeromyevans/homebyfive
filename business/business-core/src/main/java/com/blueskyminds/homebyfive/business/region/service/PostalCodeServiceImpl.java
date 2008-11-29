@@ -3,6 +3,8 @@ package com.blueskyminds.homebyfive.business.region.service;
 import com.wideplay.warp.persist.Transactional;
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.graph.State;
+import com.blueskyminds.homebyfive.business.region.graph.Country;
+import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.PostCodeTableFactory;
 import com.blueskyminds.homebyfive.business.region.dao.SuburbEAO;
@@ -11,11 +13,13 @@ import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.framework.core.table.TableModel;
+import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import com.google.inject.Inject;
 import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.Set;
+import java.util.List;
 
 /**
  * Date Started: 7/11/2008
@@ -111,7 +115,17 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
        Set<PostalCode> postCodes = regionDAO.list(PathHelper.buildPath(country, state));
        return PostCodeTableFactory.createTable(postCodes);
    }
-    
+
+
+     /** List the postCodes in the specified state */
+    public Set<PostalCode> listPostCodes(State state) {
+        return regionDAO.list(state.getPath());
+    }
+
+    public Set<PostalCode> list(Country country) {
+        return ((PostCodeEAO) regionDAO).listPostalCodesInCountry(country.getPath());
+    }
+
     public PostalCode lookup(String country, String state, String postCode) {
         return regionDAO.lookup(PathHelper.buildPath(country, state, postCode));
     }
@@ -119,6 +133,28 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
     public PostalCode lookup(String path) {
         return regionDAO.lookup(path);
     }
+
+     /**
+     * Get a postcode by its name in the specified state
+     *
+     * @return PostCodeHandloe instance, or null if not found
+     */
+    public PostalCode lookup(String name, State state) {
+        return regionDAO.lookup(PathHelper.generatePath(state.getPath(), name));
+    }
+
+
+    /**
+     * Find a postcode in the specified country
+     *
+     * <p/>
+     * Performs a fuzzy match and returns the matches in order of rank
+     */
+    public List<PostalCode> find(String name, String countryCode) {
+        Set<PostalCode> postalCodes = ((PostCodeEAO) regionDAO).listPostalCodesInCountry(PathHelper.buildPath(countryCode));
+        return LevensteinDistanceTools.matchName(name, postalCodes);
+    }
+
 
     @Inject
     public void setStateService(StateService stateService) {

@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.business.address.patterns;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 import com.blueskyminds.homebyfive.business.region.graph.Region;
+import com.blueskyminds.homebyfive.business.region.service.StateService;
 import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.service.SubstitutionService;
@@ -24,23 +25,23 @@ public class BinCache {
     private static final Log LOG = LogFactory.getLog(BinCache.class);
 
     private final Country countryHandle;
-    private AddressDAO addressDAO;    
+    private StateService stateService;
     private SubstitutionService substitutionService;
 
     private final Map<Region, StateBin> stateBinCache;
     private final Map<BinType, OrderedBin> binMap;
 
-    public BinCache(Country countryHandle, AddressDAO addressDAO, SubstitutionService substitutionService) {
+    public BinCache(Country countryHandle, StateService stateService, SubstitutionService substitutionService) {
         this.countryHandle = countryHandle;
-        this.addressDAO = addressDAO;
+        this.stateService = stateService;
         this.substitutionService = substitutionService;
 
         stateBinCache = new HashMap<Region, StateBin>();
         binMap = new HashMap<BinType, OrderedBin>();
     }
 
-    public BinCache(Suburb suburbHandle, AddressDAO addressDAO, SubstitutionService substitutionService) {
-        this.addressDAO = addressDAO;
+    public BinCache(Suburb suburbHandle, StateService stateService, SubstitutionService substitutionService) {
+        this.stateService = stateService;
         this.substitutionService = substitutionService;
 
         stateBinCache = new HashMap<Region, StateBin>();
@@ -52,7 +53,7 @@ public class BinCache {
         try {
             StateBin stateBin = stateBinCache.get(aus);
             if (stateBin == null) {
-                stateBin = new StateBin(aus, addressDAO);
+                stateBin = new StateBin(aus, stateService);
                 stateBinCache.put(aus, stateBin);
             }
             return stateBin;
@@ -73,7 +74,7 @@ public class BinCache {
                     bin = new GreedyPostCodeBin();
                     break;
                 case StateBin:
-                    bin = new StateBin(countryHandle, addressDAO);
+                    bin = new StateBin(countryHandle, stateService);
                     break;
                 case StreetNameBin:
                     bin = new GreedyStreetNameBin();

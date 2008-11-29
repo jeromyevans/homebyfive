@@ -1,5 +1,6 @@
-package com.blueskyminds.homebyfive.web.core.tasks.tasks;
+package com.blueskyminds.homebyfive.web.struts2.actions.tasks;
 
+import com.blueskyminds.homebyfive.framework.core.tasks.AvailableTask;
 import com.blueskyminds.homebyfive.framework.core.tasks.RuntimeTaskInfo;
 import com.blueskyminds.homebyfive.framework.core.tasks.service.TaskingService;
 import com.google.inject.Inject;
@@ -10,25 +11,39 @@ import org.apache.struts2.rest.DefaultHttpHeaders;
 import org.apache.struts2.rest.HttpHeaders;
 
 import java.util.Date;
+import java.util.List;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
- * List active tasks
+ * List available tasks
  *
- * Date Started: 28/06/2008
+ * Date Started: 24/06/2008
  * <p/>
  * History:
  */
-public class ListController extends ActionSupport implements ModelDriven<Set<RuntimeTaskInfo>> {
+public class AvailableController extends ActionSupport implements ModelDriven<List<AvailableTask>> {
 
     private TaskingService taskingService;
-    private Set<RuntimeTaskInfo> tasks;
+    private List<AvailableTask> tasks;
+    private Set<RuntimeTaskInfo> activeTasks;
     private int taskCount;
 
     public HttpHeaders index() {
-        tasks = taskingService.listActive();
+        tasks = taskingService.listAvailable();
+        activeTasks = taskingService.listActive();
+        List<AvailableTask> toRemove = new LinkedList<AvailableTask>();
+        // filter out the tasks that are currently active
+        for (AvailableTask availableTask : tasks) {
+            for (RuntimeTaskInfo activeTask : activeTasks) {
+                if (activeTask.getKey().equals(availableTask.getKey())) {
+                    toRemove.add(availableTask);
+                }
+            }
+        }
+        tasks.removeAll(toRemove);
         taskCount = tasks.size();
-        return new DefaultHttpHeaders(ActionSupport.SUCCESS).disableCaching();
+        return new DefaultHttpHeaders(ActionSupport.SUCCESS).lastModified(new Date());
     }
 
     /**
@@ -36,7 +51,7 @@ public class ListController extends ActionSupport implements ModelDriven<Set<Run
      *
      * @return the model
      */
-    public Set<RuntimeTaskInfo> getModel() {
+    public List<AvailableTask> getModel() {
         return tasks;
     }
 
@@ -48,6 +63,7 @@ public class ListController extends ActionSupport implements ModelDriven<Set<Run
     public void setTaskingService(TaskingService taskingService) {
         this.taskingService = taskingService;
     }
+
 
     public String toXML(Object status) {
         return new XStream().toXML(status);

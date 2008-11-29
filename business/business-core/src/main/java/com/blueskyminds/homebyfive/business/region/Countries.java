@@ -16,7 +16,7 @@ import java.util.LinkedList;
  */
 public class Countries {
 
-    public static final String AUS = "AUS";
+    public static final String AU = "AU";
 
     /** Reads country information from a 2 column CSV file:
      *    "Name", "2 digit code"

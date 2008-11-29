@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.business.address;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import com.blueskyminds.homebyfive.business.AddressTestTools;
+import com.blueskyminds.homebyfive.business.region.Countries;
 import com.blueskyminds.homebyfive.business.address.service.AddressService;
 import com.blueskyminds.homebyfive.business.address.service.AddressServiceImpl;
 import org.apache.commons.logging.Log;
@@ -50,7 +51,7 @@ public class TestAddressSearch extends JPATestCase {
     public void testParseAddress() throws Exception {
 
 
-        List<Address> addresses = addressService.parseAddressCandidates("48 Westgarth Street Fitzroy VIC", "AUS", 10);
+        List<Address> addresses = addressService.parseAddressCandidates("48 Westgarth Street Fitzroy VIC", Countries.AU, 10);
         DebugTools.printCollection(addresses);
     }
 
@@ -60,7 +61,7 @@ public class TestAddressSearch extends JPATestCase {
      * @throws Exception
      */
     public void testParseAddressTypo() throws Exception {
-        List<Address> addresses = addressService.parseAddressCandidates("48 Westgarth Street Fitzry VIC", "AUS", 10);
+        List<Address> addresses = addressService.parseAddressCandidates("48 Westgarth Street Fitzry VIC", Countries.AU, 10);
         DebugTools.printCollection(addresses);
     }
 
@@ -70,10 +71,10 @@ public class TestAddressSearch extends JPATestCase {
      * @throws Exception
      */
     public void testParseIncompleteAddress() throws Exception {
-//        List<Address> addresses = addressService.parseAddressCandidates("48 Westgarth Street", "AUS", 10);
+//        List<Address> addresses = addressService.parseAddressCandidates("48 Westgarth Street", Countries.AU, 10);
 //        DebugTools.printCollection(addresses);
 
-        List<Address> addresses = addressService.parseAddressCandidates("48 Westgarth Street Fitzro", "AUS", 10);
+        List<Address> addresses = addressService.parseAddressCandidates("48 Westgarth Street Fitzro", Countries.AU, 10);
         DebugTools.printCollection(addresses);
     }
 
@@ -83,7 +84,7 @@ public class TestAddressSearch extends JPATestCase {
      * @throws Exception
      */
     public void testParseAddressWithKnownSuburb() throws Exception {
-        Address address = addressService.parseAddress("48 Westgarth Street", "Fitzroy", "VIC", "AUS");
+        Address address = addressService.parseAddress("48 Westgarth Street", "Fitzroy", "VIC", Countries.AU);
         LOG.info(address);
 
     }
@@ -97,18 +98,18 @@ public class TestAddressSearch extends JPATestCase {
      * @throws Exception
      */
     public void testParseMultipleSuburbAddress() throws Exception {
-        List<Address> addresses = addressService.parseAddressCandidates("Apt5305/560 Lygon Street Carlton VIC", "AUS", 10);
+        List<Address> addresses = addressService.parseAddressCandidates("Apt5305/560 Lygon Street Carlton VIC", Countries.AU, 10);
         DebugTools.printCollection(addresses);
     }
 
     public void testSearchAddress() throws Exception {
         // The following address exists
         // "48 Westgarth Street Fitzroy VIC"
-        List<Address> addresses = addressService.findAddress("48 Westgarth Street Fitzroy VIC", "AUS");
+        List<Address> addresses = addressService.findAddress("48 Westgarth Street Fitzroy VIC", Countries.AU);
         DebugTools.printCollection(addresses);
 
         // the following address does not exist
-        List<Address> addresses2 = addressService.findAddress("1/22 Spruson Street, Neutral Bay NSW", "AUS");
+        List<Address> addresses2 = addressService.findAddress("1/22 Spruson Street, Neutral Bay NSW", Countries.AU);
         DebugTools.printCollection(addresses2);
     }
 
@@ -118,22 +119,22 @@ public class TestAddressSearch extends JPATestCase {
      * @throws Exception
      */
     public void testDecomposeAddress() throws Exception {
-        DebugTools.printCollection(addressService.parseAddressCandidates("48", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 W", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Wes", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westg", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgar", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth S", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Str", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Stree", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street ", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fi", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitz", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitzro", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitzroy ", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitzroy VI", "AUS", 10));
-        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitzroy VIC", "AUS", 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 W", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Wes", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westg", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgar", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth S", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Str", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Stree", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street ", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fi", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitz", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitzro", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitzroy ", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitzroy VI", Countries.AU, 10));
+        DebugTools.printCollection(addressService.parseAddressCandidates("48 Westgarth Street Fitzroy VIC", Countries.AU, 10));
     }
 
     /**
@@ -142,7 +143,7 @@ public class TestAddressSearch extends JPATestCase {
      * @throws Exception
      */
     public void testParseSuburb() throws Exception {
-        List<Address> addresses = addressService.parseAddressCandidates("Neutral Bay", "AUS", 10);
+        List<Address> addresses = addressService.parseAddressCandidates("Neutral Bay", Countries.AU, 10);
         DebugTools.printCollection(addresses);
     }
 
@@ -152,7 +153,7 @@ public class TestAddressSearch extends JPATestCase {
      * @throws Exception
      */
     public void testParseSuburbIncomplete() throws Exception {
-        List<Address> addresses = addressService.parseAddressCandidates("Neutral", "AUS", 10);
+        List<Address> addresses = addressService.parseAddressCandidates("Neutral", Countries.AU, 10);
         DebugTools.printCollection(addresses);
     }
 }

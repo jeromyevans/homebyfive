@@ -4,6 +4,7 @@ import com.blueskyminds.homebyfive.framework.core.patterns.*;
 import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.State;
+import com.blueskyminds.homebyfive.business.region.service.StateService;
 
 import java.util.*;
 
@@ -11,14 +12,14 @@ import java.util.*;
  * Matches words to names and abbreviations of states
  *
  * Uses the state names loaded from persistence for the given country.
- * Patterns matching is fuzzy.
+ * Pattern matching is fuzzy.
  * The metadata for each pattern is used to identify the name of the corresponding State instance.
  * 
  * Date Started: 18/06/2006
  *
  * History:
  *
- * ---[ Blue Sky Minds Pty Ltd ]------------------------------------------------------------------------------
+ * Copyright (c) 2008 Blue Sky Minds Pty Ptd
  */
 public class StateBin extends NamedBin implements OrderedBin {
 
@@ -32,8 +33,8 @@ public class StateBin extends NamedBin implements OrderedBin {
         BinType.PostCodeBin
     };
 
-    public StateBin(Country country, AddressDAO addressDAO) throws PatternMatcherInitialisationException {
-        addNamed(addressDAO.listStatesInCountry(country));
+    public StateBin(Country country, StateService stateService) throws PatternMatcherInitialisationException {
+        addNamed(stateService.list(country));
     }
 
     public BinType[] getBinTypesAllowedLeft() {

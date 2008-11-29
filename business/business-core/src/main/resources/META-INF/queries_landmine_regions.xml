@@ -111,6 +111,23 @@
 
     </named-query>
 
+    <!--
+    List suburbs by the country path, using a like match on the parent path
+
+    Parameters:
+      parentPath:  eg. /au%
+
+    Indexes:
+     -->
+    <named-query name="hp.suburbs.byCountryPath">
+        <query>
+           select suburb from Suburb suburb
+             left join fetch suburb.regionIndex
+             where suburb.parentPath like :parentPath and
+                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
    <!--
     Get a suburb by its path
 
@@ -148,6 +165,23 @@
     </named-query>
 
    <!--
+    List postalcodes by the country path, using a like match on the parent path
+
+    Parameters:
+      parentPath:  eg. /au%
+
+    Indexes:
+     -->
+    <named-query name="hp.postCodes.byCountryPath">
+        <query>
+          select postalCode from PostalCode postalCode
+            left join fetch postalCode.regionIndex
+            where postalCode.parentPath like :parentPath and
+            postalCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+   <!--
     Get a postCode by its path
 
     Parameters:
@@ -162,6 +196,59 @@
             left join fetch postCode.regionIndex
             where postCode.path = :path and
             postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+     <!--
+    List streets by the parent path
+
+    Parameters:
+      path:  eg. /au/nsw/neutral+bay
+
+    Indexes:
+
+     -->
+    <named-query name="hp.streets.byParentPath">
+        <query>
+          select street from Street street
+          left join fetch street.regionIndex
+          where street.parentPath = :path and
+          street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+   <!--
+    List streets by the country path, using a like match on the parent path
+
+    Parameters:
+      parentPath:  eg. /au%
+
+    Indexes:
+     -->
+    <named-query name="hp.streets.byCountryPath">
+        <query>
+          select street from Street street
+          left join fetch street.regionIndex
+          where street.parentPath like :parentPath and
+          street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+        </query>
+    </named-query>
+
+   <!--
+    Get a street by its path
+
+    Parameters:
+      path:  eg. /au/nsw/neutral+bay/spruson+street
+
+    Indexes:
+
+     -->
+    <named-query name="hp.street.byPath">
+        <query>
+           select street from Street street
+             left join fetch street.regionIndex
+             where street.path = :path and
+                   street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
     </named-query>
 

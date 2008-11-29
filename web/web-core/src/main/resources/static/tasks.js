@@ -32,10 +32,12 @@ blueskyminds.namespace("blueskyminds.tasks", "landmine.extractor");
     var activeTaskListCallback = {
         success: function(o) {
             hideIndicator();
+            blueskyminds.dom.clearHTML("activeTaskList");
             blueskyminds.dom.insertHTML("activeTaskList", o.responseText, true);
         },
         failure: function(o) {
             hideIndicator();
+            blueskyminds.dom.clearHTML("activeTaskList");
             blueskyminds.dom.insertHTML("activeTaskList", blueskyminds.net.errorMessage(o), true);
         },
         cache: false
@@ -45,10 +47,12 @@ blueskyminds.namespace("blueskyminds.tasks", "landmine.extractor");
     var availableTaskListCallback = {
         success: function(o) {
             hideIndicator();
+            blueskyminds.dom.clearHTML("availableTaskList");
             blueskyminds.dom.insertHTML("availableTaskList", o.responseText, true);
         },
         failure: function(o) {
             hideIndicator();
+            blueskyminds.dom.clearHTML("availableTaskList");
             blueskyminds.dom.insertHTML("availableTaskList", blueskyminds.net.errorMessage(o), true);
         },
         cache: false

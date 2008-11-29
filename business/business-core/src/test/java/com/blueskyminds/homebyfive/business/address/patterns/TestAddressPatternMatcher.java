@@ -5,6 +5,7 @@ import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.business.address.patterns.AddressPatternMatcher;
 import com.blueskyminds.homebyfive.business.address.*;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
+import com.blueskyminds.homebyfive.business.region.Countries;
 import com.blueskyminds.homebyfive.framework.core.test.JPATestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
 import com.blueskyminds.homebyfive.framework.core.tools.csv.CsvOptions;
@@ -25,24 +26,16 @@ import java.util.regex.Pattern;
  *
  * ---[ Blue Sky Minds Pty Ltd ]------------------------------------------------------------------------------
  */
-public class TestAddressPatternMatcher extends JPATestCase {
+public class TestAddressPatternMatcher extends AddressTestCase {
 
     private static final Log LOG = LogFactory.getLog(TestAddressPatternMatcher.class);
 
-    private static final String TEST_ENTERPRISE_PERSISTENCE_UNIT = "TestEnterprisePersistenceUnit";
-
     private AddressPatternMatcher matcher;
-
-    public TestAddressPatternMatcher() {
-        super(TEST_ENTERPRISE_PERSISTENCE_UNIT);
-    }
 
     protected void setUp() throws Exception {
         super.setUp();
-        AddressTestTools.initialiseCountryList();
-        AddressTestTools.initialiseAddressSubstitutionPatterns(em);
         em.flush();
-        matcher = new AddressPatternMatcher("AUS", em);
+        matcher = new AddressPatternMatcher(Countries.AU, em, countryService, stateService, postalCodeService, suburbService, streetService);
     }
 
      public void testAddressCleansing1() throws Exception {
@@ -133,8 +126,17 @@ public class TestAddressPatternMatcher extends JPATestCase {
          Address streetAddress = matcher.extractBest(addressString);
          System.out.println(StringUtils.leftPad(addressString, 38)+"|"+(streetAddress != null ? streetAddress.toString() : "FAIL"));
     }
+
     public void testAddressCleansing12() throws Exception {
          PlainTextAddress inputAddress = new PlainTextAddress("Shop 3 - 195 Great Western Highway Hazelbrook Hazelbrook Business Only!!! NSW");
+         String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+         Address streetAddress = matcher.extractBest(addressString);
+         System.out.println(StringUtils.leftPad(addressString, 38)+"|"+(streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
+
+    public void testAddressCleansing14() throws Exception {
+         PlainTextAddress inputAddress = new PlainTextAddress("196 Seventh Road Aramdale WA");
          String addressString = inputAddress.getAddress().trim().toLowerCase();
 
          Address streetAddress = matcher.extractBest(addressString);
@@ -149,7 +151,7 @@ public class TestAddressPatternMatcher extends JPATestCase {
         AddressTestTools.initialiseCountryList();
         AddressTestTools.initialiseAddressSubstitutionPatterns(em);
 
-        Country country = new AddressDAO(em).lookupCountry("AUS");
+        Country country = new AddressDAO(em).lookupCountry(Countries.AU);
 
         CsvOptions csvOptions = new CsvOptions();
         csvOptions.setQuoteOutput(false);
@@ -158,7 +160,7 @@ public class TestAddressPatternMatcher extends JPATestCase {
         Address streetAddress;
 
         // initialise the address matcher
-        AddressPatternMatcher matcher = new AddressPatternMatcher("AUS", em);
+        AddressPatternMatcher matcher = new AddressPatternMatcher(Countries.AU, em, countryService, stateService, postalCodeService, suburbService, streetService);
 
         while (csvReader.read()) {
             if (csvReader.isNonBlank()) {

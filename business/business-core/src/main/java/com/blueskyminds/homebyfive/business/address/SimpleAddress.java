@@ -17,5 +17,5 @@ public interface SimpleAddress {
 
     String getPostCode();
 
-    String getCountryISO3Code();
+    String getCountryAbbr();
 }

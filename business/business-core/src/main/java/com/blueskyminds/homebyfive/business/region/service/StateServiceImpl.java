@@ -9,12 +9,14 @@ import com.blueskyminds.homebyfive.business.region.dao.StateEAO;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
+import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.framework.core.table.TableModel;
+import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import com.google.inject.Inject;
 import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.EntityManager;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Date Started: 7/11/2008
@@ -25,12 +27,46 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
 
     private CountryService countryService;
 
+    /** Cache of recently used state names */
+    private transient Map<String, List<State>> stateNameCache;
+
     public StateServiceImpl(EntityManager em, TagService tagService, CountryService countryService, StateEAO regionEAO) {
         super(em, regionEAO, tagService);
         this.countryService = countryService;
+        init();
     }
 
     public StateServiceImpl() {
+        init();
+    }
+
+    private void init() {
+        stateNameCache = new HashMap<String, List<State>>();
+    }
+
+    /**
+    * Find a state in the specified country.  Pulls the result from a cache if recently used
+    *
+    * <p/>
+    * Performs a fuzzy match and returns the matches in order of rank
+    */
+    public List<State> find(String name, String countryAbbr) {
+        List<State> states = stateNameCache.get(countryAbbr + ":" + name);
+        if (states == null) {
+
+            Country country = countryService.lookup(PathHelper.buildPath(countryAbbr));
+            if (country != null) {
+                Set<State> allStates = regionDAO.list(country.getPath());
+
+                states = LevensteinDistanceTools.matchName(name, allStates);
+
+                stateNameCache.put(countryAbbr + ":" + name, states);
+            } else {
+                states = new LinkedList<State>();
+            }
+        }
+
+        return states;
     }
 
     /**
@@ -94,8 +130,17 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
         return lookup(PathHelper.buildPath(country, state));
     }
 
+    public State lookup(Country country, String exactName) {
+        return lookup(PathHelper.joinPath(country.getPath(), exactName));
+    }
+
     public State lookup(String statePath) {
         return regionDAO.lookup(statePath);
+    }
+
+     /** List the states in the specified country */
+    public Set<State> list(Country country) {
+        return regionDAO.list(country.getPath());
     }
 
     public RegionGroup list(String parentPath) {

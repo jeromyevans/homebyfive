@@ -5,6 +5,9 @@ import com.blueskyminds.homebyfive.framework.core.patterns.scoring.ScoringStrate
 import com.blueskyminds.homebyfive.framework.core.patterns.scoring.Score;
 
 import java.util.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.logging.Log;
@@ -475,15 +478,17 @@ public abstract class PatternMatcher<T> {
      * @param allocation
      * @return null if not a valid float
      */
-    protected Float extractFloat(PhraseToBinAllocation allocation) {
-        Float amount = null;
+    protected Number extractNumber(PhraseToBinAllocation allocation) {
+        Number amount = null;
         try {
             String value = extractValue(allocation);
             if (value != null) {
-                amount = Float.parseFloat(value);
+                amount = NumberFormat.getNumberInstance().parse(value);
             }
         } catch (NumberFormatException e) {
             // ignore invalid
+        } catch (ParseException e) {
+            //ignore invalid
         }
         return amount;
     }

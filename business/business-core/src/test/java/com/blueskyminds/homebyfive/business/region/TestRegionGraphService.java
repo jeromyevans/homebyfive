@@ -90,5 +90,12 @@ public class TestRegionGraphService extends JPATestCase {
         DebugTools.printCollection(ancestors);
         assertEquals(3, ancestors.size());
     }
-   
+
+
+    public void testAutocomplete() throws Exception {
+        List<Region> regionHandles = regionGraphService.autocompleteRegion("Bull");
+        assertNotNull(regionHandles);
+        DebugTools.printCollection(regionHandles);
+    }
+
 }

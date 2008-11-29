@@ -8,6 +8,7 @@ import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.graph.Street;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
+import com.blueskyminds.homebyfive.business.region.service.*;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -30,11 +31,15 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
 
     private static final Log LOG = LogFactory.getLog(SuburbPatternMatcher.class);
 
-    private String iso3CountryCode;
+    private String countryAbbr;
 
     private EntityManager em;
 
-    private AddressDAO addressDAO;
+    private CountryService countryService;
+    private StateService stateService;
+    private PostalCodeService postalCodeService;
+    private SuburbService suburbService;
+    
     private Country country;
     private State state;
 
@@ -44,18 +49,25 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
      *
      * The SuburbPatternMatcher is used to match a suburb sting to a SuburbHandle
      *
-     * @param iso3CountryCode   3 digit ISO code for the country
+     * @param countryAbbr   3 digit ISO code for the country
      * @param em                the entity manager
-     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
+     * @param countrySrevice
+     * @param stateService
+     * @param postalCodeService
+     * @param suburbService
      */
-     public SuburbPatternMatcher(String iso3CountryCode, EntityManager em) throws PatternMatcherInitialisationException {
+     public SuburbPatternMatcher(String countryAbbr, EntityManager em, CountryService countrySrevice, StateService stateService, PostalCodeService postalCodeService, SuburbService suburbService) throws PatternMatcherInitialisationException {
         super(new SuburbScoringStrategy());
 
-        if (iso3CountryCode == null) {
-            throw new PatternMatcherInitialisationException("ISO Country Code cannot be null");
+        if (countryAbbr == null) {
+            throw new PatternMatcherInitialisationException("CountryAbbr cannot be null");
         }
         this.em = em;
-        this.iso3CountryCode = iso3CountryCode;
+        this.countryAbbr = countryAbbr;
+        this.countryService = countrySrevice;
+        this.stateService = stateService;
+        this.postalCodeService = postalCodeService;
+        this.suburbService = suburbService;
         init();
     }
 
@@ -64,12 +76,19 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
      *
      * @param state
      * @param em
-     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
+     * @param countryService
+     *@param stateService
+     * @param suburbService
+     * @param postalCodeService @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
-    public SuburbPatternMatcher(State state, EntityManager em) throws PatternMatcherInitialisationException {
+    public SuburbPatternMatcher(State state, EntityManager em, CountryService countryService, StateService stateService, SuburbService suburbService, PostalCodeService postalCodeService) throws PatternMatcherInitialisationException {
         super(new SuburbScoringStrategy());
         this.state = state;
         this.em = em;
+        this.countryService = countryService;
+        this.stateService = stateService;
+        this.postalCodeService = postalCodeService;
+        this.suburbService = suburbService;
         init();
     }
 
@@ -78,13 +97,20 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
      *
      * NOTE: the entityManager needs to be injected for initialisation
      *
-     * @param stateHandle
+     * @param state
      * @param scoringStrategy
-     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
+     * @param countryService
+     *@param stateService
+     * @param suburbService
+     * @param postalCodeService @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
-    public SuburbPatternMatcher(State stateHandle, ScoringStrategy scoringStrategy) throws PatternMatcherInitialisationException {
+    public SuburbPatternMatcher(State state, ScoringStrategy scoringStrategy, CountryService countryService, StateService stateService, SuburbService suburbService, PostalCodeService postalCodeService) throws PatternMatcherInitialisationException {
         super(scoringStrategy);
-        this.state = stateHandle;
+        this.state = state;
+        this.countryService = countryService;
+        this.stateService = stateService;
+        this.postalCodeService = postalCodeService;
+        this.suburbService = suburbService;
     }
 
     /**
@@ -92,16 +118,23 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
      *
      * NOTE: the entityManager needs to be injected for initialisation
      *
-     * @param iso3DigitCode
+     * @param countryAbbr
      * @param scoringStrategy
-     * @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
+     * @param countryService
+     *@param stateService
+     * @param suburbService
+     * @param postalCodeService @throws com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException
      */
-    public SuburbPatternMatcher(String iso3DigitCode, ScoringStrategy scoringStrategy) throws PatternMatcherInitialisationException {
+    public SuburbPatternMatcher(String countryAbbr, ScoringStrategy scoringStrategy, CountryService countryService, StateService stateService, SuburbService suburbService, PostalCodeService postalCodeService) throws PatternMatcherInitialisationException {
         super(scoringStrategy);
-        this.iso3CountryCode = iso3DigitCode;
-        if (iso3CountryCode == null) {
+        this.countryAbbr = countryAbbr;
+        if (this.countryAbbr == null) {
             throw new PatternMatcherInitialisationException("ISO Country Code cannot be null");
         }
+        this.countryService = countryService;
+        this.stateService = stateService;
+        this.postalCodeService = postalCodeService;
+        this.suburbService = suburbService;
     }
 
     // ------------------------------------------------------------------------------------------------------
@@ -112,7 +145,6 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
      *
      */
     private void init() throws PatternMatcherInitialisationException {
-        addressDAO = new AddressDAO(em);
         setupBins();
     }
 
@@ -121,12 +153,7 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
         reset();
         if (country == null) {
             if (state == null) {
-                if (addressDAO != null) {
-                    country = addressDAO.lookupCountry(iso3CountryCode);
-                } else {
-                    LOG.error("AddressDAO has not been injected");
-                    throw new PatternMatcherInitialisationException("AddressDAO has not been injected");
-                }
+                country = countryService.lookupCountry(countryAbbr);
             } else {
                 // use a state
                 state = em.merge(state);
@@ -137,7 +164,7 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
         }
 
         if ((country == null) && (state == null)) {
-            LOG.error("Country/State have not been initialized. Could not lookup country "+iso3CountryCode);
+            LOG.error("Country/State have not been initialized. Could not lookup country "+ countryAbbr);
             throw new PatternMatcherInitialisationException("Countries have not been properly initialised.  Could not lookup country/state");
         }
 
@@ -147,9 +174,9 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
         if ((country != null) && (state == null)) {
             // when working with a country, enable the match tate, state and postcode bins
             CountryBin countryBin = new CountryBin(country);
-            StateBin stateBin = new StateBin(country, addressDAO);
-            PostCodeBin postCodeBin = new PostCodeBin(country, addressDAO);
-            SuburbNameBin suburbBin = new SuburbNameBin(country, addressDAO);
+            StateBin stateBin = new StateBin(country, stateService);
+            PostCodeBin postCodeBin = new PostCodeBin(country, postalCodeService);
+            SuburbNameBin suburbBin = new SuburbNameBin(country, suburbService);
 
             // broad matching street bins
             addBin(countryBin);
@@ -157,7 +184,7 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
             addBin(suburbBin);
         } else {
             // state-specific suburb matching bin
-            SuburbNameBin suburbBin = new SuburbNameBin(state, addressDAO);
+            SuburbNameBin suburbBin = new SuburbNameBin(state, suburbService);
             addBin(suburbBin);
         }
 
@@ -319,8 +346,19 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
         this.em = em;
     }
 
-    public void setAddressDAO(AddressDAO addressDAO) {
-        this.addressDAO = addressDAO;
+    public void setStateService(StateService stateService) {
+        this.stateService = stateService;
     }
 
+    public void setPostalCodeService(PostalCodeService postalCodeService) {
+        this.postalCodeService = postalCodeService;
+    }
+
+    public void setSuburbService(SuburbService suburbService) {
+        this.suburbService = suburbService;
+    }
+
+    public void setCountryService(CountryService countryService) {
+        this.countryService = countryService;
+    }
 }

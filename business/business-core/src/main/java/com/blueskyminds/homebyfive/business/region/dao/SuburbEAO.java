@@ -22,6 +22,8 @@ public class SuburbEAO extends AbstractRegionDAO<Suburb> {
     private static final String PARAM_POSTCODE_PATH = "postCode";
     private static final String QUERY_SUBURB_BY_HANDLE = "hp.suburb.byHandle";
     private static final String PARAM_HANDLE = "handle";
+    private static final String PARAM_PARENT_PATH = "parentPath";
+    private static final String QUERY_ALL_SUBURBS_BY_COUNTRY = "hp.suburbs.byCountryPath";
 
     @Inject   
     public SuburbEAO(EntityManager entityManager) {
@@ -63,6 +65,18 @@ public class SuburbEAO extends AbstractRegionDAO<Suburb> {
         query.setParameter(PARAM_PATH, path);
 
         return firstIn(query.getResultList());
+    }
+
+    /**
+     * Get a list of all the suburbs in the specified country (eg. /au)
+     * Uses a like wildcard on the parent path
+     * 
+     * @return Suburbs, or empty set if not found
+     */
+    public Set<Suburb> listSuburbsInCountry(String countryPath) {
+        Query query = em.createNamedQuery(QUERY_ALL_SUBURBS_BY_COUNTRY);
+        query.setParameter(PARAM_PARENT_PATH, countryPath+"%");
+        return setOf(query.getResultList());
     }
    
 }

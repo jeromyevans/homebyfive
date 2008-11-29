@@ -4,12 +4,15 @@ import com.blueskyminds.homebyfive.business.region.dao.*;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
+import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
+import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import com.wideplay.warp.persist.Transactional;
 import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;
 import java.util.Set;
+import java.util.List;
 
 /**
  * Date Started: 7/11/2008
@@ -23,6 +26,10 @@ public class CountryServiceImpl extends CommonRegionServices<Country> implements
     }
 
     public CountryServiceImpl() {
+    }
+
+    public Country lookupCountry(String abbr) {
+        return lookup(PathHelper.buildPath(abbr));
     }
 
     public RegionGroup list() {
@@ -41,6 +48,16 @@ public class CountryServiceImpl extends CommonRegionServices<Country> implements
      */
     public Country lookup(String path) {
         return regionDAO.lookup(path);
+    }
+
+    /**
+     * Find the country with the specified name
+     * <p/>
+     * Performs a fuzzy match and returns the matches in order of rank
+     */
+    public List<Country> find(String name) {
+        Set<Country> countries = regionDAO.list("/");
+        return LevensteinDistanceTools.matchName(name, countries);
     }
 
     /**

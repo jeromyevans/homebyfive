@@ -117,7 +117,7 @@ public class PathHelper {
                          path.append(SEPARATOR);
                      }
                      if (!id.startsWith(SEPARATOR)) {
-                         path.append(id);
+                         path.append(KeyGenerator.generateId(id));
                      } else {
                          path.append(StringUtils.stripStart(id, SEPARATOR));
                      }

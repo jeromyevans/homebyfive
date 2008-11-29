@@ -17,7 +17,8 @@
 
   <modules>
     <module>web-core</module>
-    <module>security-annotations</module>    
+    <module>security-annotations</module>
+    <module>web-test</module>
   </modules>
 
   <dependencies>

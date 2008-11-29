@@ -1,6 +1,5 @@
 package com.blueskyminds.homebyfive.business.region.dao;
 
-import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.google.inject.Inject;
 
@@ -18,6 +17,8 @@ public class PostCodeEAO extends AbstractRegionDAO<PostalCode> {
     private static final String QUERY_ALL_POSTCODES_BY_PARENT_PATH = "hp.postCodes.byParentPath";
     private static final String QUERY_POSTCODE_BY_PATH = "hp.postCode.byPath";
     private static final String PARAM_PATH = "path";
+    private static final String QUERY_ALL_POSTCODES_BY_COUNTRY = "hp.postCodes.byCountryPath";
+    private static final String PARAM_PARENT_PATH = "parentPath";
 
     @Inject  
     public PostCodeEAO(EntityManager entityManager) {
@@ -50,5 +51,15 @@ public class PostCodeEAO extends AbstractRegionDAO<PostalCode> {
         return firstIn(query.getResultList());
     }
 
-
+/**
+     * Get a list of all the postcodes in the specified country (eg. /au)
+     * Uses a like wildcard on the parent path
+     *
+     * @return PostalCodes, or empty set if not found
+     */
+    public Set<PostalCode> listPostalCodesInCountry(String countryPath) {
+        Query query = em.createNamedQuery(QUERY_ALL_POSTCODES_BY_COUNTRY);
+        query.setParameter(PARAM_PARENT_PATH, countryPath+"%");
+        return setOf(query.getResultList());
+    }
 }

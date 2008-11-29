@@ -55,6 +55,7 @@ public class LevensteinDistanceTools {
     public static List<String> match(String name, String[] candidates) {
         List<StringDistance> distances = new LinkedList<StringDistance>();
         List<StringDistance> phoneticallyMatched = new LinkedList<StringDistance>();
+        List<StringDistance> exactMatched = new LinkedList<StringDistance>();
         List<String> accepted;
         int distance;
 
@@ -64,14 +65,31 @@ public class LevensteinDistanceTools {
 
         name = StringUtils.lowerCase(name);
 
+        Set<StringDistance> acceptedDistances = new HashSet<StringDistance>();
+
         if (candidates.length > 0) {
             for (String candidate : candidates) {
                 // use the only name
-                distance = calculateDemerauLevenshteinDistance(name, StringUtils.lowerCase(candidate));
-                StringDistance stringDistance = new StringDistance(distance, candidate);
-                distances.add(stringDistance);
-                if (phoneticallySimilar(name, candidate)) {
-                    phoneticallyMatched.add(stringDistance);
+                if (candidate.length() > 2) {
+                    distance = calculateDemerauLevenshteinDistance(name, StringUtils.lowerCase(candidate));
+                    StringDistance stringDistance = new StringDistance(distance, candidate);
+                    distances.add(stringDistance);
+                    if (stringDistance.getDistance() == 0) {
+                        // accept immediately
+                        acceptedDistances.add(stringDistance);
+                        exactMatched.add(stringDistance);
+                    }
+                    if (phoneticallySimilar(name, candidate)) {
+                        phoneticallyMatched.add(stringDistance);
+                    }
+                } else {
+                    if (candidate.equalsIgnoreCase(name)) {
+                        StringDistance stringDistance = new StringDistance(0, candidate);
+                        distances.add(stringDistance);                        
+                        // accept immediately
+                        acceptedDistances.add(stringDistance);
+                        exactMatched.add(stringDistance);
+                    }
                 }
             }
 
@@ -84,11 +102,12 @@ public class LevensteinDistanceTools {
 
              // now cut-off at a reasonable relative maximum distance and filter to the closest            
             MaximumDistanceFilter<StringDistance> maxDistanceFilter = new MaximumDistanceFilter<StringDistance>(name);
-            List<StringDistance> acceptedDistances = filterToClosestDistances(distances, stats, maxDistanceFilter);
+            acceptedDistances.addAll(filterToClosestDistances(distances, stats, maxDistanceFilter));
 
-            Collections.sort(acceptedDistances);
+            List<StringDistance> sorted = new ArrayList<StringDistance>(acceptedDistances);
+            Collections.sort(sorted);
 
-            accepted = filterBest(acceptedDistances, phoneticallyMatched, maxDistanceFilter, new ResultAdapter<String, StringDistance>() {
+            accepted = filterBest(exactMatched, sorted, phoneticallyMatched, maxDistanceFilter, new ResultAdapter<String, StringDistance>() {
                 public String getValue(StringDistance distance) {
                     return distance.getValueUsed();
                 }
@@ -121,6 +140,7 @@ public class LevensteinDistanceTools {
     public static <T extends Named> List<T> matchName(String name, Collection<T> candidates) {
         List<NamedDistance> distances = new LinkedList<NamedDistance>();
         List<NamedDistance> phoneticallyMatched = new LinkedList<NamedDistance>();
+        List<NamedDistance> exactMatched = new LinkedList<NamedDistance>();
         List<T> accepted;
         int distance;
 
@@ -131,6 +151,7 @@ public class LevensteinDistanceTools {
         }
 
         if (candidates.size() > 0) {
+            Set<NamedDistance> acceptedDistances = new HashSet<NamedDistance>();
             // populate the distance and phonetic population
             for (Named candidate : candidates) {
                 if (candidate != null) {
@@ -141,13 +162,22 @@ public class LevensteinDistanceTools {
                                 distance = calculateDemerauLevenshteinDistance(name, StringUtils.lowerCase(alias.toLowerCase()));
                                 NamedDistance namedDistance = new NamedDistance(distance, alias, candidate);
                                 distances.add(namedDistance);
+                                if (namedDistance.getDistance() == 0) {
+                                    // accept immediately
+                                    exactMatched.add(namedDistance);
+                                    acceptedDistances.add(namedDistance);
+                                }
                                 if (phoneticallySimilar(name, alias)) {
                                     phoneticallyMatched.add(namedDistance);
                                 }
                             } else {
                                 // too short - only accept an exact match
                                 if (name.equalsIgnoreCase(alias)) {
-                                    distances.add(new NamedDistance(0, alias, candidate));
+                                    NamedDistance namedDistance = new NamedDistance(0, alias, candidate);
+                                    distances.add(namedDistance);
+                                    // accept immediately
+                                    exactMatched.add(namedDistance);
+                                    acceptedDistances.add(namedDistance);
                                 }
                             }
                         }
@@ -157,16 +187,27 @@ public class LevensteinDistanceTools {
                             distance = calculateDemerauLevenshteinDistance(name, StringUtils.lowerCase(candidate.getName()));
                             NamedDistance namedDistance = new NamedDistance(distance, name, candidate);
                             distances.add(namedDistance);
+                            if (namedDistance.getDistance() == 0) {
+                                exactMatched.add(namedDistance);
+                                acceptedDistances.add(namedDistance);
+                            }
                             if (phoneticallySimilar(name, candidate.getName())) {
                                 phoneticallyMatched.add(namedDistance);
                             }
                         } else {
                             if (name.equalsIgnoreCase(candidate.getName())) {
-                                distances.add(new NamedDistance(0, name, candidate));
+                                NamedDistance namedDistance = new NamedDistance(0, name, candidate);
+                                distances.add(namedDistance);
+                                exactMatched.add(namedDistance);
+                                acceptedDistances.add(namedDistance);
                             }
                         }
                     }
                 }
+            }
+
+            for (NamedDistance dist : distances) {
+                LOG.info(name+" cmp to  "+dist.getLiteralMatch()+" ("+dist.getNamed().getName() +") :"+dist.getDistance());
             }
 
             // compute the statistics of the distances
@@ -178,11 +219,12 @@ public class LevensteinDistanceTools {
 
              // now cut-off at a reasonable relative maximum distance and filter to the closest
             MaximumDistanceFilter<NamedDistance> maxDistanceFilter = new MaximumDistanceFilter<NamedDistance>(name);
-            List<NamedDistance> acceptedDistances = filterToClosestDistances(distances, stats, maxDistanceFilter);
+            acceptedDistances.addAll(filterToClosestDistances(distances, stats, maxDistanceFilter));
 
-            Collections.sort(acceptedDistances);
+            List<NamedDistance> sorted = new ArrayList<NamedDistance>(acceptedDistances);
+            Collections.sort(sorted);
 
-            accepted = filterBest(acceptedDistances, phoneticallyMatched, maxDistanceFilter, new ResultAdapter<T, NamedDistance>() {
+            accepted = filterBest(exactMatched, sorted, phoneticallyMatched, maxDistanceFilter, new ResultAdapter<T, NamedDistance>() {
                 public T getValue(NamedDistance distance) {
                     return (T) distance.getNamed();
                 }
@@ -207,14 +249,24 @@ public class LevensteinDistanceTools {
      *   - within the accepted distance
      *
      * */
-    private static <T, D extends Distance> List<T> filterBest(List<D> acceptedDistances, List<D> phoneticallyMatched, MaximumDistanceFilter<D> maxDistanceFilter, ResultAdapter<T, D> adapter) {
-        List<T> accepted = new ArrayList<T>(phoneticallyMatched.size() + acceptedDistances.size());
+    private static <T, D extends Distance> List<T> filterBest(List<D> exactMatches, List<D> acceptedDistances, List<D> phoneticallyMatched, MaximumDistanceFilter<D> maxDistanceFilter, ResultAdapter<T, D> adapter) {
+        List<T> accepted = new ArrayList<T>(exactMatches.size() + phoneticallyMatched.size() + acceptedDistances.size());
+
+        // exact matches go straight through
+        if (exactMatches.size() > 0) {
+            for (D distance : exactMatches) {
+                accepted.add(adapter.getValue(distance));
+            }
+        }
 
         // First priority:  acceptable distance and phonetically matched
         if (phoneticallyMatched.size() > 0) {
             for (D distance : acceptedDistances) {
                 if (phoneticallyMatched.contains(distance)) {
-                    accepted.add(adapter.getValue(distance));
+                    T value = adapter.getValue(distance);
+                    if (!accepted.contains(value)) {
+                        accepted.add(value);
+                    }
                 }
             }
         }
@@ -244,7 +296,7 @@ public class LevensteinDistanceTools {
     }
 
     /**
-     * Filter the distances to the closest values not exceeding the maxmium
+     * Filter the distances to the closest values not exceeding the maximum
      * 
      * @param distances
      * @param stats
@@ -254,8 +306,6 @@ public class LevensteinDistanceTools {
     private static <T extends Distance> List<T> filterToClosestDistances(List<T> distances, BasicStats stats, Filter<T> maxDistanceFilter) {
         List<T> acceptedDistances = new LinkedList<T>();
 
-        // calculate the z-scores (normalized to a mean of zero and stddev of 1
-        // the z-score is the distance from the population mean in units of the population standard deviation
         if (calculateZScores(distances, stats)) {
 
             // We want negative z-scores (distances are always positive and we want closer to zero)
@@ -273,7 +323,7 @@ public class LevensteinDistanceTools {
                 attempts++;
             }
         } else {
-            // there is no stddev or stdev is zero - we'll just work with the relative distance
+            // there is no stddev or stddev is zero - we'll just work with the relative distance
             acceptedDistances = distances;
         }
 
@@ -355,6 +405,8 @@ public class LevensteinDistanceTools {
          BigDecimal getZScore();
          String getLiteralMatch();
          void setZScore(BigDecimal zScore);
+         BigDecimal getNormalizedDistance();
+         void setNormalizedDistance(BigDecimal distance);
     }
 
     /** Encapsulates the distance and underlying Named object */
@@ -366,6 +418,7 @@ public class LevensteinDistanceTools {
         private String nameUsed;
         private Named named;
         private BigDecimal zScore;
+        private BigDecimal normalizedDistance;
 
         /**
          *
@@ -404,6 +457,14 @@ public class LevensteinDistanceTools {
             this.zScore = zScore;
         }
 
+        public BigDecimal getNormalizedDistance() {
+            return normalizedDistance;
+        }
+
+        public void setNormalizedDistance(BigDecimal normalizedDistance) {
+            this.normalizedDistance = normalizedDistance;
+        }
+
         public int compareTo(Object o) {
             return ((Integer) distance).compareTo(((NamedDistance) o).getDistance());
         }
@@ -418,6 +479,8 @@ public class LevensteinDistanceTools {
         private int distance;
         private String valueUsed;
         private BigDecimal zScore;
+        private BigDecimal normalizedDistance;
+
 
         /**
          *
@@ -448,6 +511,14 @@ public class LevensteinDistanceTools {
         /** The literal string that was matched */
         public String getLiteralMatch() {
             return valueUsed;
+        }
+
+        public BigDecimal getNormalizedDistance() {
+            return normalizedDistance;
+        }
+
+        public void setNormalizedDistance(BigDecimal normalizedDistance) {
+            this.normalizedDistance = normalizedDistance;
         }
 
         public int compareTo(Object o) {

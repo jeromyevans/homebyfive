@@ -40,7 +40,7 @@ public class TestRegionXDAO extends JPATestCase {
         assertNotNull(australia1);
         assertEquals(1, australia1.size());
 
-        Set<Region> australia2 = new RegionGraphDAO(em).findRegionByName("AUS");
+        Set<Region> australia2 = new RegionGraphDAO(em).findRegionByName(Countries.AU);
         assertNotNull(australia2);
         assertEquals(1, australia2.size());
 

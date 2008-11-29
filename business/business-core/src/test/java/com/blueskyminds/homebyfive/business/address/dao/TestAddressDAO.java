@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.framework.core.tools.DebugTools;
 import com.blueskyminds.homebyfive.business.AddressTestTools;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 import com.blueskyminds.homebyfive.business.region.graph.*;
+import com.blueskyminds.homebyfive.business.region.Countries;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -41,12 +42,12 @@ public class TestAddressDAO extends JPATestCase {
     }
 
     public void testGetCountry() throws Exception {
-        Country aus = addressDAO.lookupCountry("AUS");
+        Country aus = addressDAO.lookupCountry(Countries.AU);
         assertNotNull(aus);
     }
 
     public void testListSuburbsInCountry() throws Exception {
-        Country aus = addressDAO.lookupCountry("AUS");
+        Country aus = addressDAO.lookupCountry(Countries.AU);
 
         Set<Suburb> suburbs = addressDAO.listSuburbsInCountry(aus);
         assertNotNull(suburbs);
@@ -54,7 +55,7 @@ public class TestAddressDAO extends JPATestCase {
     }
 
     public void testListSuburbsInState() throws Exception {
-        Country aus = addressDAO.lookupCountry("AUS");
+        Country aus = addressDAO.lookupCountry("AU");
         State state = addressDAO.lookupState("NSW", aus);
 
         Set<Suburb> suburbs = addressDAO.listSuburbsInState(state);
@@ -62,10 +63,17 @@ public class TestAddressDAO extends JPATestCase {
         assertTrue(suburbs.size() > 0);
     }
 
+    public void testLookupSuburb() throws Exception{
+        Country aus = addressDAO.lookupCountry("AU");
+        State wa = addressDAO.lookupStateByAbbr("WA", aus);
+        Suburb suburb = addressDAO.lookupSuburb("armadale", wa);
+        assertNotNull(suburb);
+    }
+
     public void testListStreetsInCountry() throws Exception {
         AddressTestTools.initialiseSampleAusAddresses();
 
-        Country aus = addressDAO.lookupCountry("AUS");
+        Country aus = addressDAO.lookupCountry(Countries.AU);
 
         Set<Street> streets = addressDAO.listStreetsInCountry(aus);
         assertNotNull(streets);
@@ -75,7 +83,7 @@ public class TestAddressDAO extends JPATestCase {
     public void testListStreetsInSuburb() throws Exception {
         AddressTestTools.initialiseSampleAusAddresses();
 
-        Country aus = addressDAO.lookupCountry("AUS");
+        Country aus = addressDAO.lookupCountry(Countries.AU);
         State state = addressDAO.lookupState("VIC", aus);
         Suburb suburb = addressDAO.lookupSuburb("Carlton", state);
         Set<Street> streets = addressDAO.listStreetsInSuburb(suburb);
@@ -90,7 +98,7 @@ public class TestAddressDAO extends JPATestCase {
         TestTools.printAll(em, Country.class);
         TestTools.printAll(em, State.class);
 
-        Country australia = addressDAO.lookupCountry("AUS");
+        Country australia = addressDAO.lookupCountry(Countries.AU);
 
         Collection<PostalCode> postCodes = addressDAO.listPostCodesInCountry(australia);
         DebugTools.printCollection(postCodes);
