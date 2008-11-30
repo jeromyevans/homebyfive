@@ -17,13 +17,17 @@ public class KeyGenerator {
      * @param key
      * @return
      */
-    public static String generateId(String key) {
+    public static String generateId(String key) {        
+        return generateID(key, "[^(\\w|\\d|\\+|\\-)]");
+    }
+
+    private static String generateID(String key, String punctuationPattern) {
         if (key != null) {
-            key = StringUtils.trim(key);
-            // strip punctuation
-            key = key.replaceAll("[^(\\w|\\d|\\s|\\-)]", "");
+            key = StringUtils.strip(key);           
             // replace spaces with +
             key = key.replaceAll("\\s+", "+");
+            // strip all other punctuation
+            key = key.replaceAll(punctuationPattern, "");
             // convert to lowercase
             key = StringUtils.lowerCase(key);
         }
@@ -44,22 +48,13 @@ public class KeyGenerator {
     }
 
      /**
-     * Generate a URI-friendly ID from the key, preserving slashs
+     * Generate a URI-friendly ID from the key, preserving slashes
      *
      * @param key
      * @return
      */
     public static String generateIdPerservingSlashes(String key) {
-        if (key != null) {
-            key = StringUtils.trim(key);
-            // strip punctuation
-            key = key.replaceAll("[^(\\w|\\d|\\s|\\-|\\/)]", "");
-            // replace spaces with +
-            key = key.replaceAll("\\s+", "+");
-            // convert to lowercase
-            key = StringUtils.lowerCase(key);
-        }
-        return key;
+        return generateID(key, "[^(\\w|\\d|\\+|\\-|\\/)]");
     }
     
 }

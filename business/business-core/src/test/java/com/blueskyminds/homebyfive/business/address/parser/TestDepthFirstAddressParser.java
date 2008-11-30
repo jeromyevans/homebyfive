@@ -129,4 +129,14 @@ public class TestDepthFirstAddressParser extends AddressTestCase {
          System.out.println(StringUtils.leftPad(addressString, 38)+"|"+(streetAddress != null ? streetAddress.toString() : "FAIL"));
     }
 
+     public void testAddressCleansing15() throws Exception {
+         PlainTextAddress inputAddress = new PlainTextAddress("9 COLGAN CLOSE CALLALA BAY NSW");
+         String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+         Address streetAddress = addressParser.parseAddress(addressString);
+         assertNotNull(streetAddress);
+         assertEquals("Callala Bay", streetAddress.getSuburb().getName());
+         System.out.println(StringUtils.leftPad(addressString, 38)+"|"+(streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
+
 }

@@ -143,6 +143,10 @@ public abstract class Address extends AbstractDomainObject {
     @Transient
     public abstract String getNumber();
 
+    public boolean hasNumber() {
+        return StringUtils.isNotBlank(getNumber());
+    }
+
     /**
      * Get the street part of this address
      *

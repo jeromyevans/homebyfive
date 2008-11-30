@@ -297,7 +297,7 @@ public class AddressServiceImpl implements AddressService {
      * @throws AddressProcessingException if a persistence problem occurs
      */
     public Address lookupOrCreateAddress(Address address) throws AddressProcessingException {
-        Address addressFound;
+        Address addressFound = null;
 
         try {
             // we need to handle detached suburbs, status and postcodes here
@@ -311,8 +311,10 @@ public class AddressServiceImpl implements AddressService {
                 address.setPostCode(em.merge(address.getPostCode()));
             }
 
-            // find this address
-            addressFound = new AddressDAO(em).lookupAddressByExample(address);
+            if (address.hasNumber()) {
+                // find this address
+                addressFound = new AddressDAO(em).lookupAddressByExample(address);
+            }
 
             if (addressFound == null) {
 
@@ -332,11 +334,18 @@ public class AddressServiceImpl implements AddressService {
                     }
                 }
 
-                em.persist(address);
-                // use the new address
-                addressFound = address;
+                if (address.hasNumber()) {
+                    em.persist(address);
+                    // use the new address
+                    addressFound = address;
+                
+                    LOG.info("Created new address: "+addressFound);
+                } else {
+                    LOG.info("Address rejected because it doesn't have a number");
+                }
+            } else {
+                LOG.info("Found existing address: "+addressFound);
             }
-
         } catch (PersistenceServiceException e) {
             throw new AddressProcessingException(e);
         }

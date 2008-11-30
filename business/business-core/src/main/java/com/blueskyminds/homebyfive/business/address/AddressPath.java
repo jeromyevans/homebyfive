@@ -33,11 +33,14 @@ public class AddressPath extends AbstractEntity implements SimpleAddress {
     private String postCode;
     private String countryAbbr; 
 
+    private AddressPathStatus status;
+
     public AddressPath(String addressString, String path, RegionRefType type) {
         this.addressString = StringUtils.lowerCase(addressString);
         this.path = path;
         this.type = type;
         this.dateCreated = new Date();
+        this.status = AddressPathStatus.Valid;
     }
 
     public AddressPath(String address1, String address2, String suburb, String state, String postCode, String countryAbbr, String addressString) {
@@ -48,6 +51,14 @@ public class AddressPath extends AbstractEntity implements SimpleAddress {
         this.postCode = postCode;
         this.countryAbbr = countryAbbr;
         this.addressString = addressString;
+        this.status = AddressPathStatus.Valid;
+    }
+
+    /** Use this constructor to identify an invalid address string */
+    public AddressPath(String addressString, RegionRefType type, AddressPathStatus status) {
+        this.addressString = addressString;
+        this.type = type;
+        this.status = status;
     }
 
     public AddressPath() {
@@ -187,5 +198,20 @@ public class AddressPath extends AbstractEntity implements SimpleAddress {
             }
             result.append(value);
         }
+    }
+
+    @Enumerated
+    @Column(name="Status")
+    public AddressPathStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AddressPathStatus status) {
+        this.status = status;
+    }
+
+    @Transient
+    public boolean isValid() {
+        return !AddressPathStatus.Invalid.equals(status);
     }
 }
