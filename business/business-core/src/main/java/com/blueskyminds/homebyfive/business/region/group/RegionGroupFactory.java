@@ -10,6 +10,8 @@ import com.blueskyminds.homebyfive.business.region.RegionTypes;
 
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Creates RegionGroups from various sources
@@ -24,8 +26,10 @@ public class RegionGroupFactory {
      * Create a RegionGroup for a collection of countries.
      * */
     public static RegionGroup createCountries(Collection<Country> countries) {
-        RegionGroup regionGroup = new RegionGroup();
-        for (Country country : countries) {
+        RegionGroup regionGroup = new RegionGroup();        
+        List<Country> sorted = new ArrayList<Country>(countries);
+        Collections.sort(sorted);
+        for (Country country : sorted) {
             regionGroup.add(RegionCompositeFactory.createCountry(country));
         }
         return regionGroup;

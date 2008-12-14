@@ -7,16 +7,22 @@ import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.States;
 import com.blueskyminds.homebyfive.business.region.Suburbs;
 import com.blueskyminds.homebyfive.business.region.PostalCodes;
+import com.blueskyminds.homebyfive.business.region.service.PostalCodeService;
+import com.google.inject.Inject;
 
 import java.util.List;
 import java.io.FileInputStream;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Date Started: 30/10/2008
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class LoadPostalCodesController extends LoadSupport {
+public class LoadPostalCodesController extends LoadSupport<PostalCode> {
+
+    private PostalCodeService postalCodeService;
 
     public String index() throws Exception {
         hostname = host(request);
@@ -28,12 +34,16 @@ public class LoadPostalCodesController extends LoadSupport {
         if (upload != null) {
             List<PostalCode> postalCodes = PostalCodes.readCSV(new FileInputStream(upload));
 
-            RegionClient regionClient = new RegionClient();
-            for (PostalCode postalCode : postalCodes) {
-                if (updateOnly != null && updateOnly) {
-                    regionClient.updatePostalCode(hostname, postalCode);
-                } else {
-                    regionClient.createPostalCode(hostname, postalCode);
+            if (localhost()) {
+                performLocalLoad(postalCodeService, postalCodes);
+            } else {
+                RegionClient regionClient = new RegionClient();
+                for (PostalCode postalCode : postalCodes) {
+                    if (updateOnly != null && updateOnly) {
+                        regionClient.updatePostalCode(hostname, postalCode);
+                    } else {
+                        regionClient.createPostalCode(hostname, postalCode);
+                    }
                 }
             }
             return SUCCESS;
@@ -41,4 +51,9 @@ public class LoadPostalCodesController extends LoadSupport {
         return INPUT;
     }
 
+
+    @Inject
+    public void setPostalCodeService(PostalCodeService postalCodeService) {
+        this.postalCodeService = postalCodeService;
+    }
 }

@@ -120,8 +120,32 @@ public class IndividualRelationship extends AbstractDomainObject implements Type
         return roles;
     }
 
+    /**
+     * Determines whether this relationship has the specifed role by identity, or value if no identity
+     * @param role
+     * @return
+     */
     public boolean hasRole(IndividualRole role) {
-        return getRoles().contains(role);
+        if (role.isPersistent()) {
+            return getRoles().contains(role);
+        } else {
+            return hasRole(role.getName());
+        }
+    }
+
+    /**
+     * Determine whether this relatinoship has the specified role by value
+     * @param roleName
+     * @return
+     */
+    public boolean hasRole(String roleName) {        
+        for (IndividualRoleMap map : roleMaps) {
+            if (map.getRole().getName().equals(roleName)) {
+                return true;
+            }
+
+        }
+        return false;
     }
 
     public boolean addRole(IndividualRole role) {

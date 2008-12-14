@@ -4,11 +4,9 @@ import junit.framework.TestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.SubstitutionsFileReader;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
-import com.blueskyminds.homebyfive.business.tools.XMLSerializer;
-import com.thoughtworks.xstream.XStream;
+import com.blueskyminds.homebyfive.framework.core.tools.XMLSerializer;
 
 import java.util.List;
-import java.io.FileInputStream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,7 +29,7 @@ public class TestSubstitutionClient extends TestCase {
         List<Substitution> substitutions;
         substitutions = substitutionsFileReader.readCsv(ResourceTools.openStream(ADDRESS_PATTERNS_FILE_NAME));
 
-        XMLSerializer<Substitution> serializer = new XMLSerializer<Substitution>();        
+        XMLSerializer<Substitution> serializer = new XMLSerializer<Substitution>();
         for (Substitution substitution : substitutions) {
             LOG.info(serializer.serialize(substitution));
         }

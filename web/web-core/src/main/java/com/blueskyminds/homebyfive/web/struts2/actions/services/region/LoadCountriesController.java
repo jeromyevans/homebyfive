@@ -7,7 +7,10 @@ import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substituti
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.Countries;
+import com.blueskyminds.homebyfive.business.region.service.CountryService;
+import com.google.inject.Inject;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -21,7 +24,9 @@ import java.util.List;
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class LoadCountriesController extends LoadSupport {
+public class LoadCountriesController extends LoadSupport<Country> {
+
+    private CountryService countryService;
 
     public String index() throws Exception {
         hostname = host(request);
@@ -33,16 +38,25 @@ public class LoadCountriesController extends LoadSupport {
         if (upload != null) {
             List<Country> countries = Countries.readCSV(new FileInputStream(upload));
 
-            RegionClient regionClient = new RegionClient();
-            for (Country country : countries) {
-                if (updateOnly != null && updateOnly) {
-                    regionClient.updateCountry(hostname, country);
-                } else {
-                    regionClient.createCountry(hostname, country);
+            if (localhost()) {
+                performLocalLoad(countryService, countries);
+            } else {
+                RegionClient regionClient = new RegionClient();
+                for (Country country : countries) {
+                    if (updateOnly != null && updateOnly) {
+                        regionClient.updateCountry(hostname, country);
+                    } else {
+                        regionClient.createCountry(hostname, country);
+                    }
                 }
             }
             return SUCCESS;
         }
         return INPUT;
+    }
+
+    @Inject
+    public void setCountryService(CountryService countryService) {
+        this.countryService = countryService;
     }
 }

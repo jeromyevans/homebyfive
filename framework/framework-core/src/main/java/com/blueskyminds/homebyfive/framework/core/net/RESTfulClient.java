@@ -1,6 +1,6 @@
-package com.blueskyminds.homebyfive.web.core.client;
+package com.blueskyminds.homebyfive.framework.core.net;
 
-import com.blueskyminds.homebyfive.business.tools.XMLSerializer;
+import com.blueskyminds.homebyfive.framework.core.tools.XMLSerializer;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpConnectionManager;
@@ -53,7 +53,7 @@ public class RESTfulClient<T> {
             int result = client.executeMethod(method);
 
             if (result >= 300) {
-                throw new RemoteClientException("Remote server responded with an error status:"+ method.getStatusLine().toString(), method.getStatusCode(), method.getStatusText());
+                throw new RemoteClientException(method);
             }
         } catch (HttpException e) {
             throw new RemoteClientException(e.getMessage(), e);
@@ -88,7 +88,7 @@ public class RESTfulClient<T> {
             int result = client.executeMethod(method);
 
             if (result >= 300) {
-                throw new RemoteClientException("Remote server responded with an error status: "+ method.getStatusLine().toString(), method.getStatusCode(), method.getStatusText());
+                throw new RemoteClientException(method);
             }
         } catch (HttpException e) {
             throw new RemoteClientException(e.getMessage(), e);
@@ -99,5 +99,21 @@ public class RESTfulClient<T> {
             stopWatch.stop();
         }
         LOG.info("doPut "+serviceURI+" took: "+stopWatch.toString());
+    }
+
+    public int head(String serviceURI) throws RemoteClientException {
+        HttpClient client = setupClient();
+        HeadMethod method = new HeadMethod(serviceURI);
+
+        try {
+            int result = client.executeMethod(method);
+            return result;
+        } catch (HttpException e) {
+            throw new RemoteClientException(e.getMessage(), e);
+        } catch (IOException e) {
+            throw new RemoteClientException(e.getMessage(), e);
+        } finally {
+            method.releaseConnection();
+        }
     }
 }

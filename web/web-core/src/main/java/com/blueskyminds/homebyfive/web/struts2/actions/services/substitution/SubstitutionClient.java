@@ -1,11 +1,8 @@
 package com.blueskyminds.homebyfive.web.struts2.actions.services.substitution;
 
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
-import com.blueskyminds.homebyfive.web.core.client.RESTfulClient;
-import com.blueskyminds.homebyfive.web.core.client.RemoteClientException;
-import org.apache.commons.httpclient.HttpConnectionManager;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.SimpleHttpConnectionManager;
+import com.blueskyminds.homebyfive.framework.core.net.RemoteClientException;
+import com.blueskyminds.homebyfive.framework.core.net.RESTfulClient;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

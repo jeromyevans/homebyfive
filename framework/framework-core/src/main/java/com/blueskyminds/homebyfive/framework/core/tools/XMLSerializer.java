@@ -1,4 +1,4 @@
-package com.blueskyminds.homebyfive.business.tools;
+package com.blueskyminds.homebyfive.framework.core.tools;
 
 import com.thoughtworks.xstream.XStream;
 

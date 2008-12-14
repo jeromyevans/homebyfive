@@ -280,7 +280,7 @@ public class RegionRefFactory {
 
     /** Applies some useful attributes to a RegionRef */
     private static void populateAttributes(RegionRef regionRef, Region regionHandle) {
-        Region suburb;
+/*        Region suburb;
         if (regionHandle instanceof Suburb) {
             suburb = regionHandle;
         } else {
@@ -319,7 +319,7 @@ public class RegionRefFactory {
             if (country != null) {
                 regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbr()));
             }
-        }
+        }      */
     }
 
     /** Applies some useful attributes to a RegionRef */
@@ -328,7 +328,7 @@ public class RegionRefFactory {
 
     /** Applies some useful attributes to a RegionRef */  
     public static void populateAttributes(RegionRef regionRef, Address address) {
-        Region suburb = address.getSuburb();
+/*        Region suburb = address.getSuburb();
         Region state = address.getState();
         Region postCode = address.getPostCode();
         if (suburb != null) {
@@ -344,6 +344,6 @@ public class RegionRefFactory {
             if (country != null) {
                 regionRef.setAttribute(RegionRefAttributes.COUNTRY, RegionTools.encode(country.getAbbr()));
             }
-        }
-    }   
+        } */
+    }
 }

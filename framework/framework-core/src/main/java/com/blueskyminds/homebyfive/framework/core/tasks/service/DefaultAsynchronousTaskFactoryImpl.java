@@ -16,10 +16,8 @@ import org.apache.commons.logging.Log;
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class DefaultAsynchronousTaskFactoryImpl implements AsynchronousTaskFactory {
+public class DefaultAsynchronousTaskFactoryImpl extends AbstractAsynchronousTaskFactory {
 
-    private static final Log LOG = LogFactory.getLog(DefaultAsynchronousTaskFactoryImpl.class);
-    
     /**
      * Create/get an instance of the specified clazz
      *
@@ -39,15 +37,4 @@ public class DefaultAsynchronousTaskFactoryImpl implements AsynchronousTaskFacto
         }
     }
 
-    public void populate(AsynchronousTask asynchronousTask, Map<String, Object> params) throws TaskingException {
-        if (params != null) {
-            try {
-                BeanUtils.populate(asynchronousTask, params);
-            } catch (IllegalAccessException e) {
-                LOG.error(e);
-            } catch (InvocationTargetException e) {
-                LOG.error(e);
-            }
-        }
-    }
 }

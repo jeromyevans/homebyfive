@@ -253,16 +253,22 @@ public class Party extends AbstractDomainObject implements Taggable, Contactable
     // ------------------------------------------------------------------------------------------------------
 
     /**
-     * Determine if this Party has a point of contact of a specified type
+     * Determine if this Party has a point of contact of a specified type and value
      *
-     * @param pointOfContact    Point of Contact to find, matched by IdentityRef
+     * @param pointOfContact    Point of Contact to find, matched by IdentityRef if defined, otherwise by value
      * @param type
      * @return true if the Party has the PointOfContact
      */
     public boolean hasPointOfContact(final PointOfContact pointOfContact, final POCType type) {
         PartyPOC match = FilterTools.getFirstMatching(pointsOfContact, new Filter<PartyPOC>() {
             public boolean accept(PartyPOC relationship) {
-                return (relationship.getType().equals(type)) && (relationship.getPointOfContact().equals(pointOfContact));
+                if (pointOfContact.isPersistent()) {
+                    // compare by type and identity
+                    return (relationship.getType().equals(type)) && (relationship.getPointOfContact().equals(pointOfContact));
+                } else {
+                    // compare by type and value
+                    return (relationship.getType().equals(type)) && (relationship.getPointOfContact().getValue().equals(pointOfContact.getValue()));
+                }
             }
         });
         return match != null;

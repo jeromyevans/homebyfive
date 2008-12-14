@@ -19,6 +19,8 @@ public interface CountryService extends RegionServiceI<Country> {
 
     RegionGroup list();
 
+    TableModel listCountriesAsTable();
+
     /**
      * Find the country with the specified name
      * <p/>

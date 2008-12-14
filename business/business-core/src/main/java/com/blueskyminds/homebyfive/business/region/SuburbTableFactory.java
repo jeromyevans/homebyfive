@@ -7,10 +7,7 @@ import com.blueskyminds.homebyfive.business.region.reference.RegionRefFactory;
 import com.blueskyminds.homebyfive.business.region.reference.RegionRefType;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Date Started: 18/04/2008
@@ -28,7 +25,9 @@ public class SuburbTableFactory {
         tableModel.addHiddenColumn("Id", "id");
         tableModel.addSortableColumn("Name", "name").formattedAs("Region");
 
-        populate(tableModel, suburbs);
+        List<Suburb> sorted = new ArrayList<Suburb>(suburbs);
+        Collections.sort(sorted);
+        populate(tableModel, sorted);
 
         return tableModel;
     }

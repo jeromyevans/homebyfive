@@ -16,7 +16,7 @@ import com.blueskyminds.homebyfive.business.region.reference.RegionRefType;
  *
  * Date Started: 16/09/2007
  */
-public class RegionComposite implements Serializable {
+public class RegionComposite implements Serializable, Comparable {
 
     private List<RegionRef> sequence;
 
@@ -59,5 +59,14 @@ public class RegionComposite implements Serializable {
     public RegionRef[] getSequence() {
         RegionRef[] result = new RegionRef[sequence.size()];
         return sequence.toArray(result);
+    }
+
+    public int compareTo(Object o) {
+        if (o != null) {
+            if (o instanceof RegionComposite) {
+                return toString().compareTo(o.toString());
+            }
+        }
+        return 0;  
     }
 }

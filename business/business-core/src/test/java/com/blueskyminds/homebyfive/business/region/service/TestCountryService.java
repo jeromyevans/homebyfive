@@ -3,8 +3,13 @@ package com.blueskyminds.homebyfive.business.region.service;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.Countries;
 import com.blueskyminds.homebyfive.business.region.RegionTestCase;
+import com.blueskyminds.homebyfive.business.region.composite.RegionComposite;
+import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
 
 import java.util.List;
+
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 
 /**
  * Date Started: 29/11/2008
@@ -12,6 +17,8 @@ import java.util.List;
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
 public class TestCountryService extends RegionTestCase {
+
+    private static final Log LOG = LogFactory.getLog(TestCountryService.class);
 
      public void testFindCountry() throws Exception {
         List<Country> countries1 = countryService.find("Australia");
@@ -29,5 +36,13 @@ public class TestCountryService extends RegionTestCase {
         assertNotNull(countries3);
         assertEquals(2, countries3.size());
         assertEquals("Australia", countries3.iterator().next().getName());
+    }
+
+    public void testListCountries() throws Exception {
+        RegionGroup countries = countryService.list();
+        
+        for (RegionComposite composite : countries.getRegions()) {
+            LOG.info(composite);
+        }
     }
 }

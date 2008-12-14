@@ -38,7 +38,7 @@ import org.hibernate.annotations.Cascade;
 @DiscriminatorColumn(name="Impl", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("R")
 @Versioned
-public abstract class Region extends AbstractEntity implements Named, Aliased, Taggable {
+public abstract class Region extends AbstractEntity implements Named, Aliased, Taggable, Comparable {
 
     protected String parentPath;
     protected String path;
@@ -642,7 +642,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
         }
     }
 
-    @Column(name="Description", length = 32768)
+    @Column(name="Description", length = 20000)
     public String getDescription() {
         return description;
     }
@@ -690,5 +690,16 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
                 parent.visitAncestors(ancestors);
             }
         }
+    }
+
+    public int compareTo(Object o) {
+        if (o != null) {
+            if (o instanceof Region) {
+                if (name != null) {
+                    return name.compareTo(((Region) o).name);
+                }
+            }
+        }
+        return 0;
     }
 }

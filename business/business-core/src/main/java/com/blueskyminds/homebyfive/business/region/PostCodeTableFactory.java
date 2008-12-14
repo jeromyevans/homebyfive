@@ -6,11 +6,9 @@ import com.blueskyminds.homebyfive.framework.core.table.ColumnModel;
 import com.blueskyminds.homebyfive.business.region.reference.RegionRefFactory;
 import com.blueskyminds.homebyfive.business.region.reference.RegionRefType;
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
+import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,7 +32,9 @@ public class PostCodeTableFactory {
         tableModel.addHiddenColumn("Id", "id");
         tableModel.addSortableColumn("Post Code", "postCode").formattedAs("Region");
 
-        populate(tableModel, postCodes);
+        List<PostalCode> sorted = new ArrayList<PostalCode>(postCodes);
+        Collections.sort(sorted);
+        populate(tableModel, sorted);
 
         return tableModel;
     }

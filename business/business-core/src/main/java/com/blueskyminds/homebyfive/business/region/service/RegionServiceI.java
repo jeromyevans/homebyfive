@@ -29,10 +29,10 @@ public interface RegionServiceI<T extends Region> {
     /**
      * Update an existing Region
      * Propagates the change into the RegionGraph as well
-     * @param path
-     * @param country
+     * @param path         current path
+     * @param suburb
      */
-    T update(String path, T country) throws InvalidRegionException;
+    T update(String path, T suburb) throws InvalidRegionException;
 
     void delete(String id);
 

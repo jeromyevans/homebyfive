@@ -7,10 +7,7 @@ import com.blueskyminds.homebyfive.business.region.reference.RegionRefFactory;
 import com.blueskyminds.homebyfive.business.region.reference.RegionRefType;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,7 +30,9 @@ public class StateTableFactory {
         tableModel.addHiddenColumn("Id", "id");
         tableModel.addSortableColumn("Name", "name").formattedAs("Region");
 
-        populate(tableModel, states);
+        List<State> sorted = new ArrayList<State>(states);
+        Collections.sort(sorted);
+        populate(tableModel, sorted);
 
         return tableModel;
     }

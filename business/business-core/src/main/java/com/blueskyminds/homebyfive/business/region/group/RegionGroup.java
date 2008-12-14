@@ -5,6 +5,7 @@ import com.blueskyminds.homebyfive.business.region.reference.RegionRef;
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Collections;
 
 /**
  * An ordered group of region composites
@@ -46,5 +47,9 @@ public class RegionGroup {
 
     public RegionRef getParent() {
         return parent;
+    }
+
+    public void sort() {
+        Collections.sort(regions);
     }
 }

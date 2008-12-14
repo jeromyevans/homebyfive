@@ -40,7 +40,7 @@ public class Money implements Comparable {
 
     /** Create Money specified in the major units of the currency */
     public Money(String amount, Currency currency) {
-        init(new BigDecimal(amount), currency);
+        init(new BigDecimal(amount), currency);        
     }
 
     // ------------------------------------------------------------------------------------------------------

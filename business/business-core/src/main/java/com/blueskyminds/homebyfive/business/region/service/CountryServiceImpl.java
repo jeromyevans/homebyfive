@@ -5,8 +5,10 @@ import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.blueskyminds.homebyfive.business.region.CountryTableFactory;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
+import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.wideplay.warp.persist.Transactional;
 import com.google.inject.Inject;
 
@@ -35,6 +37,11 @@ public class CountryServiceImpl extends CommonRegionServices<Country> implements
     public RegionGroup list() {
         Set<Country> countries = regionDAO.list("/");
         return RegionGroupFactory.createCountries(countries);
+    }
+
+    public TableModel listCountriesAsTable() {
+        Set<Country> countries = regionDAO.list("/");
+        return CountryTableFactory.createTable(countries);
     }
 
     public RegionGroup list(String parentPath) {

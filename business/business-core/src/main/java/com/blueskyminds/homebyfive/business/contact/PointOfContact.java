@@ -83,7 +83,7 @@ public abstract class PointOfContact extends AbstractDomainObject implements Tag
     /** Determine if this PointOfContact has the specified role */
     public boolean hasRole(POCRole role) {
         boolean found = false;
-        for (POCRoleMap map : roleMaps) {
+        for (POCRoleMap map : roleMaps) {            
             if (map.getContactRole().equals(role)) {
                 found = true;
                 break;

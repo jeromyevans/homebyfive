@@ -10,7 +10,7 @@ import java.io.Reader;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.BaseException;
-import com.blueskyminds.homebyfive.business.tools.XMLSerializer;
+import com.blueskyminds.homebyfive.framework.core.tools.XMLSerializer;
 
 /**
  * Date Started: 24/10/2008

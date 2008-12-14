@@ -1,7 +1,7 @@
 package com.blueskyminds.homebyfive.web.struts2.actions.services.region;
 
-import com.blueskyminds.homebyfive.web.core.client.RESTfulClient;
-import com.blueskyminds.homebyfive.web.core.client.RemoteClientException;
+import com.blueskyminds.homebyfive.framework.core.net.RESTfulClient;
+import com.blueskyminds.homebyfive.framework.core.net.RemoteClientException;
 import com.blueskyminds.homebyfive.business.region.graph.*;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import org.apache.commons.logging.Log;
@@ -18,10 +18,10 @@ public class RegionClient extends RESTfulClient<Region> {
 
     private static final Log LOG = LogFactory.getLog(RegionClient.class);
 
-    private static final String COUNTRY_SERVICE = "/country";
-    private static final String STATE_SERVICE = "/state";
-    private static final String SUBURB_SERVICE = "/suburb";
-    private static final String POSTCODE_SERVICE = "/postcode";
+    private static final String COUNTRY_SERVICE = "/countries";
+    private static final String STATE_SERVICE = "/states";
+    private static final String SUBURB_SERVICE = "/suburbs";
+    private static final String POSTCODE_SERVICE = "/postcodes";
 
     /**
      * Persist a new region
