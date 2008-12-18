@@ -206,9 +206,9 @@ public class LevensteinDistanceTools {
                 }
             }
 
-            for (NamedDistance dist : distances) {
-                LOG.info(name+" cmp to  "+dist.getLiteralMatch()+" ("+dist.getNamed().getName() +") :"+dist.getDistance());
-            }
+//            for (NamedDistance dist : distances) {
+//                LOG.info(name+" cmp to  "+dist.getLiteralMatch()+" ("+dist.getNamed().getName() +") :"+dist.getDistance());
+//            }
 
             // compute the statistics of the distances
             BasicStats stats = AnalysisTools.computeStats(distances, new ComputeAdapter() {

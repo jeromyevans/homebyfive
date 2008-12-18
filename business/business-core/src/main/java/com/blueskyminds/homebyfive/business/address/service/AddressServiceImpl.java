@@ -341,7 +341,7 @@ public class AddressServiceImpl implements AddressService {
                 
                     LOG.info("Created new address: "+addressFound);
                 } else {
-                    LOG.info("Address rejected because it doesn't have a number");
+                    LOG.info("Address rejected because it doesn't have a number: "+address);
                 }
             } else {
                 LOG.info("Found existing address: "+addressFound);
