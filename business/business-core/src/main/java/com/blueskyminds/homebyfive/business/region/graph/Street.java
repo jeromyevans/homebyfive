@@ -60,7 +60,8 @@ public class Street extends Region {
         populateAttributes();
     }
     
-    protected Street() {
+    public Street() {
+        this.type = RegionTypes.Street;
     }
 
     /**
@@ -123,23 +124,17 @@ public class Street extends Region {
 
     /**
      * Gets the parent Suburb
-     * Deproxies the instance if necessary
      *
      * @return
      */
     @Transient
-    public Suburb getSuburb() {
-         Region parent = getParent(RegionTypes.Suburb);
-         if (parent != null) {
-            return (Suburb) parent.unproxy().getModel();
-         } else {
-             return null;
-         }
+    public Region getSuburb() {
+         return getParent(RegionTypes.Suburb);
     }
 
     public void populateAttributes() {
         this.key = KeyGenerator.generateId(name);
-        Suburb suburb = getSuburb();
+        Region suburb = getSuburb();
         if (suburb != null) {
             this.parentPath = suburb.getPath();
             this.path = PathHelper.joinPath(parentPath, key);

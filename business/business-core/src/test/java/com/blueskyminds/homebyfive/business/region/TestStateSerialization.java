@@ -3,7 +3,7 @@ package com.blueskyminds.homebyfive.business.region;
 import junit.framework.TestCase;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
-import com.blueskyminds.homebyfive.framework.core.tools.XMLSerializer;
+import com.blueskyminds.homebyfive.framework.core.tools.xml.XMLSerializer;
 
 /**
  * Date Started: 29/10/2008

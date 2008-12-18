@@ -1,6 +1,6 @@
 package com.blueskyminds.homebyfive.framework.core.net;
 
-import com.blueskyminds.homebyfive.framework.core.tools.XMLSerializer;
+import com.blueskyminds.homebyfive.framework.core.tools.xml.XMLSerializer;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpConnectionManager;

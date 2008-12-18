@@ -12,6 +12,11 @@ import javax.persistence.*;
 import org.apache.commons.lang.StringUtils;
 import org.jboss.envers.Versioned;
 
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * A RegionHandle for a Country
  *
@@ -28,7 +33,7 @@ public class Country extends Region {
     private String iso3CountryCode;
 
     /** The default currency code */
-    private String currencyCode;
+    private String currencyCode;   
 
     /**
      * Create a new CountryHandle pointing to the Country implementation
@@ -56,6 +61,7 @@ public class Country extends Region {
     }
 
     public Country() {
+        this.type = RegionTypes.Country;
     }
 
     /**
@@ -141,4 +147,6 @@ public class Country extends Region {
             regionIndex.populateDenormalizedAttributes();
         }
     }
+
+
 }

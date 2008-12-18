@@ -113,13 +113,37 @@ public class RegionCompositeFactory {
 
         regionComposite.add(RegionRefFactory.createRef(suburb));
         regionComposite.add(RegionRefFactory.createRef(suburb.getPostCode()));
-        State state = suburb.getState();
+        State state = unproxyState(suburb.getState());
         regionComposite.add(RegionRefFactory.createRef(state));
         if (state != null) {
-            regionComposite.add(RegionRefFactory.createRef(state.getCountry()));
+            regionComposite.add(RegionRefFactory.createRef(unproxyCountry(state.getCountry())));
         }
 
         return regionComposite;
+    }
+
+    private static State unproxyState(Region region) {
+        if (region != null) {
+            return (State) region.unproxy().getModel();
+        } else {
+            return null;
+        }
+    }
+
+    private static Country unproxyCountry(Region region) {
+        if (region != null) {
+            return (Country) region.unproxy().getModel();
+        } else {
+            return null;
+        }
+    }
+
+    private static Suburb unproxySuburb(Region region) {
+        if (region != null) {
+            return (Suburb) region.unproxy().getModel();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -132,12 +156,12 @@ public class RegionCompositeFactory {
         RegionComposite regionComposite = new RegionComposite();
 
         regionComposite.add(RegionRefFactory.createRef(street));
-        Suburb suburb = street.getSuburb();
+        Suburb suburb = unproxySuburb(street.getSuburb());
         regionComposite.add(RegionRefFactory.createRef(suburb));
-        State state = suburb.getState();
+        State state = unproxyState(suburb.getState());
         regionComposite.add(RegionRefFactory.createRef(state));
         if (state != null) {
-            regionComposite.add(RegionRefFactory.createRef(state.getCountry()));
+            regionComposite.add(RegionRefFactory.createRef(unproxyCountry(state.getCountry())));
         }
 
         return regionComposite;
@@ -187,10 +211,10 @@ public class RegionCompositeFactory {
         RegionComposite regionComposite = new RegionComposite();
 
         regionComposite.add(RegionRefFactory.createRef(postCode));
-        State stateHandle = postCode.getState();
+        State stateHandle = unproxyState(postCode.getState());
         if (stateHandle != null) {
             regionComposite.add(RegionRefFactory.createRef(stateHandle));
-            regionComposite.add(RegionRefFactory.createRef(stateHandle.getCountry()));
+            regionComposite.add(RegionRefFactory.createRef(unproxyCountry(stateHandle.getCountry())));
         }
 
         return regionComposite;

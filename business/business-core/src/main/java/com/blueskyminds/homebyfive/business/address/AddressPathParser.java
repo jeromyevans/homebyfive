@@ -19,13 +19,13 @@ public class AddressPathParser {
     private static final int SUBURB_PATH = 0;
     private static final int POSTCODE_PATH = 1;
 
-    public static final String COUNTRY = "country";
-    public static final String STATE = "state";
-    public static final String SUBURB = "suburb";
-    public static final String STREET = "street";
-    public static final String STREETNO = "streetNo";
-    public static final String UNITNO = "unitNo";
-    public static final String POSTCODE = "postCode";
+    public static final String COUNTRY = "countryKey";
+    public static final String STATE = "stateKey";
+    public static final String SUBURB = "suburbKey";
+    public static final String STREET = "streetKey";
+    public static final String STREETNO = "streetNoKey";
+    public static final String UNITNO = "unitNoKey";
+    public static final String POSTCODE = "postCodeKey";
 
     /**
      * Allowed sequences of the components in the path
@@ -40,7 +40,7 @@ public class AddressPathParser {
 
     private static final String[][] ACTIONS = {
             {"country", "state", "suburb", "street", "property", "property" },
-            {"country", "state", "postcode", "property"}
+            {"country", "state", "postCode", "property"}
     };
 
     /** Track information about each word in the path so they can be used to locate an action reference and

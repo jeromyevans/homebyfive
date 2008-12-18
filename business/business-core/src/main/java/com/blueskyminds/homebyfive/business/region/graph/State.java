@@ -14,6 +14,9 @@ import javax.persistence.*;
 
 import org.jboss.envers.Versioned;
 
+import java.util.List;
+import java.util.Arrays;
+
 /**
  * Date Started: 7/07/2007
  * <p/>
@@ -73,6 +76,7 @@ public class State extends Region {
     }
 
     public State() {
+        this.type = RegionTypes.State;
     }
 
     /**
@@ -98,19 +102,14 @@ public class State extends Region {
     }
 
     /**
-     * Gets the parent CountryHandle
-     * Deproxies the instance if necessary
+     * Gets the parent Country
+     * Note that it's likely that the instance cannot be typecast to a Country unless deproxied
      *
      * @return
      */
     @Transient
-    public Country getCountry() {
-        Region parent = getParent(RegionTypes.Country);
-        if (parent != null) {
-            return (Country) parent.unproxy().getModel();
-        } else {
-            return null;
-        }
+    public Region getCountry() {
+        return getParent(RegionTypes.Country);
     }
 
     /**
@@ -118,8 +117,7 @@ public class State extends Region {
      * @param country
      */
     public void setCountry(Country country) {
-        Country existing = getCountry();
-        boolean add = true;
+        Region existing = getCountry();
 
         if (existing == null) {
             addParentRegion(country);
@@ -144,7 +142,7 @@ public class State extends Region {
      */
     public void populateAttributes() {
         this.key = KeyGenerator.generateId(abbr);
-        Country country = getCountry();
+        Region country = getCountry();
         if (country != null) {
             this.parentPath = country.getPath();
         }
@@ -179,5 +177,5 @@ public class State extends Region {
             regionIndex.populateDenormalizedAttributes();
         }
     }
-
+   
 }

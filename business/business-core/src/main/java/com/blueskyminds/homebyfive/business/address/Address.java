@@ -108,7 +108,7 @@ public abstract class Address extends AbstractDomainObject {
      * @return
      */
     @Transient
-    public State getState() {
+    public Region getState() {
         if (hasSuburb()) {
             return suburb.getState();
         } else {
@@ -126,8 +126,8 @@ public abstract class Address extends AbstractDomainObject {
      * @return
      */
     @Transient
-    public Country getCountry() {
-        State state = getState();
+    public Region getCountry() {
+        Region state = getState();
         if (state != null) {
             return state.getCountry();
         } else {

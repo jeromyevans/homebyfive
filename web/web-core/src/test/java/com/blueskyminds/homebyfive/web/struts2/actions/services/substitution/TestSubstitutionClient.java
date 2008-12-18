@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.SubstitutionsFileReader;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 import com.blueskyminds.homebyfive.framework.core.tools.ResourceTools;
-import com.blueskyminds.homebyfive.framework.core.tools.XMLSerializer;
+import com.blueskyminds.homebyfive.framework.core.tools.xml.XMLSerializer;
 
 import java.util.List;
 

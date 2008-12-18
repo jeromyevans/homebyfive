@@ -264,7 +264,7 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
                 em.persist(state);
                 em.persist(suburb);
             } else {
-                throw new InvalidRegionException("Invalid parent region (state)", suburb);
+                throw new InvalidRegionException("Invalid parent region (state is null)", suburb);
             }
 
 //            suburb = addressService.createSuburb(suburb.getName(), suburb.getState());
@@ -273,26 +273,7 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
         }
         return suburb;
     }
-
-    /**
-     * Update an existing suburb
-     * Propagates the change into the RegionGraph as well
-     *
-     * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
-     */
-    @Transactional(exceptOn = {InvalidRegionException.class})
-    public Suburb update(String path, Suburb suburb) throws InvalidRegionException {
-        suburb.populateAttributes();
-        Suburb existing = regionDAO.lookup(path);
-        if (existing != null) {
-            existing.mergeWith(suburb);
-            em.persist(existing);
-            return existing;
-        } else {
-            throw new InvalidRegionException(suburb);
-        }
-    }
-
+  
 
     public Suburb lookup(String country, String state, String suburb) {
         return regionDAO.lookup(PathHelper.buildPath(country, state, suburb));

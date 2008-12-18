@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * <p/>
  * History:
  */
-@Entity
+//@Entity
 public class PartyContractMap {
 
     private Party party;

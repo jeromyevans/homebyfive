@@ -133,26 +133,6 @@ public class StreetServiceImpl extends CommonRegionServices<Street> implements S
         return street;
     }
 
-    /**
-     * Update an existing street
-     * Propagates the change into the RegionGraph as well
-     *
-     * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
-     */
-    @Transactional(exceptOn = {InvalidRegionException.class})
-    public Street update(String path, Street street) throws InvalidRegionException {
-        street.populateAttributes();
-        Street existing = regionDAO.lookup(path);
-        if (existing != null) {
-            existing.mergeWith(street);
-            em.persist(existing);
-            return existing;
-        } else {
-            throw new InvalidRegionException(street);
-        }
-    }
-
-
     public Street lookup(String country, String state, String suburb, String street) {
         return regionDAO.lookup(PathHelper.buildPath(country, state, suburb, street));
     }

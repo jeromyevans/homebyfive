@@ -74,27 +74,7 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
         }
         return postalCode;
     }
-
-    /**
-     * Update an existing postalcode
-     * Propagates the change into the RegionGraph as well
-     * <p/>
-     * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
-     */
-    @Transactional(exceptOn = {InvalidRegionException.class})
-    public PostalCode update(String path, PostalCode postalCode) throws InvalidRegionException {
-        postalCode.populateAttributes();
-        PostalCode existing = regionDAO.lookup(path);
-        if (existing != null) {
-            existing.mergeWith(postalCode);
-            em.persist(existing);
-            return existing;
-        } else {
-            throw new InvalidRegionException(postalCode);
-        }
-    }
-
-
+  
     public RegionGroup list(String parentPath) {
         Set<PostalCode> postCodes = regionDAO.list(parentPath);
         return RegionGroupFactory.createPostCodes(postCodes);

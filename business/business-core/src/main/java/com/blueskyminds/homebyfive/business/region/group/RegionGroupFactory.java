@@ -22,6 +22,32 @@ import java.util.List;
  */
 public class RegionGroupFactory {
 
+    public static RegionGroup create(Region region) {
+        RegionGroup result = null;
+
+        if (region != null) {
+            switch (region.getType()) {
+                case Country:
+                    result = createCountry((Country) region);
+                    break;
+                case PostCode:
+                    result = createPostCode((PostalCode) region);
+                    break;
+                case State:
+                    result = createState((State) region);
+                    break;
+                case Street:
+                    result = createStreet((Street) region);
+                    break;
+                case Suburb:
+                    result = createSuburb((Suburb) region);
+                    break;
+            }
+        }
+
+        return result;
+    }
+
     /**
      * Create a RegionGroup for a collection of countries.
      * */

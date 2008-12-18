@@ -406,6 +406,17 @@
     <option name="ACTIVE_ACTIONS" value="" />
   </component>
   <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://axe/svn/homebyfive/HEAD" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="myVersion" value="124" />
   </component>
   <component name="SvnConfiguration">
@@ -1217,6 +1228,7 @@
   </component>
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" />
+    <macro name="projectsHome" />
   </UsedPathMacros>
 </project>
 

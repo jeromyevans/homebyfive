@@ -94,32 +94,6 @@ public class CountryServiceImpl extends CommonRegionServices<Country> implements
         return country;
     }
 
-    /**
-     * Update an existing country
-     * Propagates the change into the RegionGraph as well
-     *
-     * NOTE: Does not rollback the transaction in the cases of an InvalidRegionException or DuplicateRegionException as
-     *  no writes occur
-     * @param path       existing path (may be changed))
-     * @param country
-     */
-    @Transactional(exceptOn = {InvalidRegionException.class})
-    public Country update(String path, Country country) throws InvalidRegionException {
-        country.populateAttributes();
-        if (country.isValid()) {
-            Country existing = regionDAO.lookup(path);
-            if (existing != null) {
-                existing.mergeWith(country);
-                em.persist(existing);
-                return existing;
-            } else {
-                throw new InvalidRegionException(country);
-            }
-        } else {
-            throw new InvalidRegionException(country);
-        }
-    }    
-
     @Inject
     public void setEm(EntityManager em) {
         this.em = em;

@@ -20,6 +20,7 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import javax.persistence.*;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
 import org.jboss.envers.Versioned;
 import org.hibernate.annotations.Cascade;
@@ -702,4 +703,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
         }
         return 0;
     }
+
+          
 }

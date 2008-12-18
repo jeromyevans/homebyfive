@@ -41,6 +41,34 @@ public abstract class CommonRegionServices<R extends Region> implements RegionSe
         return TagsTableFactory.create(path, tags);
     }
 
+    /**
+     * Update an existing region.
+     * IF the region is persistent, its simply updated
+     * If the region is non-persistent, the existing region is looked up and the changed merged into the existing entity
+     *
+     * Propagates the change into the RegionGraph as well
+     * <p/>
+     * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
+     */
+    @Transactional(exceptOn = {InvalidRegionException.class})
+    public R update(String path, R region) throws InvalidRegionException {
+        region.populateAttributes();
+
+        if (region.isIdSet()) {
+            // path not changed, simply persist
+            em.persist(region);
+        } else {
+            R existing = regionDAO.lookup(path);
+            if (existing != null) {
+                existing.mergeWith(region);
+                em.persist(existing);
+            } else {
+                throw new InvalidRegionException(region);
+            }
+        }
+        return region;
+    }
+
     @Transactional(exceptOn = {InvalidRegionException.class, InvalidTagException.class})
     public void assignTag(String path, String tagName) throws InvalidRegionException, InvalidTagException {
         R region = lookup(path);

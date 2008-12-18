@@ -11,6 +11,9 @@ import javax.persistence.*;
 
 import org.jboss.envers.Versioned;
 
+import java.util.List;
+import java.util.Arrays;
+
 /**
  * RegionHandle for a postcode
  *
@@ -57,13 +60,8 @@ public class PostalCode extends Region {
      * @return
      */
     @Transient
-    public State getState() {
-        Region parent = getParent(RegionTypes.State);
-        if (parent != null) {
-            return (State) parent.unproxy().getModel();
-        } else {
-            return null;
-        }
+    public Region getState() {
+        return getParent(RegionTypes.State);
     }
 
     /**
@@ -71,7 +69,7 @@ public class PostalCode extends Region {
      * @param state
      */
     public void setState(State state) {
-        State existing = getState();
+        Region existing = getState();
 
         if (existing == null) {
             addParentRegion(state);
@@ -89,7 +87,7 @@ public class PostalCode extends Region {
      */
     public void populateAttributes() {
         this.key = KeyGenerator.generateId(name);
-        State state = getState();
+        Region state = getState();
         if (state != null) {
             this.parentPath = state.getPath();
         }
@@ -109,4 +107,5 @@ public class PostalCode extends Region {
             regionIndex.populateDenormalizedAttributes();
         }
     }
+
 }

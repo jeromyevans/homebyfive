@@ -1,11 +1,17 @@
-package com.blueskyminds.homebyfive.framework.core.tools;
+package com.blueskyminds.homebyfive.framework.core.tools.xml;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.mapper.Mapper;
 
 import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.Writer;
+
+import org.hibernate.collection.PersistentList;
+import org.hibernate.collection.PersistentBag;
+import org.hibernate.collection.PersistentMap;
+import org.hibernate.collection.PersistentSet;
 
 /**
  * Setup XStream for serialization of entities
@@ -23,9 +29,14 @@ public class XMLSerializer<T> {
         if (this.xStream == null) {
             this.xStream = new XStream();
             xStream.autodetectAnnotations(true);
-            //this.xStream.p
-//        xStream.setMode(XStream.NO_REFERENCES);
-//        xStream.addImplicitCollection(Addresses.class, "list");
+
+            xStream.addDefaultImplementation(PersistentList.class, java.util.List.class);
+            xStream.addDefaultImplementation(PersistentBag.class, java.util.List.class);
+            xStream.addDefaultImplementation(PersistentSet.class, java.util.Set.class);
+            xStream.addDefaultImplementation(PersistentMap.class, java.util.Map.class);
+            Mapper mapper = xStream.getMapper();
+            xStream.registerConverter(new HibernateCollectionConverter(mapper));
+            xStream.registerConverter(new HibernateMapConverter(mapper));
         }
         return xStream;
     }

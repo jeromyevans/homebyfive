@@ -64,6 +64,7 @@ public class Suburb extends Region {
     }
     
     public Suburb() {
+        this.type = RegionTypes.Suburb;
     }
 
     
@@ -86,13 +87,8 @@ public class Suburb extends Region {
      * @return
      */
     @Transient
-    public State getState() {
-        Region parent = getParent(RegionTypes.State);
-        if (parent != null) {
-            return (State) parent.unproxy().getModel();
-        } else {
-            return null;
-        }
+    public Region getState() {
+        return getParent(RegionTypes.State);
     }
 
     /**
@@ -100,7 +96,7 @@ public class Suburb extends Region {
      * @param state
      */
     public void setState(State state) {
-        State existing = getState();
+        Region existing = getState();
 
         if (existing == null) {
             addParentRegion(state);
@@ -120,13 +116,8 @@ public class Suburb extends Region {
      * @return
      */
     @Transient
-    public PostalCode getPostCode() {
-         Region parent = getParent(RegionTypes.PostCode);
-         if (parent != null) {
-            return (PostalCode) parent.unproxy().getModel();
-         } else {
-             return null;
-         }
+    public Region getPostCode() {
+         return getParent(RegionTypes.PostCode);
     }
 
     private static Suburb invalid() {
@@ -156,12 +147,12 @@ public class Suburb extends Region {
      */
     public void populateAttributes() {
         this.key = KeyGenerator.generateId(name);
-        State state = getState();
+        Region state = getState();
         if (state != null) {
             this.parentPath = state.getPath();
         }
         this.path = PathHelper.joinPath(parentPath, key);
-        PostalCode postalCode = getPostCode();
+        Region postalCode = getPostCode();
         if (postalCode != null) {
             this.postalCodePath = postalCode.getPath();
         }

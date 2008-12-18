@@ -104,27 +104,7 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
             throw new DuplicateRegionException(state);
         }
         return state;
-    }
-
-    /**
-     * Update an existing state
-     * Propagates the change into the RegionGraph as well
-     * <p/>
-     * NOTE: Does not rollback the transaction in the case of a DuplicateRegionException as no write occurs
-     */
-    @Transactional(exceptOn = {InvalidRegionException.class})
-    public State update(String path, State state) throws InvalidRegionException {
-        state.populateAttributes();
-
-        State existing = regionDAO.lookup(path);
-        if (existing != null) {
-            existing.mergeWith(state);
-            em.persist(existing);
-        } else {
-            throw new InvalidRegionException(state);
-        }
-        return state;
-    }
+    }  
 
     public State lookup(String country, String state) {
         return lookup(PathHelper.buildPath(country, state));
