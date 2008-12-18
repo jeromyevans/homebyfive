@@ -138,7 +138,7 @@ public class MultifieldAddress {
 
         if (suburb != null) {
 
-            postCode = suburb.getPostCode();
+            postCode = suburb.getPostalCode();
             
             Street street = new Street(streetName, streetType, streetSection);
 

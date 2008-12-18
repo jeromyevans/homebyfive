@@ -5,7 +5,6 @@ import com.blueskyminds.homebyfive.business.region.index.RegionIndex;
 import com.blueskyminds.homebyfive.business.region.index.*;
 import com.blueskyminds.homebyfive.business.region.composite.RegionCompositeFactory;
 import com.blueskyminds.homebyfive.business.region.reference.RegionRefFactory;
-import com.blueskyminds.homebyfive.business.region.RegionTypes;
 //import com.blueskyminds.landmine.core.property.Premise;
 
 import java.util.Collection;
@@ -112,7 +111,7 @@ public class RegionGroupFactory {
      * Each suburb is represented as a composite
      * */
     public static RegionGroup createSuburbs(Collection<Suburb> suburbs) {
-        Region state = firstParent(suburbs, RegionTypes.State);
+        Region state = firstParent(suburbs);
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(state));
         for (Suburb suburb : suburbs) {
@@ -126,7 +125,7 @@ public class RegionGroupFactory {
      * Each street is represented as a composite
      * */
     public static RegionGroup createStreets(Collection<Street> streets) {
-        Region suburb = firstParent(streets, RegionTypes.Suburb);
+        Region suburb = firstParent(streets);
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(suburb));
         for (Street street : streets) {
@@ -171,7 +170,7 @@ public class RegionGroupFactory {
      * Each state is represented as a composite
      * */
     public static RegionGroup createStates(Collection<State> states) {
-        Region country = firstParent(states, RegionTypes.Country);
+        Region country = firstParent(states);
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(country));
         for (State state : states) {
@@ -197,16 +196,16 @@ public class RegionGroupFactory {
         return parent;
     }
 
-    private static Region firstParent(Collection<? extends Region> regions, RegionTypes type) {
+    private static Region firstParent(Collection<? extends Region> regions) {
         Region parent = null;
         if ((regions != null) && (regions.size() > 0)) {
-            parent = regions.iterator().next().getParent(type);
+            parent = regions.iterator().next().getParent();
         }
         return parent;
     }
 
     public static RegionGroup createPostCodes(Collection<PostalCode> postCodes) {
-        Region state = firstParent(postCodes, RegionTypes.PostCode);
+        Region state = firstParent(postCodes);
 
         RegionGroup regionGroup = new RegionGroup(RegionRefFactory.createRef(state));
         for (PostalCode postCodeBean : postCodes) {

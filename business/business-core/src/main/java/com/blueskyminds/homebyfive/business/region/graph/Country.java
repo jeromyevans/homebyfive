@@ -29,12 +29,6 @@ import java.util.List;
 @Versioned
 public class Country extends Region {    
 
-    /** The ISO-3166-1 Alpha 3-digit code */
-    private String iso3CountryCode;
-
-    /** The default currency code */
-    private String currencyCode;   
-
     /**
      * Create a new CountryHandle pointing to the Country implementation
      *
@@ -64,6 +58,15 @@ public class Country extends Region {
         this.type = RegionTypes.Country;
     }
 
+    @Override
+    @Transient
+    public Region getParent() {
+        return null;
+    }
+
+    public void setParent(Region region) {
+    }
+
     /**
      * Add the specified state to this country
      *
@@ -88,26 +91,6 @@ public class Country extends Region {
         setAbbr(iso2CountryCode);
     }
 
-    @Basic
-    @Column(name="ISO3DigitCountryCode")
-    public String getIso3CountryCode() {
-        return iso3CountryCode;
-    }
-
-    public void setIso3CountryCode(String iso3CountryCode) {
-        this.iso3CountryCode = iso3CountryCode;
-    }
-
-    @Basic
-    @Column(name="CurrencyCode")
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
-    }
-
     /**
      * Populates the generated/read-only properties
      */
@@ -119,14 +102,6 @@ public class Country extends Region {
 
     public void mergeWith(Region anotherRegion) {
         super.mergeWith(anotherRegion);
-
-        Country otherCountry = (Country) anotherRegion;
-        if (otherCountry.iso3CountryCode != null) {
-            this.iso3CountryCode = otherCountry.getIso3CountryCode();
-        }
-        if (otherCountry.currencyCode != null) {
-            this.currencyCode= otherCountry.getCurrencyCode();
-        }
     }
 
     @Transient

@@ -104,8 +104,7 @@
         <query>
           select suburb from Suburb suburb
             left join fetch suburb.regionIndex
-            left join suburb.parentRegionMaps map
-            where map.parent.path = :postCode and
+            where suburb.postalCodePath = :postCode and
                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
 

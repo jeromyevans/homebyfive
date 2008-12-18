@@ -60,7 +60,7 @@ public class RegionCompositeFactory {
             regionComposite.add(RegionRefFactory.createRef(postCode));
         } else {
             if (suburb != null) {
-                regionComposite.add(RegionRefFactory.createRef(suburb.getPostCode()));
+                regionComposite.add(RegionRefFactory.createRef(suburb.getPostalCode()));
             }
         }
         regionComposite.add(RegionRefFactory.createRef(address.getState()));
@@ -112,7 +112,7 @@ public class RegionCompositeFactory {
         RegionComposite regionComposite = new RegionComposite();
 
         regionComposite.add(RegionRefFactory.createRef(suburb));
-        regionComposite.add(RegionRefFactory.createRef(suburb.getPostCode()));
+        regionComposite.add(RegionRefFactory.createRef(suburb.getPostalCode()));
         State state = unproxyState(suburb.getState());
         regionComposite.add(RegionRefFactory.createRef(state));
         if (state != null) {

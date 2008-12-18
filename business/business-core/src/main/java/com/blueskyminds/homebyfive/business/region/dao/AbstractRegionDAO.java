@@ -2,6 +2,7 @@ package com.blueskyminds.homebyfive.business.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.homebyfive.business.tag.Tag;
+import com.blueskyminds.homebyfive.business.region.graph.Region;
 
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
@@ -24,6 +25,7 @@ public abstract class AbstractRegionDAO<T> extends AbstractDAO<T> {
     private static final String DELETE_BY_PATH = "region.deleteByPath";
     private static final String PARAM_TAG_NAME = "tagName";
     private static final String QUERY_BY_TAG = "region.byTag";
+    private static final String QUERY_LIST_BY_PARENT = "regions.byParent";
 
     public AbstractRegionDAO(EntityManager em, Class<T> defaultClass) {
         super(em, defaultClass);

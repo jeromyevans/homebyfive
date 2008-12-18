@@ -26,6 +26,8 @@ import java.util.Arrays;
 @Versioned
 public class PostalCode extends Region {
 
+    private State state;
+
     public PostalCode(String name) {
         super(name, RegionTypes.PostCode);
         populateAttributes();
@@ -33,14 +35,14 @@ public class PostalCode extends Region {
 
     public PostalCode(State state, String name) {
         super(name, RegionTypes.PostCode);
-        addParentRegion(state);
+        setState(state);
         populateAttributes();
     }
 
     /** Used to edit a new postalcode */
     public PostalCode(State state) {
         super("", RegionTypes.PostCode);
-        addParentRegion(state);
+        setState(state);
         populateAttributes();
     }
 
@@ -52,16 +54,26 @@ public class PostalCode extends Region {
 
     public PostalCode() {
     }
-    
+
+    @Override
+    @Transient
+    public State getParent() {
+        return state;
+    }
+
+    public void setParent(Region region) {
+        this.state = (State) region;
+    }
+
     /**
      * Gets the parent StateHandle
-     * Deproxies the instance if necessary
      *
      * @return
      */
-    @Transient
-    public Region getState() {
-        return getParent(RegionTypes.State);
+    @ManyToOne
+    @JoinColumn(name="PostalCodeStateId")
+    public State getState() {
+        return state;
     }
 
     /**
@@ -69,16 +81,11 @@ public class PostalCode extends Region {
      * @param state
      */
     public void setState(State state) {
-        Region existing = getState();
-
-        if (existing == null) {
-            addParentRegion(state);
+        this.state = state;
+        if (state != null) {
+            this.parentPath = state.getPath();
         } else {
-            if (existing != state) {
-                // remove old, add new
-                removeParentRegion(existing);
-                addParentRegion(state);
-            }
+            this.parentPath = null;
         }
     }
 
@@ -87,7 +94,7 @@ public class PostalCode extends Region {
      */
     public void populateAttributes() {
         this.key = KeyGenerator.generateId(name);
-        Region state = getState();
+        State state = getState();
         if (state != null) {
             this.parentPath = state.getPath();
         }

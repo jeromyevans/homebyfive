@@ -48,7 +48,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     protected String abbr;
     protected RegionTypes type;
     private Set<RegionAlias> aliases;
-    @XStreamOmitField private Set<RegionHierarchy> parentRegionMaps;
     @XStreamOmitField private Set<RegionHierarchy> childRegionMaps;
     @XStreamOmitField protected RegionIndex regionIndex;
     private DomainObjectStatus status;
@@ -83,7 +82,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
 
     private void init() {
         aliases = new HashSet<RegionAlias>();
-        parentRegionMaps = new HashSet<RegionHierarchy>();
         childRegionMaps = new HashSet<RegionHierarchy>();
         status = DomainObjectStatus.Valid;
         tagMaps = new HashSet<RegionTagMap>();
@@ -218,32 +216,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
         }
     }
 
-    /** Get the region referenced by this handle */
-//    @Transient
-//    public final Region getRegion() {
-//        Region region = getRegionTarget();
-//        if (region != null) {
-//            injectRegionHandle(region);
-//        }
-//        return region;
-//    }
-//    protected abstract Region getRegionTarget();
-    
-    /**
-     * Get the parent regions.
-     * A Region is a parent of this region if a Map exists where this is the Child
-     * Parent mappings do not cascade.  Child mappings do cascade persist.
-     * @return
-     */
-    @OneToMany(mappedBy = "child", fetch = FetchType.LAZY)
-    public Set<RegionHierarchy> getParentRegionMaps() {
-        return parentRegionMaps;
-    }
-
-    public void setParentRegionMaps(Set<RegionHierarchy> parentRegions) {
-        this.parentRegionMaps = parentRegions;
-    }
-
     /**
      * Get the children regions.
      * A Region is a child of this region if a Map exists where this is the Parent
@@ -279,7 +251,12 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     public void setStatus(DomainObjectStatus status) {
         this.status = status;
     }
-    
+
+    @Transient
+    public abstract Region getParent();
+
+    public abstract void setParent(Region region);
+
     /**
      * Add a subregion to this region
      *
@@ -298,9 +275,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
             RegionHierarchy map = new RegionHierarchy(this, childHandle);
 
             added = doAddChildMap(map);
-            if (added) {
-                childHandle.doAddParentMap(map);
-            }
         }
         return added;
     }
@@ -332,94 +306,12 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
             removed = childRegionMaps.remove(childEntryToRemove);
         }
 
-        for (RegionHierarchy map : childHandle.getParentRegionMaps()) {
-            if (map.getParent().equals(this)) {
-                parentEntryToRemove = map;
-                break;
-            }
-        }
-
-        if (parentEntryToRemove != null) {
-            childHandle.getParentRegionMaps().remove(parentEntryToRemove);
-        }
-
         return removed;
-    }
-
-    /**
-     * Remove a parent from this region
-     *
-     * The parent's RegionHierarchy entry to this child is removed from this and the parent reference is removed from is
-     *
-     * After an update like this both the parent and child need to be persisted
-     *
-     * @param parentHandle
-     * @return true if found and removed ok
-     */
-    public boolean removeParentRegion(Region parentHandle) {
-
-        boolean removed = false;
-        RegionHierarchy childEntryToRemove = null;
-        RegionHierarchy parentEntryToRemove = null;
-
-        for (RegionHierarchy map : parentRegionMaps) {
-            if (map.getParent().equals(parentHandle)) {
-                parentEntryToRemove = map;
-                break;
-            }
-        }
-
-        if (parentEntryToRemove != null) {
-            removed = parentRegionMaps.remove(parentEntryToRemove);
-        }
-
-        for (RegionHierarchy map : parentHandle.getChildRegionMaps()) {
-            if (map.getChild().equals(this)) {
-                childEntryToRemove = map;
-                break;
-            }
-        }
-
-        if (childEntryToRemove!= null) {
-            parentHandle.getChildRegionMaps().remove(childEntryToRemove);
-        }
-
-        return removed;
-    }
-
-    private boolean doAddParentMap(RegionHierarchy map) {
-        return parentRegionMaps.add(map);
     }
 
     private boolean doAddChildMap(RegionHierarchy map) {
         return childRegionMaps.add(map);
     }
-
-    /**
-     * Add the other region as a parent of this region.
-     *
-     * A RegionHierarchy is created with THIS as the CHILD and the other as the PARENT
-     * The same map instance is added to this list of parents and the other list of children.
-     *
-     * After an update like this both the parent and child need to be persisted
-     *
-     * @param parentHandle
-     * @return true if added ok
-     */
-    public boolean addParentRegion(Region parentHandle) {
-
-        boolean added = false;
-
-        if (parentHandle != null) {
-            RegionHierarchy map = new RegionHierarchy(parentHandle, this);
-
-            added = doAddParentMap(map);
-            if (added) {
-                parentHandle.doAddChildMap(map);
-            }
-        }
-        return added;                
-    }    
 
     /**
      * The toString method has been overridden to show the short className, id and hashcode
@@ -446,36 +338,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     }
 
     /**
-     * Determine if this region has the specified parent.
-     *
-     * @param regionHandle
-     * @return true if this does
-     */
-    public boolean hasParent(Region regionHandle) {
-        for (RegionHierarchy map : parentRegionMaps) {
-            if (map.getParent().equals(regionHandle)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Get the parent instance of the specified type
-     *
-     * @param type
-     * @return
-     */
-     public Region getParent(RegionTypes type) {
-        for (RegionHierarchy map : parentRegionMaps) {
-            if (type.equals(map.getParent().getType())) {
-                return map.getParent();
-            }
-        }
-        return null;
-    }
-
-    /**
      * Get the children of the specified type
      *
      * @param type
@@ -494,7 +356,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
      /**
      * Permanently merge this region with another one
      *
-     * This region inherits the parents of the source
+     * This region inherits the parent of the source
      * This region inherits the children of the source
      * This region inherits the aliases of the source
      *
@@ -509,7 +371,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
      * @return
      */
     public void mergeWith(Region anotherRegion) {
-         Set<RegionHierarchy> otherParents = anotherRegion.getParentRegionMaps();
+         Region otherParent = anotherRegion.getParent();
          Set<Region> parentsToAdd = new HashSet<Region>();
          Set<Region> childrenToAdd = new HashSet<Region>();
          Set<String> aliasesToAdd = new HashSet<String>();
@@ -521,11 +383,9 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
          this.key = anotherRegion.getKey();
 
          // determine which parents need to be added
-         for (RegionHierarchy regionHierarchy : otherParents) {
-             if (!hasParent(regionHierarchy.getParent())) {
-                 parentsToAdd.add(regionHierarchy.getParent());
-             }
-             parentsToUpdate.add(regionHierarchy.getParent());
+         if (!otherParent.hasChild(this)) {
+             otherParent.addChildRegion(this);
+             setParent(otherParent);
          }
 
          // determine which children need to be added
@@ -544,11 +404,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
              }
          }
 
-         // apply the changes to this regionHandle
-         for (Region parentRegion : parentsToAdd) {
-             addParentRegion(parentRegion);
-         }
-
          for (Region childRegion : childrenToAdd) {
              addChildRegion(childRegion);
          }
@@ -560,11 +415,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
          // remove the other region from its parents
          for (Region parent: parentsToUpdate) {
              parent.removeChildRegion(anotherRegion);
-         }
-
-         // remove the other region's children
-         for (Region child : childrenToUpdate) {
-             child.removeParentRegion(anotherRegion);
          }
 
          mergeTags(((Region) anotherRegion).tagMaps);
@@ -657,15 +507,6 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
         populateAttributes();
     }
 
-    @Transient
-    public Set<Region> getParents() {
-        return new HashSet<Region>(FilterTools.getTransformed(parentRegionMaps, new Transformer<RegionHierarchy,  Region>() {
-            public Region transform(RegionHierarchy fromObject) {
-                return fromObject.getParent();
-            }
-        }));
-    }
-
      /**
      * Gets the set of regions that are ancestors for the current region
      *
@@ -685,11 +526,10 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
 
     /** Recursive method to visit all the ancestors of a region once */
     private void visitAncestors(Set<Region> ancestors) {
-        for (Region parent : getParents()) {
-            if (!ancestors.contains(parent)) {
-                ancestors.add(parent);
-                parent.visitAncestors(ancestors);
-            }
+        Region parent = getParent();
+        if (!ancestors.contains(parent)) {
+            ancestors.add(parent);
+            parent.visitAncestors(ancestors);
         }
     }
 

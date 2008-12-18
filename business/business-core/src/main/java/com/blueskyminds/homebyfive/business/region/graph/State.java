@@ -30,6 +30,7 @@ public class State extends Region {
     /** A special case StateHandle instance used to identify an invalid State rather than a null value */
     public static final State INVALID = invalid();
 
+    private Country country;
     private StateType stateType;
     
     public State(String name, String abbreviation) {
@@ -45,7 +46,7 @@ public class State extends Region {
         this.abbr = abbreviation;
         this.stateType = StateType.State;
         addAlias(abbreviation);
-        this.addParentRegion(country);                
+        setCountry(country);
         populateAttributes();
     }
 
@@ -54,7 +55,7 @@ public class State extends Region {
         this.abbr = abbreviation;
         this.stateType = stateType;
         addAlias(abbreviation);
-        this.addParentRegion(country);
+        this.parentPath = country.getPath();
         populateAttributes();
     }
 
@@ -70,13 +71,23 @@ public class State extends Region {
     /** Used for editing a new state */
     public State(Country country) {
         super("", RegionTypes.State);
-        this.addParentRegion(country);
+        this.parentPath = country.getPath();
         this.stateType = StateType.State;
         populateAttributes();
     }
 
     public State() {
         this.type = RegionTypes.State;
+    }
+
+    @Override
+    @Transient
+    public Region getParent() {
+        return country;
+    }
+
+    public void setParent(Region region) {
+        this.country = (Country) region;
     }
 
     /**
@@ -102,14 +113,14 @@ public class State extends Region {
     }
 
     /**
-     * Gets the parent Country
-     * Note that it's likely that the instance cannot be typecast to a Country unless deproxied
+     * Gets the parent Country     
      *
      * @return
      */
-    @Transient
-    public Region getCountry() {
-        return getParent(RegionTypes.Country);
+    @ManyToOne
+    @JoinColumn(name="CountryId")
+    public Country getCountry() {
+        return country;
     }
 
     /**
@@ -117,17 +128,12 @@ public class State extends Region {
      * @param country
      */
     public void setCountry(Country country) {
-        Region existing = getCountry();
-
-        if (existing == null) {
-            addParentRegion(country);
+        this.country = country;
+        if (country != null) {
+            this.parentPath = country.getPath();
         } else {
-            if (existing != country) {
-                // remove old, add new
-                removeParentRegion(existing);
-                addParentRegion(country);
-            }
-        }                
+            parentPath = null;
+        }
     }
 
      private static State invalid() {
@@ -142,7 +148,7 @@ public class State extends Region {
      */
     public void populateAttributes() {
         this.key = KeyGenerator.generateId(abbr);
-        Region country = getCountry();
+        Country country = getCountry();
         if (country != null) {
             this.parentPath = country.getPath();
         }

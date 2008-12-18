@@ -148,7 +148,7 @@ public class StreetAddress extends Address {
             if (stateHandle != null) {
                 buffer.append(stateHandle.toString()+" ");
             }
-            PostalCode postCode = getSuburb().getPostCode();
+            PostalCode postCode = getSuburb().getPostalCode();
             if (postCode != null) {
                 buffer.append(postCode.toString()+" ");
             }

@@ -62,7 +62,7 @@ public class RegionFactory {
 
     public Suburb createSuburb(String name, State state, PostalCode postCode) {
         Suburb suburbHandle = createSuburb(name, state);
-        suburbHandle.addParentRegion(postCode);
+        suburbHandle.setPostalCode(postCode);
         SuburbBean suburbBean = new SuburbBean(suburbHandle);
         suburbHandle.setRegionIndex(suburbBean);
         return suburbHandle;
@@ -70,7 +70,7 @@ public class RegionFactory {
 
     public Street createStreet(String name, StreetType streetType, StreetSection section, Suburb suburb) {
         Street streetHandle = new Street(name, streetType, section);
-        streetHandle.addParentRegion(suburb);
+        streetHandle.setSuburb(suburb);
         StreetBean streetBean = new StreetBean(streetHandle);
         streetHandle.setRegionIndex(streetBean);
         return streetHandle;

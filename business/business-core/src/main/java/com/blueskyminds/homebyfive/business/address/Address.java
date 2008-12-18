@@ -108,7 +108,7 @@ public abstract class Address extends AbstractDomainObject {
      * @return
      */
     @Transient
-    public Region getState() {
+    public State getState() {
         if (hasSuburb()) {
             return suburb.getState();
         } else {
@@ -126,8 +126,8 @@ public abstract class Address extends AbstractDomainObject {
      * @return
      */
     @Transient
-    public Region getCountry() {
-        Region state = getState();
+    public Country getCountry() {
+        State state = getState();
         if (state != null) {
             return state.getCountry();
         } else {
@@ -180,7 +180,7 @@ public abstract class Address extends AbstractDomainObject {
             }
 
             if (includePostCode) {
-                PostalCode postCode = getSuburb().getPostCode();
+                PostalCode postCode = getSuburb().getPostalCode();
                 if (postCode != null) {
                     buffer.append(postCode.getName()+" ");
                 }

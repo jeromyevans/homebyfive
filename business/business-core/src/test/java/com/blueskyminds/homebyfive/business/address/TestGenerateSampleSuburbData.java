@@ -76,10 +76,12 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
         Locale[] locales = Locale.getAvailableLocales();
         for (Locale locale : locales) {
             try {
-                Country country = new Country(locale.getDisplayCountry(), locale.getCountry(), locale.getISO3Country());
-                Country thisCountry = countryService.create(country);
-                LOG.debug("Created country: "+thisCountry.getName());
-                countries++;
+                if (StringUtils.isNotBlank(locale.getDisplayCountry())) {
+                    Country country = new Country(locale.getDisplayCountry(), locale.getCountry(), locale.getISO3Country());
+                    Country thisCountry = countryService.create(country);
+                    LOG.debug("Created country: "+thisCountry.getName());
+                    countries++;
+                }
             } catch (IllegalArgumentException e) {
                 // thrown then not all of the fields are available for the locale
             } catch (InvalidRegionException e) {
@@ -157,8 +159,9 @@ public class TestGenerateSampleSuburbData extends JPATestCase {
                     postCodeCount++;
                 }
 
-                Suburb suburb = suburbs.get(thisState.getName());
+                Suburb suburb = suburbs.get(thisSuburb.getName());
                 if (suburb == null) {
+                    LOG.info("***"+thisSuburb.getName());
                     suburb = suburbService.create(new Suburb(state, thisSuburb.getName()));
                     suburbs.put(thisSuburb.getName(), suburb);
                     suburbCount++;

@@ -29,6 +29,9 @@ public class Suburb extends Region {
     /** A special case SuburbHandle instance used to identify an invalid Suburb rather than a null value */
     public static final Suburb INVALID = invalid();
 
+    private State state;
+    private PostalCode postalCode;
+
     private String postalCodePath;
 
     public Suburb(String name) {
@@ -38,14 +41,14 @@ public class Suburb extends Region {
 
     public Suburb(State state, PostalCode postCode, String name) {
         super(name, RegionTypes.Suburb);
-        addParentRegion(state);
-        addParentRegion(postCode);
+        setState(state);
+        setPostalCode(postCode);
         populateAttributes();
     }
 
     public Suburb(State state, String name) {
         super(name, RegionTypes.Suburb);
-        addParentRegion(state);
+        setState(state);
         populateAttributes();
     }
 
@@ -59,7 +62,7 @@ public class Suburb extends Region {
     /*Use for editing a new suburb */
     public Suburb(State state) {
         super("", RegionTypes.Suburb);
-        addParentRegion(state);
+        setState(state);
         populateAttributes();
     }
     
@@ -67,7 +70,17 @@ public class Suburb extends Region {
         this.type = RegionTypes.Suburb;
     }
 
-    
+    @Override
+    @Transient
+    public Region getParent() {
+        return state;
+    }
+
+    public void setParent(Region region) {
+        this.state = (State) region;
+    }
+
+
     /**
      * Associate the specified street with this suburb
      */
@@ -86,9 +99,10 @@ public class Suburb extends Region {
      *
      * @return
      */
-    @Transient
-    public Region getState() {
-        return getParent(RegionTypes.State);
+    @ManyToOne
+    @JoinColumn(name="StateId")
+    public State getState() {
+        return state;
     }
 
     /**
@@ -96,28 +110,32 @@ public class Suburb extends Region {
      * @param state
      */
     public void setState(State state) {
-        Region existing = getState();
-
-        if (existing == null) {
-            addParentRegion(state);
+        this.state = state;
+        if (state != null) {
+            this.parentPath = state.getPath();
         } else {
-            if (existing != state) {
-                // remove old, add new
-                removeParentRegion(existing);
-                addParentRegion(state);
-            }
+            this.parentPath = null;
         }
     }
 
      /**
      * Gets the parent PostCodeHandle
-     * Deproxies the instance if necessary
      *
      * @return
      */
-    @Transient
-    public Region getPostCode() {
-         return getParent(RegionTypes.PostCode);
+    @ManyToOne
+    @JoinColumn(name="PostCodeId")
+    public PostalCode getPostalCode() {
+         return postalCode;
+    }
+
+    public void setPostalCode(PostalCode postalCode) {
+        this.postalCode = postalCode;
+        if (postalCode != null) {
+            this.postalCodePath = postalCode.getPath();
+        } else {
+            this.postalCodePath = null;
+        }
     }
 
     private static Suburb invalid() {
@@ -147,12 +165,12 @@ public class Suburb extends Region {
      */
     public void populateAttributes() {
         this.key = KeyGenerator.generateId(name);
-        Region state = getState();
+        State state = getState();
         if (state != null) {
             this.parentPath = state.getPath();
         }
         this.path = PathHelper.joinPath(parentPath, key);
-        Region postalCode = getPostCode();
+        PostalCode postalCode = getPostalCode();
         if (postalCode != null) {
             this.postalCodePath = postalCode.getPath();
         }

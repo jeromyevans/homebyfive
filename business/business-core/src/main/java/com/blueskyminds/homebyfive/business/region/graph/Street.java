@@ -26,6 +26,8 @@ import org.jboss.envers.Versioned;
 @Versioned
 public class Street extends Region {
 
+    private Suburb suburb;
+
     private StreetType streetType;
     private StreetSection section;
 
@@ -56,12 +58,22 @@ public class Street extends Region {
    
     public Street(Suburb suburb) {
         super("", RegionTypes.Street);
-        addParentRegion(suburb);
+        setSuburb(suburb);
         populateAttributes();
     }
     
     public Street() {
         this.type = RegionTypes.Street;
+    }
+
+    @Override
+    @Transient
+    public Region getParent() {
+        return suburb;
+    }
+
+    public void setParent(Region region) {
+        this.suburb = (Suburb) region;
     }
 
     /**
@@ -127,9 +139,23 @@ public class Street extends Region {
      *
      * @return
      */
-    @Transient
-    public Region getSuburb() {
-         return getParent(RegionTypes.Suburb);
+    @ManyToOne
+    @JoinColumn(name="StreetSuburbId")
+    public Suburb getSuburb() {
+         return suburb;
+    }
+
+    /**
+     * Set the parent suburb for this street.
+     * @param suburb
+     */
+    public void setSuburb(Suburb suburb) {
+        this.suburb = suburb;
+        if (suburb != null) {
+            this.parentPath = suburb.getPath();
+        } else {
+            this.parentPath = null;
+        }
     }
 
     public void populateAttributes() {
@@ -155,11 +181,4 @@ public class Street extends Region {
         }
     }
 
-     /**
-     * Set a suburb for this street. Multiple suburbs are permitted
-     * @param suburb
-     */
-    public void setSuburb(Suburb suburb) {
-        addParentRegion(suburb);        
-    }
 }
