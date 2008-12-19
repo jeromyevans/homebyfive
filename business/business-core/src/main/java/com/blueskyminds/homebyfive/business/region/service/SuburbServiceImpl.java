@@ -4,6 +4,7 @@ import com.wideplay.warp.persist.Transactional;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 import com.blueskyminds.homebyfive.business.region.graph.State;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
+import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.SuburbTableFactory;
 import com.blueskyminds.homebyfive.business.region.group.RegionGroup;
@@ -17,6 +18,7 @@ import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceToo
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherException;
 import com.blueskyminds.homebyfive.framework.core.patterns.PatternMatcherInitialisationException;
 import com.google.inject.Inject;
+import com.sun.jndi.toolkit.url.GenericURLContext;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,12 +36,14 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
     private static final Log LOG = LogFactory.getLog(SuburbServiceImpl.class);
     
     private StateService stateService;
+    private PostalCodeService postalCodeService;
     private SuburbPatternMatcherFactory suburbPatternMatcherFactory;
     
     private transient Map<State, SuburbPatternMatcher> suburbMatcherCache;
 
     /** Cache of recently used suburb names */
     private transient Map<String, Suburb> suburbNameCache;
+
 
     public SuburbServiceImpl(EntityManager em, TagService tagService, StateService stateService, SuburbEAO regionDAO) {
         super(em, regionDAO, tagService);
@@ -255,19 +259,37 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
                 if (StringUtils.isNotBlank(suburb.getParentPath())) {
                     state = stateService.lookup(suburb.getParentPath());
                     if (state != null) {
+                        state.addSuburb(suburb);
                         suburb.setState(state);
                     }
                 }
+            } else {
+                state.addSuburb(suburb);
             }
 
             if (state != null) {
                 em.persist(state);
-                em.persist(suburb);
             } else {
                 throw new InvalidRegionException("Invalid parent region (state is null)", suburb);
             }
 
-//            suburb = addressService.createSuburb(suburb.getName(), suburb.getState());
+            // optional postalcode
+            PostalCode postalCode = suburb.getPostalCode();
+            if (postalCode == null) {
+                // see if the postalcode path references a postalcode
+                if (StringUtils.isNotBlank(suburb.getPostalCodePath())) {
+                    postalCode = postalCodeService.lookup(suburb.getPostalCodePath());
+                    if (postalCode != null) {
+                        postalCode.addSuburb(suburb);                        
+                    }
+                }
+            } else {
+                postalCode.addSuburb(suburb);
+            }
+
+            if (postalCode != null) {
+                em.persist(state);
+            }
         } else {
             throw new DuplicateRegionException(suburb);
         }
@@ -296,5 +318,10 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
     @Inject(optional = true)
     public void setSuburbPatternMatcherFactory(SuburbPatternMatcherFactory suburbPatternMatcherFactory) {
         this.suburbPatternMatcherFactory = suburbPatternMatcherFactory;
+    }
+
+    @Inject
+    public void setPostalCodeService(PostalCodeService postalCodeService) {
+        this.postalCodeService = postalCodeService;
     }
 }

@@ -115,4 +115,8 @@ public class PostalCode extends Region {
         }
     }
 
+    public Suburb addSuburb(Suburb suburb) {
+        addChildRegion(suburb);
+        return suburb;
+    }
 }

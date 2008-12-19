@@ -115,13 +115,13 @@ public class StreetServiceImpl extends CommonRegionServices<Street> implements S
                 if (StringUtils.isNotBlank(street.getParentPath())) {
                     suburb = suburbService.lookup(street.getParentPath());
                     if (suburb != null) {
+                        suburb.addStreet(street);
                         street.setSuburb(suburb);
                     }
                 }
             }
 
-            if (suburb != null) {
-                em.persist(suburb);
+            if (suburb != null) {                
                 em.persist(street);
             } else {
                 throw new InvalidRegionException("Invalid parent region (suburb)", street);

@@ -88,14 +88,14 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
                 if (StringUtils.isNotBlank(state.getParentPath())) {
                     country = countryService.lookup(state.getParentPath());
                     if (country != null) {
+                        country.addState(state);
                         state.setCountry(country);
                     }
                 }
             }
 
 //            state = addressService.createState(state.getName(), state.getAbbr(), state.getCountry());
-            if (country != null) {
-                em.persist(state);
+            if (country != null) {                
                 em.persist(country);
             } else {
                 throw new InvalidRegionException("Invalid parent region (country)", state);
