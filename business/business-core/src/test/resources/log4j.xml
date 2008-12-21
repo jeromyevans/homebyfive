@@ -56,10 +56,6 @@
         <priority value="error"/>
     </category>
 
-    <category name="org.hibernate">
-        <priority value="error"/>
-    </category>
-  
     <category name="org.hibernate.ejb">
         <priority value="error"/>
     </category>

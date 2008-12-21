@@ -58,14 +58,14 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
                 if (StringUtils.isNotBlank(postalCode.getParentPath())) {
                     state = stateService.lookup(postalCode.getParentPath());
                     if (state != null) {
+                        state.addPostCode(postalCode);
                         postalCode.setState(state);
                     }
                 }
             }
-//            postalCode = addressService.createPostCode(postalCode.getName(), postalCode.getState());
+
             if (state != null) {
                 em.persist(state);
-                em.persist(postalCode);
             } else {
                 throw new InvalidRegionException("Invalid parent", postalCode);
             }

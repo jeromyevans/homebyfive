@@ -280,7 +280,8 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
                 if (StringUtils.isNotBlank(suburb.getPostalCodePath())) {
                     postalCode = postalCodeService.lookup(suburb.getPostalCodePath());
                     if (postalCode != null) {
-                        postalCode.addSuburb(suburb);                        
+                        postalCode.addSuburb(suburb);
+                        suburb.setPostalCode(postalCode);
                     }
                 }
             } else {

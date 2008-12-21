@@ -31,14 +31,20 @@ public class TestSuburbEAO extends JPATestCase {
 
         Country au = new Country("Australia", "AU");
         em.persist(au);
+        em.flush();
         Country us = new Country("United States of America", "US");
         em.persist(us);
         State nsw = new State(au, "New South Wales", "NSW");
-        em.persist(nsw);
+        au.addState(nsw);
+        em.persist(au);
+
         PostalCode postCode2089 = new PostalCode(nsw, "2089");
-        em.persist(postCode2089);
+        nsw.addPostCode(postCode2089);
+        em.persist(nsw);
         Suburb neutralBay = new Suburb(nsw, postCode2089, "Neutral Bay");
-        em.persist(neutralBay);
+        nsw.addSuburb(neutralBay);
+        postCode2089.addSuburb(neutralBay);
+        em.persist(nsw);
     }
 
     public void testLookupSuburb() {

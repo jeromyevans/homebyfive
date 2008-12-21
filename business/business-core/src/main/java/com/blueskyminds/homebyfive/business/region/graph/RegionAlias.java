@@ -49,4 +49,5 @@ public class RegionAlias extends AbstractEntity implements Named {
     public void setName(String name) {
         this.name = name;
     }
+   
 }

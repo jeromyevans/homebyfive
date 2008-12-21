@@ -22,42 +22,58 @@ import org.hibernate.collection.PersistentSet;
  */
 public class XMLSerializer<T> {
 
-    private XStream xStream;
+    private XStream xStreamReader;
+    private XStream xStreamWriter;
 
     /** Initialize the XStream instance for serialization/deserialization */
-    public XStream setupXStream() {
-        if (this.xStream == null) {
-            this.xStream = new XStream();
-            xStream.autodetectAnnotations(true);
+    public XStream setupXStreamWriter() {
+        if (this.xStreamWriter == null) {
+            xStreamWriter = setupCommon();
 
-            xStream.addDefaultImplementation(PersistentList.class, java.util.List.class);
-            xStream.addDefaultImplementation(PersistentBag.class, java.util.List.class);
-            xStream.addDefaultImplementation(PersistentSet.class, java.util.Set.class);
-            xStream.addDefaultImplementation(PersistentMap.class, java.util.Map.class);
-            Mapper mapper = xStream.getMapper();
-            xStream.registerConverter(new HibernateCollectionConverter(mapper));
-            xStream.registerConverter(new HibernateMapConverter(mapper));
+            // handle hibernate collections
+            xStreamWriter.addDefaultImplementation(PersistentList.class, java.util.List.class);
+            xStreamWriter.addDefaultImplementation(PersistentBag.class, java.util.List.class);
+            xStreamWriter.addDefaultImplementation(PersistentSet.class, java.util.Set.class);
+            xStreamWriter.addDefaultImplementation(PersistentMap.class, java.util.Map.class);
         }
+        return xStreamWriter;
+    }
+
+    private XStream setupCommon() {
+        XStream xStream = new XStream();
+        xStream.autodetectAnnotations(true);
+
+        Mapper mapper = xStream.getMapper();
+        xStream.registerConverter(new HibernateCollectionConverter(mapper));
+        xStream.registerConverter(new HibernateMapConverter(mapper));
         return xStream;
     }
 
+    /** Initialize the XStream instance for serialization/deserialization */
+    public XStream setupXStreamReader() {
+        if (this.xStreamReader == null) {
+            xStreamReader = setupCommon();
+        }
+        return xStreamReader;
+    }
+
     public String serialize(T model) {
-        XStream xStream = setupXStream();
+        XStream xStream = setupXStreamWriter();
         return xStream.toXML(model);
     }
 
     public void serialize(T model, Writer out) {
-        XStream xStream = setupXStream();
+        XStream xStream = setupXStreamWriter();
         xStream.toXML(model, out);
     }
 
     public T deserialize(String response) {
-        XStream xStream = setupXStream();
+        XStream xStream = setupXStreamReader();
         return (T) xStream.fromXML(response);
     }
 
     public T deserialize(Reader in, Object target) {
-        XStream xStream = setupXStream();
+        XStream xStream = setupXStreamReader();
         return (T) xStream.fromXML(in, target);
     }
 }

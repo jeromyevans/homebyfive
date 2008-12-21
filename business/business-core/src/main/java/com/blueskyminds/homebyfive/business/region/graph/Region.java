@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.jboss.envers.Versioned;
+import org.jboss.envers.VersionsJoinTable;
 import org.hibernate.annotations.Cascade;
 
 /**
@@ -160,7 +161,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
      */
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-    protected Set<RegionAlias> getRegionAliases() {
+    public Set<RegionAlias> getRegionAliases() {
         return aliases;
     }
 
@@ -543,6 +544,5 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
         }
         return 0;
     }
-
-          
+ 
 }

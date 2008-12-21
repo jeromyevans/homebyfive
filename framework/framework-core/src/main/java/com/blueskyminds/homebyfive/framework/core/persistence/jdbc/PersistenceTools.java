@@ -44,9 +44,17 @@ public class PersistenceTools {
     public static int executeUpdate(Connection connection, String sql) throws SQLException {
         Statement statement = connection.createStatement();
 
-        LOG.info("Executing update: "+sql);
-        
-        return statement.executeUpdate(sql);
+        if (LOG.isInfoEnabled()) {
+            LOG.info("Executing update: "+sql);
+        }
+
+        int result = statement.executeUpdate(sql);
+
+        if (LOG.isInfoEnabled()) {
+            LOG.info("   "+result+" rows affected");
+        }
+
+        return result;
     }
 
     // ------------------------------------------------------------------------------------------------------
@@ -60,11 +68,18 @@ public class PersistenceTools {
     public static int executeUpdate(Connection connection, String[] sql) throws SQLException {
 
         int rowsAffected = 0;
-        LOG.info("Executing "+sql.length+ " updates...");        
+        if (LOG.isInfoEnabled()) {
+            LOG.info("Executing "+sql.length+ " updates...");
+        }
         for (String sqlLine : sql) {
             Statement statement = connection.createStatement();
             rowsAffected += statement.executeUpdate(sqlLine);
         }
+
+        if (LOG.isInfoEnabled()) {
+            LOG.info("   "+rowsAffected+" rows affected");
+        }
+
         return rowsAffected;
     }
 
@@ -77,7 +92,9 @@ public class PersistenceTools {
     public static int executeUpdate(Connection connection, List<String> sql) throws SQLException {
 
         int rowsAffected = 0;
-        LOG.info("Executing "+sql.size()+ " updates...");
+        if (LOG.isInfoEnabled()) {
+            LOG.info("Executing "+sql.size()+ " updates...");
+        }
         for (String sqlLine : sql) {
             try {
                 Statement statement = connection.createStatement();
@@ -87,6 +104,11 @@ public class PersistenceTools {
                 throw e;
             }
         }
+
+        if (LOG.isInfoEnabled()) {
+            LOG.info("   "+rowsAffected+" rows affected");
+        }
+
         return rowsAffected;
     }
 

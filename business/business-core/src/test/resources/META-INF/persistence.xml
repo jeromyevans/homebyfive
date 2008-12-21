@@ -266,6 +266,21 @@ To do: many of these properties need to be able to be changed -->
 
       <property name="hibernate.transaction.auto_close_session" value="false"/>
 
+
+      <!-- configure entity listeners for envers -->
+       <!--<property name="hibernate.ejb.event.post-insert"-->
+                  <!--value="org.jboss.envers.event.VersionsEventListener"/>-->
+       <!--<property name="hibernate.ejb.event.post-update"-->
+                  <!--value="org.jboss.envers.event.VersionsEventListener"/>-->
+       <!--<property name="hibernate.ejb.event.post-delete"-->
+                  <!--value="org.jboss.envers.event.VersionsEventListener"/>-->
+       <!--<property name="hibernate.ejb.event.pre-collection-update"-->
+                  <!--value="org.jboss.envers.event.VersionsEventListener"/>-->
+       <!--<property name="hibernate.ejb.event.pre-collection-remove"-->
+                  <!--value="org.jboss.envers.event.VersionsEventListener"/>-->
+       <!--<property name="hibernate.ejb.event.post-collection-recreate"-->
+                  <!--value="org.jboss.envers.event.VersionsEventListener"/>-->
+      
     </properties>
   </persistence-unit>
  
