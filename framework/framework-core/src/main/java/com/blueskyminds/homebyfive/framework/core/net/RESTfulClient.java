@@ -45,12 +45,13 @@ public class RESTfulClient<T> {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         String body = new XMLSerializer<T>().serialize(model);
+        int result = -1;
         try {
             LOG.info(serviceURI+":\n"+body);
             RequestEntity entity = new StringRequestEntity(body, "application/xml", "ISO-8859-1");
             method.setRequestEntity(entity);
 
-            int result = client.executeMethod(method);
+            result = client.executeMethod(method);
 
             if (result >= 300) {
                 throw new RemoteClientException(method);
@@ -63,7 +64,7 @@ public class RESTfulClient<T> {
             method.releaseConnection();
             stopWatch.stop();
         }
-        LOG.info("doPost "+serviceURI+" took: "+stopWatch.toString());
+        LOG.info("doPost "+serviceURI+" took: "+stopWatch.toString()+" result ="+result);
     }
 
     /**

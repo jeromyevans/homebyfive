@@ -1228,6 +1228,7 @@
   </component>
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" />
+    <macro name="projectsHome" />
   </UsedPathMacros>
 </project>
 
