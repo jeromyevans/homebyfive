@@ -72,6 +72,9 @@ public class AddressTestCase extends JPATestCase {
         regionService = new RegionServiceImpl();
 
         addressService = new AddressServiceImpl(em);
+        ((AddressServiceImpl) addressService).setStateService(stateService);
+        ((AddressServiceImpl) addressService).setSuburbService(suburbService);
+        ((AddressServiceImpl) addressService).setCountryService(countryService);
         regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService);
 
         substitutionDAO = new SubstitutionDAO(em);

@@ -92,6 +92,9 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
                         state.setCountry(country);
                     }
                 }
+            } else {
+                // ensure the state has been added as a chill
+                country.addState(state);
             }
 
 //            state = addressService.createState(state.getName(), state.getAbbr(), state.getCountry());

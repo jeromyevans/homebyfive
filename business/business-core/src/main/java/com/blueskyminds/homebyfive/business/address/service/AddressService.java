@@ -81,6 +81,18 @@ public interface AddressService {
     Address lookupOrCreateAddress(String addressString, String suburbString, String stateString, String countryAbbr) throws AddressProcessingException;
 
     /**
+     * Persists an address known to exist in the specified suburb.  If it already exists the
+     * existing address is returned
+     *
+     * @param addressString
+     * @param suburb
+     * @return
+    * @throws AddressProcessingException
+     */
+    Address lookupOrCreateAddress(String addressString, Suburb suburb) throws AddressProcessingException;
+
+
+    /**
      * Persists an address.  If the address already exists the existing address is returned
      *
      * @param address to persist, or lookup if it already exists
@@ -88,6 +100,8 @@ public interface AddressService {
      * @throws AddressProcessingException if a persistence problem occurs
      */
     Address lookupOrCreateAddress(Address address) throws AddressProcessingException;
+
+
 
     /**
      * Lookup an address in the specified country.  Returns possible matches

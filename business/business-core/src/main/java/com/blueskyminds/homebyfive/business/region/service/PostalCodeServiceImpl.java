@@ -62,6 +62,8 @@ public class PostalCodeServiceImpl extends CommonRegionServices<PostalCode> impl
                         postalCode.setState(state);
                     }
                 }
+            } else {
+                state.addPostCode(postalCode);
             }
 
             if (state != null) {

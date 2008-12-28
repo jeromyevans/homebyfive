@@ -132,4 +132,17 @@ public class TestAddressService extends AddressTestCase {
        assertEquals(((StreetAddress) existingAddress).getStreet(), ((StreetAddress) newAddressSameStreet).getStreet());
    }
 
+
+   /**
+     * If the suburb isn't known, ensure that its created and reparsed
+    *
+     * @throws Exception
+     */
+   public void testLookupOrCreateAddressInNewSuburb() throws Exception {
+       AddressTestTools.initialiseSampleAusAddresses();
+
+       Address existingAddress = addressService.lookupOrCreateAddress("24 Lygon Street", "Phillip Island", "VIC", "AU");
+       assertNotNull(existingAddress);
+       existingAddress.print(System.out);
+   }
 }

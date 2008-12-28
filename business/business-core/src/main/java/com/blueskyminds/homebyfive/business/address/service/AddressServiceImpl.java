@@ -240,7 +240,45 @@ public class AddressServiceImpl implements AddressService {
         return address;
     }
 
-   
+    /**
+     * Creates an Address from a plain-text address string in a known suburb
+     *
+     * The address returned is not persisted.
+     *
+     * @param addressString plain text address
+     *
+     * @return an Address derived from the address string.  In the worst case, this will simply be a
+     *  PlainTextAddress
+     * @throws AddressProcessingException if a critical error occurs trying to process the address.
+     */
+    public Address parseAddress(String addressString, Suburb suburbHandle) throws AddressProcessingException {
+
+        Address address = null;
+        try {
+
+            if ((suburbHandle != null) && (!suburbHandle.isInvalid())) {
+                if (StringUtils.isNotBlank(addressString)) {
+                    AddressParser matcher = selectMatcher(suburbHandle);
+                    if (matcher != null) {
+                        address = matcher.parseAddress(addressString);
+
+                        if (address != null) {
+                            address.setSuburb(suburbHandle);
+                        } else {
+                            LOG.info("Failed to parse address "+addressString+" in suburb "+suburbHandle.getName());
+                        }
+                    }
+                } else {
+                    address = new StreetAddress(null, suburbHandle, null);
+                }
+            }
+        } catch (PatternMatcherException e) {
+            throw new AddressProcessingException(e);
+        }
+
+        return address;
+    }
+
 
     /**
      * Creates Addresses matching the plain-text address string
@@ -279,6 +317,9 @@ public class AddressServiceImpl implements AddressService {
             if (!street.isIdSet()) {
                 if (suburb != null) {
                     suburb.addStreet(street);
+                    if (street.getSuburb() == null) {
+                        street.setSuburb(suburb);
+                    }
                     em.persist(suburb);
                 }
                 em.persist(street);
@@ -368,7 +409,7 @@ public class AddressServiceImpl implements AddressService {
         if (address != null) {
             return lookupOrCreateAddress(address);
         } else {
-            throw new AddressProcessingException("Could not create or lookup and address.  Address is invalid/could not be parsed ('"+addressString+"','"+countryAbbr+"')");
+            throw new AddressProcessingException("Could not create or lookup an address.  Address is invalid/could not be parsed ('"+addressString+"','"+countryAbbr+"')");
         }
     }
 
@@ -377,7 +418,16 @@ public class AddressServiceImpl implements AddressService {
         if (address != null) {
             return lookupOrCreateAddress(address);
         } else {
-            throw new AddressProcessingException("Could not create or lookup and address.  Address is invalid/could not be parsed ('"+addressString+"','"+suburbString+"','"+stateString+"','"+countryAbbr+"')");
+            throw new AddressProcessingException("Could not create or lookup an address.  Address is invalid/could not be parsed ('"+addressString+"','"+suburbString+"','"+stateString+"','"+countryAbbr+"')");
+        }
+    }
+
+    public Address lookupOrCreateAddress(String addressString, Suburb suburb) throws AddressProcessingException {
+        Address address = parseAddress(addressString, suburb);
+        if (address != null) {
+            return lookupOrCreateAddress(address);
+        } else {
+            throw new AddressProcessingException("Could not create or lookup an address.  Address is invalid/could not be parsed ('"+addressString+"') in "+suburb.getPath());
         }
     }
 
