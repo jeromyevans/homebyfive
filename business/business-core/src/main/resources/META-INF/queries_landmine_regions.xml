@@ -12,6 +12,7 @@
     <named-query name="hp.countries">
         <query>
            select country from Country country
+            left join fetch country.regionAliases alias           
             left join fetch country.regionIndex
             where country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>
@@ -29,6 +30,7 @@
     <named-query name="hp.country.byPath">
         <query>
            select country from Country country
+            left join fetch country.regionAliases alias
             left join fetch country.regionIndex
              where country.path = :path and
                    country.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -50,6 +52,7 @@
     <named-query name="hp.states.byParentPath">
         <query>
            select state from State state
+             left join fetch state.regionAliases alias
              left join fetch state.regionIndex
              where state.parentPath = :path and
                    state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -68,6 +71,7 @@
     <named-query name="hp.state.byPath">
         <query>
            select state from State state
+             left join fetch state.regionAliases alias
              left join fetch state.regionIndex
              where state.path = :path and
                    state.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -86,6 +90,7 @@
     <named-query name="hp.suburbs.byParentPath">
         <query>
            select suburb from Suburb suburb
+             left join fetch suburb.regionAliases alias
              left join fetch suburb.regionIndex
              where suburb.parentPath = :path and
                    suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -103,6 +108,7 @@
     <named-query name="hp.suburbs.byPostCode">        
         <query>
           select suburb from Suburb suburb
+            left join fetch suburb.regionAliases alias
             left join fetch suburb.regionIndex
             where suburb.postalCodePath = :postCode and
                   suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -121,6 +127,7 @@
     <named-query name="hp.suburbs.byCountryPath">
         <query>
            select suburb from Suburb suburb
+             left join fetch suburb.regionAliases alias
              left join fetch suburb.regionIndex
              where suburb.parentPath like :parentPath and
                    suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -139,6 +146,7 @@
     <named-query name="hp.suburb.byPath">
         <query>
            select suburb from Suburb suburb
+             left join fetch suburb.regionAliases alias
              left join fetch suburb.regionIndex
              where suburb.path = :path and
                    suburb.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -157,6 +165,7 @@
     <named-query name="hp.postCodes.byParentPath">
         <query>
           select postCode from PostalCode postCode
+            left join fetch postCode.regionAliases alias
             left join fetch postCode.regionIndex
             where postCode.parentPath = :path and
             postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -174,6 +183,7 @@
     <named-query name="hp.postCodes.byCountryPath">
         <query>
           select postalCode from PostalCode postalCode
+            left join fetch postalCode.regionAliases alias
             left join fetch postalCode.regionIndex
             where postalCode.parentPath like :parentPath and
             postalCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -192,6 +202,7 @@
     <named-query name="hp.postCode.byPath">
         <query>
           select postCode from PostalCode postCode
+            left join fetch postCode.regionAliases alias
             left join fetch postCode.regionIndex
             where postCode.path = :path and
             postCode.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -210,6 +221,7 @@
     <named-query name="hp.streets.byParentPath">
         <query>
           select street from Street street
+          left join fetch street.regionAliases alias
           left join fetch street.regionIndex
           where street.parentPath = :path and
           street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -227,6 +239,7 @@
     <named-query name="hp.streets.byCountryPath">
         <query>
           select street from Street street
+          left join fetch street.regionAliases alias
           left join fetch street.regionIndex
           where street.parentPath like :parentPath and
           street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
@@ -245,6 +258,7 @@
     <named-query name="hp.street.byPath">
         <query>
            select street from Street street
+             left join fetch street.regionAliases alias
              left join fetch street.regionIndex
              where street.path = :path and
                    street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid

@@ -54,15 +54,23 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
         List<State> states = stateNameCache.get(countryAbbr + ":" + name);
         if (states == null) {
 
-            Country country = countryService.lookup(PathHelper.buildPath(countryAbbr));
-            if (country != null) {
-                Set<State> allStates = regionDAO.list(country.getPath());
+            State exact = lookup(PathHelper.buildPath(countryAbbr, name));
+            if (exact == null) {
+                // attempt the fuzzy match
+                Country country = countryService.lookup(PathHelper.buildPath(countryAbbr));
+                if (country != null) {
+                    Set<State> allStates = regionDAO.list(country.getPath());
 
-                states = LevensteinDistanceTools.matchName(name, allStates);
+                    states = LevensteinDistanceTools.matchName(name, allStates);
 
-                stateNameCache.put(countryAbbr + ":" + name, states);
+                    stateNameCache.put(countryAbbr + ":" + name, states);
+                } else {
+                    states = new LinkedList<State>();
+                }
             } else {
+                // quick exact match
                 states = new LinkedList<State>();
+                states.add(exact);
             }
         }
 

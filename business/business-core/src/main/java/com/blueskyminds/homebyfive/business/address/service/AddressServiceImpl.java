@@ -141,6 +141,7 @@ public class AddressServiceImpl implements AddressService {
         AddressParser matcher = matcherCacheBySuburb.get(suburbHandle);
         if (matcher == null) {
             if (addressParserFactory == null) {
+                LOG.info("Creating a new AddressPatternMatcher for suburb "+suburbHandle.getName());
                 addressParserFactory = new AddressPatternMatcher(suburbHandle, em, suburbService, streetService);
             }
 
@@ -175,10 +176,12 @@ public class AddressServiceImpl implements AddressService {
                 Suburb suburbHandle = suburbNameCache.get(countryAbbr+":"+stateString+":"+suburbString);
                 if (suburbHandle == null) {
                     LOG.info("suburbName "+countryAbbr+":"+stateString+":"+suburbString+" is not cached");
+                    State state = null;
                     // lookup the suburb candidate(s)
                     if (StringUtils.isNotBlank(stateString)) {
                         List<State> stateCandidates = stateService.find(stateString, countryAbbr);
                         if (stateCandidates.size() > 0) {
+                            state = stateCandidates.iterator().next();
                             suburbCandidates = suburbService.find(suburbString, stateCandidates);
                         }
                     } else {
@@ -190,6 +193,19 @@ public class AddressServiceImpl implements AddressService {
                         // suburb has been constrained to a set of candidates.  The matching algorithm can be limited
                             // to a simple street address match
                         suburbHandle = suburbCandidates.iterator().next();
+                    } else {
+                        // the suburb doesn't exist.  We will allow it to be created
+                        if (state != null) {
+                            Suburb newSuburb = new Suburb(state, suburbString);
+                            try {
+                                suburbHandle = suburbService.create(newSuburb);
+                            } catch (DuplicateRegionException e) {
+                                // the suburb must exist - look it up by path
+                                suburbHandle = suburbService.lookup(newSuburb.getPath());
+                            } catch (InvalidRegionException e) {
+                                LOG.error("Suburb name could not be matched or created: "+suburbString);
+                            }
+                        }
                     }
 
                     if (suburbHandle != null) {

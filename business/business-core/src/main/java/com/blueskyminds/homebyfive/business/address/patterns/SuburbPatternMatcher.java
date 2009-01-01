@@ -129,7 +129,7 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
         super(scoringStrategy);
         this.countryAbbr = countryAbbr;
         if (this.countryAbbr == null) {
-            throw new PatternMatcherInitialisationException("ISO Country Code cannot be null");
+            throw new PatternMatcherInitialisationException("Country Abbreciation cannot be null");
         }
         this.countryService = countryService;
         this.stateService = stateService;

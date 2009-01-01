@@ -32,6 +32,9 @@ public class StreetNameBin extends RegExSubstitutionBin {
     private Suburb suburb;
     private StreetService streetService;
 
+    private Set<Street> cachedCountryStreets;
+    private Set<Street> cachedSuburbStreets;
+
     public StreetNameBin(Country country, StreetService streetService, SubstitutionService substitutionDAO) throws PatternMatcherInitialisationException {
         super(GROUP_NAME, substitutionDAO);
         this.streetService = streetService;
@@ -85,9 +88,19 @@ public class StreetNameBin extends RegExSubstitutionBin {
         Set<Street> streets;
                 
         if (country != null) {
-            streets = streetService.listStreets(country);
+            if (cachedCountryStreets == null) {
+                streets = streetService.listStreets(country);
+                cachedCountryStreets = streets;
+            } else {
+                streets = cachedCountryStreets;
+            }
         } else {
-            streets = streetService.listStreets(suburb);
+            if (cachedSuburbStreets == null) {
+                streets = streetService.listStreets(suburb);
+                cachedSuburbStreets = streets;
+            } else {
+                streets = cachedSuburbStreets;
+            }
         }
 
         if (streets.size() > 0) {

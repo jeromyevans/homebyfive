@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Date Started: 17/06/2007
@@ -145,4 +146,10 @@ public class TestAddressService extends AddressTestCase {
        assertNotNull(existingAddress);
        existingAddress.print(System.out);
    }
+
+   public void testParseAddressInSuburb() throws Exception {
+         Address streetAddress = addressService.parseAddress("58 Post Office Road", "GLENORIE", "NSW", "AU");
+         assertNotNull(streetAddress);
+         assertEquals("Glenorie", streetAddress.getSuburb().getName());
+    }
 }

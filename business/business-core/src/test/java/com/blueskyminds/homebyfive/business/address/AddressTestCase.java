@@ -12,6 +12,7 @@ import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.business.address.service.AddressServiceImpl;
 import com.blueskyminds.homebyfive.business.address.service.AddressService;
 import com.blueskyminds.homebyfive.business.address.patterns.AddressPatternMatcher;
+import com.blueskyminds.homebyfive.business.address.patterns.SuburbPatternMatcherFactoryImpl;
 import com.blueskyminds.homebyfive.business.region.dao.*;
 import com.blueskyminds.homebyfive.business.region.service.*;
 
@@ -67,6 +68,8 @@ public class AddressTestCase extends JPATestCase {
         countryService = new CountryServiceImpl(em, tagService, countryEAO);
         stateService = new StateServiceImpl(em, tagService, countryService, stateEAO);
         suburbService = new SuburbServiceImpl(em, tagService, stateService, suburbEAO);
+        SuburbPatternMatcherFactoryImpl patternMatcherFactory = new SuburbPatternMatcherFactoryImpl(em, addressDAO, countryService, stateService, postalCodeService, suburbService);
+        ((SuburbServiceImpl) suburbService).setSuburbPatternMatcherFactory(patternMatcherFactory);
         postalCodeService = new PostalCodeServiceImpl(em, tagService, stateService, postCodeEAO);
         streetService = new StreetServiceImpl(em, tagService, suburbService, streetEAO);
         regionService = new RegionServiceImpl();
@@ -75,6 +78,8 @@ public class AddressTestCase extends JPATestCase {
         ((AddressServiceImpl) addressService).setStateService(stateService);
         ((AddressServiceImpl) addressService).setSuburbService(suburbService);
         ((AddressServiceImpl) addressService).setCountryService(countryService);
+        ((AddressServiceImpl) addressService).setStreetService(streetService);
+        ((AddressServiceImpl) addressService).setPostalCodeService(postalCodeService);
         regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService);
 
         substitutionDAO = new SubstitutionDAO(em);

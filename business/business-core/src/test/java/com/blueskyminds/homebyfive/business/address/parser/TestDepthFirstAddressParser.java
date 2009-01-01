@@ -139,4 +139,23 @@ public class TestDepthFirstAddressParser extends AddressTestCase {
          System.out.println(StringUtils.leftPad(addressString, 38)+"|"+(streetAddress != null ? streetAddress.toString() : "FAIL"));
     }
 
+    public void testAddressCleansing16() throws Exception {
+         PlainTextAddress inputAddress = new PlainTextAddress("6 Moore Ave HAZELWOOD PARK + SA");
+         String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+         Address streetAddress = addressParser.parseAddress(addressString);
+         assertNotNull(streetAddress);
+         assertEquals("Hazelwood Park", streetAddress.getSuburb().getName());
+         System.out.println(StringUtils.leftPad(addressString, 38)+"|"+(streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
+
+    public void testAddressCleansing17() throws Exception {
+         PlainTextAddress inputAddress = new PlainTextAddress("58 Post Office Road GLENORIE NSW");
+         String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+         Address streetAddress = addressParser.parseAddress(addressString);
+         assertNotNull(streetAddress);
+         assertEquals("Glenorie", streetAddress.getSuburb().getName());
+         System.out.println(StringUtils.leftPad(addressString, 38)+"|"+(streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
 }
