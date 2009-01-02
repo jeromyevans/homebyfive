@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.SubstitutionsFileReader;
 import com.blueskyminds.homebyfive.framework.core.tools.substitutions.Substitution;
 import com.blueskyminds.homebyfive.web.struts2.actions.Results;
+import com.google.inject.Inject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +29,7 @@ public class LoadController extends ActionSupport implements ServletRequestAware
     private String uploadFilename;
 
     private HttpServletRequest request;
+    private SubstitutionClient substitutionClient;
 
     private String host(HttpServletRequest request) {
         return request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
@@ -46,7 +48,6 @@ public class LoadController extends ActionSupport implements ServletRequestAware
             List<Substitution> substitutions;
             substitutions = substitutionsFileReader.readCsv(new FileInputStream(upload));
 
-            SubstitutionClient substitutionClient = new SubstitutionClient();
             for (Substitution substitution : substitutions) {
                 substitutionClient.createSubstitution(hostname, substitution);
             }
@@ -85,5 +86,10 @@ public class LoadController extends ActionSupport implements ServletRequestAware
 
     public void setServletRequest(HttpServletRequest request) {
         this.request = request;
+    }
+
+    @Inject
+    public void setSubstitutionClient(SubstitutionClient substitutionClient) {
+        this.substitutionClient = substitutionClient;
     }
 }

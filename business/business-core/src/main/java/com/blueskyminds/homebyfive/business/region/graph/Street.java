@@ -159,7 +159,7 @@ public class Street extends Region {
     }
 
     public void populateAttributes() {
-        this.key = KeyGenerator.generateId(name);
+        this.key = KeyGenerator.generateId(getFullName());
         Region suburb = getSuburb();
         if (suburb != null) {
             this.parentPath = suburb.getPath();

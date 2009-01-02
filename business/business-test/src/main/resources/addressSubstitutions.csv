@@ -11,6 +11,7 @@
 "StreetNumber","^lot\s(\w*\d+\w*)/([\d|\-]+)$",\N,"Extract street number from Lot number/street number",\N,127,0,2,\N
 "StreetNumber","^lot\s(\w*\d+\w*)\s*\-\s*([\d|\-]+)$",\N,"Extract street number from Lot number - street number",\N,127,0,2,\N
 "StreetNumber","^\D+(\d+)/\s(\d+)$",\N,"Unumber/ street number eg. U25/ 14",\N,127,0,2,\N
+"StreetNumber","^(\d+)\s*[/|\-]\s*(\d[\d|\w]+)$",\N,"unit number/street number with letter eg. 25/14A",\N,127,0,2,\N
 "UnitNumber","^(\d+\w*)/([\d|\-]+)$",\N,"Extract UnitNo from 'UnitNo/StreetNo' phrase",\N,127,0,1,\N
 "UnitNumber","^(\d+\w*)\,(\d+)$",\N,"Extract UnitNo from 'Unit No, Street No'",\N,127,0,1,\N
 "UnitNumber","^(\d+)([a-z|A-Z]+)$",\N,"Extract UnitNo from 'StreetNoUnitLetter' (eg. 56b)",\N,127,0,2,\N
@@ -19,13 +20,10 @@
 "UnitNumber","^unit\s(\w*\d+\w*)$",\N,"Unit Number",\N,127,1,1,\N
 "UnitNumber","^\D+(\d+)/(\d+)$",\N,"Unumber/street number eg. U25/14",\N,127,0,1,\N
 "UnitNumber","^\D+(\d+)/\s(\d+)$",\N,"Unumber/ street number eg. U25/ 14",\N,127,0,1,\N
+"UnitNumber","^(\d+)\s*[/|\-]\s*(\d[\d|\w]+)$",\N,"unit number/street number with letter eg. 25/14A",\N,127,0,1,\N
 "LotNumber","^lot\s(\w*\d+\w*)$",\N,"Simple lot number",\N,127,1,1,\N
 "LotNumber","^lot\s(\w*\d+\w*)/([\d|\-]+)$",\N,"Extract lot number from Lot number/street number",\N,127,0,1,\N
 "LotNumber","^lot\s(\w*\d+\w*)\s*\-\s*([\d|\-]+)$",\N,"Extract lot number from Lot number - street number",\N,127,0,1,\N
-"Locality","Teneriffe","Newstead","Teneriffe QLD",\N,127,1,\N,\N
-"Locality","Walsh\sBay","The Rocks","Walsh\sBay is The Rocks",\N,127,1,\N,\N
-"Locality","Cockle\sBay","Darling Harbour","Cockle Bay is Darling Harbour",\N,127,1,\N,\N
-"Locality","Wategos\sBeach","Byron Bay","Wategos Beach is Byron Bay",\N,127,1,\N,\N
 "StreetType","rd","road","Convert Rd to Road",\N,127,1,\N,"Road"
 "StreetType","st","street","Convert St to Street",\N,127,1,\N,"Street"
 "StreetType","ave","avenue","Convert Ave to Avenue",\N,127,1,\N,"Avenue"

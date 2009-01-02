@@ -92,7 +92,7 @@ public class DepthFirstAddressParser implements AddressParser {
 
         stopWatch.stop();
         if (LOG.isDebugEnabled()) {
-            LOG.info("init:"+stopWatch.toString());
+            LOG.debug("init:"+stopWatch.toString());
         }
         stopWatch.reset();
         stopWatch.start();
@@ -111,15 +111,13 @@ public class DepthFirstAddressParser implements AddressParser {
         }
         stopWatch.reset();
         stopWatch.start();
-        LOG.info("scoring "+sequences.size()+" sequences");
         List<CandidateAllocation> bestCandidates = scoreSequences(phraseList, sequences);
-        LOG.info("extracting address from "+bestCandidates.size()+" candidates");
         List<Address> addresses = new LinkedList<Address>();
         if (bestCandidates.size() > 0) {
             // get the first valid address
             for (CandidateAllocation candidate : bestCandidates) {
                 // convert the candidate into an address
-                Address address = extractAddress(candidate);
+                Address address = extractAddress(candidate, plainTextAddress);
                 if (address != null) {
                     addresses.add(address);
                     if (addresses.size() >= maxCandidates) {
@@ -133,7 +131,6 @@ public class DepthFirstAddressParser implements AddressParser {
         if (LOG.isDebugEnabled()) {
             LOG.debug("match:"+stopWatch.toString());
         }
-        LOG.info("matched "+addresses.size()+" addresses");
 
         return addresses;
     }
@@ -147,7 +144,13 @@ public class DepthFirstAddressParser implements AddressParser {
         }
     }
 
-    private Address extractAddress(CandidateAllocation candidate) {
+    /**
+     * Convert the CandidateAllocation into an Address instance
+     * @param candidate
+     * @param sourceText   the source (for debugging)
+     * @return
+     */
+    private Address extractAddress(CandidateAllocation candidate, String sourceText) {
         StreetAddress streetAddress = null;
         String streetName = null;
 
@@ -229,13 +232,16 @@ public class DepthFirstAddressParser implements AddressParser {
                     if (lotNumber == null) {
                         // create the street address
                         streetAddress = new StreetAddress(streetNumber, street, suburb, postCode);
+                        ((StreetAddress) streetAddress).setSourceText(sourceText);
                     } else {
                         // create the lot address
                         streetAddress = new LotAddress(lotNumber, streetNumber, street, suburb, postCode);
+                        ((LotAddress) streetAddress).setSourceText(sourceText);
                     }
                 } else {
                     // create the unit address
                     streetAddress = new UnitAddress(unitNumber, streetNumber, street, suburb, postCode);
+                    ((UnitAddress) streetAddress).setSourceText(sourceText);
                 }
             }
         }

@@ -4,8 +4,11 @@ import com.blueskyminds.homebyfive.framework.core.net.RESTfulClient;
 import com.blueskyminds.homebyfive.framework.core.net.RemoteClientException;
 import com.blueskyminds.homebyfive.business.region.graph.*;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
+import com.google.inject.Inject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
+import org.apache.commons.httpclient.HttpConnectionManager;
 
 /**
  * An implementation of the RegionServiceClient interface for remote creation of regions
@@ -22,6 +25,11 @@ public class RegionClient extends RESTfulClient<Region> {
     private static final String STATE_SERVICE = "/states";
     private static final String SUBURB_SERVICE = "/suburbs";
     private static final String POSTCODE_SERVICE = "/postcodes";
+
+    @Inject
+    public RegionClient(HttpConnectionManager connectionManager) {
+        super(connectionManager);
+    }
 
     /**
      * Persist a new region

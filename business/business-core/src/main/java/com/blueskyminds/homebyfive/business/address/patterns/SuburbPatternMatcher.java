@@ -189,7 +189,9 @@ public class SuburbPatternMatcher extends PatternMatcher<Suburb> {
         }
 
         stopWatch.stop();
-        LOG.info("initTime: "+stopWatch.toString());
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("initTime: "+stopWatch.toString());
+        }
     }
 
     /**

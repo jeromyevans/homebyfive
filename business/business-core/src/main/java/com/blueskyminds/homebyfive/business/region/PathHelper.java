@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.business.address.*;
 import com.blueskyminds.homebyfive.business.region.graph.Region;
 import com.blueskyminds.homebyfive.business.region.graph.*;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.framework.core.tools.text.StringTools;
 
 /**
  * Date Started: 5/03/2008

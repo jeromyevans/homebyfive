@@ -138,9 +138,9 @@ public class RegionGroupFactory {
     /**
      * Create a RegionGroup for a single suburb
      * */
-    public static RegionGroup createSuburb(Suburb state) {
+    public static RegionGroup createSuburb(Suburb suburb) {
         ArrayList<Suburb> list = new ArrayList<Suburb>();
-        list.add(state);
+        list.add(suburb);
         return createSuburbs(list);
     }
 

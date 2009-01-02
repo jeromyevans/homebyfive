@@ -147,7 +147,7 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
                 Suburb suburbHandle;
 
                 if (LOG.isInfoEnabled()) {
-                    LOG.info("Finding suburb '"+name+"' using exact pattern matching in "+state.getName());
+                    LOG.info("Looking up suburb '"+name+"' using calculated path in "+state.getName());
                 }
                 suburbHandle = regionDAO.lookup(PathHelper.generatePath(state.getPath(), name));
                 if (suburbHandle != null) {
@@ -169,6 +169,9 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
                             Suburb suburb = patternMatcher.extractBest(name);
                             if (suburb != null) {
                                 suburbs.add(suburb);
+                                if (LOG.isInfoEnabled()) {
+                                    LOG.info("   Matched suburb "+suburb.getName());
+                                }
                             }
                         } catch (PatternMatcherException e) {
                             LOG.error("Could not initialize SuburbPatternMatcher", e);
@@ -217,9 +220,6 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
     private SuburbPatternMatcher selectSuburbMatcher(State state) throws PatternMatcherInitialisationException {
         SuburbPatternMatcher patternMatcher = suburbMatcherCache.get(state);
         if (patternMatcher == null) {
-            if (LOG.isInfoEnabled()) {
-                LOG.info("SuburbMatcher for state "+state.getName()+" is not cached");
-            }
             patternMatcher = suburbPatternMatcherFactory.create(state);
             suburbMatcherCache.put(state, patternMatcher);
         } else {

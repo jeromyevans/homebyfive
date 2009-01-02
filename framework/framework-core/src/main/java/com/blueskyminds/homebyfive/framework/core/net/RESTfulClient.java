@@ -1,10 +1,7 @@
 package com.blueskyminds.homebyfive.framework.core.net;
 
 import com.blueskyminds.homebyfive.framework.core.tools.xml.XMLSerializer;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.HttpConnectionManager;
-import org.apache.commons.httpclient.SimpleHttpConnectionManager;
+import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.logging.Log;
@@ -22,12 +19,17 @@ import java.io.IOException;
 public class RESTfulClient<T> {
 
     private static final Log LOG = LogFactory.getLog(RESTfulClient.class);
-       
+
+    protected HttpConnectionManager connectionManager;
+
+    public RESTfulClient(HttpConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+    }
+
     protected HttpClient setupClient() {
-        HttpConnectionManager connectionManager = new SimpleHttpConnectionManager();
         HttpClient client = new HttpClient(connectionManager);
         client.getParams().setParameter("http.socket.timeout", 0);
-        client.getParams().setParameter("http.connection.timeout", new Integer(500));
+        client.getParams().setParameter("http.connection.timeout", new Integer(500));        
         return client;
     }
 
@@ -44,6 +46,7 @@ public class RESTfulClient<T> {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
+        LOG.info("Serializing model...");
         String body = new XMLSerializer<T>().serialize(model);
         int result = -1;
         try {
@@ -52,10 +55,6 @@ public class RESTfulClient<T> {
             method.setRequestEntity(entity);
 
             result = client.executeMethod(method);
-
-            if (result >= 300) {
-                throw new RemoteClientException(method);
-            }
         } catch (HttpException e) {
             throw new RemoteClientException(e.getMessage(), e);
         } catch (IOException e) {
@@ -64,6 +63,10 @@ public class RESTfulClient<T> {
             method.releaseConnection();
             stopWatch.stop();
         }
+        if (result >= 300) {
+            throw new RemoteClientException(method);
+        }
+
         LOG.info("doPost "+serviceURI+" took: "+stopWatch.toString()+" result ="+result);
     }
 
@@ -80,17 +83,15 @@ public class RESTfulClient<T> {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
+        LOG.info("Serializing model...");
         String body = new XMLSerializer<T>().serialize(model);
+        int result = -1;
         try {
             LOG.info(serviceURI+":\n"+body);
             RequestEntity entity = new StringRequestEntity(body, "application/xml", "ISO-8859-1");
             method.setRequestEntity(entity);
 
-            int result = client.executeMethod(method);
-
-            if (result >= 300) {
-                throw new RemoteClientException(method);
-            }
+            result = client.executeMethod(method);
         } catch (HttpException e) {
             throw new RemoteClientException(e.getMessage(), e);
         } catch (IOException e) {
@@ -99,6 +100,11 @@ public class RESTfulClient<T> {
             method.releaseConnection();
             stopWatch.stop();
         }
+
+        if (result >= 300) {
+            throw new RemoteClientException(method);
+        }
+
         LOG.info("doPut "+serviceURI+" took: "+stopWatch.toString());
     }
 
@@ -106,9 +112,9 @@ public class RESTfulClient<T> {
         HttpClient client = setupClient();
         HeadMethod method = new HeadMethod(serviceURI);
 
+        int result = -1;
         try {
-            int result = client.executeMethod(method);
-            return result;
+            result = client.executeMethod(method);
         } catch (HttpException e) {
             throw new RemoteClientException(e.getMessage(), e);
         } catch (IOException e) {
@@ -116,5 +122,7 @@ public class RESTfulClient<T> {
         } finally {
             method.releaseConnection();
         }
+
+        return result;
     }
 }

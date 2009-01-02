@@ -37,7 +37,6 @@ public class LoadPostalCodesController extends LoadSupport<PostalCode> {
             if (localhost()) {
                 performLocalLoad(postalCodeService, postalCodes);
             } else {
-                RegionClient regionClient = new RegionClient();
                 for (PostalCode postalCode : postalCodes) {
                     if (updateOnly != null && updateOnly) {
                         regionClient.updatePostalCode(hostname, postalCode);

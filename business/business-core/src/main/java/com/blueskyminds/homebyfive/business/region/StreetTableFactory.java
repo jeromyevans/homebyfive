@@ -59,7 +59,7 @@ public class StreetTableFactory {
                 value = street.getId();
                 break;
             case 1:
-                value = RegionRefFactory.createRef(street.getPath(), street.getName(), RegionRefType.Street);
+                value = RegionRefFactory.createRef(street.getPath(), street.getFullName(), RegionRefType.Street);
                 break;
         }
 

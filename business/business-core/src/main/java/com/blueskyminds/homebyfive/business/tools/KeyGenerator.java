@@ -30,6 +30,10 @@ public class KeyGenerator {
             key = key.replaceAll(punctuationPattern, "");
             // convert to lowercase
             key = StringUtils.lowerCase(key);
+            // strip leading zeros if more than 1 digit
+            if (key.length() > 1) {
+                key = StringUtils.stripStart(key, "0");
+            }
         }
         return key;
     }

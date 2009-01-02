@@ -24,6 +24,7 @@ public class SynchronizeController extends ActionSupport implements ServletReque
 
     private SubstitutionService substitutionService;
     private String hostname;
+    private SubstitutionClient substitutionClient;
 
     private HttpServletRequest request;
 
@@ -39,7 +40,6 @@ public class SynchronizeController extends ActionSupport implements ServletReque
     public String create() throws Exception {              
         List<Substitution> substitutions = substitutionService.listSubstitutions();
 
-        SubstitutionClient substitutionClient = new SubstitutionClient();
         for (Substitution substitution : substitutions) {
             substitutionClient.createSubstitution(hostname, substitution);
         }
@@ -61,5 +61,10 @@ public class SynchronizeController extends ActionSupport implements ServletReque
     @Inject
     public void setSubstitutionService(SubstitutionService substitutionService) {
         this.substitutionService = substitutionService;
+    }
+
+    @Inject
+    public void setSubstitutionClient(SubstitutionClient substitutionClient) {
+        this.substitutionClient = substitutionClient;
     }
 }

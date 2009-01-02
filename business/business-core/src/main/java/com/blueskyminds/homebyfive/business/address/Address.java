@@ -12,9 +12,7 @@ import org.jboss.envers.Versioned;
 /**
  * An Address identifies a physical location
  *
- * User: Jeromy
- * Date: 16/04/2006
- * Time: 13:00:47
+ * Date Started: 16/04/2006
  *
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
@@ -30,6 +28,11 @@ public abstract class Address extends AbstractDomainObject {
 
     /** The postcode for the address - usually implied by the suburb, but not always */
     private PostalCode postCode;
+
+    /**
+     * The source text used to parse the address (if applicable, used for debugging)
+     */
+    private String sourceText;
 
     // ------------------------------------------------------------------------------------------------------
     // ------------------------------------------------------------------------------------------------------
@@ -193,5 +196,15 @@ public abstract class Address extends AbstractDomainObject {
                 }
             }
         }
+    }
+
+    @Basic
+    @Column(length = 1024)
+    public String getSourceText() {
+        return sourceText;
+    }
+
+    public void setSourceText(String sourceText) {
+        this.sourceText = sourceText;
     }
 }

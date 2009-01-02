@@ -27,7 +27,7 @@ public class RegionRefFactory {
      */
     public static RegionRef createRef(Suburb regionHandle) {
         if (regionHandle != null) {
-            RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
+            RegionRef regionRef = new RegionRef(regionHandle.getId(), regionHandle.getPath(), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
             return regionRef;
         } else {
@@ -43,7 +43,7 @@ public class RegionRefFactory {
      */
     public static RegionRef createRef(State regionHandle) {
         if (regionHandle != null) {
-            RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
+            RegionRef regionRef = new RegionRef(regionHandle.getId(), regionHandle.getPath(), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
             return regionRef;
         } else {
@@ -59,7 +59,7 @@ public class RegionRefFactory {
      */
     public static RegionRef createRef(Country regionHandle) {
         if (regionHandle != null) {
-            RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
+            RegionRef regionRef = new RegionRef(regionHandle.getId(), regionHandle.getPath(), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
             return regionRef;
         } else {
@@ -75,7 +75,7 @@ public class RegionRefFactory {
      */
     public static RegionRef createRef(PostalCode regionHandle) {
         if (regionHandle != null) {
-            RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
+            RegionRef regionRef = new RegionRef(regionHandle.getId(), regionHandle.getPath(), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
             return regionRef;
         } else {
@@ -91,7 +91,7 @@ public class RegionRefFactory {
     */
     public static RegionRef createRef(Region regionHandle) {
         if (regionHandle != null) {
-            RegionRef regionRef = new RegionRef(regionHandle.getId(), PathHelper.buildPath(regionHandle), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
+            RegionRef regionRef = new RegionRef(regionHandle.getId(), regionHandle.getPath(), regionHandle.getName(), null, RegionRefType.toRegionRefType(regionHandle.getType()));
             populateAttributes(regionRef, regionHandle);
             return regionRef;
         } else {

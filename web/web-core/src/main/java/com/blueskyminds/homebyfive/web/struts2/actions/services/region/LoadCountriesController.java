@@ -41,7 +41,6 @@ public class LoadCountriesController extends LoadSupport<Country> {
             if (localhost()) {
                 performLocalLoad(countryService, countries);
             } else {
-                RegionClient regionClient = new RegionClient();
                 for (Country country : countries) {
                     if (updateOnly != null && updateOnly) {
                         regionClient.updateCountry(hostname, country);

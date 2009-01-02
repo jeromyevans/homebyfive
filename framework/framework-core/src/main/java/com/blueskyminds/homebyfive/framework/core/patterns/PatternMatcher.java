@@ -230,7 +230,9 @@ public abstract class PatternMatcher<T> {
 
             // there are phrases in this bin that can be used...
             if (allocationsToAttempt.size() > 0) {
-                LOG.debug(path+" "+bin.getClass().getSimpleName()+": "+allocationsToAttempt.size()+" paths available:");
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug(path+" "+bin.getClass().getSimpleName()+": "+allocationsToAttempt.size()+" paths available:");
+                }
                 int pathNo = 0;
                 for (PhraseToBinAllocation allocation : allocationsToAttempt) {
 

@@ -8,6 +8,7 @@ import com.blueskyminds.homebyfive.business.region.service.DuplicateRegionExcept
 import com.blueskyminds.homebyfive.business.region.service.RegionService;
 import com.blueskyminds.homebyfive.business.region.service.RegionServiceI;
 import com.blueskyminds.homebyfive.business.region.service.InvalidRegionException;
+import com.google.inject.Inject;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.commons.lang.StringUtils;
 
@@ -29,6 +30,7 @@ public abstract class LoadSupport<T extends Region> extends ActionSupport implem
     protected Boolean updateOnly;
     protected Boolean createOrUpdate = false;
     protected HttpServletRequest request;
+    protected RegionClient regionClient;
 
     protected String host(HttpServletRequest request) {
         return request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
@@ -113,5 +115,10 @@ public abstract class LoadSupport<T extends Region> extends ActionSupport implem
 
     protected boolean localhost() {
         return StringUtils.contains(hostname, "localhost");
+    }
+
+    @Inject
+    public void setRegionClient(RegionClient regionClient) {
+        this.regionClient = regionClient;
     }
 }

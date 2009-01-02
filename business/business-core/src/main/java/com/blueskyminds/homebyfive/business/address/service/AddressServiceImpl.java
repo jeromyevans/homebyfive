@@ -13,6 +13,7 @@ import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -175,7 +176,7 @@ public class AddressServiceImpl implements AddressService {
 
                 Suburb suburbHandle = suburbNameCache.get(countryAbbr+":"+stateString+":"+suburbString);
                 if (suburbHandle == null) {
-                    LOG.info("suburbName "+countryAbbr+":"+stateString+":"+suburbString+" is not cached");
+//                    LOG.info("suburbName "+countryAbbr+":"+stateString+":"+suburbString+" is not cached");
                     State state = null;
                     // lookup the suburb candidate(s)
                     if (StringUtils.isNotBlank(stateString)) {
@@ -250,7 +251,7 @@ public class AddressServiceImpl implements AddressService {
                 }
             }
         } catch (PatternMatcherException e) {
-            throw new AddressProcessingException(e);
+            throw new AddressProcessingException("Error in PatternMatcher while processing address", e);
         }
 
         return address;
@@ -328,17 +329,23 @@ public class AddressServiceImpl implements AddressService {
     // ------------------------------------------------------------------------------------------------------
 
     /** Adds a new Street to a Suburb.  The street and the suburb are persisted if necessary  */
-    private Street persistNewStreet(Suburb suburb, Street street) throws PersistenceServiceException {
+    private Street persistNewStreet(Suburb suburb, Street street) throws AddressProcessingException {
         if (street != null) {
             if (!street.isIdSet()) {
-                if (suburb != null) {
-                    suburb.addStreet(street);
-                    if (street.getSuburb() == null) {
-                        street.setSuburb(suburb);
-                    }
-                    em.persist(suburb);
+                 // ensure the name is capitalized before persistence
+                street.setName(WordUtils.capitalizeFully(street.getName()));
+                if (street.getSuburb() == null) {
+                    street.setSuburb(suburb);
                 }
-                em.persist(street);
+                try {
+                    street = streetService.create(street);
+                } catch (DuplicateRegionException e) {
+                    // the street already exists
+                    street.populateAttributes();
+                    street = streetService.lookup(street.getPath());
+                } catch (InvalidRegionException e) {
+                    throw new AddressProcessingException("Error creating new street", e);
+                }
             }
         }
         return street;
@@ -379,11 +386,7 @@ public class AddressServiceImpl implements AddressService {
                     // persist the new street  
                     StreetAddress streetAddress = (StreetAddress) address;
                     if (streetAddress.getStreet() != null) {
-                        if (!streetAddress.getStreet().isIdSet()) {
-                            Street street = streetAddress.getStreet();
-                            // ensure the name is capitalized before persistence
-                            street.setName(StringUtils.capitalize(street.getName()));
-
+                        if (!streetAddress.getStreet().isIdSet()) {                            
                             persistNewStreet(streetAddress.getSuburb(), streetAddress.getStreet());
                         } else {
                             streetAddress.setStreet(em.merge(address.getStreet()));

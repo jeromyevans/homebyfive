@@ -105,23 +105,26 @@ public class StreetServiceImpl extends CommonRegionServices<Street> implements S
      */
     @Transactional(exceptOn = DuplicateRegionException.class)
     public Street create(Street street) throws DuplicateRegionException, InvalidRegionException {
-        street.populateAttributes();
-        Street existing = regionDAO.lookup(street.getPath());
-        if (existing == null) {
 
-            Suburb suburb = street.getSuburb();
-            if (suburb == null) {
-                // see if the parent path references a suburb
-                if (StringUtils.isNotBlank(street.getParentPath())) {
-                    suburb = suburbService.lookup(street.getParentPath());
-                    if (suburb != null) {
-                        suburb.addStreet(street);
-                        street.setSuburb(suburb);
-                    }
+        // check the suburb reference before updating attributes
+        Suburb suburb = street.getSuburb();
+        if (suburb == null) {
+            // see if the parent path references a suburb
+            if (StringUtils.isNotBlank(street.getParentPath())) {
+                suburb = suburbService.lookup(street.getParentPath());
+                if (suburb != null) {
+                    suburb.addStreet(street);
+                    street.setSuburb(suburb);
                 }
             }
+        }
 
-            if (suburb != null) {                
+        street.populateAttributes();
+
+        Street existing = regionDAO.lookup(street.getPath());
+        if (existing == null) {
+            if (suburb != null) {
+                em.persist(suburb);
                 em.persist(street);
             } else {
                 throw new InvalidRegionException("Invalid parent region (suburb)", street);

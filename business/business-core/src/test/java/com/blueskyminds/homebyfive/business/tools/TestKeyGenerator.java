@@ -15,6 +15,8 @@ public class TestKeyGenerator extends TestCase {
         assertEquals("ryde", KeyGenerator.generateId("Ryde"));
         assertEquals("key-west", KeyGenerator.generateId("Key-west"));
         assertEquals("north+key-west", KeyGenerator.generateId("North Key-west"));
+        assertEquals("2", KeyGenerator.generateId("02"));
+        assertEquals("northwest", KeyGenerator.generateId("north/west"));
     }
     
 }

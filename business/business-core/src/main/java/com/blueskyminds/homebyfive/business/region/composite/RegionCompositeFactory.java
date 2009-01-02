@@ -111,8 +111,7 @@ public class RegionCompositeFactory {
     public static RegionComposite createSuburb(Suburb suburb) {
         RegionComposite regionComposite = new RegionComposite();
 
-        regionComposite.add(RegionRefFactory.createRef(suburb));
-        regionComposite.add(RegionRefFactory.createRef(suburb.getPostalCode()));
+        regionComposite.add(RegionRefFactory.createRef(suburb));        
         State state = unproxyState(suburb.getState());
         regionComposite.add(RegionRefFactory.createRef(state));
         if (state != null) {

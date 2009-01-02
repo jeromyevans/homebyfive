@@ -33,7 +33,6 @@ public class LoadSuburbsController extends LoadSupport<Suburb> {
                 performLocalLoad(suburbService, suburbs);
             } else {
                 // use the remote interface
-                RegionClient regionClient = new RegionClient();
                 for (Suburb suburb : suburbs) {
                     if (updateOnly != null && updateOnly) {
                         regionClient.updateSuburb(hostname, suburb);

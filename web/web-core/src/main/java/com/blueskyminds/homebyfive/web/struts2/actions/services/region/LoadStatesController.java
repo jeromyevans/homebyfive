@@ -25,7 +25,7 @@ import java.util.List;
 public class LoadStatesController extends LoadSupport<State> {
 
     private StateService stateService;
-
+    
     public String index() throws Exception {
         hostname = host(request);
         return Results.INDEX;
@@ -39,8 +39,7 @@ public class LoadStatesController extends LoadSupport<State> {
 
             if (localhost()) {
                 performLocalLoad(stateService, states);
-            } else {
-                RegionClient regionClient = new RegionClient();
+            } else {                
                 for (State state : states) {
                     if (updateOnly != null && updateOnly) {
                         regionClient.updateState(hostname, state);
@@ -58,4 +57,5 @@ public class LoadStatesController extends LoadSupport<State> {
     public void setStateService(StateService stateService) {
         this.stateService = stateService;
     }
+
 }
