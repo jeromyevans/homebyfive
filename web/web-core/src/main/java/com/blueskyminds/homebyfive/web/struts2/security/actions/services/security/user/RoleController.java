@@ -6,9 +6,9 @@ import com.blueskyminds.homebyfive.business.user.services.UserAccountService;
 import com.blueskyminds.homebyfive.business.user.model.UserAccount;
 import com.google.inject.Inject;
 import com.wideplay.warp.persist.Transactional;
-import org.apache.struts2.config.Namespace;
-import org.apache.struts2.config.Results;
-import org.apache.struts2.config.Result;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Results;
+import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.rest.HttpHeaders;
 import org.apache.struts2.rest.DefaultHttpHeaders;
 import org.apache.struts2.views.freemarker.FreemarkerResult;
@@ -24,9 +24,9 @@ import javax.annotation.security.RolesAllowed;
  */
 @Namespace("/services/security/{username}")
 @Results({
-        @Result(name = "index", type = FreemarkerResult.class, value = "/results/services/security/user/role-index.ftl"),
-        @Result(name = "editNew", type = FreemarkerResult.class, value = "/results/services/security/user/role-editNew.ftl"),
-        @Result(name = "create", type = FreemarkerResult.class, value = "/results/services/security/user/role-create.ftl")
+        @Result(name = "index", type = "freemarker", location = "/results/services/security/user/role-index.ftl"),
+        @Result(name = "editNew", type = "freemarker", location = "/results/services/security/user/role-editNew.ftl"),
+        @Result(name = "create", type = "freemarker", location = "/results/services/security/user/role-create.ftl")
         })
 @RolesAllowed("authAdmin")
 public class RoleController implements ModelDriven<String[]>, Preparable {

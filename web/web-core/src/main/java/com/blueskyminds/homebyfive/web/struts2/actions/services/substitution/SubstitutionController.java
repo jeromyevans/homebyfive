@@ -1,7 +1,7 @@
 package com.blueskyminds.homebyfive.web.struts2.actions.services.substitution;
 
-import org.apache.struts2.config.Results;
-import org.apache.struts2.config.Result;
+import org.apache.struts2.convention.annotation.Results;
+import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.rest.HttpHeaders;
 import org.apache.struts2.rest.DefaultHttpHeaders;
 import org.apache.commons.lang.StringUtils;
@@ -20,12 +20,6 @@ import java.util.List;
 /**
  * Date Started: 3/05/2008
  */
-@Results({
-//    @Result(name = "index", type = FreemarkerResult.class, value = "/results/datatable.ftl"),
-    @Result(name = "create", value = ""),
-    @Result(name = "delete", value = ""),
-    @Result(name = "update", value = "")}
-)
 public class SubstitutionController extends ActionSupport implements ModelDriven<Object>, Preparable {
                                                      
     private SubstitutionService substitutionService;

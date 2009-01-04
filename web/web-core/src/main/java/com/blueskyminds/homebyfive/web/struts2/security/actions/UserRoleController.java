@@ -1,6 +1,6 @@
 package com.blueskyminds.homebyfive.web.struts2.security.actions;
 
-import org.apache.struts2.config.Namespace;
+import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.rest.HttpHeaders;
 
 /**

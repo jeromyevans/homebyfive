@@ -6,7 +6,7 @@ import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts2.config.Result;
+import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.config.NullResult;
 
 import java.util.Map;
@@ -19,7 +19,6 @@ import java.util.HashMap;
  * <p/>
  * History:
  */
-@Result(name="result", type= NullResult.class, value = "")
 public class ControlPanelController extends ActionSupport {
 
     private static final Log LOG = LogFactory.getLog(ControlPanelController.class);
