@@ -39,6 +39,28 @@ public class MonthOfYear implements Serializable, Comparable {
         this.year = calendarYear;
     }
 
+    /**
+     * Create a new MonthOfYear timePeriod for the specific Calendar month
+     *
+     * @param calendar  the calendar month to use
+     */
+    public MonthOfYear(Calendar calendar) {
+        this.month = calendar.get(Calendar.MONTH);
+        this.year = calendar.get(Calendar.YEAR);
+    }
+
+    /**
+     * Create a new MonthOfYear timePeriod for the specific Calendar month
+     *
+     * @param date the month to use
+     */
+    public MonthOfYear(Date date) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(date);        
+        this.month = calendar.get(Calendar.MONTH);
+        this.year = calendar.get(Calendar.YEAR);
+    }
+
     /** Default constructor for ORM */
     protected MonthOfYear() {
     }
@@ -93,8 +115,6 @@ public class MonthOfYear implements Serializable, Comparable {
         return lastSecond();
     }
 
-    // ------------------------------------------------------------------------------------------------------
-
     /** Returns the last second of this MonthOfYear as a Date */
     public Date lastSecond() {
         Calendar cal = new GregorianCalendar(year, month, 1, 0, 0, 0);
@@ -104,15 +124,20 @@ public class MonthOfYear implements Serializable, Comparable {
         return cal.getTime();
     }
 
-    // ------------------------------------------------------------------------------------------------------
-
     /** Returns the first second of this MonthOfYear as a Date */
     public Date firstSecond() {
         Calendar cal = new GregorianCalendar(year, month, 1, 0, 0, 0); // 1st of this month
 
         return cal.getTime();
     }
-    // ------------------------------------------------------------------------------------------------------
+
+    /** Returns the first second of NEXT MonthOfYear as a Date */
+    public Date firstSecondOfNextMonth() {
+        Calendar cal = new GregorianCalendar(year, month, 1, 0, 0, 0);
+        cal.add(Calendar.MONTH, 1);   // 1st of next month
+        return cal.getTime();
+    }
+
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,9 +149,7 @@ public class MonthOfYear implements Serializable, Comparable {
         if (year != month1.year) return false;
 
         return true;
-    }
-
-    // ------------------------------------------------------------------------------------------------------
+    }   
 
     public int hashCode() {
         int result;
@@ -142,13 +165,28 @@ public class MonthOfYear implements Serializable, Comparable {
 
     public int compareTo(Object o) {
         int result = -1;
-        if (o instanceof MonthOfYear) {
-            MonthOfYear other = (MonthOfYear) o;
-            result = ((Integer) this.year).compareTo(other.year);
-            if (result == 0) {
-                result= ((Integer) this.month).compareTo(other.month);
+        MonthOfYear other = null;
+        if (o != null) {
+            if (o instanceof MonthOfYear) {
+                other = (MonthOfYear) o;
+            } else {
+                if (o instanceof Date) {
+                    other = new MonthOfYear((Date) o);
+                } else {
+                    if (o instanceof Calendar) {
+                       other = new MonthOfYear((Calendar) o);
+                    }
+                }
             }
+
+            if (other != null) {
+                result = ((Integer) this.year).compareTo(other.year);
+                if (result == 0) {
+                    result= ((Integer) this.month).compareTo(other.month);
+                }
+            } 
         }
+
         return result;
     }
 
@@ -158,12 +196,12 @@ public class MonthOfYear implements Serializable, Comparable {
         int newYear = this.year + yearsToAdd;
         int newMonth = this.month + monthsToAdd;
         // rollover
-        if (newMonth >= 11) {
+        if (newMonth > 11) {
             newMonth = newMonth - 12;
             newYear++;
         } else {
             if (newMonth < 0) {
-                newMonth += 12;
+                newMonth = newMonth + 12;
                 newYear--;
             }
         }
@@ -228,5 +266,24 @@ public class MonthOfYear implements Serializable, Comparable {
 
     public static MonthOfYear december(int year) {
         return new MonthOfYear(Calendar.DECEMBER, year);
+    }
+
+    /**
+     * A representation of the current month
+     * @return
+     */
+    public static MonthOfYear now() {
+        return new MonthOfYear(GregorianCalendar.getInstance());
+    }
+
+    /**
+     * A representation of last month (relative to now)
+     * @return
+     */
+    public static MonthOfYear lastMonth() {
+        Calendar now = GregorianCalendar.getInstance();
+        now.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), 1, 0, 0, 0);
+        now.add(Calendar.DAY_OF_MONTH, -1);
+        return new MonthOfYear(now.get(Calendar.MONTH), now.get(Calendar.YEAR));
     }
 }

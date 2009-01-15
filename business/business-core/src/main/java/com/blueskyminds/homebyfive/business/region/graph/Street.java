@@ -47,6 +47,20 @@ public class Street extends Region {
     }
 
     /**
+     * Create a new instance of a street without the standard set of properties
+     */
+    public Street(Suburb suburb, String name, StreetType streetType, StreetSection section) {
+        super(name, RegionTypes.Street);
+        this.streetType = streetType;
+        this.section = section;
+        setSuburb(suburb);
+        populateAttributes();
+        if (suburb != null) {
+            suburb.addStreet(this);
+        }
+    }
+
+    /**
      * Create a new instance of a street without a street section (street sections are rare)
      */
     public Street(String name, StreetType streetType) {
@@ -55,11 +69,26 @@ public class Street extends Region {
         populateAttributes();
     }
 
+     /**
+     * Create a new instance of a street without a street section (street sections are rare)
+     */
+    public Street(Suburb suburb, String name, StreetType streetType) {
+        super(name, RegionTypes.Street);
+        this.streetType = streetType;
+        setSuburb(suburb);
+        populateAttributes();
+        if (suburb != null) {
+            suburb.addStreet(this);
+        }
+    }
    
     public Street(Suburb suburb) {
         super("", RegionTypes.Street);
         setSuburb(suburb);
         populateAttributes();
+        if (suburb != null) {
+            suburb.addStreet(this);
+        }
     }
     
     public Street() {

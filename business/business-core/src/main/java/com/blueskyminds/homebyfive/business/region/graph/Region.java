@@ -484,7 +484,7 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
      * @param otherTags
      */
     private void mergeTags(Set<RegionTagMap> otherTags) {
-         if (otherTags != null) {
+        if (otherTags != null) {
             for (RegionTagMap RegionTagMap : otherTags) {
                 if (!hasTag(RegionTagMap.getTag())) {
                     // merge
@@ -528,9 +528,11 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
     /** Recursive method to visit all the ancestors of a region once */
     private void visitAncestors(Set<Region> ancestors) {
         Region parent = getParent();
-        if (!ancestors.contains(parent)) {
-            ancestors.add(parent);
-            parent.visitAncestors(ancestors);
+        if (parent != null) {
+            if (!ancestors.contains(parent)) {
+                ancestors.add(parent);
+                parent.visitAncestors(ancestors);
+            }
         }
     }
 

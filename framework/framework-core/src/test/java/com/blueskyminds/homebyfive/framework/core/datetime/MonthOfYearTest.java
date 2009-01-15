@@ -3,6 +3,10 @@ package com.blueskyminds.homebyfive.framework.core.datetime;
 import junit.framework.TestCase;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 
 /**
  * Date Started: 16/11/2007
@@ -10,7 +14,9 @@ import java.util.Calendar;
  * History:
  */
 public class MonthOfYearTest extends TestCase {
-    
+
+    private static final Log LOG = LogFactory.getLog(MonthOfYearTest.class);
+
     public void testCompare() {
         MonthOfYear april = new MonthOfYear(Calendar.APRIL, 2007);
         MonthOfYear june = new MonthOfYear(Calendar.JUNE, 2007);
@@ -43,5 +49,18 @@ public class MonthOfYearTest extends TestCase {
         assertEquals(new MonthOfYear(Calendar.APRIL, 2008), april08);
         assertEquals(new MonthOfYear(Calendar.MAY, 2009), may09);
 
+        MonthOfYear nov08 = MonthOfYear.november(2008);
+        MonthOfYear dec08 = nov08.add(1);
+        MonthOfYear jan09 = dec08.add(1);
+
+        assertEquals(new MonthOfYear(Calendar.JANUARY, 2009), jan09);
+
+    }
+
+    public void testLastMonth() {
+        MonthOfYear lastMonth = MonthOfYear.lastMonth();
+        MonthOfYear now = MonthOfYear.now();
+        LOG.info(lastMonth);
+        LOG.info(now);
     }
 }

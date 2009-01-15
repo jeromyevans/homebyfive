@@ -354,4 +354,5 @@ public class Interval implements Serializable {
         adjustCalendar(cal, occurrences*periods);
         return cal.getTime();
     }
+    
 }

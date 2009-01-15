@@ -48,6 +48,9 @@ public class State extends Region {
         addAlias(abbreviation);
         setCountry(country);
         populateAttributes();
+        if (country != null) {
+            country.addState(this);
+        }
     }
 
      public State(Country country, String name, String abbreviation, StateType stateType) {
@@ -57,6 +60,9 @@ public class State extends Region {
         addAlias(abbreviation);
         this.parentPath = country.getPath();
         populateAttributes();
+        if (country != null) {
+            country.addState(this);
+        }
     }
 
     public State(String countryPath, String name, String abbreviation, StateType stateType) {

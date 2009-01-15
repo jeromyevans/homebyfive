@@ -1341,6 +1341,61 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/tiles/tles-core/2.0.6/tles-core-2.0.6-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.apache.struts:struts2-core:2.1.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.1.6/struts2-core-2.1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.1.6/struts2-core-2.1.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.1.6/struts2-core-2.1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.struts:struts2-convention-plugin:2.1.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-convention-plugin/2.1.6/struts2-convention-plugin-2.1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-convention-plugin/2.1.6/struts2-convention-plugin-2.1.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-convention-plugin/2.1.6/struts2-convention-plugin-2.1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.struts:struts2-rest-plugin:2.1.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-rest-plugin/2.1.6/struts2-rest-plugin-2.1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-rest-plugin/2.1.6/struts2-rest-plugin-2.1.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-rest-plugin/2.1.6/struts2-rest-plugin-2.1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.struts:struts2-sitemesh-plugin:2.1.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-sitemesh-plugin/2.1.6/struts2-sitemesh-plugin-2.1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-sitemesh-plugin/2.1.6/struts2-sitemesh-plugin-2.1.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-sitemesh-plugin/2.1.6/struts2-sitemesh-plugin-2.1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.struts:struts2-tiles-plugin:2.1.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-tiles-plugin/2.1.6/struts2-tiles-plugin-2.1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-tiles-plugin/2.1.6/struts2-tiles-plugin-2.1.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-tiles-plugin/2.1.6/struts2-tiles-plugin-2.1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" />

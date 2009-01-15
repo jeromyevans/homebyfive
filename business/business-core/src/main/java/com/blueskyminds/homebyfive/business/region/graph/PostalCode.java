@@ -37,6 +37,9 @@ public class PostalCode extends Region {
         super(name, RegionTypes.PostCode);
         setState(state);
         populateAttributes();
+        if (state != null) {
+            state.addPostCode(this);
+        }
     }
 
     /** Used to edit a new postalcode */
@@ -44,6 +47,9 @@ public class PostalCode extends Region {
         super("", RegionTypes.PostCode);
         setState(state);
         populateAttributes();
+        if (state != null) {
+            state.addPostCode(this);
+        }
     }
 
      public PostalCode(String statePath, String name) {

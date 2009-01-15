@@ -44,12 +44,21 @@ public class Suburb extends Region {
         setState(state);
         setPostalCode(postCode);
         populateAttributes();
+        if (state != null) {
+            state.addSuburb(this);
+        }
+        if (postCode != null) {
+            postCode.addSuburb(this);
+        }
     }
 
     public Suburb(State state, String name) {
         super(name, RegionTypes.Suburb);
         setState(state);
         populateAttributes();
+        if (state != null) {
+            state.addSuburb(this);
+        }
     }
 
     public Suburb(String statePath, String postCodePath, String name) {
@@ -64,6 +73,9 @@ public class Suburb extends Region {
         super("", RegionTypes.Suburb);
         setState(state);
         populateAttributes();
+        if (state != null) {
+            state.addSuburb(this);
+        }
     }
     
     public Suburb() {

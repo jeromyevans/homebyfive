@@ -236,4 +236,21 @@ public class AbstractDAO<T> implements QueryPager, CommonDAO<T> {
         }
        return null;
     }
+
+    /**
+     * Returns the first item in a collection
+     * Handles null case.  First item in a set will be the first returned by an iterator.
+     * Makes no assumptions about the type of entries in the collection.
+     * 
+     * @param collection
+     * @return
+     */
+    protected <X> X firstInX(Collection<X> collection) {
+        if (collection != null) {
+            if (collection.size() > 0) {
+                return collection.iterator().next();
+            }
+        }
+       return null;
+    }
 }

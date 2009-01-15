@@ -63,4 +63,13 @@ public class TagExpression {
         }
         return filtered;
     }
+
+    /**
+     * Todo: encode the expression as a string
+     *
+     * @return
+     */
+    public String asString() {
+        return null;
+    }
 }
