@@ -5,7 +5,7 @@ import com.blueskyminds.homebyfive.business.pricing.Money;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceSession;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceServiceException;
-import com.blueskyminds.homebyfive.business.party.Company;
+import com.blueskyminds.homebyfive.business.party.Organisation;
 import com.blueskyminds.homebyfive.framework.core.test.DbTestCase;
 
 import java.util.Currency;
@@ -28,7 +28,7 @@ public class TestAccounts extends DbTestCase {
     public void testAccounts() {
         Enterprise enterprise = new Enterprise("WDISTest", Currency.getInstance("AUD"));
 
-        Company company = new Company("testCompany");
+        Organisation company = new Organisation("testCompany");
         FinancialJournal financialJournal = enterprise.getFinancialJournal();
         ChartOfAccounts chartOfAccounts = enterprise.getChartOfAccounts();
 
@@ -66,7 +66,7 @@ public class TestAccounts extends DbTestCase {
 
             Enterprise enterprise = new Enterprise("WDISTest", Currency.getInstance("AUD"));
 
-            Company company = new Company("testCompany");
+            Organisation company = new Organisation("testCompany");
             FinancialJournal financialJournal = enterprise.getFinancialJournal();
             ChartOfAccounts chartOfAccounts = enterprise.getChartOfAccounts();
 

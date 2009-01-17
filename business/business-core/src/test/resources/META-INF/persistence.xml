@@ -125,7 +125,6 @@ To do: many of these properties need to be able to be changed -->
 
         <class>com.blueskyminds.homebyfive.business.party.Party</class>
         <class>com.blueskyminds.homebyfive.business.party.Organisation</class>
-        <class>com.blueskyminds.homebyfive.business.party.Company</class>
         <class>com.blueskyminds.homebyfive.business.party.Individual</class>
         <class>com.blueskyminds.homebyfive.business.party.SystemParty</class>
         <class>com.blueskyminds.homebyfive.business.party.IndividualRelationship</class>

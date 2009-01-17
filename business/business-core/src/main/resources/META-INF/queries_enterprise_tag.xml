@@ -38,7 +38,7 @@
   -->
   <named-query name="tag.autocomplete">
     <query>
-      select tag from Tag tag where lower(tag.key) like :keyValue
+      select tag from Tag tag where tag.key like :keyValue
     </query>
   </named-query>
 

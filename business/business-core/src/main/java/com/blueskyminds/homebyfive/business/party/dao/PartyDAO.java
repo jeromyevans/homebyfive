@@ -94,7 +94,8 @@ public class PartyDAO extends AbstractDAO<Party> {
             query = em.createNamedQuery(QUERY_ORGANISATION_BY_NAME);
         }
 
-        setLikeParameter(query, PARAM_NAME, organisation.getName());
+        //setLikeParameter(query, PARAM_NAME, organisation.getName());
+        query.setParameter(PARAM_NAME, organisation.getName());
 
         organisations = query.getResultList();
 
@@ -152,8 +153,10 @@ public class PartyDAO extends AbstractDAO<Party> {
                 query = em.createNamedQuery(QUERY_INDIVIDUAL_BY_NAME);
             }
 
-            setLikeParameter(query, PARAM_FIRST_NAME, individual.getFirstName());
-            setLikeParameter(query, PARAM_LAST_NAME, individual.getLastName());
+            //setLikeParameter(query, PARAM_FIRST_NAME, individual.getFirstName());
+            //setLikeParameter(query, PARAM_LAST_NAME, individual.getLastName());
+            query.setParameter(PARAM_FIRST_NAME, individual.getFirstName());
+            query.setParameter(PARAM_LAST_NAME, individual.getLastName());
 
             individuals = query.getResultList();
         }

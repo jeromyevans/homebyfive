@@ -33,7 +33,7 @@ public class TestParty extends JPATestCase {
     // ------------------------------------------------------------------------------------------------------
 
     private Party initParty() {
-        Company blueSkyMinds = AddressTestTools.blueSkyMinds();
+        Organisation blueSkyMinds = AddressTestTools.blueSkyMinds();
 
         Individual jeromy = AddressTestTools.jeromyEvans();
 
@@ -45,7 +45,7 @@ public class TestParty extends JPATestCase {
     // ------------------------------------------------------------------------------------------------------
 
     public void testPartyPersistence() {
-        Company blueSkyMinds = AddressTestTools.blueSkyMinds();
+        Organisation blueSkyMinds = AddressTestTools.blueSkyMinds();
         Individual jeromy = AddressTestTools.jeromyEvans();
         blueSkyMinds.addIndividualRelationship(new IndividualRelationship(blueSkyMinds, jeromy, "Director", new IndividualRole("Director")));
 
@@ -86,12 +86,12 @@ public class TestParty extends JPATestCase {
 
     public void testOrganisationLookup() throws Exception {
 
-        Company blueSkyMinds = AddressTestTools.blueSkyMinds();
+        Organisation blueSkyMinds = AddressTestTools.blueSkyMinds();
         em.persist(blueSkyMinds);
 
         assertEquals(4, blueSkyMinds.getPointsOfContact().size());
 
-        Company example = new Company("Blue Sky Minds Pty Ltd");
+        Organisation example = new Organisation("Blue Sky Minds Pty Ltd");
         example.addEmailAddress(new EmailAddress("jeromy.evans@blueskyminds.com.au", POCRole.Business));
         example.addPhoneNumber(new PhoneNumber("02 99225423", POCRole.Business, PhoneNumberTypes.Fax));
 

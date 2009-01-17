@@ -16,7 +16,7 @@
   -->
   <named-query name="organisation.byName">
     <query>
-      select organisation from Organisation organisation where organisation.name like :name
+      select organisation from Organisation organisation where organisation.name = :name
     </query>
   </named-query>
 
@@ -34,7 +34,7 @@
       left join organisation.pointsOfContact contactRelationship
       left join contactRelationship.pointOfContact contactAddress
       where contactRelationship.type = :type and
-      organisation.name like :name
+      organisation.name = :name
     </query>
   </named-query>
 
@@ -65,7 +65,7 @@
       left join contactRelationship.pointOfContact contactAddress
       left join contactAddress.address address
       where contactRelationship.type = :type and
-      organisation.name like :name and
+      organisation.name = :name and
       address in(:addresses)
     </query>
   </named-query>
@@ -80,8 +80,8 @@
   <named-query name="individual.byName">
     <query>
       select individual from Individual individual
-      where individual.firstName like :firstName and
-      individual.lastName like :lastName
+      where individual.firstName = :firstName and
+      individual.lastName = :lastName
     </query>
   </named-query>
 
@@ -100,8 +100,8 @@
       left join contactRelationship.pointOfContact contactAddress
       left join contactAddress.address address
       where contactRelationship.type = :type and
-      individual.firstName like :firstName and
-      individual.lastName like :lastName and
+      individual.firstName = :firstName and
+      individual.lastName = :lastName and
       address in(:addresses)
     </query>
   </named-query>

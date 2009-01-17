@@ -56,7 +56,7 @@ public class AddressPath extends AbstractEntity implements SimpleAddress {
 
     /** Use this constructor to identify an invalid address string */
     public AddressPath(String addressString, RegionRefType type, AddressPathStatus status) {
-        this.addressString = addressString;
+        this.addressString = StringUtils.lowerCase(addressString);
         this.type = type;
         this.status = status;
     }

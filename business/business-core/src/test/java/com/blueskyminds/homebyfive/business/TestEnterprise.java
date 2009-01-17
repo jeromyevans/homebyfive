@@ -3,7 +3,6 @@ package com.blueskyminds.homebyfive.business;
 import com.blueskyminds.homebyfive.business.accounting.ChartOfAccounts;
 import com.blueskyminds.homebyfive.business.accounting.DetailAccount;
 import com.blueskyminds.homebyfive.business.license.*;
-import com.blueskyminds.homebyfive.business.party.Company;
 import com.blueskyminds.homebyfive.business.party.Party;
 import com.blueskyminds.homebyfive.business.pricing.*;
 import com.blueskyminds.homebyfive.business.pricing.policy.FixedPrice;
@@ -44,7 +43,7 @@ public class TestEnterprise extends DbTestCase {
     public void testEnterprise() {
         WDISEnterprise enterprise = new WDISEnterprise();
 
-        Party testParty = enterprise.getScheduleOfParties().createParty(new Company("TestCompany"));
+        Party testParty = enterprise.getScheduleOfParties().createParty(new Organisation("TestCompany"));
         Product adminFee = enterprise.getProductList().createProduct(new Fee("Admin", FeeTypes.Fixed));
         Product transactionFee = enterprise.getProductList().createProduct(new Fee("Transaction", FeeTypes.Transaction));
 
@@ -171,7 +170,7 @@ public class TestEnterprise extends DbTestCase {
 
             Enterprise enterprise = new Enterprise("TestEnterprise", Currency.getInstance("AUD"));
 
-            Party testParty = enterprise.getScheduleOfParties().createParty(new Company("TestCompany"));
+            Party testParty = enterprise.getScheduleOfParties().createParty(new Organisation("TestCompany"));
             Product adminFee = enterprise.getProductList().createProduct(new Fee("Admin", FeeTypes.Fixed));
             Product transactionFee = enterprise.getProductList().createProduct(new Fee("Transaction", FeeTypes.Transaction));
 

@@ -43,7 +43,7 @@ public class TestContract extends DbTestCase {
         try {
             PersistenceService gateway = getPersistenceService();
 
-            Company blueSkyMinds = AddressTestTools.blueSkyMinds();
+            Organisation blueSkyMinds = AddressTestTools.blueSkyMinds();
             Individual jeromy = AddressTestTools.jeromyEvans();
             blueSkyMinds.addIndividualRelationship(new IndividualRelationship(blueSkyMinds, jeromy, "Director", new IndividualRole("Director")));
 

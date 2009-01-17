@@ -10,7 +10,7 @@
     Get an AddressPath entry by the address string
 
     Parameters:
-      addressString:  addressString
+      addressString:  addressString  (in lowercase)
 
     Indexes:
 
@@ -18,7 +18,7 @@
     <named-query name="hp.addressPath.byAddressString" >
         <query>
            select addressPath from AddressPath addressPath
-             where lower(addressPath.addressString) = :addressString
+             where addressPath.addressString = :addressString
         </query>
         <hint name="org.hibernate.cacheable" value="true"/>
     </named-query>

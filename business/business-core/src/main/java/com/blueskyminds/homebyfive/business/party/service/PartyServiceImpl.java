@@ -46,9 +46,6 @@ public class PartyServiceImpl implements PartyService {
         Party party = null;
 
         switch (type) {
-            case Company:
-                party = new Company(name);
-                break;
             case Individual:
                 party = new Individual(name);
                 break;

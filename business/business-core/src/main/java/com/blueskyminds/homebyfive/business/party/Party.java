@@ -27,7 +27,7 @@ import org.hibernate.annotations.Cascade;
  *
  * History:
  *
- * Copyright (c) 2008 Blue Sky Minds Pty Ltd
+ * Copyright (c) 2009 Blue Sky Minds Pty Ltd
  */
 
 @Entity

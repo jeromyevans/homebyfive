@@ -3,9 +3,9 @@ package com.blueskyminds.homebyfive.business;
 import com.blueskyminds.homebyfive.framework.core.test.TestTools;
 import com.blueskyminds.homebyfive.framework.core.persistence.jdbc.PersistenceTools;
 import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService;
-import com.blueskyminds.homebyfive.business.party.Company;
 import com.blueskyminds.homebyfive.business.party.Individual;
 import com.blueskyminds.homebyfive.business.party.Title;
+import com.blueskyminds.homebyfive.business.party.Organisation;
 import com.blueskyminds.homebyfive.business.contact.*;
 import com.blueskyminds.homebyfive.business.address.*;
 import com.blueskyminds.homebyfive.business.pricing.Contract;
@@ -40,8 +40,8 @@ public class AddressTestTools extends TestTools {
     public static final String CREATE_REGION_PARENT_INDEX = "create index RegionParentIndex on RegionMap (parentId)";
     public static final String CREATE_REGION_CHILD_INDEX = "create index RegionChildIndex on RegionMap (parentId)";
 
-    public static Company blueSkyMinds() {
-        Company blueSkyMinds = new Company("Blue Sky Minds Pty Ltd");
+    public static Organisation blueSkyMinds() {
+        Organisation blueSkyMinds = new Organisation("Blue Sky Minds Pty Ltd");
         blueSkyMinds.addEmailAddress(new EmailAddress("info@blueskyminds.com.au", POCRole.Business));
         blueSkyMinds.addStreetAddress(new ContactAddress(new PlainTextAddress("1/22 Spruson Street, Neutral Bay NSW 2089"), POCRole.Business));
         blueSkyMinds.addPhoneNumber(new PhoneNumber("0438951541", POCRole.Business, PhoneNumberTypes.Mobile));
