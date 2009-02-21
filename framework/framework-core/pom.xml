@@ -46,6 +46,19 @@
        <version>3.3.2.GA</version>
      </dependency>
 
+    <dependency>
+       <groupId>org.hibernate</groupId>
+       <artifactId>hibernate-entitymanager</artifactId>
+       <version>3.3.2.GA</version>
+     </dependency>
+
+    <!-- connection pool implementation -->
+    <dependency>
+      <groupId>c3p0</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.1.2</version>
+    </dependency>
+
     <!-- envers provides version control of entities -->
     <dependency>
        <groupId>org.jboss.envers</groupId>

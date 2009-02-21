@@ -384,9 +384,13 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
          this.key = anotherRegion.getKey();
 
          // determine which parents need to be added
-         if (!otherParent.hasChild(this)) {
-             otherParent.addChildRegion(this);
-             setParent(otherParent);
+         if (otherParent != null) {
+             if (!otherParent.hasChild(this)) {
+                 otherParent.addChildRegion(this);
+                 setParent(otherParent);
+             }
+         } else {
+             setParent(null);
          }
 
          // determine which children need to be added

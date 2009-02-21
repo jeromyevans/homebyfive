@@ -86,11 +86,11 @@
     </dependency>
 
     <!-- This should be a separate module -->
-    <dependency>
-      <groupId>com.google.inject.struts2</groupId>
-      <artifactId>guice-struts2-plugin</artifactId>
-      <version>1.0.1</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.google.inject.struts2</groupId>-->
+      <!--<artifactId>guice-struts2-plugin</artifactId>-->
+      <!--<version>1.0.1</version>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>com.google.inject.servlet</groupId>

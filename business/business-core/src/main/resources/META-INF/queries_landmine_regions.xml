@@ -222,7 +222,7 @@
         <query>
           select street from Street street
           left join fetch street.regionAliases alias
-          left join fetch street.regionIndex
+          inner join fetch street.regionIndex
           where street.parentPath = :path and
           street.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
         </query>

@@ -1396,6 +1396,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-tiles-plugin/2.1.6/struts2-tiles-plugin-2.1.6-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: c3p0:c3p0:0.9.1.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/c3p0/c3p0/0.9.1.2/c3p0-0.9.1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/c3p0/c3p0/0.9.1.2/c3p0-0.9.1.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/c3p0/c3p0/0.9.1.2/c3p0-0.9.1.2-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" />
