@@ -23,11 +23,12 @@ public class RegionServiceImpl implements RegionService {
     private StateService stateService;
     private PostalCodeService postalCodeService;
     private SuburbService suburbService;
-
+    private StreetService streetService;
+    
     public RegionServiceImpl() {
     }
 
-    public RegionServiceImpl(EntityManager em, CountryService countryService, StateService stateService, PostalCodeService postalCodeService, SuburbService suburbService) {
+    public RegionServiceImpl(EntityManager em, CountryService countryService, StateService stateService, PostalCodeService postalCodeService, SuburbService suburbService, StreetService streetService) {
         this.em = em;
         this.countryService = countryService;
         this.stateService = stateService;
@@ -58,12 +59,12 @@ public class RegionServiceImpl implements RegionService {
                     region = postalCodeService.lookup(components[0], components[1], components[2]);
                 }
                 break;
-//            case 4 :
-//                region = lookupStreet(components[0], components[1], components[2], components[3]);
-//                break;
-//            case 5 :
-//                region = lookupStreet(components[0], components[1], components[2], components[3]);
-//                break;
+            case 4 :
+                region = streetService.lookup(components[0], components[1], components[2], components[3]);
+                break;
+            case 5 :
+                region = streetService.lookup(components[0], components[1], components[2], components[3]);
+                break;
         }
         return region;
     }  
@@ -114,5 +115,10 @@ public class RegionServiceImpl implements RegionService {
     @Inject
     public void setSuburbService(SuburbService suburbService) {
         this.suburbService = suburbService;
+    }
+
+    @Inject
+    public void setStreetService(StreetService streetService) {
+        this.streetService = streetService;
     }
 }

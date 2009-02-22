@@ -60,5 +60,6 @@
     <orderEntry type="library" exported="" name="Maven: warp-persist:warp-persist:1.0" level="project" />
     <orderEntry type="module" module-name="business-test" />
   </component>
+  <component name="libraryTable" />
 </module>
 

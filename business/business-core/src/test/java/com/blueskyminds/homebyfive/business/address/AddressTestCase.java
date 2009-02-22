@@ -80,7 +80,7 @@ public class AddressTestCase extends JPATestCase {
         ((AddressServiceImpl) addressService).setCountryService(countryService);
         ((AddressServiceImpl) addressService).setStreetService(streetService);
         ((AddressServiceImpl) addressService).setPostalCodeService(postalCodeService);
-        regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService);
+        regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService, streetService);
 
         substitutionDAO = new SubstitutionDAO(em);
         substitutionService = new SubstitutionServiceImpl(substitutionDAO);

@@ -40,5 +40,6 @@
     <orderEntry type="library" exported="" name="Maven: commons-httpclient:commons-httpclient:3.1" level="project" />
     <orderEntry type="library" exported="" name="Maven: ostermillerutils:ostermillerutils:1.06" level="project" />
   </component>
+  <component name="libraryTable" />
 </module>
 

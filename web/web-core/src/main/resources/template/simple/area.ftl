@@ -1,6 +1,6 @@
 <#include "/${parameters.templateDir}/${parameters.theme}/controlheader.ftl" />
 
-<#if editMode?default(false)>
+<#if (parameters.editMode?default("View") == "Edit" || parameters.editMode?default("View") == "Add" || editMode?default("View") == "Edit" || editMode?default("View") == "Add") >
 <#--
 EditMode: Create a text field and select
 The select is populated with the list named by the xUnitsMap expression

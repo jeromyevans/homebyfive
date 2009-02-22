@@ -64,7 +64,7 @@ public class RegionTestCase extends JPATestCase {
         regionService = new RegionServiceImpl();
 
         addressService = new AddressServiceImpl(em);
-        regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService);
+        regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService, streetService);
 
 
     }

@@ -24,7 +24,7 @@ public interface RegionServiceI<T extends Region> {
 
     T lookup(String path);
 
-    T create(T country) throws DuplicateRegionException, InvalidRegionException;
+    T create(T region) throws DuplicateRegionException, InvalidRegionException;
 
     /**
      * Update an existing Region
@@ -38,7 +38,7 @@ public interface RegionServiceI<T extends Region> {
 
     TableModel listTags(String path);
 
-    void assignTag(String path, String tag) throws InvalidRegionException, InvalidTagException; 
+    void assignTag(String path, String tag) throws InvalidRegionException, InvalidTagException;
 
     void removeTag(String path, String tag) throws InvalidRegionException;
 

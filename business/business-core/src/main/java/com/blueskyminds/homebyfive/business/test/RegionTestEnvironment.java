@@ -1,9 +1,6 @@
 package com.blueskyminds.homebyfive.business.test;
 
-import com.blueskyminds.homebyfive.business.region.dao.CountryEAO;
-import com.blueskyminds.homebyfive.business.region.dao.StateEAO;
-import com.blueskyminds.homebyfive.business.region.dao.PostCodeEAO;
-import com.blueskyminds.homebyfive.business.region.dao.SuburbEAO;
+import com.blueskyminds.homebyfive.business.region.dao.*;
 import com.blueskyminds.homebyfive.business.region.service.*;
 import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.business.address.patterns.AddressPatternMatcher;
@@ -38,6 +35,8 @@ public class RegionTestEnvironment {
     public StateService stateService;
     public SuburbService suburbService;
     public PostalCodeService postalCodeService;
+    public StreetService streetService;
+    public StreetEAO streetEAO;
 
     public RegionTestEnvironment setup(EntityManager em) {
         countryEAO = new CountryEAO(em);
@@ -45,6 +44,7 @@ public class RegionTestEnvironment {
         postCodeEAO = new PostCodeEAO(em);
         suburbEAO = new SuburbEAO(em);
         addressDAO = new AddressDAO(em);
+        streetEAO = new StreetEAO(em);
 
         tagDAO = new TagDAO(em);
         tagService = new TagServiceImpl(tagDAO);
@@ -53,11 +53,11 @@ public class RegionTestEnvironment {
         stateService = new StateServiceImpl(em, tagService, countryService, stateEAO);
         suburbService = new SuburbServiceImpl(em, tagService, stateService, suburbEAO);
         postalCodeService = new PostalCodeServiceImpl(em, tagService, stateService, postCodeEAO);
-
+        streetService = new StreetServiceImpl(em, tagService, suburbService, streetEAO);
         regionService = new RegionServiceImpl();
 
         addressService = new AddressServiceImpl(em);
-        regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService);
+        regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService, streetService);
         return this;
     }
 }
