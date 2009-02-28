@@ -80,6 +80,5 @@
     <orderEntry type="library" exported="" name="Maven: com.google.inject.struts2:guice-struts2-plugin:1.0.1" level="project" />
     <orderEntry type="library" exported="" name="Maven: com.google.inject.servlet:guice-servlet:1.0" level="project" />
   </component>
-  <component name="libraryTable" />
 </module>
 

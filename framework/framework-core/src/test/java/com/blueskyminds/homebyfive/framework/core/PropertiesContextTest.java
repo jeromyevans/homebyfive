@@ -2,6 +2,9 @@ package com.blueskyminds.homebyfive.framework.core;
 
 import com.blueskyminds.homebyfive.framework.core.tools.PropertiesContext;
 import com.blueskyminds.homebyfive.framework.core.test.BaseTestCase;
+import junit.framework.TestCase;
+
+import java.util.Properties;
 
 /**
  * Unit tests for the PropertiesContext
@@ -10,13 +13,9 @@ import com.blueskyminds.homebyfive.framework.core.test.BaseTestCase;
  *
  * History:
  *
- * ---[ Blue Sky Minds Pty Ltd ]------------------------------------------------------------------------------
+ * Copyright (c) 2009 Blue Sky Minds Pty Ltd
  */
-public class TestPropertiesContext extends BaseTestCase {
-
-    public TestPropertiesContext(String string) {
-        super(string);
-    }
+public class PropertiesContextTest extends TestCase {
 
     public void testConfiguration() {
         PropertiesContext properties = new PropertiesContext();
@@ -26,5 +25,13 @@ public class TestPropertiesContext extends BaseTestCase {
 
         System.out.println(value);
         assertNotNull(value);
+    }
+
+    /** Assert that the hostname-specific properties take precedence */
+    public void testLocalMachineProperties() {
+        PropertiesContext.setEmulatedHostName("hosttest");
+        Properties properties = PropertiesContext.loadPropertiesFile("propertiesContextTest.properties");
+        assertNotNull(properties);
+        assertEquals("hosttest", properties.getProperty("property1"));
     }
 }

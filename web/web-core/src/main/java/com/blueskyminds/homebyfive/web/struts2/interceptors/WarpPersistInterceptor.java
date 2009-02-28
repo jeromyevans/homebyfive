@@ -47,9 +47,9 @@ public class WarpPersistInterceptor implements Interceptor {
         } else {
             LOG.warn("EntityManager is closed ("+em.toString()+")");
         }
-
+        LOG.info("JDBC URL:"+((Session) em.getDelegate()).connection().getMetaData().getURL());
+        LOG.info("em: "+em.toString());
+        LOG.info("conn: "+((Session) em.getDelegate()).connection().toString());
         return invocation.invoke();
-
-
     }
 }

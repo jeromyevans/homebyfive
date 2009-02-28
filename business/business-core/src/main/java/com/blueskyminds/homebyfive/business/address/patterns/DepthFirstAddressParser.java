@@ -19,6 +19,7 @@ import java.util.*;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -131,6 +132,7 @@ public class DepthFirstAddressParser implements AddressParser {
         if (LOG.isDebugEnabled()) {
             LOG.debug("match:"+stopWatch.toString());
         }
+        LOG.info("   parsing "+plainTextAddress+" required: "+stopWatch.toString());
 
         return addresses;
     }
@@ -167,8 +169,8 @@ public class DepthFirstAddressParser implements AddressParser {
             streetSection = StreetSection.NA;
         }
 
-        streetName = candidate.extractValue(GreedyStreetNameBin.class);
-        String suburbName = candidate.extractValue(GreedySuburbNameBin.class);
+        streetName = WordUtils.capitalizeFully(candidate.extractValue(GreedyStreetNameBin.class));
+        String suburbName = WordUtils.capitalizeFully(candidate.extractValue(GreedySuburbNameBin.class));
         String postCodeName = candidate.extractValue(GreedyPostCodeBin.class);
 
         //String postCodeName = candidate.extractValue(PostCodeBin.class);

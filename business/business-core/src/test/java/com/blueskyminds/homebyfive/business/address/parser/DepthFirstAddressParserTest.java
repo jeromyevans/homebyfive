@@ -1,10 +1,7 @@
 package com.blueskyminds.homebyfive.business.address.parser;
 
 import com.blueskyminds.homebyfive.business.address.patterns.*;
-import com.blueskyminds.homebyfive.business.address.Address;
-import com.blueskyminds.homebyfive.business.address.PlainTextAddress;
-import com.blueskyminds.homebyfive.business.address.AddressTestCase;
-import com.blueskyminds.homebyfive.business.address.UnitAddress;
+import com.blueskyminds.homebyfive.business.address.*;
 import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.Countries;
 import com.blueskyminds.homebyfive.business.region.service.SuburbServiceImpl;
@@ -19,9 +16,9 @@ import org.apache.commons.lang.StringUtils;
  * <p/>
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd
  */
-public class TestDepthFirstAddressParser extends AddressTestCase {
+public class DepthFirstAddressParserTest extends AddressTestCase {
 
-    private static final Log LOG = LogFactory.getLog(TestDepthFirstAddressParser.class);
+    private static final Log LOG = LogFactory.getLog(DepthFirstAddressParserTest.class);
 
     private Country aus;
 
@@ -191,5 +188,55 @@ public class TestDepthFirstAddressParser extends AddressTestCase {
         System.out.println(StringUtils.leftPad(addressString, 38) + "|" + (streetAddress != null ? streetAddress.toString() : "FAIL"));
     }
 
+
+     public void testAddressCleansing20() throws Exception {
+        PlainTextAddress inputAddress = new PlainTextAddress("Lot 3845 Balanda DRIVE DUNDEE BEACH NT");
+        String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+        Address streetAddress = addressParser.parseAddress(addressString);
+        assertNotNull(streetAddress);
+        assertEquals("Dundee Beach", streetAddress.getSuburb().getName());
+        assertEquals("3845", ((LotAddress) streetAddress).getLotNumber());
+        assertEquals(null, ((LotAddress) streetAddress).getStreetNumber());
+        System.out.println(StringUtils.leftPad(addressString, 38) + "|" + (streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
+
+    public void testAddressCleansing21() throws Exception {
+        PlainTextAddress inputAddress = new PlainTextAddress("5 Hayes Court DURACK NT");
+        String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+        Address streetAddress = addressParser.parseAddress(addressString);
+        assertNotNull(streetAddress);
+        assertEquals("Durack", streetAddress.getSuburb().getName());
+        assertEquals("5", ((StreetAddress) streetAddress).getStreetNumber());
+        assertEquals("Hayes", ((StreetAddress) streetAddress).getStreet().getName());
+        System.out.println(StringUtils.leftPad(addressString, 38) + "|" + (streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
+
+    public void testAddressCleansing23() throws Exception {
+        PlainTextAddress inputAddress = new PlainTextAddress("17 Crown Court DURACK NT");
+        String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+        Address streetAddress = addressParser.parseAddress(addressString);
+        assertNotNull(streetAddress);
+        assertEquals("Durack", streetAddress.getSuburb().getName());
+        assertEquals("17", ((UnitAddress) streetAddress).getStreetNumber());
+        assertEquals("Crown", ((StreetAddress) streetAddress).getStreet().getName());
+        assertEquals(StreetType.Court, ((StreetAddress) streetAddress).getStreet().getStreetType());
+        System.out.println(StringUtils.leftPad(addressString, 38) + "|" + (streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
+
+    public void testAddressCleansing24() throws Exception {
+        PlainTextAddress inputAddress = new PlainTextAddress("301 Ann Street BRISBANE QLD");
+        String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+        Address streetAddress = addressParser.parseAddress(addressString);
+        assertNotNull(streetAddress);
+        assertEquals("Brisbane", streetAddress.getSuburb().getName());
+        assertEquals("301", ((StreetAddress) streetAddress).getStreetNumber());
+        assertEquals("Ann", ((StreetAddress) streetAddress).getStreet().getName());
+        assertEquals(StreetType.Street, ((StreetAddress) streetAddress).getStreet().getStreetType());
+        System.out.println(StringUtils.leftPad(addressString, 38) + "|" + (streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
 
 }

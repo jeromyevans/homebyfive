@@ -49,7 +49,7 @@ public abstract class QueryPage<T, Q> extends AbstractPage<T> {
         results = doQuery(query, pageNo * pageSize, pageSize+1);
 
         if (LOG.isInfoEnabled()) {
-            LOG.info("Loading page: "+pageNo+ "(pageSize="+pageSize+", resultsInThisPage="+results.size()+")");
+            LOG.info("Loading page: "+pageNo+ "(pageSize="+pageSize+", resultsInThisPage="+results.size()+") (firstResult="+pageNo * pageSize+")");
         }
     }
     // ------------------------------------------------------------------------------------------------------

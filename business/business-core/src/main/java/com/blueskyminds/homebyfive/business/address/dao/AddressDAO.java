@@ -7,6 +7,8 @@ import com.blueskyminds.homebyfive.framework.core.persistence.PersistenceService
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.homebyfive.framework.core.tools.filters.FilterTools;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -23,6 +25,8 @@ import java.util.*;
  * Copyright (c) 2008 Blue Sky Minds Pty Ltd<br/>
  */
 public class AddressDAO extends AbstractDAO {
+
+    private static final Log LOG = LogFactory.getLog(AddressDAO.class);
 
     private static final String QUERY_COUNTRY_BY_NAME = "country.byName";
     private static final String QUERY_COUNTRY_BY_ISO3_CODE = "country.byIso3Code";
@@ -398,6 +402,8 @@ public class AddressDAO extends AbstractDAO {
 
         QueryBuilder queryBuilder = new QueryBuilder(address.getClass(), PARAM_ADDRESS);
         Query query;
+
+        LOG.info("Looking up address by example (slow)");
 
         if ((address.getSuburb() != null) && (address.getSuburb().isIdSet())) {
             queryBuilder.addCondition("address.suburb = :suburb");

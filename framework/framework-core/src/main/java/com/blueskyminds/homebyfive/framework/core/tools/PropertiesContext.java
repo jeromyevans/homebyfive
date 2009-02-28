@@ -5,6 +5,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.net.URI;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.*;
 import java.io.InputStream;
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class PropertiesContext {
     /** Properties that have been previously loaded and cached in the configuration */
     private Map<String, Properties> propertyCache;
     private List<String> precedence;
+    private static final String LOCALHOST = "localhost";
 
     /**
      * Create a new empty properties context
@@ -204,28 +207,73 @@ public class PropertiesContext {
     /**
      * Loads a Properties file using the default ResourceLocator
      *
-     * @param fileName  name of the properties file
+     * Reads the host-specific properties file first if available
+     *
+     * @param fileName          name of the properties file
      * @return properties set
      */
     public static Properties loadPropertiesFile(String fileName) {
 
-        Properties properties = null;
+        Properties localProperties = null;
 
-        // search for the properties file
-        URI resourceURL = ResourceTools.locateResource(fileName);
-
-        try {
-            if (resourceURL != null) {
-                InputStream in = ResourceTools.openStream(resourceURL);
-                if (in != null) {
-                    properties = new Properties();
-                    properties.load(in);
-                }
-            }
-        } catch (IOException e) {
-            // ignore
+        String hostname = getHostname();
+        if (!LOCALHOST.equals(hostname)) {
+            // read the machine-dependent properties file if available
+            String extension = "."+StringUtils.substringAfterLast(fileName, ".");
+            String localFilename = StringUtils.substringBeforeLast(fileName, extension)+"-"+hostname+extension;
+            return loadPropertiesFile(localFilename, fileName);
+        } else {
+            return loadPropertiesFile(fileName);
         }
-        return properties;
+
+//        String localFilename;
+//        String hostname = getHostname();
+//        if (!LOCALHOST.equals(hostname)) {
+//            // read the machine-dependent properties file if available
+//            String extension = StringUtils.substringAfterLast(fileName, ".");
+//            localFilename = StringUtils.substringBeforeLast(fileName, extension)+"-"+hostname+"."+extension;
+//
+//            URI resourceURL = ResourceTools.locateResource(localFilename);
+//
+//            try {
+//                if (resourceURL != null) {
+//                    InputStream in = ResourceTools.openStream(resourceURL);
+//                    if (in != null) {
+//                        localProperties = new Properties();
+//                        localProperties.load(in);
+//                    }
+//                }
+//            } catch (IOException e) {
+//                // ignore
+//            }
+//        }
+//
+//        // search for the base properties file
+//        URI resourceURL = ResourceTools.locateResource(fileName);
+//        Properties properties = null;
+//        try {
+//            if (resourceURL != null) {
+//                InputStream in = ResourceTools.openStream(resourceURL);
+//                if (in != null) {
+//                    properties = new Properties();
+//                    properties.load(in);
+//                }
+//            }
+//        } catch (IOException e) {
+//            // ignore
+//        }
+//
+//        if (localProperties != null) {
+//            if (properties != null) {
+//                // merge the local properties with the base one
+//                mergeProperties(localProperties, properties);
+//                return localProperties;
+//            } else {
+//                return localProperties;
+//            }
+//        } else {
+//            return properties;
+//        }
     }
 
     /**
@@ -247,7 +295,7 @@ public class PropertiesContext {
      * @param into      properties are merged into this set (and returned)
      * @param from      properties are read from this set (unchanged)
      */
-    private void mergeProperties(Properties into, Properties from) {
+    public static void mergeProperties(Properties into, Properties from) {
         for (Object key : from.keySet()) {
             if (!into.contains(key)) {
                 into.setProperty((String) key, (String) from.get(key));
@@ -303,5 +351,37 @@ public class PropertiesContext {
         Properties properties = new Properties();
         properties.setProperty(name, value);
         cacheProperties(name, properties);
+    }
+
+    private static String emulatedHostName = null;
+
+    /**
+     * Override the hostname
+     * @param emulatedHostName
+     */
+    public static void setEmulatedHostName(String emulatedHostName) {
+        PropertiesContext.emulatedHostName = emulatedHostName;
+    }
+
+    /**
+     * Attempts to read the name of the local machine
+     */
+    protected static String getHostname() {
+        String hostname;
+
+        if (emulatedHostName == null) {
+            try {
+                InetAddress addr = InetAddress.getLocalHost();
+
+                hostname = addr.getHostName();
+            } catch (UnknownHostException e) {
+                //
+                hostname = LOCALHOST;  // to avoid returning null
+            }
+        } else {
+            hostname = emulatedHostName;
+        }
+
+        return hostname;
     }
 }

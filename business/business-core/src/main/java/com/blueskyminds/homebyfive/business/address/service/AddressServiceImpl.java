@@ -184,6 +184,8 @@ public class AddressServiceImpl implements AddressService {
                         if (stateCandidates.size() > 0) {
                             state = stateCandidates.iterator().next();
                             suburbCandidates = suburbService.find(suburbString, stateCandidates);
+                        } else {
+                            LOG.error("Failed to match a state from '"+stateString+"' in "+countryAbbr);
                         }
                     } else {
                         // look for suburb in country (slower!)
@@ -395,10 +397,8 @@ public class AddressServiceImpl implements AddressService {
                 }
 
                 if (address.hasNumber()) {
-                    em.persist(address);
                     // use the new address
-                    addressFound = address;
-                
+                    addressFound = persist(address);                
                     LOG.info("Created new address: "+addressFound);
                 } else {
                     LOG.info("Address rejected because it doesn't have a number: "+address);
@@ -407,6 +407,8 @@ public class AddressServiceImpl implements AddressService {
                 LOG.info("Found existing address: "+addressFound);
             }
         } catch (PersistenceServiceException e) {
+            throw new AddressProcessingException(e);
+        } catch (AddressServiceException e) {
             throw new AddressProcessingException(e);
         }
         return addressFound;
@@ -545,6 +547,11 @@ public class AddressServiceImpl implements AddressService {
         em.persist(target);
 
         return target;
+    }
+
+    public Address persist(Address address) throws AddressServiceException {
+        em.persist(address);
+        return address;
     }
 
     public void setEntityManager(EntityManager entityManager) {

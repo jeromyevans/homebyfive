@@ -150,4 +150,6 @@ public interface AddressService {
      */
     Region mergeRegions(Region target, Region source);
 
+    Address persist(Address address) throws AddressServiceException;
+
 }

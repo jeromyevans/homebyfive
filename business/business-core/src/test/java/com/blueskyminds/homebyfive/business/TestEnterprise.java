@@ -4,6 +4,7 @@ import com.blueskyminds.homebyfive.business.accounting.ChartOfAccounts;
 import com.blueskyminds.homebyfive.business.accounting.DetailAccount;
 import com.blueskyminds.homebyfive.business.license.*;
 import com.blueskyminds.homebyfive.business.party.Party;
+import com.blueskyminds.homebyfive.business.party.Organisation;
 import com.blueskyminds.homebyfive.business.pricing.*;
 import com.blueskyminds.homebyfive.business.pricing.policy.FixedPrice;
 import com.blueskyminds.homebyfive.business.pricing.policy.PricingPolicy;
