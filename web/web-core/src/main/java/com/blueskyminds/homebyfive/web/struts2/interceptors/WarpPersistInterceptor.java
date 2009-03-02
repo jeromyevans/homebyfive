@@ -36,20 +36,25 @@ public class WarpPersistInterceptor implements Interceptor {
     @Transactional
     public String intercept(ActionInvocation invocation) throws Exception {
 
+        Session session = (Session) em.getDelegate();
+
         if (em.isOpen()) {
                 String targetMethod = invocation.getProxy().getMethod();
             if (("create".equals(targetMethod)) || ("update".equals(targetMethod)) || ("destroy".equals(targetMethod))) {
                 LOG.info("Allowing JDBC read-write JDBC connection");
+                session.connection().setReadOnly(false);
             } else {
                 LOG.info("Setting JDBC connection to read-only");
-                ((Session) em.getDelegate()).connection().setReadOnly(true);
+                session.connection().setReadOnly(true);
             }
         } else {
             LOG.warn("EntityManager is closed ("+em.toString()+")");
         }
-        LOG.info("JDBC URL:"+((Session) em.getDelegate()).connection().getMetaData().getURL());
+        LOG.info("JDBC URL:"+ session.connection().getMetaData().getURL());
         LOG.info("em: "+em.toString());
-        LOG.info("conn: "+((Session) em.getDelegate()).connection().toString());
+        LOG.info("conn: "+ session.connection().toString());
+        LOG.info("   EntityCount: "+session.getStatistics().getEntityCount());
+        LOG.info("   CollectionCount: "+session.getStatistics().getCollectionCount());
         return invocation.invoke();
     }
 }

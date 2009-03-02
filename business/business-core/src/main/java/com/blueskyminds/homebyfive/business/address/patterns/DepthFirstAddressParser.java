@@ -186,8 +186,7 @@ public class DepthFirstAddressParser implements AddressParser {
                 } else {
                     suburbCandidates = suburbService.find(suburbName, Countries.AU);
                 }
-                if (suburbCandidates.size() > 0 && postCodeName != null) {
-
+                if (suburbCandidates.size() > 0 && postCodeName != null && state != null) {
                     // confirm that the suburb is consistent with the postcode if present
                     postCode = postalCodeService.lookup(postCodeName, state);
                     if (postCode != null) {
