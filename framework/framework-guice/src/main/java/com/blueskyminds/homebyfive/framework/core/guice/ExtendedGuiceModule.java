@@ -3,11 +3,14 @@ package com.blueskyminds.homebyfive.framework.core.guice;
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.name.Names;
 import com.google.inject.matcher.Matcher;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Properties;
+import java.util.Map;
 
 import org.aopalliance.intercept.MethodInterceptor;
 
@@ -75,5 +78,16 @@ public abstract class ExtendedGuiceModule extends AbstractModule {
             selfInjectionInitialized = true;
         }
     }
-   
+
+
+    /**
+     * Bind the properties to constants using Names.named(key,value)
+     *
+     * @param properties
+     */
+    protected void bindConstants(Properties properties) {
+        for (Map.Entry entry : properties.entrySet()) {
+            bindConstant().annotatedWith(Names.named((String) entry.getKey())).to((String) entry.getValue());
+        }
+    }
 }
