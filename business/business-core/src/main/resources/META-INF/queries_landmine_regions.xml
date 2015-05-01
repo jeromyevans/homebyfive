@@ -299,6 +299,210 @@
           </query>
       </named-query>
 
+    <!--
+      Get countries with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="country.byTags">
+          <query>
+            select region from Country region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap where
+               region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+               tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
+  <!--
+      Get states with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="state.byTags">
+          <query>
+            select region from State region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap where
+               region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+               tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
+  <!--
+      Get postalCodes with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="postCode.byTags">
+          <query>
+            select region from PostalCode region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap where
+                region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
+  <!--
+      Get suburbs with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="suburb.byTags">
+          <query>
+            select region from Suburb region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap where
+                region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
+  <!--
+      Get streets with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="street.byTags">
+          <query>
+            select region from Street region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap where
+                region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
+   <!--
+      Get all states
+       -->
+      <named-query name="state.all">
+          <query>
+            select region from State region
+              left join fetch region.regionAliases alias
+              where region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+          </query>
+      </named-query>
+
+  <!--
+      Get all suburbs
+       -->
+      <named-query name="suburb.all">
+          <query>
+            select region from Suburb region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              where region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+          </query>
+      </named-query>
+
+  <!--
+      Get all postalCodes
+       -->
+      <named-query name="postCode.all">
+          <query>
+            select region from PostalCode region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              where region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+          </query>
+      </named-query>
+
+  <!--
+      Get all streets
+       -->
+      <named-query name="street.all">
+          <query>
+            select region from Street region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              where region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid
+          </query>
+      </named-query>
+
+  <!--
+      Get states with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="state.byParentPathAndTags">
+          <query>
+            select region from State region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap
+              where region.parentPath = :path and
+                    region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                    tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
+  <!--
+      Get postalCodes with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="postCode.byParentPathAndTags">
+          <query>
+            select region from PostalCode region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap
+              where region.parentPath = :path and
+                    region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                    tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
+  <!--
+      Get suburbs with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="suburb.byParentPathAndTags">
+          <query>
+            select region from Suburb region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap
+              where region.parentPath = :path and
+                    region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                    tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
+  <!--
+      Get streets with any of the tags
+
+      Parameters:
+        tags:  set of tags
+       -->
+      <named-query name="street.byParentPathAndTags">
+          <query>
+            select region from Street region
+              left join fetch region.regionAliases alias
+              inner join fetch region.regionIndex
+              inner join region.tagMaps tagMap
+              where region.parentPath = :path and
+                    region.status = com.blueskyminds.homebyfive.framework.core.DomainObjectStatus.Valid and
+                    tagMap.tag in (:tags)
+          </query>
+      </named-query>
+
    <!--
       Delete a region
 

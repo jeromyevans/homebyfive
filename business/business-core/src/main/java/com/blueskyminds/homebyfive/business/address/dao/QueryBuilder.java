@@ -29,10 +29,16 @@ public class QueryBuilder implements ParameterisedQuery<QueryBuilder> {
     private String alias;
     private List<String> conditions;
     private QueryParameterMixin queryParameterMixin;
+    private String select;
 
     public QueryBuilder(Class entityClass, String alias) {
         this.entityClass = entityClass;
         this.alias = alias;
+        init();
+    }
+
+    public QueryBuilder(String select) {
+        this.select = select;
         init();
     }
 
@@ -91,11 +97,26 @@ public class QueryBuilder implements ParameterisedQuery<QueryBuilder> {
      * @return a detached PersistenceQuery
      */
     public Query generateQuery(EntityManager em) {
+        Query query = em.createQuery(getQueryString());
+        JpaQueryParameterMapper.applyParameters(query, getParameters());
 
-        String entityName = entityClass.getSimpleName();
+        return query;
+    }
+
+    /**
+     * Get the JQL as a string.
+     *
+     * @return
+     */
+    public String getQueryString() {
+        StringBuilder queryString;
         boolean first = true;
-
-        StringBuffer queryString = new StringBuffer("select " + alias + " from " + entityName + " " + alias);
+        if (select != null) {
+            queryString = new StringBuilder(select);
+        } else {
+            String entityName = entityClass.getSimpleName();
+            queryString = new StringBuilder("select " + alias + " from " + entityName + " " + alias);
+        }
 
         for (String condition : conditions) {
             if (first) {
@@ -107,10 +128,11 @@ public class QueryBuilder implements ParameterisedQuery<QueryBuilder> {
 
             queryString.append(condition);
         }
+        return queryString.toString();
+    }
 
-        Query query = em.createQuery(queryString.toString());
-        JpaQueryParameterMapper.applyParameters(query, getParameters());
-
-        return query;
+    @Override
+    public String toString() {
+        return getQueryString();
     }
 }

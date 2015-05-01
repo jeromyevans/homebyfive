@@ -482,6 +482,20 @@ public abstract class Region extends AbstractEntity implements Named, Aliased, T
         return false;
     }
 
+     /** Add a tag (same as addTag, but returns this */
+    public Region withTag(Tag a) {
+        addTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public Region withTags(Tag... tags) {
+        for (Tag tag : tags) {
+            addTag(tag);
+        }
+        return this;
+    }
+
     /**
      * Merge the tags from the other region into this region
      *

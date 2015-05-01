@@ -28,6 +28,8 @@ public interface SuburbService extends RegionServiceI<Suburb> {
     TableModel listSuburbsAsTable(String country, String state, String postCode);
     Set<Suburb> listSuburbs(Country country);
 
+    Set<Suburb> listSuburbs(String country);
+
     /**
      * Find a suburb in the specified country
      *

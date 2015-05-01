@@ -42,6 +42,11 @@ public class TagServiceImpl implements TagService {
         return tag;
     }
 
+    /** Create a reference to the tag with the specified name.  It will be created if it doesn't exist */
+    public Tag create(String name) {
+        return lookupOrCreateTag(name);
+    }
+
     public Tag lookupTag(String key) {
         return tagDAO.lookupTag(key);
     }

@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.index.CountryBean;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 
 import javax.persistence.*;
 
@@ -102,6 +103,18 @@ public class Country extends Region {
 
     public void mergeWith(Region anotherRegion) {
         super.mergeWith(anotherRegion);
+    }
+
+    /** Add a tag (same as addTag, but returns this */
+    public Country withTag(Tag a) {
+        super.withTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public Country withTags(Tag... tags) {
+        super.withTags(tags);
+        return this;
     }
 
     @Transient

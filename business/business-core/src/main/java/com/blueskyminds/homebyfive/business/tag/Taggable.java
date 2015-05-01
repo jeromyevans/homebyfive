@@ -36,4 +36,5 @@ public interface Taggable {
      * @return true if the entity has the specified tag
      */
     boolean hasTag(Tag tag);
+
 }

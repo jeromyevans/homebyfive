@@ -5,6 +5,9 @@ import com.blueskyminds.homebyfive.business.AddressTestTools;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.business.tag.service.TagServiceImpl;
 import com.blueskyminds.homebyfive.business.tag.dao.TagDAO;
+import com.blueskyminds.homebyfive.business.tag.expression.TagExpressionFactory;
+import com.blueskyminds.homebyfive.business.tag.factory.CachingTagFactory;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.business.address.service.AddressServiceImpl;
 import com.blueskyminds.homebyfive.business.address.service.AddressService;
@@ -36,6 +39,11 @@ public class RegionTestCase extends JPATestCase {
     protected PostalCodeService postalCodeService;
     protected StreetService streetService;
     protected StreetEAO streetEAO;
+    protected TagExpressionFactory tagExpressionFactory;
+
+    protected Tag a;
+    protected Tag b;
+    protected Tag c;
 
     public RegionTestCase() {
         super(TEST_ENTERPRISE_PERSISTENCE_UNIT);
@@ -55,6 +63,7 @@ public class RegionTestCase extends JPATestCase {
 
         tagDAO = new TagDAO(em);
         tagService = new TagServiceImpl(tagDAO);
+        tagExpressionFactory = new TagExpressionFactory(new CachingTagFactory(tagService));
         
         countryService = new CountryServiceImpl(em, tagService, countryEAO);
         stateService = new StateServiceImpl(em, tagService, countryService, stateEAO);
@@ -66,6 +75,10 @@ public class RegionTestCase extends JPATestCase {
         addressService = new AddressServiceImpl(em);
         regionService = new RegionServiceImpl(em, countryService, stateService, postalCodeService, suburbService, streetService);
 
+        a = tagService.lookupOrCreateTag("a");
+        b = tagService.lookupOrCreateTag("b");
+        c = tagService.lookupOrCreateTag("c");
 
+        em.flush();
     }
 }

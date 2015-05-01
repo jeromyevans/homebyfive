@@ -103,6 +103,10 @@ public class SuburbServiceImpl extends CommonRegionServices<Suburb> implements S
         return ((SuburbEAO) regionDAO).listSuburbsInCountry(country.getPath());        
     }
 
+    public Set<Suburb> listSuburbs(String country) {
+        return ((SuburbEAO) regionDAO).listSuburbsInCountry(PathHelper.buildPath(country));
+    }
+    
     /**
      * Find a suburb in the specified country
      *

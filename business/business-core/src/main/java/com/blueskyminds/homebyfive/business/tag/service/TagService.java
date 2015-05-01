@@ -1,6 +1,7 @@
 package com.blueskyminds.homebyfive.business.tag.service;
 
 import com.blueskyminds.homebyfive.business.tag.Tag;
+import com.blueskyminds.homebyfive.business.tag.factory.TagFactory;
 
 import java.util.Set;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * <p/>
  * History:
  */
-public interface TagService {
+public interface TagService extends TagFactory {
 
     public static final String SYSTEM_CONTACT = "system:contact";
     

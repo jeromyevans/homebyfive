@@ -357,6 +357,7 @@ public class HibernateSchemaMigrator implements SchemaMigrator {
                                 try {
                                     LOG.error("Attempting transaction rollback");
                                     connection.rollback();
+                                    LOG.info("   Rollback complete");
                                 } catch(SQLException sqle) {
                                     LOG.error("Rollback failed", sqle);
                                 }

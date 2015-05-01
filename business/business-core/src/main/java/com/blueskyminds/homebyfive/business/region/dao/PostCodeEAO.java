@@ -1,11 +1,13 @@
 package com.blueskyminds.homebyfive.business.region.dao;
 
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.google.inject.Inject;
 
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import java.util.Set;
+import java.util.Collection;
 
 /**
  * Date Started: 5/03/2008
@@ -19,6 +21,10 @@ public class PostCodeEAO extends AbstractRegionDAO<PostalCode> {
     private static final String PARAM_PATH = "path";
     private static final String QUERY_ALL_POSTCODES_BY_COUNTRY = "hp.postCodes.byCountryPath";
     private static final String PARAM_PARENT_PATH = "parentPath";
+    private static final String QUERY_ALL_POSTCODES = "postCode.all";
+
+    private static final String QUERY_BY_TAGS = "postCode.byTags";
+    private static final String QUERY_BY_PARENTPATH_AND_TAGS = "postCode.byParentPathAndTags";
 
     @Inject  
     public PostCodeEAO(EntityManager entityManager) {
@@ -51,7 +57,7 @@ public class PostCodeEAO extends AbstractRegionDAO<PostalCode> {
         return firstIn(query.getResultList());
     }
 
-/**
+    /**
      * Get a list of all the postcodes in the specified country (eg. /au)
      * Uses a like wildcard on the parent path
      *
@@ -61,5 +67,30 @@ public class PostCodeEAO extends AbstractRegionDAO<PostalCode> {
         Query query = em.createNamedQuery(QUERY_ALL_POSTCODES_BY_COUNTRY);
         query.setParameter(PARAM_PARENT_PATH, countryPath+"%");
         return setOf(query.getResultList());
+    }
+
+
+    public Set<PostalCode> list() {
+        Query query = em.createNamedQuery(QUERY_ALL_POSTCODES);
+        return setOf(query.getResultList());
+    }
+
+     /**
+     * @param tags   if non-empty, lists regions with any of these tags.
+     * If the set is empty, list all regions are listed
+     * @return
+     */
+    @Override
+    public Collection<PostalCode> listByTags(Set<Tag> tags) {
+        return super.default_listByTags(QUERY_BY_TAGS, tags);
+    }
+
+    /**
+     * List regions in the parent path with any of the specified tags.
+     * If the set is emply, all regions are listed
+     */
+    @Override
+    public Collection<PostalCode> listByTags(String parentPath, Set<Tag> tags) {
+        return super.default_listByTags(QUERY_BY_PARENTPATH_AND_TAGS, parentPath, tags);
     }
 }

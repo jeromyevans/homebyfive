@@ -1,5 +1,5 @@
 /*global blueskyminds,YAHOO*/
-blueskyminds.namespace("blueskyminds.tasks", "landmine.extractor");
+blueskyminds.namespace("blueskyminds.tasks");
 
 (function() {
 

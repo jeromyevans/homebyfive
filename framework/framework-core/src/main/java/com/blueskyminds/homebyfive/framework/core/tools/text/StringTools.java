@@ -9,6 +9,8 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Set;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.text.ParseException;
@@ -165,6 +167,11 @@ public class StringTools {
         return extractNumber(inputString, NON_DIGIT_PATTERN, occurrenceNo);
     }
 
+    /** Extracts the first encountered whole number (consecuative digits) in the input string. */
+    private static String extractLongStr(String inputString, int occurrenceNo) {
+        return extractNumber(inputString, NON_DIGIT_PATTERN, occurrenceNo);
+    }
+
     // ------------------------------------------------------------------------------------------------------
 
     /** Extracts the first encountered whole number (consecuative digits) in the input string. */
@@ -188,6 +195,61 @@ public class StringTools {
         return value;
     }
 
+    /** Convert an array of strings to an array of ints */
+    public static int[] extractInts(String[] values) {
+        List<Integer> ints = new ArrayList<Integer>(values.length);
+
+        for (String value : values) {
+            int type = extractInt(value, -1);
+            if (type >= 0) {
+                ints.add(type);
+            }
+        }
+        int[] result = new int[ints.size()];
+        for (int i = 0; i < ints.size(); i++) {
+            result[i] = ints.get(i);
+        }
+        return result;
+    }
+
+    /** Extracts the first encountered whole number (consecuative digits) in the input string. */
+    public static long extractLong(String inputString, int occurrenceNo, long defaultValue) {
+        long value = defaultValue;
+        try {
+            String number = extractLongStr(inputString, occurrenceNo);
+            if (number != null) {
+                value = Long.parseLong(number);
+            }
+        } catch (NumberFormatException e) {
+            // use default
+        }
+        return value;
+    }
+
+    /**
+     * Extracts the first encountered whole number (consecuative digits) in the input string.
+     */
+    public static long extractLong(String inputString, int defaultValue) {
+        return extractLong(inputString, 0, defaultValue);
+    }
+
+
+    /** Convert an array of strings to an array of longs */
+    public static long[] extractLongs(String[] values) {
+        List<Long> longs = new ArrayList<Long>(values.length);
+
+        for (String value : values) {
+            long longVal = extractLong(value, -1);
+            if (longVal >= 0) {
+                longs.add(longVal);
+            }
+        }
+        long[] result = new long[longs.size()];
+        for (int i = 0; i < longs.size(); i++) {
+            result[i] = longs.get(i);
+        }
+        return result;
+    }
     // ------------------------------------------------------------------------------------------------------
 
     /** Extracts the first encountered real number (consecuative digits) in the input string. */

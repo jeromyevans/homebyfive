@@ -188,14 +188,6 @@ public class RegionGroupFactory {
         return createStates(list);
     }
 
-    private static RegionIndex firstParent(Collection<? extends RegionIndex> regionBeans) {
-        RegionIndex parent = null;
-        if ((regionBeans != null) && (regionBeans.size() > 0)) {
-            parent = regionBeans.iterator().next().getParent();
-        }
-        return parent;
-    }
-
     private static Region firstParent(Collection<? extends Region> regions) {
         Region parent = null;
         if ((regions != null) && (regions.size() > 0)) {

@@ -2,11 +2,14 @@ package com.blueskyminds.homebyfive.business.region.dao;
 
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 import com.blueskyminds.homebyfive.business.region.graph.Street;
+import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.google.inject.Inject;
 
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import java.util.Set;
+import java.util.Collection;
 
 /**
  * Date Started: 20/03/2008
@@ -22,6 +25,11 @@ public class StreetEAO extends AbstractRegionDAO<Street> {
     private static final String PARAM_HANDLE = "handle";
     private static final String QUERY_ALL_STREETS_BY_COUNTRY = "hp.streets.byCountryPath";
     private static final String PARAM_PARENT_PATH = "parentPath";
+
+    private static final String QUERY_ALL_STREETS = "street.all";
+    
+    private static final String QUERY_BY_TAGS = "street.byTags";
+    private static final String QUERY_BY_PARENTPATH_AND_TAGS = "street.byParentPathAndTags";
 
     @Inject
     public StreetEAO(EntityManager entityManager) {
@@ -63,5 +71,29 @@ public class StreetEAO extends AbstractRegionDAO<Street> {
         Query query = em.createNamedQuery(QUERY_ALL_STREETS_BY_COUNTRY);
         query.setParameter(PARAM_PARENT_PATH, countryPath+"%");
         return setOf(query.getResultList());
+    }
+
+    public Set<Street> list() {
+        Query query = em.createNamedQuery(QUERY_ALL_STREETS);
+        return setOf(query.getResultList());
+    }
+
+      /**
+     * @param tags   if non-empty, lists regions with any of these tags.
+     * If the set is empty, list all regions are listed
+     * @return
+     */
+    @Override
+    public Collection<Street> listByTags(Set<Tag> tags) {
+        return super.default_listByTags(QUERY_BY_TAGS, tags);
+    }
+
+    /**
+     * List regions in the parent path with any of the specified tags.
+     * If the set is emply, all regions are listed
+     */
+    @Override
+    public Collection<Street> listByTags(String parentPath, Set<Tag> tags) {
+        return super.default_listByTags(QUERY_BY_PARENTPATH_AND_TAGS, parentPath, tags);
     }
 }

@@ -7,6 +7,7 @@ import com.blueskyminds.homebyfive.business.region.group.RegionGroupFactory;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.CountryTableFactory;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
+import com.blueskyminds.homebyfive.business.tag.expression.TagExpression;
 import com.blueskyminds.homebyfive.framework.core.patterns.LevensteinDistanceTools;
 import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.wideplay.warp.persist.Transactional;

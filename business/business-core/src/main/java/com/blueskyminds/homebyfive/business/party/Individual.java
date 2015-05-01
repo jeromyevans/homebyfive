@@ -3,6 +3,7 @@ package com.blueskyminds.homebyfive.business.party;
 import com.blueskyminds.homebyfive.framework.core.DomainObject;
 import com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException;
 import com.blueskyminds.homebyfive.framework.core.tools.ArrayTools;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 
@@ -370,5 +371,16 @@ public class Individual extends Party {
         }
     }
 
-    
+    /** Add a tag (same as addTag, but returns this */
+    public Individual withTag(Tag a) {
+        super.withTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public Individual withTags(Tag... tags) {
+        super.withTags(tags);
+        return this;
+    }
+
 }

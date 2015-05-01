@@ -6,6 +6,9 @@ import com.blueskyminds.homebyfive.framework.core.persistence.query.QueryTempora
 
 import javax.persistence.Query;
 import java.util.Collection;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.lang.reflect.Array;
 
 /**
  * Provides methods to apply a vendor-independent QueryParameter to a JpaQuery
@@ -29,10 +32,25 @@ public class JpaQueryParameterMapper {
      /** Apply a parameter to the query */ 
     public static void applyParamater(Query query, QueryParameter queryParameter) {
         if (queryParameter instanceof QueryObjectParameter) {
-            if (queryParameter.isNamed()) {
-                query.setParameter(queryParameter.getName(), ((QueryObjectParameter) queryParameter).getObject());
+            Object object = ((QueryObjectParameter) queryParameter).getObject();
+            if (object.getClass().isArray()) {
+                // the object is an array. This needs to be transferrred to a collection for use with JPA
+                int length = Array.getLength(object);
+                Collection list = new ArrayList(length);
+                for (int i = 0; i < length; i++) {
+                    list.add(Array.get(object, i));
+                }
+                if (queryParameter.isNamed()) {
+                    query.setParameter(queryParameter.getName(), list);
+                } else {
+                    query.setParameter(queryParameter.getIndex(), list);
+                }
             } else {
-                query.setParameter(queryParameter.getIndex(), ((QueryObjectParameter) queryParameter).getObject());
+                if (queryParameter.isNamed()) {
+                    query.setParameter(queryParameter.getName(), object);
+                } else {
+                    query.setParameter(queryParameter.getIndex(), object);
+                }
             }
         } else {
 

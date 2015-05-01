@@ -2,11 +2,14 @@ package com.blueskyminds.homebyfive.business.region.dao;
 
 import com.blueskyminds.homebyfive.framework.core.persistence.jpa.dao.AbstractDAO;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
+import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.google.inject.Inject;
 
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import java.util.Set;
+import java.util.Collection;
 
 /**
  * Date Started: 3/03/2008
@@ -24,6 +27,11 @@ public class SuburbEAO extends AbstractRegionDAO<Suburb> {
     private static final String PARAM_HANDLE = "handle";
     private static final String PARAM_PARENT_PATH = "parentPath";
     private static final String QUERY_ALL_SUBURBS_BY_COUNTRY = "hp.suburbs.byCountryPath";
+
+    private static final String QUERY_ALL_SUBURBS = "suburb.all";
+    private static final String QUERY_BY_TAGS = "suburb.byTags";
+    private static final String QUERY_BY_PARENTPATH_AND_TAGS = "street.byParentPathAndTags";
+
 
     @Inject   
     public SuburbEAO(EntityManager entityManager) {
@@ -78,5 +86,28 @@ public class SuburbEAO extends AbstractRegionDAO<Suburb> {
         query.setParameter(PARAM_PARENT_PATH, countryPath+"%");
         return setOf(query.getResultList());
     }
-   
+
+    public Set<Suburb> list() {
+        Query query = em.createNamedQuery(QUERY_ALL_SUBURBS);
+        return setOf(query.getResultList());
+    }
+
+     /**
+     * @param tags   if non-empty, lists regions with any of these tags.
+     * If the set is empty, list all regions are listed
+     * @return
+     */
+    @Override
+    public Collection<Suburb> listByTags(Set<Tag> tags) {
+        return super.default_listByTags(QUERY_BY_TAGS, tags);
+    }
+
+    /**
+     * List regions in the parent path with any of the specified tags.
+     * If the set is emply, all regions are listed
+     */
+    @Override
+    public Collection<Suburb> listByTags(String parentPath, Set<Tag> tags) {
+        return super.default_listByTags(QUERY_BY_PARENTPATH_AND_TAGS, parentPath, tags);
+    }
 }

@@ -12,12 +12,19 @@ import java.util.*;
  *
  * Date Started: 14/06/2008
  * <p/>
- * Copyright (c) 2008 Blue Sky Minds Pty Ltd
+ * Copyright (c) 2009 Blue Sky Minds Pty Ltd
  */
 public class RegionRefTableFactory {
 
-    public static TableModel createFromHandles(List<Region> regionHandles) {
-        List<RegionRef> regionRefs = RegionRefFactory.createRefs(regionHandles);
+    public static TableModel createFromHandles(List<Region> regions) {
+        List<RegionRef> regionRefs = RegionRefFactory.createRefs(regions);
+        return create(regionRefs);
+    }
+
+    public static TableModel createFromHandles(Set<Region> regions) {
+        List<Region> sorted = new ArrayList<Region>(regions);
+        Collections.sort(sorted);
+        List<RegionRef> regionRefs = RegionRefFactory.createRefs(sorted);
         return create(regionRefs);
     }
 

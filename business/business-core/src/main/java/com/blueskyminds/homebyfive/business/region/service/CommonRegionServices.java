@@ -1,18 +1,20 @@
 package com.blueskyminds.homebyfive.business.region.service;
 
 import com.blueskyminds.homebyfive.business.region.dao.AbstractRegionDAO;
-import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.Region;
+import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.business.tag.TagsTableFactory;
-import com.blueskyminds.homebyfive.business.tag.service.InvalidTagException;
+import com.blueskyminds.homebyfive.business.tag.expression.TagExpression;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
+import com.blueskyminds.homebyfive.business.party.Party;
 import com.blueskyminds.homebyfive.framework.core.table.TableModel;
 import com.wideplay.warp.persist.Transactional;
 import com.google.inject.Inject;
 
 import javax.persistence.EntityManager;
 import java.util.Set;
+import java.util.Collection;
 
 /**
  * Includes methods common to all the different types of region services
@@ -69,8 +71,8 @@ public abstract class CommonRegionServices<R extends Region> implements RegionSe
         return region;
     }
 
-    @Transactional(exceptOn = {InvalidRegionException.class, InvalidTagException.class})
-    public void assignTag(String path, String tagName) throws InvalidRegionException, InvalidTagException {
+    @Transactional(exceptOn = {InvalidRegionException.class})
+    public void assignTag(String path, String tagName) throws InvalidRegionException {
         R region = lookup(path);
         if (region != null) {
             Tag tag = tagService.lookupOrCreateTag(tagName);
@@ -104,12 +106,24 @@ public abstract class CommonRegionServices<R extends Region> implements RegionSe
     }
 
     /**
+     * List regions matching the TagExpression
+     * @param tagExpression
+     * @return
+     */
+    public Set<R> listByTags(TagExpression tagExpression) {
+        Set<Tag> tagSuperset = tagExpression.getORSuperset();
+        Collection<R> regions = regionDAO.listByTags(tagSuperset);
+        return tagExpression.filter(regions);
+    }
+
+    /**
      * Delete the country specified by its ID
      * @param path
      */
     public void delete(String path) {
          regionDAO.delete(path);
     }
+
 
     @Inject
     public void setTagService(TagService tagService) {

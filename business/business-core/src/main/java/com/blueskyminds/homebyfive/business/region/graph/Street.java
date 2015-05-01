@@ -7,6 +7,7 @@ import com.blueskyminds.homebyfive.business.region.index.StreetBean;
 import com.blueskyminds.homebyfive.business.address.StreetType;
 import com.blueskyminds.homebyfive.business.address.StreetSection;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 
 import javax.persistence.*;
 import java.util.List;
@@ -194,6 +195,18 @@ public class Street extends Region {
             this.parentPath = suburb.getPath();
             this.path = PathHelper.joinPath(parentPath, key);
         }
+    }
+
+    /** Add a tag (same as addTag, but returns this */
+    public Street withTag(Tag a) {
+        super.withTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public Street withTags(Tag... tags) {
+        super.withTags(tags);
+        return this;
     }
 
     /**

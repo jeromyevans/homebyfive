@@ -5,6 +5,7 @@ import com.blueskyminds.homebyfive.business.party.Individual;
 import com.blueskyminds.homebyfive.business.party.Party;
 import com.blueskyminds.homebyfive.business.contact.PartyPOC;
 import com.blueskyminds.homebyfive.business.contact.POCType;
+import com.blueskyminds.homebyfive.business.tag.expression.TagExpression;
 import com.blueskyminds.homebyfive.framework.core.tools.selector.SingleSelector;
 
 import java.util.Set;
@@ -16,7 +17,7 @@ import java.util.Set;
  * <p/>
  * History:
  * <p/>
- * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
+ * Copyright (c) 2009 Blue Sky Minds Pty Ltd<br/>
  */
 public interface PartyService {
 
@@ -123,4 +124,29 @@ public interface PartyService {
      * @throws PartyServiceException
      */
     void recordInteraction(PartyPOC fromParty, Set<PartyPOC> toParties, String message, String mimeType) throws PartyServiceException;
+
+
+    /**
+     * List the Parties matching the TagExpression
+     *
+     * @param tagExpression
+     * @return
+     */
+    Set<Party> listParties(TagExpression tagExpression);
+
+    /**
+     * List the Individuals matching the TagExpression
+     *
+     * @param tagExpression
+     * @return
+     */
+    Set<Individual> listIndividuals(TagExpression tagExpression);
+
+    /**
+     * List the Organisations matching the TagExpression
+     *
+     * @param tagExpression
+     * @return
+     */
+    Set<Organisation> listOrganisations(TagExpression tagExpression);
 }

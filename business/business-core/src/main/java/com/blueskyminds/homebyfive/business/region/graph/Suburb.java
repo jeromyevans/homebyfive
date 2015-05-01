@@ -8,6 +8,7 @@ import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.index.SuburbBean;
 import com.blueskyminds.homebyfive.business.region.graph.Street;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
@@ -202,5 +203,15 @@ public class Suburb extends Region {
         }
     }
 
-   
+       /** Add a tag (same as addTag, but returns this */
+    public Suburb withTag(Tag a) {
+        super.withTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public Suburb withTags(Tag... tags) {
+        super.withTags(tags);
+        return this;
+    }
 }

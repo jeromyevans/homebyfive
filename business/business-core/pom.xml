@@ -13,6 +13,29 @@
     <version>0.1-SNAPSHOT</version>
   </parent>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.antlr</groupId>
+          <artifactId>antlr3-maven-plugin</artifactId>
+          <version>3.1.1.2</version>
+          <configuration>
+            <sourceDirectory>src/main/antlr</sourceDirectory>
+            <!-- this is necessary to identify the location of the .tokens file -->
+            <libDirectory>target/generated-sources/antlr/com/blueskyminds/homebyfive/business/tag/expression</libDirectory>
+          </configuration>
+          <executions>
+              <execution>
+                  <phase>generate-sources</phase>
+                  <goals>
+                      <goal>antlr</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
     <dependency>
       <groupId>com.google.inject</groupId>
@@ -31,7 +54,12 @@
       <artifactId>business-test</artifactId>
       <version>${pom.version}</version>
       <scope>test</scope>
-    </dependency>    
+    </dependency>
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>3.1.2</version>
+    </dependency>
   </dependencies>
   
 </project>

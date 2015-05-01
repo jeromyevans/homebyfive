@@ -239,4 +239,17 @@ public class DepthFirstAddressParserTest extends AddressTestCase {
         System.out.println(StringUtils.leftPad(addressString, 38) + "|" + (streetAddress != null ? streetAddress.toString() : "FAIL"));
     }
 
+    public void testAddressCleansing25() throws Exception {
+        PlainTextAddress inputAddress = new PlainTextAddress("6/23 Cromwell Road Alexander Heights WA");
+        String addressString = inputAddress.getAddress().trim().toLowerCase();
+
+        Address streetAddress = addressParser.parseAddress(addressString);
+        assertNotNull(streetAddress);
+        assertEquals("Alexander Heights", streetAddress.getSuburb().getName());
+        assertEquals("23", ((StreetAddress) streetAddress).getStreetNumber());
+        assertEquals("6", ((UnitAddress) streetAddress).getUnitNumber());
+        assertEquals("Cromwell", ((StreetAddress) streetAddress).getStreet().getName());
+        assertEquals(StreetType.Road, ((StreetAddress) streetAddress).getStreet().getStreetType());
+        System.out.println(StringUtils.leftPad(addressString, 38) + "|" + (streetAddress != null ? streetAddress.toString() : "FAIL"));
+    }
 }

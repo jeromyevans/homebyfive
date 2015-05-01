@@ -6,6 +6,7 @@ import com.blueskyminds.homebyfive.business.region.RegionTypes;
 import com.blueskyminds.homebyfive.business.region.PathHelper;
 import com.blueskyminds.homebyfive.business.region.index.PostalCodeBean;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 
 import javax.persistence.*;
 
@@ -105,6 +106,19 @@ public class PostalCode extends Region {
             this.parentPath = state.getPath();
         }
         this.path = PathHelper.joinPath(parentPath, key);
+    }
+
+
+    /** Add a tag (same as addTag, but returns this */
+    public PostalCode withTag(Tag a) {
+        super.withTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public PostalCode withTags(Tag... tags) {
+        super.withTags(tags);
+        return this;
     }
 
      /**

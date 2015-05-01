@@ -101,7 +101,7 @@ public class StateServiceImpl extends CommonRegionServices<State> implements Sta
                     }
                 }
             } else {
-                // ensure the state has been added as a chill
+                // ensure the state has been added as a child
                 country.addState(state);
             }
 

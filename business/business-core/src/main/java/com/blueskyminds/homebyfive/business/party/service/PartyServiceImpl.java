@@ -2,13 +2,16 @@ package com.blueskyminds.homebyfive.business.party.service;
 
 import com.blueskyminds.homebyfive.business.party.*;
 import com.blueskyminds.homebyfive.business.party.dao.PartyDAO;
+import com.blueskyminds.homebyfive.business.party.dao.IndividualDAO;
+import com.blueskyminds.homebyfive.business.party.dao.OrganisationDAO;
 import com.blueskyminds.homebyfive.business.contact.PartyPOC;
 import com.blueskyminds.homebyfive.business.contact.POCType;
 import com.blueskyminds.homebyfive.business.contact.interaction.POCInteraction;
+import com.blueskyminds.homebyfive.business.tag.expression.TagExpression;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.framework.core.tools.selector.SingleSelector;
 import com.blueskyminds.homebyfive.framework.core.tools.selector.FirstSelector;
 
-import javax.persistence.EntityManager;
 import java.util.Collection;
 import java.util.Set;
 import java.util.HashSet;
@@ -20,14 +23,18 @@ import java.util.HashSet;
  * <p/>
  * History:
  * <p/>
- * Copyright (c) 2007 Blue Sky Minds Pty Ltd<br/>
+ * Copyright (c) 2009 Blue Sky Minds Pty Ltd<br/>
  */
 public class PartyServiceImpl implements PartyService {
 
-    private EntityManager em;
+    private PartyDAO partyDAO;
+    private IndividualDAO individualDAO;
+    private OrganisationDAO organisationDAO;
 
-    public PartyServiceImpl(EntityManager entityManager) {
-        this.em = entityManager;
+    public PartyServiceImpl(PartyDAO partyDAO, IndividualDAO individualDAO, OrganisationDAO organisationDAO) {
+        this.partyDAO = partyDAO;
+        this.individualDAO = individualDAO;
+        this.organisationDAO = organisationDAO;
     }
 
     public PartyServiceImpl() {
@@ -93,7 +100,7 @@ public class PartyServiceImpl implements PartyService {
             selector = new FirstSelector<Organisation>();
         }
 
-        Collection<Organisation> candidateOrgs = new PartyDAO(em).findByExample(exampleOrganisation);
+        Collection<Organisation> candidateOrgs = organisationDAO.findByExample(exampleOrganisation);
 
         if (candidateOrgs.size() > 0) {
             persistentOrganisation = selector.select(candidateOrgs);
@@ -108,7 +115,7 @@ public class PartyServiceImpl implements PartyService {
         }
 
         // commit the changes
-        em.persist(persistentOrganisation);
+        organisationDAO.persist(persistentOrganisation);
 
         return persistentOrganisation;
     }
@@ -150,7 +157,7 @@ public class PartyServiceImpl implements PartyService {
         if (selector == null) {
             selector = new FirstSelector<Individual>();
         }
-        Collection<Individual> candidateIndividuals = new PartyDAO(em).findByExample(exampleIndividual);
+        Collection<Individual> candidateIndividuals = individualDAO.findByExample(exampleIndividual);
 
         if (candidateIndividuals.size() > 0) {
             persistentIndividual = selector.select(candidateIndividuals);
@@ -165,7 +172,7 @@ public class PartyServiceImpl implements PartyService {
         }
 
         // commit the changes
-        em.persist(persistentIndividual);
+        individualDAO.persist(persistentIndividual);
 
         return persistentIndividual;
     }
@@ -174,29 +181,29 @@ public class PartyServiceImpl implements PartyService {
      * Find a party with the specified tag
      **/    
     public Set<Party> findPartiesByTag(String tag) throws PartyServiceException {
-        return new HashSet<Party>(new PartyDAO(em).findPartiesByTag(tag));
+        return new HashSet<Party>(partyDAO.findByTag(tag));
     }
 
     /**
      * Find an organisation with the specified tag
      */
     public Set<Party> findOrganisationsByTag(String tag) throws PartyServiceException {
-        return new HashSet<Party>(new PartyDAO(em).findOrganisationsByTag(tag));
+        return new HashSet<Party>(organisationDAO.findByTag(tag));
     }
 
     /**
      * Find an individual with the specified tag
      */
     public Set<Party> findIndividualsByTag(String tag) throws PartyServiceException {
-        return new HashSet<Party>(new PartyDAO(em).findIndividualsByTag(tag));
+        return new HashSet<Party>(individualDAO.findByTag(tag));
     }
 
     public Set<PartyPOC> findPointOfContactsByTag(String tag) throws PartyServiceException {
-        return new HashSet<PartyPOC>(new PartyDAO(em).findPointsOfContactByTag(tag));
+        return new HashSet<PartyPOC>(partyDAO.findPointsOfContactByTag(tag));
     }
 
     public Set<PartyPOC> findPointOfContactsByTag(Party party, String tag) throws PartyServiceException {
-        return new HashSet<PartyPOC>(new PartyDAO(em).findPointsOfContactByTag(party, tag));
+        return new HashSet<PartyPOC>(partyDAO.findPointsOfContactByTag(party, tag));
     }
 
 
@@ -212,7 +219,7 @@ public class PartyServiceImpl implements PartyService {
      *
      */
     public Set<PartyPOC> findPointOfContactsByTag(String tag, POCType type) throws PartyServiceException {
-        return new HashSet<PartyPOC>(new PartyDAO(em).findPointsOfContactByTag(tag, type));
+        return new HashSet<PartyPOC>(partyDAO.findPointsOfContactByTag(tag, type));
     }
 
     /**
@@ -227,11 +234,55 @@ public class PartyServiceImpl implements PartyService {
      */
     public void recordInteraction(PartyPOC fromParty, Set<PartyPOC> toParties, String message, String mimeType) throws PartyServiceException {
         POCInteraction pocInteraction = new POCInteraction(fromParty, toParties, message, mimeType);
-        em.persist(pocInteraction);
+        partyDAO.persist(pocInteraction);
     }
 
-    public void setEntityManager(EntityManager em) {
-        this.em = em;
+    /**
+     * List the Party's matching the TagExpression
+     *
+     * @param tagExpression
+     * @return
+     */
+    public Set<Party> listParties(TagExpression tagExpression) {       
+        Set<Tag> tagSuperset = tagExpression.getORSuperset();
+        Collection<Party> parties = partyDAO.listByTags(tagSuperset);
+        return tagExpression.filter(parties);
     }
 
+
+    /**
+     * List the Individuals matching the TagExpression
+     *
+     * @param tagExpression
+     * @return
+     */
+    public Set<Individual> listIndividuals(TagExpression tagExpression) {
+        Set<Tag> tagSuperset = tagExpression.getORSuperset();
+        Collection<Individual> parties = individualDAO.listByTags(tagSuperset);
+        return tagExpression.filter(parties);
+    }
+
+    /**
+     * List the Organisations matching the TagExpression
+     *
+     * @param tagExpression
+     * @return
+     */
+    public Set<Organisation> listOrganisations(TagExpression tagExpression) {
+        Set<Tag> tagSuperset = tagExpression.getORSuperset();
+        Collection<Organisation> parties = organisationDAO.listByTags(tagSuperset);
+        return tagExpression.filter(parties);
+    }
+
+    public void setPartyDAO(PartyDAO partyDAO) {
+        this.partyDAO = partyDAO;
+    }
+
+    public void setIndividualDAO(IndividualDAO individualDAO) {
+        this.individualDAO = individualDAO;
+    }
+
+    public void setOrganisationDAO(OrganisationDAO organisationDAO) {
+        this.organisationDAO = organisationDAO;
+    }
 }

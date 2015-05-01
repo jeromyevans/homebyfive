@@ -8,6 +8,7 @@ import com.blueskyminds.homebyfive.business.region.graph.Country;
 import com.blueskyminds.homebyfive.business.region.graph.PostalCode;
 import com.blueskyminds.homebyfive.business.region.graph.Suburb;
 import com.blueskyminds.homebyfive.business.tools.KeyGenerator;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 import com.blueskyminds.homebyfive.framework.core.DomainObjectStatus;
 
 import javax.persistence.*;
@@ -176,6 +177,19 @@ public class State extends Region {
         this.stateType = stateType;
     }
 
+
+    /** Add a tag (same as addTag, but returns this */
+    public State withTag(Tag a) {
+        super.withTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public State withTags(Tag... tags) {
+        super.withTags(tags);
+        return this;
+    }
+    
     /**
      * Create or update the denormalized index entity
      */

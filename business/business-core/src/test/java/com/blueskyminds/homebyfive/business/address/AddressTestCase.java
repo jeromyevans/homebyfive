@@ -8,6 +8,7 @@ import com.blueskyminds.homebyfive.business.AddressTestTools;
 import com.blueskyminds.homebyfive.business.tag.service.TagService;
 import com.blueskyminds.homebyfive.business.tag.service.TagServiceImpl;
 import com.blueskyminds.homebyfive.business.tag.dao.TagDAO;
+import com.blueskyminds.homebyfive.business.tag.expression.TagExpressionFactory;
 import com.blueskyminds.homebyfive.business.address.dao.AddressDAO;
 import com.blueskyminds.homebyfive.business.address.service.AddressServiceImpl;
 import com.blueskyminds.homebyfive.business.address.service.AddressService;
@@ -34,8 +35,6 @@ public class AddressTestCase extends JPATestCase {
     protected AddressPatternMatcher matcher;
     protected AddressService addressService;
     protected RegionService regionService;
-    protected TagDAO tagDAO;
-    protected TagService tagService;
     protected CountryService countryService;
     protected StateService stateService;
     protected SuburbService suburbService;
@@ -44,6 +43,10 @@ public class AddressTestCase extends JPATestCase {
     protected SubstitutionService substitutionService;
     protected StreetEAO streetEAO;
     protected StreetService streetService;
+
+    protected TagDAO tagDAO;
+    protected TagService tagService;
+    protected TagExpressionFactory tagExpressionFactory;
 
     public AddressTestCase() {
         super(TEST_ENTERPRISE_PERSISTENCE_UNIT);
@@ -64,6 +67,7 @@ public class AddressTestCase extends JPATestCase {
 
         tagDAO = new TagDAO(em);
         tagService = new TagServiceImpl(tagDAO);
+        tagExpressionFactory = new TagExpressionFactory(tagService);
 
         countryService = new CountryServiceImpl(em, tagService, countryEAO);
         stateService = new StateServiceImpl(em, tagService, countryService, stateEAO);

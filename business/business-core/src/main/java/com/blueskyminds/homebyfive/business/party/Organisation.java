@@ -2,6 +2,7 @@ package com.blueskyminds.homebyfive.business.party;
 
 import com.blueskyminds.homebyfive.framework.core.DomainObject;
 import com.blueskyminds.homebyfive.framework.core.MergeUnsupportedException;
+import com.blueskyminds.homebyfive.business.tag.Tag;
 
 import javax.persistence.Basic;
 import javax.persistence.DiscriminatorValue;
@@ -104,5 +105,17 @@ public class Organisation extends Party {
         } else {
             throw new MergeUnsupportedException(this, other);
         }
+    }
+
+    /** Add a tag (same as addTag, but returns this */
+    public Organisation withTag(Tag a) {
+        super.withTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public Organisation withTags(Tag... tags) {
+        super.withTags(tags);
+        return this;
     }
 }

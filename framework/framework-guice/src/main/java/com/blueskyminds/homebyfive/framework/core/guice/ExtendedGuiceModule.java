@@ -5,6 +5,9 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.name.Names;
 import com.google.inject.matcher.Matcher;
+import com.wideplay.warp.persist.PersistenceService;
+import com.wideplay.warp.persist.UnitOfWork;
+import com.wideplay.warp.jpa.JpaUnit;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
@@ -13,6 +16,12 @@ import java.util.Properties;
 import java.util.Map;
 
 import org.aopalliance.intercept.MethodInterceptor;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 /**
  * An extension to the Guice AbstractModule that supports injection into method interceptors.
@@ -26,6 +35,10 @@ import org.aopalliance.intercept.MethodInterceptor;
  * History:
  */
 public abstract class ExtendedGuiceModule extends AbstractModule {
+
+    private static final Log LOG = LogFactory.getLog(ExtendedGuiceModule.class);
+
+    private static final String PERSISTENCE_UNIT_PROPERTY = "jpa.persistenceUnit";
 
     private final Set<Object> toBeInjected = new HashSet<Object>();
 
@@ -89,5 +102,29 @@ public abstract class ExtendedGuiceModule extends AbstractModule {
         for (Map.Entry entry : properties.entrySet()) {
             bindConstant().annotatedWith(Names.named((String) entry.getKey())).to((String) entry.getValue());
         }
+    }
+
+    /**
+     * Create the InitialContext using the supplied properties
+     *
+     * @param properties  env for the InitialContext, unless null
+     */
+    protected void bindInitialContext(Properties properties) {
+        try {
+            if (properties != null) {
+                bind(Context.class).toInstance(new InitialContext(properties));
+            } else {
+                bind(Context.class).toInstance(new InitialContext());
+            }
+        } catch (NamingException e) {
+            throw new RuntimeException("Error creating the JNDI InitialContext.  Initialisation has failed", e);
+        }
+    }
+
+    protected void bindWarpPersist(UnitOfWork unitOfWork, Properties properties) {
+        String persistenceUnit = (String) properties.get(PERSISTENCE_UNIT_PROPERTY);
+        LOG.info("   Setting up warp-persist across "+unitOfWork+" and persistance unit: "+ persistenceUnit);
+        install(PersistenceService.usingJpa().across(UnitOfWork.TRANSACTION).buildModule());
+        bindConstant().annotatedWith(JpaUnit.class).to(persistenceUnit);
     }
 }

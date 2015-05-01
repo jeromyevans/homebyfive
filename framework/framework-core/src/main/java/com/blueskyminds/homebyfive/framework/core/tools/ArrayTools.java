@@ -26,13 +26,13 @@ public class ArrayTools {
     /**
      * Returns a subset of an array
      *
-     * @param firstIndex
-     * @param lastIndex
+     * @param firstIndexInc
+     * @param lastIndexInc
      * @param fullArray
      * @return an array containing a copy of the the full aray from firstIndex to lastIndex
      */
-    public static <O> O[] subArray(Class<O> componentType, int firstIndex, int lastIndex, O[] fullArray) {
-        int length = lastIndex-firstIndex+1;
+    public static <O> O[] subArray(Class<O> componentType, int firstIndexInc, int lastIndexInc, O[] fullArray) {
+        int length = lastIndexInc-firstIndexInc+1;
         O[] subArray;
 
         if (length < 0) {
@@ -40,7 +40,7 @@ public class ArrayTools {
         }
 
         subArray = (O[]) Array.newInstance(componentType, length);
-        System.arraycopy(fullArray, firstIndex, subArray, 0, length);
+        System.arraycopy(fullArray, firstIndexInc, subArray, 0, length);
 
         return subArray;
     }

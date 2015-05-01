@@ -22,7 +22,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/antlr" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
+      <excludeFolder url="file://$MODULE_DIR$/target/test-classes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -43,7 +46,7 @@
     <orderEntry type="library" exported="" name="Maven: javax.transaction:jta:1.0.1B" level="project" />
     <orderEntry type="library" exported="" name="Maven: asm:asm-attrs:1.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: dom4j:dom4j:1.6.1" level="project" />
-    <orderEntry type="library" exported="" name="Maven: antlr:antlr:2.7.6" level="project" />
+    <orderEntry type="library" exported="" name="Maven: antlr:antlr:3.1.2" level="project" />
     <orderEntry type="library" exported="" name="Maven: cglib:cglib:2.1_3" level="project" />
     <orderEntry type="library" exported="" name="Maven: asm:asm:1.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.hibernate:hibernate-annotations:3.3.1.GA" level="project" />

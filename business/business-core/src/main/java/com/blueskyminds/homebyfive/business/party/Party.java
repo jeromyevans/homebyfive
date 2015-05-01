@@ -511,6 +511,21 @@ public class Party extends AbstractDomainObject implements Taggable, Contactable
         return false;
     }
 
+
+    /** Add a tag (same as addTag, but returns this */
+    public Party withTag(Tag a) {
+        addTag(a);
+        return this;
+    }
+
+     /** Add tags and return this */
+    public Party withTags(Tag... tags) {
+        for (Tag tag : tags) {
+            addTag(tag);
+        }
+        return this;
+    }
+
     /**
      * Merge the tags from the other party into this party
      *
